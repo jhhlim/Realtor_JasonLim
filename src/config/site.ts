@@ -1,0 +1,253 @@
+/**
+ * Single source of truth for personal & site branding.
+ * Update placeholders here — they propagate across the site.
+ */
+export const siteConfig = {
+  name: "Jason Lim",
+  legalName: "Jason Lim Real Estate",
+  tagline: "Helping Bay Area families make confident real estate decisions.",
+  secondaryTagline: "AI-powered real estate insights.",
+  differentiator: "Technology + Data + Personal Service.",
+  title: "REALTOR® | Bay Area Real Estate",
+  description:
+    "Bay Area REALTOR® combining software engineering, AI, and market analytics to help first-time buyers, move-up buyers, and investors make confident decisions.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://jasonlimrealty.com",
+  locale: "en_US",
+
+  contact: {
+    phone: "(408) 555-0142",
+    phoneHref: "tel:+14085550142",
+    email: "jason@jasonlimrealty.com",
+    sms: "sms:+14085550142",
+    address: {
+      line1: "Bay Area, California",
+      city: "San Jose",
+      state: "CA",
+      zip: "95113",
+      region: "Silicon Valley",
+    },
+  },
+
+  license: {
+    dre: "DRE #02200000",
+    status: "Licensed California REALTOR®",
+  },
+
+  social: {
+    instagram: "https://instagram.com/jasonlimrealty",
+    linkedin: "https://linkedin.com/in/jasonlim",
+    facebook: "https://facebook.com/jasonlimrealty",
+    youtube: "https://youtube.com/@jasonlimrealty",
+    x: "https://x.com/jasonlimrealty",
+    googleBusiness: "https://g.page/jasonlimrealty",
+  },
+
+  calendly: process.env.NEXT_PUBLIC_CALENDLY_URL ?? "https://calendly.com/jasonlim/consultation",
+  googleReviewsUrl: "https://g.page/r/jasonlimrealty/review",
+
+  media: {
+    // High-quality Unsplash portraits (works with next/image + remotePatterns)
+    headshot:
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80",
+    heroPortrait:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80",
+    ogImage:
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+  },
+
+  credentials: [
+    "Software Engineer",
+    "AI Developer",
+    "UC Berkeley Economics",
+    "Oregon State Computer Science",
+    "Licensed California REALTOR®",
+  ],
+
+  audiences: [
+    "First-time home buyers",
+    "Move-up buyers",
+    "Investors",
+    "Bay Area families",
+  ],
+
+  strengths: [
+    "Technology",
+    "Market analytics",
+    "Negotiation",
+    "Customer service",
+  ],
+
+  experience: {
+    techYears: "10+",
+    focus: [
+      "Enterprise software",
+      "AI",
+      "Automation",
+      "Analytics",
+    ],
+    differentiators: [
+      {
+        title: "Fresh Perspective",
+        description:
+          "Unbiased guidance grounded in current market data — not outdated playbooks.",
+      },
+      {
+        title: "Latest Market Knowledge",
+        description:
+          "Actively tracking Bay Area inventory, pricing, and rate dynamics every week.",
+      },
+      {
+        title: "Technology Advantage",
+        description:
+          "Custom tools, dashboards, and AI-assisted analysis for clearer decisions.",
+      },
+      {
+        title: "Always Available",
+        description:
+          "Responsive communication when timing matters most in competitive markets.",
+      },
+      {
+        title: "Personalized Service",
+        description:
+          "Strategy tailored to your goals, timeline, and risk tolerance.",
+      },
+      {
+        title: "Attention to Detail",
+        description:
+          "Engineering discipline applied to contracts, inspections, and negotiations.",
+      },
+    ],
+  },
+
+  stats: [
+    { label: "Years in Tech", value: "10+" },
+    { label: "Bay Area Focus", value: "SV" },
+    { label: "Response Time", value: "<2h" },
+    { label: "Client-First", value: "100%" },
+  ],
+
+  communities: [
+    "san-jose",
+    "milpitas",
+    "fremont",
+    "santa-clara",
+    "sunnyvale",
+    "cupertino",
+    "los-gatos",
+    "campbell",
+    "mountain-view",
+    "palo-alto",
+    "morgan-hill",
+  ] as const,
+
+  navigation: {
+    main: [
+      { label: "Buy", href: "/buy" },
+      { label: "Sell", href: "/sell" },
+      { label: "Listings", href: "/listings" },
+      { label: "Communities", href: "/communities" },
+      { label: "Market Reports", href: "/market-reports" },
+      { label: "Resources", href: "/resources" },
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" },
+    ],
+    footer: [
+      {
+        title: "Explore",
+        links: [
+          { label: "Search Homes", href: "/listings" },
+          { label: "Buy", href: "/buy" },
+          { label: "Sell", href: "/sell" },
+          { label: "Communities", href: "/communities" },
+          { label: "Market Reports", href: "/market-reports" },
+        ],
+      },
+      {
+        title: "Tools",
+        links: [
+          { label: "Mortgage Calculator", href: "/mortgage-calculator" },
+          { label: "Home Valuation", href: "/tools/home-valuation" },
+          { label: "Affordability", href: "/tools/affordability" },
+          { label: "Rent vs Buy", href: "/tools/rent-vs-buy" },
+          { label: "Investment Calculator", href: "/tools/investment" },
+        ],
+      },
+      {
+        title: "Company",
+        links: [
+          { label: "About Jason", href: "/about" },
+          { label: "Testimonials", href: "/testimonials" },
+          { label: "Blog", href: "/blog" },
+          { label: "FAQ", href: "/faq" },
+          { label: "Contact", href: "/contact" },
+        ],
+      },
+      {
+        title: "Legal",
+        links: [
+          { label: "Privacy Policy", href: "/privacy" },
+          { label: "Terms of Use", href: "/terms" },
+        ],
+      },
+    ],
+  },
+
+  cta: {
+    consultation: {
+      label: "Schedule Consultation",
+      href: "/contact#schedule",
+    },
+    valuation: {
+      label: "Request Home Valuation",
+      href: "/tools/home-valuation",
+    },
+    search: {
+      label: "Search Homes",
+      href: "/listings",
+    },
+    marketReport: {
+      label: "See Market Report",
+      href: "/market-reports",
+    },
+    subscribe: {
+      label: "Subscribe to Market Updates",
+      href: "/contact#newsletter",
+    },
+  },
+
+  integrations: {
+    analytics: {
+      gaId: process.env.NEXT_PUBLIC_GA_ID,
+      gtmId: process.env.NEXT_PUBLIC_GTM_ID,
+      metaPixelId: process.env.NEXT_PUBLIC_META_PIXEL_ID,
+      hotjarId: process.env.NEXT_PUBLIC_HOTJAR_ID,
+      clarityId: process.env.NEXT_PUBLIC_CLARITY_ID,
+    },
+    maps: {
+      provider: (process.env.NEXT_PUBLIC_MAP_PROVIDER ?? "leaflet") as
+        | "google"
+        | "mapbox"
+        | "leaflet",
+      googleMapsKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+      mapboxToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
+    },
+    mls: {
+      provider: process.env.MLS_PROVIDER ?? "mock",
+      realtyApiKey: process.env.REALTY_API_KEY,
+      realtyApiHost: process.env.REALTY_API_HOST,
+    },
+    crm: {
+      provider: process.env.CRM_PROVIDER,
+    },
+    newsletter: {
+      provider: process.env.NEWSLETTER_PROVIDER,
+    },
+    email: {
+      resendApiKey: process.env.RESEND_API_KEY,
+      from: process.env.EMAIL_FROM ?? "Jason Lim <hello@jasonlimrealty.com>",
+    },
+  },
+} as const;
+
+export type SiteConfig = typeof siteConfig;
+export type CommunitySlug = (typeof siteConfig.communities)[number];
