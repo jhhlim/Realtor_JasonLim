@@ -127,7 +127,7 @@ export function ContactForm({
             autoComplete="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            placeholder="(408) 555-0142"
+            placeholder="(510) 480-7191"
             disabled={status === "loading"}
           />
         </div>

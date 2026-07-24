@@ -15,10 +15,10 @@ export const siteConfig = {
   locale: "en_US",
 
   contact: {
-    phone: "(408) 555-0142",
-    phoneHref: "tel:+14085550142",
+    phone: "(510) 480-7191",
+    phoneHref: "tel:+15104807191",
     email: "jason@jasonlimrealty.com",
-    sms: "sms:+14085550142",
+    sms: "sms:+15104807191",
     address: {
       line1: "Bay Area, California",
       city: "San Jose",
@@ -29,7 +29,7 @@ export const siteConfig = {
   },
 
   license: {
-    dre: "DRE #02200000",
+    dre: "DRE #02444964",
     status: "Licensed California REALTOR®",
   },
 
@@ -46,11 +46,8 @@ export const siteConfig = {
   googleReviewsUrl: "https://g.page/r/jasonlimrealty/review",
 
   media: {
-    // High-quality Unsplash portraits (works with next/image + remotePatterns)
-    headshot:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80",
-    heroPortrait:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80",
+    headshot: "/images/jason-lim-headshot.jpg",
+    heroPortrait: "/images/jason-lim-hero.jpg",
     ogImage:
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
   },
