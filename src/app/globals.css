@@ -196,6 +196,13 @@ body {
   top: 0 !important;
 }
 
+/* Restore scroll/interaction after Sheet/Dialog closes (Radix can leave locks) */
+html:not(:has([data-state="open"][role="dialog"])) body {
+  overflow: auto !important;
+  pointer-events: auto !important;
+  padding-right: 0 !important;
+}
+
 /* Protect intentional Chinese / brand names from Google Translate */
 .notranslate {
 }

@@ -61,7 +61,7 @@ Tour with a clear must-have list, run comps yourself with recent closed sales, a
       "A side-by-side look at two of the South Bay's most school-driven housing markets.",
     content: `Cupertino delivers elite school prestige with higher entry prices and smaller lots. Fremont's Mission San Jose cluster rivals that reputation with relatively more inventory and East Bay BART access. Your commute pattern — Apple Park vs Warm Springs / Tesla — often decides the winner more than test scores alone.`,
     category: "Bay Area",
-    coverImage: cover("photo-1523050854058-8df90110c9f1"),
+    coverImage: cover("photo-1580582932707-520aed937b7b"),
     publishedAt: "2026-04-05",
     readingMinutes: 9,
     tags: ["cupertino", "fremont", "schools"],

@@ -83,10 +83,10 @@ export default async function BlogArticlePage({
         </div>
 
         <Container className="max-w-3xl py-10 sm:py-14">
-          <div className="relative mb-10 aspect-[16/9] overflow-hidden rounded-3xl">
+          <div className="relative mb-10 aspect-[16/9] overflow-hidden rounded-3xl bg-secondary">
             <Image
               src={post.coverImage}
-              alt=""
+              alt={post.title}
               fill
               priority
               className="object-cover"
