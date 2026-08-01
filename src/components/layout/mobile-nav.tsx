@@ -14,6 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
+import { LanguageToggle } from "@/components/layout/language-toggle";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 
 export function MobileNav() {
@@ -48,6 +49,12 @@ export function MobileNav() {
           ))}
         </nav>
         <Separator />
+        <div className="space-y-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+            Language · 语言
+          </p>
+          <LanguageToggle className="w-full justify-between sm:inline-flex" />
+        </div>
         <div className="flex items-center justify-between gap-3">
           <ThemeToggle />
           <Button asChild variant="accent" className="flex-1" onClick={() => setOpen(false)}>

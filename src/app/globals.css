@@ -179,3 +179,25 @@
 @utility text-pretty {
   text-wrap: pretty;
 }
+
+/* Hide Google Translate chrome — we use a custom EN / 中文 toggle */
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+#goog-gt-tt,
+.goog-te-gadget,
+.goog-logo-link,
+.goog-te-balloon-frame,
+body > .skiptranslate,
+.skiptranslate iframe {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+/* Google Translate wraps text in <font> — keep styling clean */
+font {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
