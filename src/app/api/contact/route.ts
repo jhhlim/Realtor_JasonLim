@@ -20,8 +20,6 @@ const contactSchema = z.object({
 });
 
 function resolveFromAddress() {
-  // Must be a Resend-verified domain address for production delivery.
-  // onboarding@resend.dev can ONLY send to the Resend account owner's email.
   return (
     process.env.EMAIL_FROM?.trim() ||
     "Jason Lim <onboarding@resend.dev>"
@@ -37,9 +35,20 @@ function resolveToAddress(override?: string) {
   );
 }
 
-type ResendResult =
-  | { sent: true; id?: string }
-  | { sent: false; reason: string; status?: number; detail?: string };
+type SendResult =
+  | { sent: true; provider: "resend" | "formsubmit"; id?: string }
+  | { sent: false; provider?: string; reason: string; status?: number; detail?: string };
+
+function isResendDomainRestriction(detail?: string) {
+  if (!detail) return false;
+  const lower = detail.toLowerCase();
+  return (
+    lower.includes("verify a domain") ||
+    lower.includes("own email address") ||
+    lower.includes("testing emails") ||
+    lower.includes("domain is not verified")
+  );
+}
 
 async function sendWithResend(input: {
   to: string;
@@ -47,10 +56,10 @@ async function sendWithResend(input: {
   subject: string;
   text: string;
   html: string;
-}): Promise<ResendResult> {
+}): Promise<SendResult> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   if (!apiKey) {
-    return { sent: false, reason: "missing_resend_key" };
+    return { sent: false, provider: "resend", reason: "missing_resend_key" };
   }
 
   const from = resolveFromAddress();
@@ -74,13 +83,13 @@ async function sendWithResend(input: {
     });
   } catch (error) {
     console.error("[api/contact] Resend network error", error);
-    return { sent: false, reason: "network_error" };
+    return { sent: false, provider: "resend", reason: "network_error" };
   }
 
   const raw = await res.text().catch(() => "");
-  let parsed: { id?: string; message?: string; name?: string } | null = null;
+  let parsed: { id?: string; message?: string } | null = null;
   try {
-    parsed = raw ? (JSON.parse(raw) as { id?: string; message?: string; name?: string }) : null;
+    parsed = raw ? (JSON.parse(raw) as { id?: string; message?: string }) : null;
   } catch {
     parsed = null;
   }
@@ -89,13 +98,93 @@ async function sendWithResend(input: {
     console.error("[api/contact] Resend error", res.status, raw);
     return {
       sent: false,
+      provider: "resend",
       reason: "resend_failed",
       status: res.status,
       detail: parsed?.message || raw.slice(0, 500) || `HTTP ${res.status}`,
     };
   }
 
-  return { sent: true, id: parsed?.id };
+  return { sent: true, provider: "resend", id: parsed?.id };
+}
+
+/**
+ * Domain-free fallback. First submission emails an activation link to `to`.
+ * After Jason clicks Activate, subsequent leads deliver normally.
+ * https://formsubmit.co/
+ */
+async function sendWithFormSubmit(input: {
+  to: string;
+  replyTo: string;
+  subject: string;
+  name: string;
+  phone?: string;
+  interest: string;
+  source?: string;
+  message: string;
+}): Promise<SendResult> {
+  // Allow disabling via env if needed.
+  if (process.env.FORMSUBMIT_DISABLED === "1") {
+    return { sent: false, provider: "formsubmit", reason: "disabled" };
+  }
+
+  let res: Response;
+  try {
+    res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(input.to)}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: input.name,
+        email: input.replyTo,
+        phone: input.phone || "",
+        interest: input.interest,
+        source: input.source || "",
+        message: input.message,
+        _subject: input.subject,
+        _template: "table",
+        _captcha: "false",
+      }),
+    });
+  } catch (error) {
+    console.error("[api/contact] FormSubmit network error", error);
+    return { sent: false, provider: "formsubmit", reason: "network_error" };
+  }
+
+  const raw = await res.text().catch(() => "");
+  let parsed: { success?: string | boolean; message?: string } | null = null;
+  try {
+    parsed = raw ? (JSON.parse(raw) as { success?: string | boolean; message?: string }) : null;
+  } catch {
+    parsed = null;
+  }
+
+  const ok =
+    res.ok &&
+    (parsed?.success === true ||
+      parsed?.success === "true" ||
+      String(parsed?.message ?? "")
+        .toLowerCase()
+        .includes("success") ||
+      String(parsed?.message ?? "")
+        .toLowerCase()
+        .includes("sent"));
+
+  // FormSubmit returns success even for first-time activation emails.
+  if (ok || res.ok) {
+    return { sent: true, provider: "formsubmit" };
+  }
+
+  console.error("[api/contact] FormSubmit error", res.status, raw);
+  return {
+    sent: false,
+    provider: "formsubmit",
+    reason: "formsubmit_failed",
+    status: res.status,
+    detail: parsed?.message || raw.slice(0, 500) || `HTTP ${res.status}`,
+  };
 }
 
 export async function POST(request: Request) {
@@ -148,13 +237,32 @@ export async function POST(request: Request) {
       </div>
     `;
 
-    const emailResult = await sendWithResend({
+    let emailResult = await sendWithResend({
       to,
       replyTo: payload.email,
       subject,
       text,
       html,
     });
+
+    // If Resend can't send (no verified domain / testing restriction), fall back.
+    if (
+      !emailResult.sent &&
+      (emailResult.reason === "missing_resend_key" ||
+        emailResult.reason === "resend_failed" ||
+        isResendDomainRestriction(emailResult.detail))
+    ) {
+      emailResult = await sendWithFormSubmit({
+        to,
+        replyTo: payload.email,
+        subject,
+        name: payload.name,
+        phone: payload.phone,
+        interest: payload.interest,
+        source: payload.source,
+        message: text,
+      });
+    }
 
     console.info("[api/contact] inquiry received", {
       name: payload.name,
@@ -164,6 +272,7 @@ export async function POST(request: Request) {
       to,
       from,
       emailed: emailResult.sent,
+      provider: emailResult.provider,
       reason: emailResult.sent ? undefined : emailResult.reason,
       detail: emailResult.sent ? undefined : emailResult.detail,
     });
@@ -171,21 +280,12 @@ export async function POST(request: Request) {
     const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
 
     if (!emailResult.sent) {
-      const userHint =
-        emailResult.reason === "missing_resend_key"
-          ? "Email service is not configured."
-          : emailResult.detail?.includes("verify a domain") ||
-              emailResult.detail?.includes("own email address")
-            ? "Email provider requires a verified sending domain. Please email Jason directly."
-            : "Unable to deliver email right now. Please email Jason directly.";
-
       return NextResponse.json(
         {
           success: false,
           emailed: false,
-          error: userHint,
+          error: `Unable to deliver email right now. Please email ${to} directly.`,
           mailto,
-          // Safe debug fields for Vercel function logs / support — no secrets.
           reason: emailResult.reason,
           providerStatus: emailResult.status,
         },
@@ -196,7 +296,11 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       emailed: true,
-      message: `Thanks — your message was sent to ${to}.`,
+      provider: emailResult.provider,
+      message:
+        emailResult.provider === "formsubmit"
+          ? `Thanks — your message was sent to ${to}. If this is the first submission, Jason may need to click FormSubmit’s one-time activation email.`
+          : `Thanks — your message was sent to ${to}.`,
     });
   } catch (error) {
     console.error("[api/contact]", error);
