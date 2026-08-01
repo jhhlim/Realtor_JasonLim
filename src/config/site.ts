@@ -252,7 +252,8 @@ export const siteConfig = {
     },
     email: {
       resendApiKey: process.env.RESEND_API_KEY,
-      from: process.env.EMAIL_FROM ?? "Jason Lim <jason.lim@compass.com>",
+      from: process.env.EMAIL_FROM ?? "Jason Lim <onboarding@resend.dev>",
+      to: process.env.CONTACT_TO_EMAIL ?? "jason.lim@compass.com",
     },
   },
 } as const;
