@@ -15,13 +15,13 @@ interface BlogPreviewProps {
 export function BlogPreview({ posts = [] }: BlogPreviewProps) {
   return (
     <Section
-      eyebrow="Resources"
+      eyebrow="Insights"
       title="Guides for smarter Bay Area moves"
       description="Practical writing on buying, selling, mortgages, and AI-assisted market analysis."
       actions={
         <Button asChild variant="outline">
           <Link href="/blog">
-            View all articles
+            View all insights
             <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>

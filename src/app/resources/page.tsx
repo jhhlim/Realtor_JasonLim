@@ -63,7 +63,7 @@ const hubs = [
     description: "Articles on buying, selling, mortgages, and Bay Area market dynamics.",
     icon: Newspaper,
     links: [
-      { label: "Blog", href: "/blog" },
+      { label: "Insights", href: "/blog" },
       { label: "FAQ", href: "/faq" },
       { label: "Communities", href: "/communities" },
     ],

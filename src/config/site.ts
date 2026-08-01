@@ -154,6 +154,7 @@ export const siteConfig = {
       { label: "Listings", href: "/listings" },
       { label: "Communities", href: "/communities" },
       { label: "Market Reports", href: "/market-reports" },
+      { label: "Insights", href: "/blog" },
       { label: "Resources", href: "/resources" },
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" },
@@ -184,7 +185,7 @@ export const siteConfig = {
         links: [
           { label: "About Jason", href: "/about" },
           { label: "Testimonials", href: "/testimonials" },
-          { label: "Blog", href: "/blog" },
+          { label: "Insights", href: "/blog" },
           { label: "FAQ", href: "/faq" },
           { label: "Contact", href: "/contact" },
           { label: "Compass", href: "https://www.compass.com" },

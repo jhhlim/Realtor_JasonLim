@@ -1,12 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { Languages } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export type SiteLanguage = "en" | "zh-CN";
+export type SiteLanguage = "en" | "zh-CN" | "zh-TW";
 
 const STORAGE_KEY = "site-lang";
 
@@ -24,24 +23,60 @@ declare global {
   }
 }
 
+function cookieDomains(): string[] {
+  if (typeof window === "undefined") return [""];
+  const hostname = window.location.hostname;
+  const domains = ["", hostname, `.${hostname}`];
+  const parts = hostname.split(".");
+  // e.g. realtor-jason-lim.vercel.app → .vercel.app
+  if (parts.length >= 2) {
+    domains.push(`.${parts.slice(-2).join(".")}`);
+  }
+  if (parts.length >= 3) {
+    domains.push(`.${parts.slice(-3).join(".")}`);
+  }
+  return [...new Set(domains)];
+}
+
+/** Fully expire googtrans on every domain variant Google may have set. */
+function clearTranslateCookies() {
+  const expires = "expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  for (const domain of cookieDomains()) {
+    const domainPart = domain ? `;domain=${domain}` : "";
+    document.cookie = `googtrans=;path=/;${expires}${domainPart}`;
+    document.cookie = `googtrans=;path=/;${expires}`;
+  }
+}
+
 function readCookieLang(): SiteLanguage {
   if (typeof document === "undefined") return "en";
   const match = document.cookie.match(/(?:^|; )googtrans=([^;]*)/);
   const value = match?.[1] ? decodeURIComponent(match[1]) : "";
-  return value.includes("zh") ? "zh-CN" : "en";
+  if (value.includes("zh-TW") || value.includes("/zh-TW")) return "zh-TW";
+  if (value.includes("zh-CN") || value.includes("/zh-CN") || value.includes("zh"))
+    return "zh-CN";
+  return "en";
 }
 
 function writeTranslateCookie(lang: SiteLanguage) {
-  const value = lang === "zh-CN" ? "/en/zh-CN" : "/en/en";
-  const expires = "expires=Fri, 31 Dec 9999 23:59:59 GMT";
-  // Host + root path cookies so Google Translate picks it up reliably.
-  document.cookie = `googtrans=${value};path=/;${expires}`;
-  document.cookie = `googtrans=${value};path=/;domain=${window.location.hostname};${expires}`;
+  // Always clear first — leftover googtrans cookies are why EN "reverts" to Chinese.
+  clearTranslateCookies();
+
   try {
     localStorage.setItem(STORAGE_KEY, lang);
   } catch {
     /* ignore */
   }
+
+  if (lang === "en") {
+    // Original language: no googtrans cookie.
+    return;
+  }
+
+  const value = lang === "zh-TW" ? "/en/zh-TW" : "/en/zh-CN";
+  const expires = "expires=Fri, 31 Dec 9999 23:59:59 GMT";
+  document.cookie = `googtrans=${value};path=/;${expires}`;
+  document.cookie = `googtrans=${value};path=/;domain=${window.location.hostname};${expires}`;
 }
 
 function ensureTranslateScript() {
@@ -49,13 +84,12 @@ function ensureTranslateScript() {
 
   window.googleTranslateElementInit = () => {
     if (!window.google?.translate?.TranslateElement) return;
-    // Avoid double-init if React remounts.
     const host = document.getElementById("google_translate_element");
     if (host && host.childElementCount > 0) return;
     new window.google.translate.TranslateElement(
       {
         pageLanguage: "en",
-        includedLanguages: "en,zh-CN",
+        includedLanguages: "en,zh-CN,zh-TW",
         autoDisplay: false,
         layout: 0,
       },
@@ -71,8 +105,14 @@ function ensureTranslateScript() {
   document.body.appendChild(script);
 }
 
+const LANG_OPTIONS: { value: SiteLanguage; label: string }[] = [
+  { value: "en", label: "EN" },
+  { value: "zh-CN", label: "简体" },
+  { value: "zh-TW", label: "繁體" },
+];
+
 /**
- * EN / 中文 toggle using Google Website Translator for full-page translation.
+ * EN / 简体 / 繁體 toggle using Google Website Translator.
  */
 export function LanguageToggle({ className }: { className?: string }) {
   const [lang, setLang] = React.useState<SiteLanguage>("en");
@@ -86,14 +126,24 @@ export function LanguageToggle({ className }: { className?: string }) {
         return null;
       }
     })();
-    const initial = stored === "zh-CN" || stored === "en" ? stored : readCookieLang();
+
+    const valid: SiteLanguage[] = ["en", "zh-CN", "zh-TW"];
+    const initial = stored && valid.includes(stored) ? stored : readCookieLang();
     setLang(initial);
     ensureTranslateScript();
     setReady(true);
 
-    // If user previously chose Chinese, ensure cookie matches before GT runs.
-    if (initial === "zh-CN" && readCookieLang() !== "zh-CN") {
-      writeTranslateCookie("zh-CN");
+    // Sync cookie to stored preference (Chinese only). Never force-reload into Chinese
+    // when the user just chose English — that was causing the revert bug.
+    if (initial !== "en") {
+      const cookie = readCookieLang();
+      if (cookie !== initial) {
+        writeTranslateCookie(initial);
+        window.location.reload();
+      }
+    } else if (readCookieLang() !== "en") {
+      // Stored EN but leftover Chinese cookie — clear it.
+      clearTranslateCookies();
       window.location.reload();
     }
   }, []);
@@ -102,7 +152,6 @@ export function LanguageToggle({ className }: { className?: string }) {
     if (next === lang) return;
     writeTranslateCookie(next);
     setLang(next);
-    // Reload so Google Translate applies across the full document.
     window.location.reload();
   }
 
@@ -115,39 +164,25 @@ export function LanguageToggle({ className }: { className?: string }) {
       role="group"
       aria-label="Language"
     >
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        disabled={!ready}
-        aria-pressed={lang === "en"}
-        onClick={() => switchTo("en")}
-        className={cn(
-          "h-8 rounded-lg px-2.5 text-xs font-semibold",
-          lang === "en"
-            ? "bg-secondary text-foreground"
-            : "text-muted-foreground hover:text-foreground",
-        )}
-      >
-        EN
-      </Button>
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        disabled={!ready}
-        aria-pressed={lang === "zh-CN"}
-        onClick={() => switchTo("zh-CN")}
-        className={cn(
-          "h-8 rounded-lg px-2.5 text-xs font-semibold",
-          lang === "zh-CN"
-            ? "bg-secondary text-foreground"
-            : "text-muted-foreground hover:text-foreground",
-        )}
-      >
-        <Languages className="mr-1 h-3.5 w-3.5" aria-hidden />
-        中文
-      </Button>
+      {LANG_OPTIONS.map((opt) => (
+        <Button
+          key={opt.value}
+          type="button"
+          variant="ghost"
+          size="sm"
+          disabled={!ready}
+          aria-pressed={lang === opt.value}
+          onClick={() => switchTo(opt.value)}
+          className={cn(
+            "h-8 rounded-lg px-2 text-xs font-semibold",
+            lang === opt.value
+              ? "bg-secondary text-foreground"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          {opt.label}
+        </Button>
+      ))}
     </div>
   );
 }

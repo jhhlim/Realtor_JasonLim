@@ -180,7 +180,7 @@
   text-wrap: pretty;
 }
 
-/* Hide Google Translate chrome — we use a custom EN / 中文 toggle */
+/* Hide Google Translate chrome — we use a custom EN / 简体 / 繁體 toggle */
 .goog-te-banner-frame,
 .goog-te-balloon-frame,
 #goog-gt-tt,
