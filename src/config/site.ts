@@ -42,10 +42,8 @@ export const siteConfig = {
   },
 
   social: {
-    instagram: "https://instagram.com/jasonlimrealty",
     linkedin: "https://www.linkedin.com/in/jasonnlim",
     x: "https://x.com/jasonlimrealty",
-    googleBusiness: "https://g.page/jasonlimrealty",
   },
 
   /** Set true + NEXT_PUBLIC_CALENDLY_URL when ready to show the scheduler again. */

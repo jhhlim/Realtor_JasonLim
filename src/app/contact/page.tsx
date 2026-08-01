@@ -27,7 +27,6 @@ export const metadata = buildMetadata({
 
 const socialLinks = [
   { label: "LinkedIn", href: siteConfig.social.linkedin },
-  { label: "Instagram", href: siteConfig.social.instagram },
   { label: "Compass", href: siteConfig.brokerage.url },
 ];
 
@@ -123,27 +122,6 @@ export default function ContactPage() {
                       </Button>
                     ))}
                   </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-dashed border-border/80 bg-slate-soft/50 dark:bg-card/40">
-                <CardContent className="space-y-3 p-6">
-                  <h3 className="font-display text-xl font-semibold">
-                    Google Business
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Map embed and GBP profile placeholder — connect your verified listing when
-                    ready.
-                  </p>
-                  <Button asChild variant="outline" size="sm">
-                    <a
-                      href={siteConfig.social.googleBusiness}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Open Google Business profile
-                    </a>
-                  </Button>
                 </CardContent>
               </Card>
             </div>
