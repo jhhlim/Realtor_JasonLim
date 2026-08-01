@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/shared/container";
-import { ChineseName } from "@/components/layout/chinese-name";
+import { BrandName } from "@/components/layout/brand-name";
 
 export function Hero() {
   return (
@@ -33,8 +33,7 @@ export function Hero() {
               </span>
             </div>
             <h1 className="font-display text-5xl font-semibold tracking-tight text-foreground text-balance sm:text-6xl lg:text-7xl">
-              {siteConfig.name}
-              <ChineseName className="mt-2 block text-3xl font-medium tracking-normal text-muted-foreground sm:text-4xl lg:text-5xl" prefix="" />
+              <BrandName />
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty sm:text-xl">
               {siteConfig.tagline}
@@ -99,8 +98,7 @@ export function Hero() {
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0B1F33]/75 to-transparent p-6 text-white">
               <p className="font-display text-xl font-semibold">
-                {siteConfig.name}
-                <ChineseName className="ml-2 text-base font-medium text-white/85" prefix="" />
+                <BrandName />
               </p>
               <p className="text-sm text-white/80">
                 {siteConfig.brokerage.name} · {siteConfig.license.status}

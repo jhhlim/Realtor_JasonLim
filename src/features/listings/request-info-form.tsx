@@ -4,6 +4,7 @@ import * as React from "react";
 import { MessageSquareText } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
+import { BrandName } from "@/components/layout/brand-name";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -80,7 +81,7 @@ export function RequestInfoForm({
             <DialogHeader>
               <DialogTitle>Request received</DialogTitle>
               <DialogDescription>
-                Thanks — {siteConfig.name} will follow up shortly about{" "}
+                Thanks — <BrandName /> will follow up shortly about{" "}
                 {listingAddress}.
               </DialogDescription>
             </DialogHeader>

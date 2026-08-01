@@ -196,9 +196,34 @@ body {
   top: 0 !important;
 }
 
-/* Protect Chinese name / intentional Chinese copy from Google Translate.
-   Google Translate skips elements with class="notranslate". */
+/* Protect intentional Chinese / brand names from Google Translate */
 .notranslate {
+}
+
+/* Brand name: EN ↔ 简体 ↔ 繁體 via html[data-site-lang] (set before paint) */
+.brand-name-zh-cn,
+.brand-name-zh-tw {
+  display: none;
+}
+
+html[data-site-lang="zh-CN"] .brand-name-en {
+  display: none;
+}
+html[data-site-lang="zh-CN"] .brand-name-zh-cn {
+  display: inline;
+}
+html[data-site-lang="zh-CN"] .brand-name-block .brand-name-zh-cn {
+  display: block;
+}
+
+html[data-site-lang="zh-TW"] .brand-name-en {
+  display: none;
+}
+html[data-site-lang="zh-TW"] .brand-name-zh-tw {
+  display: inline;
+}
+html[data-site-lang="zh-TW"] .brand-name-block .brand-name-zh-tw {
+  display: block;
 }
 
 /* Google Translate wraps text in <font> — keep styling clean */

@@ -16,7 +16,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { LanguageToggle } from "@/components/layout/language-toggle";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
-import { ChineseName } from "@/components/layout/chinese-name";
+import { BrandName } from "@/components/layout/brand-name";
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
@@ -31,8 +31,7 @@ export function MobileNav() {
       <SheetContent side="right" className="flex w-full flex-col gap-6 sm:max-w-sm">
         <SheetHeader>
           <SheetTitle className="font-display text-left text-2xl">
-            {siteConfig.name}
-            <ChineseName className="ml-2 text-[0.85em] font-medium text-muted-foreground" prefix="" />
+            <BrandName />
           </SheetTitle>
           <p className="text-left text-sm text-muted-foreground">
             {siteConfig.title}

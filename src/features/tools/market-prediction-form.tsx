@@ -4,6 +4,7 @@ import * as React from "react";
 import { AlertTriangle, TrendingUp } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
+import { BrandName } from "@/components/layout/brand-name";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -93,7 +94,7 @@ export function MarketPredictionForm() {
             </div>
             <CardDescription>
               AI-generated neighborhood forecasts are in development. Join the waitlist
-              and {siteConfig.name} will share curated market reports in the meantime.
+              and <BrandName /> will share curated market reports in the meantime.
             </CardDescription>
           </CardHeader>
           <CardContent>

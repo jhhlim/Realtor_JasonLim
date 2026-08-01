@@ -8,6 +8,7 @@ import { CtaBanner } from "@/components/shared/cta-banner";
 import { Container } from "@/components/shared/container";
 import { siteConfig } from "@/config/site";
 import { mockBlogPosts } from "@/data/mock-blog";
+import { BrandName } from "@/components/layout/brand-name";
 
 export function generateStaticParams() {
   return mockBlogPosts.map((post) => ({ slug: post.slug }));
@@ -74,7 +75,9 @@ export default async function BlogArticlePage({
               <span aria-hidden>·</span>
               <span>{post.readingMinutes} min read</span>
               <span aria-hidden>·</span>
-              <span>{siteConfig.name}</span>
+              <span>
+                <BrandName />
+              </span>
             </div>
           </Container>
         </div>

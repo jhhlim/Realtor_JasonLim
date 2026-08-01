@@ -4,6 +4,7 @@ import * as React from "react";
 import { ClipboardCheck } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
+import { BrandName } from "@/components/layout/brand-name";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -73,7 +74,7 @@ export function OfferCompetitivenessForm() {
         <CardHeader>
           <CardTitle>Review queued</CardTitle>
           <CardDescription>
-            {siteConfig.name} will assess escalation room, appraisal risk, and term
+            <BrandName /> will assess escalation room, appraisal risk, and term
             structure — AI-assisted scoring is coming soon.
           </CardDescription>
         </CardHeader>

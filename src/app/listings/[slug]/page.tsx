@@ -17,6 +17,7 @@ import {
 
 import { getListingProvider } from "@/services/listings";
 import { siteConfig } from "@/config/site";
+import { BrandName } from "@/components/layout/brand-name";
 import { PropertyGallery } from "@/components/listings/property-gallery";
 import { MortgageEstimate } from "@/components/listings/mortgage-estimate";
 import { ListingGrid } from "@/components/listings/listing-grid";
@@ -540,7 +541,9 @@ export default async function ListingDetailPage({
                   />
                 </div>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-lg">Work with {siteConfig.name}</CardTitle>
+                  <CardTitle className="text-lg">
+                    Work with <BrandName />
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <p className="text-sm text-muted-foreground">

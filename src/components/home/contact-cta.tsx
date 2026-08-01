@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/shared/section";
 import { FadeIn } from "@/components/shared/fade-in";
+import { BrandName } from "@/components/layout/brand-name";
 
 export function ContactCta() {
   return (
@@ -43,7 +44,7 @@ export function ContactCta() {
                   className="flex items-center gap-2 transition-colors hover:text-foreground"
                 >
                   <MessageSquare className="h-4 w-4 text-accent" />
-                  Text {siteConfig.name}
+                  Text <BrandName />
                 </a>
               </div>
             </div>

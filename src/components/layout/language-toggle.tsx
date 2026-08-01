@@ -68,6 +68,8 @@ function writeTranslateCookie(lang: SiteLanguage) {
     /* ignore */
   }
 
+  document.documentElement.dataset.siteLang = lang;
+
   if (lang === "en") {
     // Original language: no googtrans cookie.
     return;
@@ -130,6 +132,7 @@ export function LanguageToggle({ className }: { className?: string }) {
     const valid: SiteLanguage[] = ["en", "zh-CN", "zh-TW"];
     const initial = stored && valid.includes(stored) ? stored : readCookieLang();
     setLang(initial);
+    document.documentElement.dataset.siteLang = initial;
     ensureTranslateScript();
     setReady(true);
 

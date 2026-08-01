@@ -47,6 +47,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var l=localStorage.getItem("site-lang");if(l==="zh-CN"||l==="zh-TW"||l==="en"){document.documentElement.dataset.siteLang=l;}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body
         className={`${jakarta.variable} ${fraunces.variable} min-h-screen font-sans antialiased`}
       >

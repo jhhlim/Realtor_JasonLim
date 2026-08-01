@@ -4,8 +4,10 @@
  */
 export const siteConfig = {
   name: "Jason Lim",
-  /** Chinese name — keep exact characters; do not auto-translate. */
-  nameZh: "林輝鸿",
+  /** Simplified Chinese name (林辉鸿). */
+  nameZhCN: "林辉鸿",
+  /** Traditional Chinese name (林輝鴻). */
+  nameZhTW: "林輝鴻",
   legalName: "Jason Lim | Compass",
   tagline: "Helping Bay Area families make confident real estate decisions.",
   secondaryTagline: "AI-powered real estate insights.",

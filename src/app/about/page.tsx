@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
 import { buildMetadata } from "@/lib/seo";
+import { BrandName } from "@/components/layout/brand-name";
 
 export const metadata = buildMetadata({
   title: "About Jason Lim",
@@ -32,7 +33,14 @@ export default function AboutPage() {
             <span className="block text-accent">Fresh real estate perspective.</span>
           </>
         }
-        description={`I'm ${siteConfig.name} — a licensed California REALTOR® who spent ${experience.techYears} years building enterprise software and AI tools before helping Bay Area families navigate one of life's biggest decisions.`}
+        description={
+          <>
+            I&apos;m <BrandName /> — a licensed California REALTOR® who spent{" "}
+            {experience.techYears} years building enterprise software and AI tools
+            before helping Bay Area families navigate one of life&apos;s biggest
+            decisions.
+          </>
+        }
         primaryCta={siteConfig.cta.consultation}
         secondaryCta={{ label: "Send a message", href: "/contact" }}
       />
