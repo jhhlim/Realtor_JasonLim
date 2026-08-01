@@ -31,6 +31,9 @@ export function MobileNav() {
         <SheetHeader>
           <SheetTitle className="font-display text-left text-2xl">
             {siteConfig.name}
+            <span className="notranslate ml-2 text-[0.85em] font-medium text-muted-foreground">
+              {siteConfig.nameZh}
+            </span>
           </SheetTitle>
           <p className="text-left text-sm text-muted-foreground">
             {siteConfig.title}

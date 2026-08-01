@@ -196,6 +196,11 @@ body {
   top: 0 !important;
 }
 
+/* Protect Chinese name / intentional Chinese copy from Google Translate.
+   Google Translate skips elements with class="notranslate". */
+.notranslate {
+}
+
 /* Google Translate wraps text in <font> — keep styling clean */
 font {
   background-color: transparent !important;

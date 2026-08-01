@@ -40,6 +40,9 @@ export function SiteFooter() {
             <div>
               <p className="font-display text-2xl font-semibold tracking-tight">
                 {siteConfig.name}
+                <span className="notranslate ml-2 text-[0.9em] font-medium tracking-normal text-muted-foreground">
+                  {siteConfig.nameZh}
+                </span>
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
                 {siteConfig.title}

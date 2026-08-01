@@ -20,6 +20,9 @@ export function SiteHeader({ className }: { className?: string }) {
           <Link href="/" className="group flex flex-col leading-none">
             <span className="font-display text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent sm:text-2xl">
               {siteConfig.name}
+              <span className="notranslate ml-2 text-[0.85em] font-medium tracking-normal text-muted-foreground">
+                {siteConfig.nameZh}
+              </span>
             </span>
             <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground sm:block">
               Silicon Valley Real Estate

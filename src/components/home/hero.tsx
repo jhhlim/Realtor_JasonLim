@@ -33,6 +33,9 @@ export function Hero() {
             </div>
             <h1 className="font-display text-5xl font-semibold tracking-tight text-foreground text-balance sm:text-6xl lg:text-7xl">
               {siteConfig.name}
+              <span className="notranslate mt-2 block text-3xl font-medium tracking-normal text-muted-foreground sm:text-4xl lg:text-5xl">
+                {siteConfig.nameZh}
+              </span>
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty sm:text-xl">
               {siteConfig.tagline}
@@ -96,7 +99,12 @@ export function Hero() {
               sizes="(max-width: 1024px) 90vw, 420px"
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0B1F33]/75 to-transparent p-6 text-white">
-              <p className="font-display text-xl font-semibold">{siteConfig.name}</p>
+              <p className="font-display text-xl font-semibold">
+                {siteConfig.name}
+                <span className="notranslate ml-2 text-base font-medium text-white/85">
+                  {siteConfig.nameZh}
+                </span>
+              </p>
               <p className="text-sm text-white/80">
                 {siteConfig.brokerage.name} · {siteConfig.license.status}
               </p>

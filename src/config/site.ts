@@ -4,6 +4,8 @@
  */
 export const siteConfig = {
   name: "Jason Lim",
+  /** Chinese name — keep exact characters; do not auto-translate. */
+  nameZh: "林輝鸿",
   legalName: "Jason Lim | Compass",
   tagline: "Helping Bay Area families make confident real estate decisions.",
   secondaryTagline: "AI-powered real estate insights.",
