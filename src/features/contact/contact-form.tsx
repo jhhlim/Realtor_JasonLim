@@ -24,6 +24,10 @@ interface ContactFormProps {
   source?: string;
 }
 
+/**
+ * Delivers leads client-side (browser → FormSubmit/Web3Forms/Resend API).
+ * Server-side Resend needs a verified domain; FormSubmit works without one.
+ */
 export function ContactForm({
   className,
   defaultInterest = "buy",
@@ -38,61 +42,56 @@ export function ContactForm({
     "idle",
   );
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+  const [infoMessage, setInfoMessage] = React.useState<string | null>(null);
   const [mailtoHref, setMailtoHref] = React.useState<string | null>(null);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
     setErrorMessage(null);
+    setInfoMessage(null);
     setMailtoHref(null);
 
-    const payload = {
-      name,
-      email,
-      phone,
-      interest,
+    const subject = `Website inquiry from ${name}`;
+    const composedMessage = [
+      `Interest: ${interest}`,
+      `Source: ${source}`,
+      phone ? `Phone: ${phone}` : null,
+      "",
       message,
-      source,
-      notifyEmail: siteConfig.contact.email,
-    };
+    ]
+      .filter(Boolean)
+      .join("\n");
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+      const result = await deliverLead({
+        name,
+        email,
+        phone,
+        subject,
+        message: composedMessage,
+        interest,
+        source,
       });
 
-      const data = (await response.json()) as {
-        success?: boolean;
-        message?: string;
-        error?: string;
-        mailto?: string;
-        emailed?: boolean;
-      };
-
-      if (!response.ok || !data.success || data.emailed === false) {
-        const fallback =
-          data.mailto ||
-          buildMailto({
-            to: siteConfig.contact.email,
-            name,
-            email,
-            phone,
-            interest,
-            message,
-            source,
-          });
+      if (!result.ok) {
+        const fallback = buildMailto({
+          to: siteConfig.contact.email,
+          name,
+          email,
+          phone,
+          interest,
+          message,
+          source,
+        });
         setMailtoHref(fallback);
         setStatus("error");
-        setErrorMessage(
-          data.error ??
-            `Unable to send automatically. Please email ${siteConfig.contact.email} directly.`,
-        );
+        setErrorMessage(result.error);
         return;
       }
 
       setStatus("success");
+      setInfoMessage(result.info ?? null);
       setName("");
       setEmail("");
       setPhone("");
@@ -200,13 +199,18 @@ export function ContactForm({
       </div>
 
       {status === "success" ? (
-        <p
+        <div
           role="status"
-          className="rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
+          className="space-y-2 rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
         >
-          Thanks — your message was emailed to {siteConfig.contact.email}. I&apos;ll
-          follow up shortly.
-        </p>
+          <p>
+            Thanks — your message was sent to {siteConfig.contact.email}. I&apos;ll
+            follow up shortly.
+          </p>
+          {infoMessage ? (
+            <p className="text-success/90">{infoMessage}</p>
+          ) : null}
+        </div>
       ) : null}
 
       {status === "error" && errorMessage ? (
@@ -234,6 +238,138 @@ export function ContactForm({
       </Button>
     </form>
   );
+}
+
+type DeliverResult =
+  | { ok: true; info?: string }
+  | { ok: false; error: string };
+
+async function deliverLead(input: {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+  interest: string;
+  source: string;
+}): Promise<DeliverResult> {
+  const to = siteConfig.contact.email;
+  const web3Key = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim();
+
+  // 1) Preferred: Web3Forms (client-side, no custom domain needed)
+  if (web3Key) {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: web3Key,
+        subject: input.subject,
+        from_name: input.name,
+        name: input.name,
+        email: input.email,
+        phone: input.phone,
+        interest: input.interest,
+        source: input.source,
+        message: input.message,
+      }),
+    });
+    const data = (await res.json().catch(() => null)) as {
+      success?: boolean;
+      message?: string;
+    } | null;
+    if (res.ok && data?.success) {
+      return { ok: true };
+    }
+  }
+
+  // 2) FormSubmit (client-side). First use may require clicking Activate in inbox.
+  const formSubmitRes = await fetch(
+    `https://formsubmit.co/ajax/${encodeURIComponent(to)}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: input.name,
+        email: input.email,
+        phone: input.phone,
+        interest: input.interest,
+        source: input.source,
+        message: input.message,
+        _subject: input.subject,
+        _template: "table",
+        _captcha: "false",
+        _replyto: input.email,
+      }),
+    },
+  );
+
+  const formSubmitData = (await formSubmitRes.json().catch(() => null)) as {
+    success?: string | boolean;
+    message?: string;
+  } | null;
+
+  const formSubmitOk =
+    formSubmitRes.ok &&
+    (formSubmitData?.success === true ||
+      formSubmitData?.success === "true" ||
+      String(formSubmitData?.message ?? "")
+        .toLowerCase()
+        .includes("success") ||
+      String(formSubmitData?.message ?? "")
+        .toLowerCase()
+        .includes("sent") ||
+      String(formSubmitData?.message ?? "")
+        .toLowerCase()
+        .includes("activate"));
+
+  if (formSubmitOk) {
+    const msg = String(formSubmitData?.message ?? "").toLowerCase();
+    return {
+      ok: true,
+      info: msg.includes("activate")
+        ? "If this is your first submission, check jason.lim@compass.com for a FormSubmit activation email and click Activate once."
+        : undefined,
+    };
+  }
+
+  // 3) Last resort: our API (Resend) — works after a verified sending domain.
+  const apiRes = await fetch("/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: input.name,
+      email: input.email,
+      phone: input.phone,
+      interest: input.interest,
+      message: input.message,
+      source: input.source,
+      notifyEmail: to,
+    }),
+  });
+  const apiData = (await apiRes.json().catch(() => null)) as {
+    success?: boolean;
+    emailed?: boolean;
+    error?: string;
+    message?: string;
+  } | null;
+
+  if (apiRes.ok && apiData?.success && apiData.emailed !== false) {
+    return { ok: true, info: apiData.message };
+  }
+
+  return {
+    ok: false,
+    error:
+      apiData?.error ||
+      formSubmitData?.message ||
+      `Unable to deliver email right now. Please email ${to} directly.`,
+  };
 }
 
 function buildMailto(input: {

@@ -14,11 +14,15 @@ type Status = "idle" | "loading" | "success" | "error";
 export function HomeValuationForm() {
   const [status, setStatus] = React.useState<Status>("idle");
   const [error, setError] = React.useState<string | null>(null);
+  const [info, setInfo] = React.useState<string | null>(null);
+  const [mailtoHref, setMailtoHref] = React.useState<string | null>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("loading");
     setError(null);
+    setInfo(null);
+    setMailtoHref(null);
 
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -29,9 +33,9 @@ export function HomeValuationForm() {
     const address = String(data.get("address") ?? "").trim();
     const notes = String(data.get("notes") ?? "").trim();
     const name = `${first} ${last}`.trim();
-
+    const to = siteConfig.contact.email;
+    const subject = `Home valuation request — ${address}`;
     const message = [
-      "Home valuation request",
       `Property: ${address}`,
       phone ? `Phone: ${phone}` : null,
       notes ? `Notes: ${notes}` : null,
@@ -40,67 +44,108 @@ export function HomeValuationForm() {
       .join("\n");
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          message,
-          interest: "sell",
-          source: "home-valuation",
-          notifyEmail: siteConfig.contact.email,
-        }),
-      });
+      // Client-side FormSubmit (works without Resend domain)
+      const formSubmitRes = await fetch(
+        `https://formsubmit.co/ajax/${encodeURIComponent(to)}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            phone,
+            address,
+            notes,
+            message,
+            _subject: subject,
+            _template: "table",
+            _captcha: "false",
+            _replyto: email,
+          }),
+        },
+      );
 
-      const json = (await res.json().catch(() => null)) as
-        | { success?: boolean; error?: string; mailto?: string }
-        | null;
+      const formSubmitData = (await formSubmitRes.json().catch(() => null)) as {
+        success?: string | boolean;
+        message?: string;
+      } | null;
 
-      if (!res.ok || !json?.success) {
-        // Fallback: open mail client addressed to Compass email
-        const subject = encodeURIComponent(`Home valuation request — ${address}`);
-        const body = encodeURIComponent(
-          [
-            `Name: ${name}`,
-            `Email: ${email}`,
-            phone ? `Phone: ${phone}` : null,
-            `Property: ${address}`,
-            notes ? `Notes: ${notes}` : null,
-          ]
-            .filter(Boolean)
-            .join("\n"),
+      const ok =
+        formSubmitRes.ok &&
+        (formSubmitData?.success === true ||
+          formSubmitData?.success === "true" ||
+          String(formSubmitData?.message ?? "")
+            .toLowerCase()
+            .includes("success") ||
+          String(formSubmitData?.message ?? "")
+            .toLowerCase()
+            .includes("sent") ||
+          String(formSubmitData?.message ?? "")
+            .toLowerCase()
+            .includes("activate"));
+
+      if (ok) {
+        const msg = String(formSubmitData?.message ?? "").toLowerCase();
+        setInfo(
+          msg.includes("activate")
+            ? "Check jason.lim@compass.com for a FormSubmit activation email and click Activate once, then submissions will deliver automatically."
+            : null,
         );
-        window.location.href = `mailto:${siteConfig.contact.email}?subject=${subject}&body=${body}`;
         setStatus("success");
         form.reset();
         return;
       }
 
-      if (json.mailto) {
-        window.location.href = json.mailto;
+      // Optional Web3Forms
+      const web3Key = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim();
+      if (web3Key) {
+        const w3 = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: web3Key,
+            subject,
+            from_name: name,
+            name,
+            email,
+            phone,
+            address,
+            message,
+          }),
+        });
+        const w3data = (await w3.json().catch(() => null)) as {
+          success?: boolean;
+        } | null;
+        if (w3.ok && w3data?.success) {
+          setStatus("success");
+          form.reset();
+          return;
+        }
       }
 
-      setStatus("success");
-      form.reset();
-    } catch {
-      const subject = encodeURIComponent(`Home valuation request — ${address}`);
-      const body = encodeURIComponent(
-        [
-          `Name: ${name}`,
-          `Email: ${email}`,
-          phone ? `Phone: ${phone}` : null,
-          `Property: ${address}`,
-          notes ? `Notes: ${notes}` : null,
-        ]
+      const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+        [`Name: ${name}`, `Email: ${email}`, phone ? `Phone: ${phone}` : null, `Property: ${address}`, notes ? `Notes: ${notes}` : null]
           .filter(Boolean)
           .join("\n"),
-      );
-      window.location.href = `mailto:${siteConfig.contact.email}?subject=${subject}&body=${body}`;
-      setStatus("success");
-      setError(null);
-      form.reset();
+      )}`;
+      setMailtoHref(mailto);
+      setError(`Unable to deliver email right now. Please email ${to} directly.`);
+      setStatus("error");
+    } catch {
+      const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+        [`Name: ${name}`, `Email: ${email}`, phone ? `Phone: ${phone}` : null, `Property: ${address}`, notes ? `Notes: ${notes}` : null]
+          .filter(Boolean)
+          .join("\n"),
+      )}`;
+      setMailtoHref(mailto);
+      setError(`Unable to deliver email right now. Please email ${to} directly.`);
+      setStatus("error");
     }
   }
 
@@ -112,15 +157,16 @@ export function HomeValuationForm() {
         </CardHeader>
         <CardContent className="space-y-3 text-sm text-muted-foreground">
           <p>
-            Thanks — your valuation request is on its way to{" "}
+            Thanks — your valuation request was sent to{" "}
             <a
               className="font-medium text-accent hover:underline"
               href={`mailto:${siteConfig.contact.email}`}
             >
               {siteConfig.contact.email}
             </a>
-            . Jason will follow up shortly.
+            .
           </p>
+          {info ? <p>{info}</p> : null}
           <Button asChild variant="accent">
             <a href={siteConfig.cta.consultation.href}>Schedule a call</a>
           </Button>
@@ -202,7 +248,14 @@ export function HomeValuationForm() {
               />
             </div>
             {error ? (
-              <p className="sm:col-span-2 text-sm text-destructive">{error}</p>
+              <div className="sm:col-span-2 space-y-2 text-sm text-destructive">
+                <p>{error}</p>
+                {mailtoHref ? (
+                  <Button asChild variant="outline" size="sm">
+                    <a href={mailtoHref}>Email {siteConfig.contact.email}</a>
+                  </Button>
+                ) : null}
+              </div>
             ) : null}
             <div className="sm:col-span-2">
               <Button
@@ -227,14 +280,9 @@ export function HomeValuationForm() {
         </CardHeader>
         <CardContent className="space-y-3 text-sm text-muted-foreground">
           <p>
-            Requests go directly to {siteConfig.contact.email}. Expect a reply with comps,
-            pricing strategy, and next steps — not a black-box number alone.
+            Requests go to {siteConfig.contact.email}. Expect comps, pricing strategy,
+            and next steps.
           </p>
-          <ul className="list-disc space-y-1 pl-5">
-            <li>Recent comparable sales nearby</li>
-            <li>Condition and remodel adjustments</li>
-            <li>Timing and marketing recommendations</li>
-          </ul>
         </CardContent>
       </Card>
     </div>
