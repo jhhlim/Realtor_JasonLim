@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 type Interest = "buy" | "sell" | "invest" | "other";
@@ -37,34 +38,58 @@ export function ContactForm({
     "idle",
   );
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+  const [mailtoHref, setMailtoHref] = React.useState<string | null>(null);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
     setErrorMessage(null);
+    setMailtoHref(null);
+
+    const payload = {
+      name,
+      email,
+      phone,
+      interest,
+      message,
+      source,
+      notifyEmail: siteConfig.contact.email,
+    };
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          phone,
-          interest,
-          message,
-          source,
-        }),
+        body: JSON.stringify(payload),
       });
 
       const data = (await response.json()) as {
         success?: boolean;
         message?: string;
         error?: string;
+        mailto?: string;
+        emailed?: boolean;
       };
 
-      if (!response.ok || !data.success) {
-        throw new Error(data.error ?? "Unable to send your message.");
+      if (!response.ok || !data.success || data.emailed === false) {
+        const fallback =
+          data.mailto ||
+          buildMailto({
+            to: siteConfig.contact.email,
+            name,
+            email,
+            phone,
+            interest,
+            message,
+            source,
+          });
+        setMailtoHref(fallback);
+        setStatus("error");
+        setErrorMessage(
+          data.error ??
+            `Unable to send automatically. Please email ${siteConfig.contact.email} directly.`,
+        );
+        return;
       }
 
       setStatus("success");
@@ -73,10 +98,20 @@ export function ContactForm({
       setPhone("");
       setInterest(defaultInterest);
       setMessage("");
-    } catch (error) {
+    } catch {
+      const fallback = buildMailto({
+        to: siteConfig.contact.email,
+        name,
+        email,
+        phone,
+        interest,
+        message,
+        source,
+      });
+      setMailtoHref(fallback);
       setStatus("error");
       setErrorMessage(
-        error instanceof Error ? error.message : "Something went wrong.",
+        `Unable to send automatically. Please email ${siteConfig.contact.email} directly.`,
       );
     }
   }
@@ -169,17 +204,23 @@ export function ContactForm({
           role="status"
           className="rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
         >
-          Thanks — your message was received. I&apos;ll follow up shortly.
+          Thanks — your message was emailed to {siteConfig.contact.email}. I&apos;ll
+          follow up shortly.
         </p>
       ) : null}
 
       {status === "error" && errorMessage ? (
-        <p
+        <div
           role="alert"
-          className="rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+          className="space-y-3 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive"
         >
-          {errorMessage}
-        </p>
+          <p>{errorMessage}</p>
+          {mailtoHref ? (
+            <Button asChild variant="outline" size="sm">
+              <a href={mailtoHref}>Email {siteConfig.contact.email}</a>
+            </Button>
+          ) : null}
+        </div>
       ) : null}
 
       <Button
@@ -193,4 +234,30 @@ export function ContactForm({
       </Button>
     </form>
   );
+}
+
+function buildMailto(input: {
+  to: string;
+  name: string;
+  email: string;
+  phone: string;
+  interest: string;
+  message: string;
+  source: string;
+}) {
+  const subject = encodeURIComponent(`Website inquiry from ${input.name}`);
+  const body = encodeURIComponent(
+    [
+      `Name: ${input.name}`,
+      `Email: ${input.email}`,
+      input.phone ? `Phone: ${input.phone}` : null,
+      `Interest: ${input.interest}`,
+      `Source: ${input.source}`,
+      "",
+      input.message,
+    ]
+      .filter(Boolean)
+      .join("\n"),
+  );
+  return `mailto:${input.to}?subject=${subject}&body=${body}`;
 }

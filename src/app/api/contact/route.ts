@@ -20,8 +20,8 @@ const contactSchema = z.object({
 });
 
 function resolveFromAddress() {
-  // Resend only allows sending FROM a verified domain (or onboarding@resend.dev).
-  // Never use @compass.com here unless Compass DNS is verified in Resend.
+  // Must be a Resend-verified domain address for production delivery.
+  // onboarding@resend.dev can ONLY send to the Resend account owner's email.
   return (
     process.env.EMAIL_FROM?.trim() ||
     "Jason Lim <onboarding@resend.dev>"
@@ -37,41 +37,65 @@ function resolveToAddress(override?: string) {
   );
 }
 
+type ResendResult =
+  | { sent: true; id?: string }
+  | { sent: false; reason: string; status?: number; detail?: string };
+
 async function sendWithResend(input: {
   to: string;
   replyTo: string;
   subject: string;
   text: string;
   html: string;
-}) {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return { sent: false as const, reason: "missing_resend_key" };
+}): Promise<ResendResult> {
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  if (!apiKey) {
+    return { sent: false, reason: "missing_resend_key" };
+  }
 
   const from = resolveFromAddress();
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [input.to],
-      reply_to: input.replyTo,
-      subject: input.subject,
-      text: input.text,
-      html: input.html,
-    }),
-  });
-
-  if (!res.ok) {
-    const detail = await res.text().catch(() => "");
-    console.error("[api/contact] Resend error", res.status, detail);
-    return { sent: false as const, reason: "resend_failed", detail };
+  let res: Response;
+  try {
+    res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [input.to],
+        reply_to: input.replyTo,
+        subject: input.subject,
+        text: input.text,
+        html: input.html,
+      }),
+    });
+  } catch (error) {
+    console.error("[api/contact] Resend network error", error);
+    return { sent: false, reason: "network_error" };
   }
 
-  return { sent: true as const };
+  const raw = await res.text().catch(() => "");
+  let parsed: { id?: string; message?: string; name?: string } | null = null;
+  try {
+    parsed = raw ? (JSON.parse(raw) as { id?: string; message?: string; name?: string }) : null;
+  } catch {
+    parsed = null;
+  }
+
+  if (!res.ok) {
+    console.error("[api/contact] Resend error", res.status, raw);
+    return {
+      sent: false,
+      reason: "resend_failed",
+      status: res.status,
+      detail: parsed?.message || raw.slice(0, 500) || `HTTP ${res.status}`,
+    };
+  }
+
+  return { sent: true, id: parsed?.id };
 }
 
 export async function POST(request: Request) {
@@ -92,6 +116,7 @@ export async function POST(request: Request) {
 
     const payload = parsed.data;
     const to = resolveToAddress(payload.notifyEmail);
+    const from = resolveFromAddress();
     const subject =
       payload.source === "home-valuation"
         ? `Home valuation request from ${payload.name}`
@@ -137,20 +162,41 @@ export async function POST(request: Request) {
       interest: payload.interest,
       source: payload.source,
       to,
-      from: resolveFromAddress(),
+      from,
       emailed: emailResult.sent,
-      reason: "reason" in emailResult ? emailResult.reason : undefined,
+      reason: emailResult.sent ? undefined : emailResult.reason,
+      detail: emailResult.sent ? undefined : emailResult.detail,
     });
 
     const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
 
+    if (!emailResult.sent) {
+      const userHint =
+        emailResult.reason === "missing_resend_key"
+          ? "Email service is not configured."
+          : emailResult.detail?.includes("verify a domain") ||
+              emailResult.detail?.includes("own email address")
+            ? "Email provider requires a verified sending domain. Please email Jason directly."
+            : "Unable to deliver email right now. Please email Jason directly.";
+
+      return NextResponse.json(
+        {
+          success: false,
+          emailed: false,
+          error: userHint,
+          mailto,
+          // Safe debug fields for Vercel function logs / support — no secrets.
+          reason: emailResult.reason,
+          providerStatus: emailResult.status,
+        },
+        { status: 502 },
+      );
+    }
+
     return NextResponse.json({
       success: true,
-      message: emailResult.sent
-        ? `Thanks — your message was sent to ${to}.`
-        : `Thanks — your message was received. We'll follow up shortly.`,
-      emailed: emailResult.sent,
-      mailto: emailResult.sent ? undefined : mailto,
+      emailed: true,
+      message: `Thanks — your message was sent to ${to}.`,
     });
   } catch (error) {
     console.error("[api/contact]", error);
