@@ -45,17 +45,27 @@ const sorts: NonNullable<SearchFilters["sort"]>[] = [
   "dom_asc",
 ];
 
+function normalizeZip(value?: string): string | undefined {
+  if (!value) return undefined;
+  const digits = value.replace(/\D/g, "");
+  return digits.length >= 5 ? digits.slice(0, 5) : undefined;
+}
+
 export function parseSearchParams(
   params: Record<string, ParamValue>,
 ): SearchFilters {
   const propertyTypeRaw = first(params.propertyType);
   const statusRaw = first(params.status);
   const sortRaw = first(params.sort);
+  const query = first(params.query)?.trim() || undefined;
+  const queryZip = normalizeZip(query);
+  const zip = normalizeZip(first(params.zip)) ?? queryZip;
 
   return {
-    query: first(params.query) || undefined,
+    // Keep ZIP-only searches on `zip` so filters stay clear in the URL.
+    query: queryZip ? undefined : query,
     city: first(params.city) || undefined,
-    zip: first(params.zip) || undefined,
+    zip,
     mlsNumber: first(params.mlsNumber) || undefined,
     neighborhood: first(params.neighborhood) || undefined,
     schoolDistrict: first(params.schoolDistrict) || undefined,

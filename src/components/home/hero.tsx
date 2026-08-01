@@ -23,9 +23,14 @@ export function Hero() {
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-5"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
-              Silicon Valley REALTOR®
-            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+                Compass · Silicon Valley REALTOR®
+              </p>
+              <span className="rounded-full border border-border/80 bg-background/80 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
+                {siteConfig.license.dre}
+              </span>
+            </div>
             <h1 className="font-display text-5xl font-semibold tracking-tight text-foreground text-balance sm:text-6xl lg:text-7xl">
               {siteConfig.name}
             </h1>
@@ -34,6 +39,19 @@ export function Hero() {
             </p>
             <p className="max-w-lg text-sm font-medium text-foreground/80">
               {siteConfig.differentiator}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Official{" "}
+              <a
+                href={siteConfig.brokerage.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-accent underline-offset-2 hover:underline"
+              >
+                {siteConfig.brokerage.name}
+              </a>{" "}
+              agent · {siteConfig.contact.address.city},{" "}
+              {siteConfig.contact.address.state} {siteConfig.contact.address.zip}
             </p>
           </motion.div>
 
@@ -79,7 +97,12 @@ export function Hero() {
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0B1F33]/75 to-transparent p-6 text-white">
               <p className="font-display text-xl font-semibold">{siteConfig.name}</p>
-              <p className="text-sm text-white/80">{siteConfig.license.status}</p>
+              <p className="text-sm text-white/80">
+                {siteConfig.brokerage.name} · {siteConfig.license.status}
+              </p>
+              <p className="mt-1 text-xs font-medium tracking-wide text-white/70">
+                {siteConfig.license.dre}
+              </p>
             </div>
           </div>
         </motion.div>

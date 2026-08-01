@@ -40,9 +40,18 @@ function pointInPolygon(point: { lat: number; lng: number }, polygon: { lat: num
   return inside;
 }
 
+function normalizeZip(value?: string): string | undefined {
+  if (!value) return undefined;
+  const digits = value.replace(/\D/g, "");
+  return digits.length >= 5 ? digits.slice(0, 5) : undefined;
+}
+
 function matchesFilters(listing: ListingDetails, filters: SearchFilters): boolean {
-  if (filters.query) {
-    const q = filters.query.toLowerCase();
+  const queryZip = normalizeZip(filters.query);
+  const filterZip = normalizeZip(filters.zip) ?? queryZip;
+
+  if (filters.query && !queryZip) {
+    const q = filters.query.toLowerCase().trim();
     const hay = [
       listing.address.street,
       listing.address.city,
@@ -58,7 +67,7 @@ function matchesFilters(listing: ListingDetails, filters: SearchFilters): boolea
   if (filters.city && listing.address.city.toLowerCase() !== filters.city.toLowerCase()) {
     return false;
   }
-  if (filters.zip && listing.address.zip !== filters.zip) return false;
+  if (filterZip && listing.address.zip !== filterZip) return false;
   if (filters.mlsNumber && listing.mlsNumber.toLowerCase() !== filters.mlsNumber.toLowerCase()) {
     return false;
   }

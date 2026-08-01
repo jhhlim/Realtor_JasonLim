@@ -19,7 +19,21 @@ export function ListingsFiltersClient({
   const pathname = usePathname();
 
   function apply(filters: SearchFilters) {
-    const params = filtersToSearchParams({ ...filters, page: 1 });
+    const trimmedQuery = filters.query?.trim();
+    const zipFromQuery =
+      trimmedQuery && /^\d{5}(-\d{4})?$/.test(trimmedQuery)
+        ? trimmedQuery.slice(0, 5)
+        : undefined;
+
+    const normalized: SearchFilters = {
+      ...filters,
+      page: 1,
+      ...(zipFromQuery
+        ? { zip: zipFromQuery, query: undefined }
+        : { query: trimmedQuery || undefined }),
+    };
+
+    const params = filtersToSearchParams(normalized);
     const qs = params.toString();
     router.push(qs ? `${pathname}?${qs}` : pathname);
   }

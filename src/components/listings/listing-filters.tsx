@@ -42,7 +42,12 @@ export function ListingFilters({
   const [filters, setFilters] = React.useState<SearchFilters>(value ?? {});
 
   React.useEffect(() => {
-    if (value) setFilters(value);
+    if (!value) return;
+    // Surface ZIP searches in the location field for clearer UX.
+    setFilters({
+      ...value,
+      query: value.query ?? value.zip ?? "",
+    });
   }, [value]);
 
   function update(partial: SearchFilters) {

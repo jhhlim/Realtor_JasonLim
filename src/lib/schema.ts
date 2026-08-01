@@ -34,11 +34,15 @@ export function buildRealEstateAgentSchema(): JsonLd {
     sameAs: [
       social.instagram,
       social.linkedin,
-      social.facebook,
-      social.youtube,
       social.x,
       social.googleBusiness,
+      siteConfig.brokerage.url,
     ].filter(Boolean),
+    worksFor: {
+      "@type": "Organization",
+      name: siteConfig.brokerage.name,
+      url: siteConfig.brokerage.url,
+    },
     identifier: license.dre,
     knowsAbout: [
       "Bay Area real estate",

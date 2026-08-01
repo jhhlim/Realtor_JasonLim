@@ -51,6 +51,7 @@ export default async function ListingsPage({
   const hasFilters = Boolean(
     filters.query ||
       filters.city ||
+      filters.zip ||
       filters.minPrice ||
       filters.maxPrice ||
       filters.beds ||

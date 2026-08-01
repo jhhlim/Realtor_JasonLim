@@ -14,21 +14,21 @@ import { PageHero } from "@/components/shared/page-hero";
 import { Section } from "@/components/shared/section";
 import { FadeIn } from "@/components/shared/fade-in";
 import { CtaBanner } from "@/components/shared/cta-banner";
+import { CalendlyEmbed } from "@/components/contact/calendly-embed";
 import { ContactForm } from "@/features/contact/contact-form";
 import { NewsletterForm } from "@/features/newsletter/newsletter-form";
 
 export const metadata = buildMetadata({
   title: "Contact",
   description:
-    "Schedule a consultation, send a message, or subscribe to Bay Area market updates from Jason Lim.",
+    "Schedule a consultation, send a message, or subscribe to Bay Area market updates from Jason Lim at Compass.",
   path: "/contact",
 });
 
 const socialLinks = [
-  { label: "Instagram", href: siteConfig.social.instagram },
   { label: "LinkedIn", href: siteConfig.social.linkedin },
-  { label: "Facebook", href: siteConfig.social.facebook },
-  { label: "YouTube", href: siteConfig.social.youtube },
+  { label: "Instagram", href: siteConfig.social.instagram },
+  { label: "Compass", href: siteConfig.brokerage.url },
 ];
 
 export default function ContactPage() {
@@ -86,13 +86,13 @@ export default function ContactPage() {
                     <p className="flex items-start gap-3 text-muted-foreground">
                       <MapPin className="mt-0.5 h-4 w-4 text-accent" />
                       <span>
-                        {siteConfig.contact.address.line1}
-                        <br />
                         {siteConfig.contact.address.city},{" "}
                         {siteConfig.contact.address.state}{" "}
                         {siteConfig.contact.address.zip}
                         <br />
                         {siteConfig.contact.address.region}
+                        <br />
+                        {siteConfig.license.dre} · {siteConfig.brokerage.name}
                       </span>
                     </p>
                   </div>
@@ -101,7 +101,12 @@ export default function ContactPage() {
 
               <Card className="border-border/70">
                 <CardContent className="space-y-4 p-6">
-                  <h3 className="font-display text-xl font-semibold">Social</h3>
+                  <h3 className="font-display text-xl font-semibold">
+                    Compass & social
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {siteConfig.brokerage.tagline}
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {socialLinks.map((item) => (
                       <Button key={item.label} asChild variant="outline" size="sm">
@@ -137,13 +142,6 @@ export default function ContactPage() {
                       Open Google Business profile
                     </a>
                   </Button>
-                  <div
-                    className="flex aspect-video items-center justify-center rounded-2xl border border-border/60 bg-background text-center text-sm text-muted-foreground"
-                    role="img"
-                    aria-label="Google Business map placeholder"
-                  >
-                    Map / Google Business embed placeholder
-                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -155,33 +153,13 @@ export default function ContactPage() {
         id="schedule"
         eyebrow="Schedule"
         title="Book a consultation"
-        description="Pick a time that works — or use the link if the embed is blocked."
+        description="Pick a time that works — or email me if the scheduler is unavailable."
         className="bg-gradient-to-b from-slate-soft/80 to-background dark:from-card/30 scroll-mt-24"
       >
         <FadeIn>
           <Card className="overflow-hidden border-border/70">
-            <CardContent className="space-y-4 p-4 sm:p-6">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <p className="text-sm text-muted-foreground">
-                  Powered by Calendly (replace URL via{" "}
-                  <code className="text-xs">NEXT_PUBLIC_CALENDLY_URL</code>).
-                </p>
-                <Button asChild variant="outline" size="sm">
-                  <a
-                    href={siteConfig.calendly}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Open Calendly
-                  </a>
-                </Button>
-              </div>
-              <iframe
-                title="Schedule a consultation with Jason Lim"
-                src={siteConfig.calendly}
-                className="h-[700px] w-full rounded-2xl border border-border/60 bg-background"
-                loading="lazy"
-              />
+            <CardContent className="p-4 sm:p-6">
+              <CalendlyEmbed />
             </CardContent>
           </Card>
         </FadeIn>

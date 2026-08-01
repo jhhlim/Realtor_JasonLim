@@ -4,26 +4,26 @@
  */
 export const siteConfig = {
   name: "Jason Lim",
-  legalName: "Jason Lim Real Estate",
+  legalName: "Jason Lim | Compass",
   tagline: "Helping Bay Area families make confident real estate decisions.",
   secondaryTagline: "AI-powered real estate insights.",
   differentiator: "Technology + Data + Personal Service.",
-  title: "REALTOR® | Bay Area Real Estate",
+  title: "Compass REALTOR® | Bay Area Real Estate",
   description:
-    "Bay Area REALTOR® combining software engineering, AI, and market analytics to help first-time buyers, move-up buyers, and investors make confident decisions.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://jasonlimrealty.com",
+    "Compass REALTOR® in San Jose combining software engineering, AI, and market analytics to help first-time buyers, move-up buyers, and investors make confident decisions.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://realtor-jason-lim.vercel.app",
   locale: "en_US",
 
   contact: {
     phone: "(510) 480-7191",
     phoneHref: "tel:+15104807191",
-    email: "jason@jasonlimrealty.com",
+    email: "jason.lim@compass.com",
     sms: "sms:+15104807191",
     address: {
-      line1: "Bay Area, California",
+      line1: "San Jose, California",
       city: "San Jose",
       state: "CA",
-      zip: "95113",
+      zip: "95132",
       region: "Silicon Valley",
     },
   },
@@ -33,16 +33,25 @@ export const siteConfig = {
     status: "Licensed California REALTOR®",
   },
 
+  brokerage: {
+    name: "Compass",
+    legalName: "Compass",
+    url: "https://www.compass.com",
+    findAgentUrl: "https://www.compass.com/agents/",
+    tagline: "Official Compass agent serving San Jose & Silicon Valley.",
+  },
+
   social: {
     instagram: "https://instagram.com/jasonlimrealty",
-    linkedin: "https://linkedin.com/in/jasonlim",
-    facebook: "https://facebook.com/jasonlimrealty",
-    youtube: "https://youtube.com/@jasonlimrealty",
+    linkedin: "https://www.linkedin.com/in/jasonnlim",
     x: "https://x.com/jasonlimrealty",
     googleBusiness: "https://g.page/jasonlimrealty",
   },
 
-  calendly: process.env.NEXT_PUBLIC_CALENDLY_URL ?? "https://calendly.com/jasonlim/consultation",
+  /** Set NEXT_PUBLIC_CALENDLY_URL in Vercel to your real event link (e.g. https://calendly.com/you/30min). */
+  calendly:
+    process.env.NEXT_PUBLIC_CALENDLY_URL ??
+    "https://calendly.com/jason-lim-compass/consultation",
   googleReviewsUrl: "https://g.page/r/jasonlimrealty/review",
 
   media: {
@@ -58,6 +67,7 @@ export const siteConfig = {
     "UC Berkeley Economics",
     "Oregon State Computer Science",
     "Licensed California REALTOR®",
+    "Compass Agent",
   ],
 
   audiences: [
@@ -177,6 +187,7 @@ export const siteConfig = {
           { label: "Blog", href: "/blog" },
           { label: "FAQ", href: "/faq" },
           { label: "Contact", href: "/contact" },
+          { label: "Compass", href: "https://www.compass.com" },
         ],
       },
       {
@@ -241,7 +252,7 @@ export const siteConfig = {
     },
     email: {
       resendApiKey: process.env.RESEND_API_KEY,
-      from: process.env.EMAIL_FROM ?? "Jason Lim <hello@jasonlimrealty.com>",
+      from: process.env.EMAIL_FROM ?? "Jason Lim <jason.lim@compass.com>",
     },
   },
 } as const;
