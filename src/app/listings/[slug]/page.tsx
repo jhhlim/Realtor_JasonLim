@@ -257,7 +257,7 @@ export default async function ListingDetailPage({
 
               <div className="flex flex-wrap gap-3">
                 <Button asChild variant="accent" size="lg">
-                  <Link href={siteConfig.calendly} target="_blank" rel="noreferrer">
+                  <Link href={siteConfig.cta.consultation.href}>
                     <Calendar className="h-4 w-4" />
                     Schedule showing
                   </Link>
@@ -548,7 +548,7 @@ export default async function ListingDetailPage({
                     strategy, and neighborhood fit.
                   </p>
                   <Button asChild variant="accent" className="w-full">
-                    <Link href={siteConfig.calendly} target="_blank" rel="noreferrer">
+                    <Link href={siteConfig.cta.consultation.href}>
                       Schedule showing
                     </Link>
                   </Button>
@@ -598,7 +598,7 @@ export default async function ListingDetailPage({
         title="Want a private showing?"
         description="I'll prepare comps, payment scenarios, and a clear offer plan before you walk through the door."
         primaryLabel="Schedule consultation"
-        primaryHref={siteConfig.calendly}
+        primaryHref={siteConfig.cta.consultation.href}
         secondaryLabel="Search more homes"
         secondaryHref="/listings"
       />

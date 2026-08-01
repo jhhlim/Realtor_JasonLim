@@ -48,6 +48,8 @@ export const siteConfig = {
     googleBusiness: "https://g.page/jasonlimrealty",
   },
 
+  /** Set true + NEXT_PUBLIC_CALENDLY_URL when ready to show the scheduler again. */
+  calendlyEnabled: false,
   /** Set NEXT_PUBLIC_CALENDLY_URL in Vercel to your real event link (e.g. https://calendly.com/you/30min). */
   calendly:
     process.env.NEXT_PUBLIC_CALENDLY_URL ??
@@ -203,7 +205,7 @@ export const siteConfig = {
   cta: {
     consultation: {
       label: "Schedule Consultation",
-      href: "/contact#schedule",
+      href: "/contact",
     },
     valuation: {
       label: "Request Home Valuation",

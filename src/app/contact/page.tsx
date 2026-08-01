@@ -37,15 +37,17 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Let's talk about your next move"
-        description="Share your timeline and goals — or book time directly. Phone, email, and SMS are always available."
-        primaryCta={{ label: "Jump to schedule", href: "#schedule" }}
+        description="Share your timeline and goals — or reach out by phone, email, or SMS. I typically respond within a few hours."
+        primaryCta={{ label: "Send a message", href: "#message" }}
         secondaryCta={{ label: "Market newsletter", href: "#newsletter" }}
       />
 
       <Section
+        id="message"
         eyebrow="Message"
         title="Send a note"
         description="I typically respond within a few hours during business days."
+        className="scroll-mt-24"
       >
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <FadeIn>
@@ -149,21 +151,23 @@ export default function ContactPage() {
         </div>
       </Section>
 
-      <Section
-        id="schedule"
-        eyebrow="Schedule"
-        title="Book a consultation"
-        description="Pick a time that works — or email me if the scheduler is unavailable."
-        className="bg-gradient-to-b from-slate-soft/80 to-background dark:from-card/30 scroll-mt-24"
-      >
-        <FadeIn>
-          <Card className="overflow-hidden border-border/70">
-            <CardContent className="p-4 sm:p-6">
-              <CalendlyEmbed />
-            </CardContent>
-          </Card>
-        </FadeIn>
-      </Section>
+      {siteConfig.calendlyEnabled ? (
+        <Section
+          id="schedule"
+          eyebrow="Schedule"
+          title="Book a consultation"
+          description="Pick a time that works — or email me if the scheduler is unavailable."
+          className="bg-gradient-to-b from-slate-soft/80 to-background dark:from-card/30 scroll-mt-24"
+        >
+          <FadeIn>
+            <Card className="overflow-hidden border-border/70">
+              <CardContent className="p-4 sm:p-6">
+                <CalendlyEmbed />
+              </CardContent>
+            </Card>
+          </FadeIn>
+        </Section>
+      ) : null}
 
       <Section
         id="newsletter"
