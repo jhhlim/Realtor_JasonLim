@@ -8,19 +8,20 @@ import { CtaBanner } from "@/components/shared/cta-banner";
 
 export const metadata = buildMetadata({
   title: "Terms of Use",
-  description: `Terms of use template for ${siteConfig.legalName}. Review with an attorney before relying on this language.`,
+  description: `Terms of use for ${siteConfig.legalName}.`,
   path: "/terms",
-  noIndex: true,
 });
+
+const lastUpdated = "July 31, 2026";
 
 const sections = [
   {
     title: "1. Agreement",
-    body: `By accessing ${siteConfig.url}, you agree to these Terms of Use. If you do not agree, do not use the site. This document is a template for attorney review — not formal legal advice.`,
+    body: `By accessing ${siteConfig.url}, you agree to these Terms of Use. If you do not agree, do not use the site.`,
   },
   {
     title: "2. Who we are",
-    body: `${siteConfig.legalName} provides real estate information and brokerage services in California. ${siteConfig.name} is a licensed California REALTOR® (${siteConfig.license.dre}). Brokerage affiliation and office details should be confirmed on listing materials and disclosures.`,
+    body: `${siteConfig.legalName} provides real estate information and brokerage services in California through ${siteConfig.brokerage.name}. ${siteConfig.name} is a licensed California REALTOR® (${siteConfig.license.dre}).`,
   },
   {
     title: "3. Informational content only",
@@ -44,7 +45,7 @@ const sections = [
   },
   {
     title: "8. Third-party links & embeds",
-    body: "Calendly, maps, social networks, and other embeds are governed by their own terms. We are not responsible for third-party sites or services.",
+    body: "Calendly, maps, social networks, Compass, and other embeds are governed by their own terms. We are not responsible for third-party sites or services.",
   },
   {
     title: "9. Disclaimer of warranties",
@@ -56,11 +57,11 @@ const sections = [
   },
   {
     title: "11. Indemnity",
-    body: "You agree to indemnify and hold harmless Jason Lim Real Estate and related parties from claims arising out of your misuse of the site or violation of these terms.",
+    body: `You agree to indemnify and hold harmless ${siteConfig.legalName} and related parties from claims arising out of your misuse of the site or violation of these terms.`,
   },
   {
     title: "12. Governing law",
-    body: "These terms are governed by the laws of the State of California, without regard to conflict-of-law principles. Venue for disputes should be confirmed with counsel (typically Santa Clara County or as agreed in writing).",
+    body: "These terms are governed by the laws of the State of California, without regard to conflict-of-law principles.",
   },
   {
     title: "13. Changes",
@@ -68,7 +69,7 @@ const sections = [
   },
   {
     title: "14. Contact",
-    body: `${siteConfig.contact.email} · ${siteConfig.contact.phone} · ${siteConfig.contact.address.city}, ${siteConfig.contact.address.state}.`,
+    body: `${siteConfig.contact.email} · ${siteConfig.contact.phone} · ${siteConfig.contact.address.city}, ${siteConfig.contact.address.state} ${siteConfig.contact.address.zip}.`,
   },
 ];
 
@@ -78,21 +79,12 @@ export default function TermsPage() {
       <PageHero
         eyebrow="Legal"
         title="Terms of Use"
-        description="Website terms template. Customize with counsel before treating this as binding."
+        description={`Terms for using ${siteConfig.name}'s website and related tools.`}
       />
 
       <Section>
-        <div className="mx-auto max-w-3xl space-y-4 rounded-2xl border border-warning/30 bg-warning/10 px-5 py-4 text-sm text-foreground">
-          <p className="font-medium">Attorney review required</p>
-          <p className="text-muted-foreground">
-            This page is a <strong>placeholder template</strong> only. It is not legal advice.
-            Have an attorney review brokerage disclosures, MLS compliance, and liability language
-            before go-live.
-          </p>
-          <p className="text-xs text-muted-foreground">Last updated: July 23, 2026 (template)</p>
-        </div>
-
-        <div className="mx-auto mt-12 max-w-3xl space-y-10">
+        <div className="mx-auto max-w-3xl space-y-10">
+          <p className="text-sm text-muted-foreground">Last updated: {lastUpdated}</p>
           {sections.map((section) => (
             <article key={section.title} className="space-y-3">
               <h2 className="font-display text-2xl font-semibold tracking-tight">

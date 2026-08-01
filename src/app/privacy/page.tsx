@@ -8,15 +8,16 @@ import { CtaBanner } from "@/components/shared/cta-banner";
 
 export const metadata = buildMetadata({
   title: "Privacy Policy",
-  description: `Privacy policy template for ${siteConfig.legalName}. Review with an attorney before relying on this language.`,
+  description: `Privacy policy for ${siteConfig.legalName}.`,
   path: "/privacy",
-  noIndex: true,
 });
+
+const lastUpdated = "July 31, 2026";
 
 const sections = [
   {
     title: "1. Overview",
-    body: `This Privacy Policy template describes how ${siteConfig.legalName} ("we", "us") may collect, use, and share information when you visit ${siteConfig.url}, contact us, subscribe to updates, or use our tools. It is a placeholder for legal review — not formal legal advice.`,
+    body: `This Privacy Policy describes how ${siteConfig.legalName} ("we", "us") collects, uses, and shares information when you visit ${siteConfig.url}, contact us, subscribe to updates, or use our tools.`,
   },
   {
     title: "2. Information we may collect",
@@ -52,7 +53,7 @@ const sections = [
   },
   {
     title: "10. Contact",
-    body: `Questions about privacy: ${siteConfig.contact.email} · ${siteConfig.contact.phone} · ${siteConfig.contact.address.city}, ${siteConfig.contact.address.state}.`,
+    body: `Questions about privacy: ${siteConfig.contact.email} · ${siteConfig.contact.phone} · ${siteConfig.contact.address.city}, ${siteConfig.contact.address.state} ${siteConfig.contact.address.zip}.`,
   },
 ];
 
@@ -62,21 +63,12 @@ export default function PrivacyPage() {
       <PageHero
         eyebrow="Legal"
         title="Privacy Policy"
-        description="Template language for website visitors. Have qualified counsel review and customize before publishing as binding policy."
+        description={`How ${siteConfig.name} handles information you share on this site.`}
       />
 
       <Section>
-        <div className="mx-auto max-w-3xl space-y-4 rounded-2xl border border-warning/30 bg-warning/10 px-5 py-4 text-sm text-foreground">
-          <p className="font-medium">Attorney review required</p>
-          <p className="text-muted-foreground">
-            This page is a <strong>placeholder template</strong> only. It is not legal advice
-            and should not be relied on as a complete California or federal privacy notice.
-            Replace with counsel-approved language before go-live.
-          </p>
-          <p className="text-xs text-muted-foreground">Last updated: July 23, 2026 (template)</p>
-        </div>
-
-        <div className="mx-auto mt-12 max-w-3xl space-y-10">
+        <div className="mx-auto max-w-3xl space-y-10">
+          <p className="text-sm text-muted-foreground">Last updated: {lastUpdated}</p>
           {sections.map((section) => (
             <article key={section.title} className="space-y-3">
               <h2 className="font-display text-2xl font-semibold tracking-tight">
