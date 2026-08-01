@@ -3,6 +3,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
 import { Separator } from "@/components/ui/separator";
+import { ChineseName } from "@/components/layout/chinese-name";
 
 function LinkedInIcon({ className }: { className?: string }) {
   return (
@@ -40,9 +41,7 @@ export function SiteFooter() {
             <div>
               <p className="font-display text-2xl font-semibold tracking-tight">
                 {siteConfig.name}
-                <span className="notranslate ml-2 text-[0.9em] font-medium tracking-normal text-muted-foreground">
-                  {siteConfig.nameZh}
-                </span>
+                <ChineseName className="ml-2 text-[0.9em] font-medium tracking-normal text-muted-foreground" prefix="" />
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
                 {siteConfig.title}

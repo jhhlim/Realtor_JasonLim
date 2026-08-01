@@ -32,7 +32,7 @@ export default function AboutPage() {
             <span className="block text-accent">Fresh real estate perspective.</span>
           </>
         }
-        description={`I'm ${siteConfig.name}（${siteConfig.nameZh}）— a licensed California REALTOR® who spent ${experience.techYears} years building enterprise software and AI tools before helping Bay Area families navigate one of life's biggest decisions.`}
+        description={`I'm ${siteConfig.name} — a licensed California REALTOR® who spent ${experience.techYears} years building enterprise software and AI tools before helping Bay Area families navigate one of life's biggest decisions.`}
         primaryCta={siteConfig.cta.consultation}
         secondaryCta={{ label: "Send a message", href: "/contact" }}
       />

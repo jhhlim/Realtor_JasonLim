@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { LanguageToggle } from "@/components/layout/language-toggle";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
+import { ChineseName } from "@/components/layout/chinese-name";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader({ className }: { className?: string }) {
@@ -20,9 +21,7 @@ export function SiteHeader({ className }: { className?: string }) {
           <Link href="/" className="group flex flex-col leading-none">
             <span className="font-display text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent sm:text-2xl">
               {siteConfig.name}
-              <span className="notranslate ml-2 text-[0.85em] font-medium tracking-normal text-muted-foreground">
-                {siteConfig.nameZh}
-              </span>
+              <ChineseName className="ml-2 text-[0.85em] font-medium tracking-normal text-muted-foreground" prefix="" />
             </span>
             <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground sm:block">
               Silicon Valley Real Estate
