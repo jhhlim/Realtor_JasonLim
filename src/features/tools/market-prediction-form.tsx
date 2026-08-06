@@ -3,8 +3,6 @@
 import * as React from "react";
 import { AlertTriangle, TrendingUp } from "lucide-react";
 
-import { siteConfig } from "@/config/site";
-import { BrandName } from "@/components/layout/brand-name";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,6 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { mockNeighborhoods } from "@/data/mock-neighborhoods";
+import { AiAnalyzeSection } from "@/features/tools/use-ai-analysis";
 
 export function MarketPredictionForm() {
   const [neighborhood, setNeighborhood] = React.useState("san-jose");
@@ -30,7 +29,29 @@ export function MarketPredictionForm() {
 
   const hood = mockNeighborhoods.find((n) => n.slug === neighborhood);
 
-  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const computedMetrics = React.useMemo(
+    () =>
+      hood
+        ? {
+            medianPrice: hood.medianPrice,
+            priceChangeYoY: hood.priceChangeYoY,
+            avgDom: hood.avgDom,
+            horizonMonths: Number(horizon) || 12,
+          }
+        : { horizonMonths: Number(horizon) || 12 },
+    [hood, horizon],
+  );
+
+  const inputs = React.useMemo(
+    () => ({
+      neighborhood,
+      neighborhoodName: hood?.name ?? neighborhood,
+      horizonMonths: Number(horizon) || 12,
+    }),
+    [neighborhood, hood?.name, horizon],
+  );
+
+  async function onSubscribe(event: React.FormEvent) {
     event.preventDefault();
     setStatus("loading");
     setErrorMessage(null);
@@ -45,7 +66,7 @@ export function MarketPredictionForm() {
           interest: "other",
           source: "market-prediction",
           message: [
-            "Market prediction interest",
+            "Market prediction updates",
             `Neighborhood: ${hood?.name ?? neighborhood}`,
             `Horizon: ${horizon} months`,
           ].join("\n"),
@@ -58,7 +79,7 @@ export function MarketPredictionForm() {
       };
 
       if (!response.ok || !data.success) {
-        throw new Error(data.error ?? "Unable to submit your request.");
+        throw new Error(data.error ?? "Unable to submit.");
       }
 
       setStatus("success");
@@ -72,15 +93,14 @@ export function MarketPredictionForm() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <Card className="border-warning/30 bg-warning/5">
         <CardContent className="flex gap-3 p-4 text-sm">
           <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-warning" />
           <p className="text-muted-foreground">
             <strong className="text-foreground">Disclaimer:</strong> Forward-looking
-            market views are illustrative only — not investment advice, not a guarantee
-            of future prices, and not a substitute for licensed appraisal or financial
-            planning. Past trends do not predict future results.
+            views are illustrative only — not investment advice or a guarantee of future
+            prices. Always verify with licensed professionals.
           </p>
         </CardContent>
       </Card>
@@ -89,66 +109,64 @@ export function MarketPredictionForm() {
         <Card>
           <CardHeader>
             <div className="flex flex-wrap items-center gap-2">
-              <CardTitle>Market outlook preview</CardTitle>
-              <Badge variant="accent">AI preview</Badge>
+              <CardTitle>Market outlook</CardTitle>
+              <Badge variant="accent">AI powered</Badge>
             </div>
             <CardDescription>
-              AI-generated neighborhood forecasts are in development. Join the waitlist
-              and <BrandName /> will share curated market reports in the meantime.
+              Select a Silicon Valley neighborhood and forecast horizon. Jason&apos;s AI
+              explains affordability, risks, negotiation context, and appreciation.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            {status === "success" ? (
-              <p className="text-sm text-muted-foreground">
-                You&apos;re on the list — we&apos;ll send curated outlook notes for{" "}
-                {hood?.name ?? "your market"} when new reports publish.
-              </p>
-            ) : (
-              <form onSubmit={onSubmit} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="pred-hood">Neighborhood</Label>
-                  <Select value={neighborhood} onValueChange={setNeighborhood}>
-                    <SelectTrigger id="pred-hood">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {mockNeighborhoods.map((n) => (
-                        <SelectItem key={n.slug} value={n.slug}>
-                          {n.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="pred-horizon">Forecast horizon (months)</Label>
-                  <Input
-                    id="pred-horizon"
-                    type="number"
-                    min={3}
-                    max={36}
-                    value={horizon}
-                    onChange={(e) => setHorizon(e.target.value)}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="pred-email">Email for updates</Label>
-                  <Input
-                    id="pred-email"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                {errorMessage ? (
-                  <p className="text-sm text-destructive">{errorMessage}</p>
-                ) : null}
-                <Button type="submit" variant="accent" disabled={status === "loading"}>
-                  {status === "loading" ? "Submitting…" : "Notify me when live"}
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="pred-hood">Neighborhood</Label>
+              <Select value={neighborhood} onValueChange={setNeighborhood}>
+                <SelectTrigger id="pred-hood">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {mockNeighborhoods.map((n) => (
+                    <SelectItem key={n.slug} value={n.slug}>
+                      {n.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="pred-horizon">Forecast horizon (months)</Label>
+              <Input
+                id="pred-horizon"
+                type="number"
+                min={3}
+                max={36}
+                value={horizon}
+                onChange={(e) => setHorizon(e.target.value)}
+              />
+            </div>
+            <form onSubmit={onSubscribe} className="flex flex-wrap gap-3 border-t border-border/70 pt-4">
+              <div className="min-w-[200px] flex-1 space-y-2">
+                <Label htmlFor="pred-email">Email for market updates (optional)</Label>
+                <Input
+                  id="pred-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@email.com"
+                />
+              </div>
+              <div className="flex items-end">
+                <Button type="submit" variant="outline" disabled={status === "loading" || !email}>
+                  {status === "loading" ? "…" : "Subscribe"}
                 </Button>
-              </form>
-            )}
+              </div>
+            </form>
+            {status === "success" ? (
+              <p className="text-sm text-accent">Subscribed — we&apos;ll send curated updates.</p>
+            ) : null}
+            {errorMessage ? (
+              <p className="text-sm text-destructive">{errorMessage}</p>
+            ) : null}
           </CardContent>
         </Card>
 
@@ -174,13 +192,16 @@ export function MarketPredictionForm() {
                   : "—"}
               </span>
             </div>
-            <p className="text-muted-foreground">
-              Automated prediction bands will layer inventory, rates, and macro signals —
-              always reviewed by a licensed agent before client use.
-            </p>
           </CardContent>
         </Card>
       </div>
+
+      <AiAnalyzeSection
+        tool="market-prediction"
+        inputs={inputs}
+        computedMetrics={computedMetrics}
+        label="Get Jason's market outlook"
+      />
     </div>
   );
 }

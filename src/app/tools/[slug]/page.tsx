@@ -73,9 +73,6 @@ function ToolBody({ tool }: { tool: ToolCatalogItem }) {
 }
 
 function toolCta(tool: ToolCatalogItem) {
-  if (tool.status === "ai-stub") {
-    return siteConfig.cta.consultation;
-  }
   if (tool.category === "Invest") {
     return {
       label: "Discuss investment strategy",
@@ -107,13 +104,13 @@ export default async function ToolPage({ params }: { params: Params }) {
       </Section>
       <CtaBanner
         title={
-          tool.status === "ai-stub"
-            ? "Prefer a human-reviewed analysis?"
+          tool.category === "AI"
+            ? "Want Jason to review this analysis with you?"
             : "Ready to put these numbers into action?"
         }
         description={
-          tool.status === "ai-stub"
-            ? "AI previews are coming soon — book a consultation for comps, strategy, and market context today."
+          tool.category === "AI"
+            ? "AI previews are illustrative — book a consultation for comps, strategy, and market context tailored to your situation."
             : "We'll stress-test assumptions against your timeline, lender profile, and local competition."
         }
       />

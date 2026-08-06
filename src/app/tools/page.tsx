@@ -61,7 +61,7 @@ export default function ToolsPage() {
                         <CardDescription>{tool.description}</CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <ToolStatusBadge status={tool.status} />
+                        <ToolStatusBadge status={tool.status} category={tool.category} />
                       </CardContent>
                     </Card>
                   </Link>

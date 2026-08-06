@@ -108,3 +108,5 @@ export class StubAiAnalysisService implements AiAnalysisService {
 export function getAiAnalysisService(): AiAnalysisService {
   return new StubAiAnalysisService();
 }
+
+export { createStructuredPropertyAnalysis } from "@/services/ai/openai-responses-client";

@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { siteConfig } from "@/config/site";
+import { AiAnalyzeSection } from "@/features/tools/use-ai-analysis";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -16,6 +17,12 @@ export function HomeValuationForm() {
   const [error, setError] = React.useState<string | null>(null);
   const [info, setInfo] = React.useState<string | null>(null);
   const [mailtoHref, setMailtoHref] = React.useState<string | null>(null);
+
+  const [address, setAddress] = React.useState("");
+  const [beds, setBeds] = React.useState(3);
+  const [baths, setBaths] = React.useState(2);
+  const [sqft, setSqft] = React.useState(1500);
+  const [notes, setNotes] = React.useState("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,21 +37,21 @@ export function HomeValuationForm() {
     const last = String(data.get("last") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
-    const address = String(data.get("address") ?? "").trim();
-    const notes = String(data.get("notes") ?? "").trim();
+    const addr = String(data.get("address") ?? "").trim();
+    const noteText = String(data.get("notes") ?? "").trim();
     const name = `${first} ${last}`.trim();
     const to = siteConfig.contact.email;
-    const subject = `Home valuation request — ${address}`;
+    const subject = `Home valuation request — ${addr}`;
     const message = [
-      `Property: ${address}`,
+      `Property: ${addr}`,
+      `Beds/Baths/Sqft: ${beds}/${baths}/${sqft}`,
       phone ? `Phone: ${phone}` : null,
-      notes ? `Notes: ${notes}` : null,
+      noteText ? `Notes: ${noteText}` : null,
     ]
       .filter(Boolean)
       .join("\n");
 
     try {
-      // Client-side FormSubmit (works without Resend domain)
       const formSubmitRes = await fetch(
         `https://formsubmit.co/ajax/${encodeURIComponent(to)}`,
         {
@@ -57,8 +64,8 @@ export function HomeValuationForm() {
             name,
             email,
             phone,
-            address,
-            notes,
+            address: addr,
+            notes: noteText,
             message,
             _subject: subject,
             _template: "table",
@@ -91,7 +98,7 @@ export function HomeValuationForm() {
         const msg = String(formSubmitData?.message ?? "").toLowerCase();
         setInfo(
           msg.includes("activate")
-            ? "Check jason.lim@compass.com for a FormSubmit activation email and click Activate once, then submissions will deliver automatically."
+            ? "Check jason.lim@compass.com for a FormSubmit activation email and click Activate once."
             : null,
         );
         setStatus("success");
@@ -99,7 +106,6 @@ export function HomeValuationForm() {
         return;
       }
 
-      // Optional Web3Forms
       const web3Key = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim();
       if (web3Key) {
         const w3 = await fetch("https://api.web3forms.com/submit", {
@@ -115,7 +121,7 @@ export function HomeValuationForm() {
             name,
             email,
             phone,
-            address,
+            address: addr,
             message,
           }),
         });
@@ -130,7 +136,7 @@ export function HomeValuationForm() {
       }
 
       const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-        [`Name: ${name}`, `Email: ${email}`, phone ? `Phone: ${phone}` : null, `Property: ${address}`, notes ? `Notes: ${notes}` : null]
+        [`Name: ${name}`, `Email: ${email}`, phone ? `Phone: ${phone}` : null, `Property: ${addr}`, noteText ? `Notes: ${noteText}` : null]
           .filter(Boolean)
           .join("\n"),
       )}`;
@@ -138,12 +144,6 @@ export function HomeValuationForm() {
       setError(`Unable to deliver email right now. Please email ${to} directly.`);
       setStatus("error");
     } catch {
-      const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-        [`Name: ${name}`, `Email: ${email}`, phone ? `Phone: ${phone}` : null, `Property: ${address}`, notes ? `Notes: ${notes}` : null]
-          .filter(Boolean)
-          .join("\n"),
-      )}`;
-      setMailtoHref(mailto);
       setError(`Unable to deliver email right now. Please email ${to} directly.`);
       setStatus("error");
     }
@@ -176,115 +176,160 @@ export function HomeValuationForm() {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-      <Card>
-        <CardHeader>
-          <CardTitle>Request a valuation</CardTitle>
-          <p className="text-sm text-muted-foreground">
-            Submit your property details and Jason will follow up at{" "}
-            {siteConfig.contact.email}.
-          </p>
-        </CardHeader>
-        <CardContent>
-          <form className="grid gap-4 sm:grid-cols-2" onSubmit={onSubmit}>
-            <div className="space-y-2">
-              <Label htmlFor="first">First name</Label>
-              <Input
-                id="first"
-                name="first"
-                required
-                autoComplete="given-name"
-                disabled={status === "loading"}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="last">Last name</Label>
-              <Input
-                id="last"
-                name="last"
-                required
-                autoComplete="family-name"
-                disabled={status === "loading"}
-              />
-            </div>
-            <div className="space-y-2 sm:col-span-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                disabled={status === "loading"}
-              />
-            </div>
-            <div className="space-y-2 sm:col-span-2">
-              <Label htmlFor="phone">Phone</Label>
-              <Input
-                id="phone"
-                name="phone"
-                type="tel"
-                autoComplete="tel"
-                disabled={status === "loading"}
-              />
-            </div>
-            <div className="space-y-2 sm:col-span-2">
-              <Label htmlFor="address">Property address</Label>
-              <Input
-                id="address"
-                name="address"
-                required
-                autoComplete="street-address"
-                disabled={status === "loading"}
-              />
-            </div>
-            <div className="space-y-2 sm:col-span-2">
-              <Label htmlFor="notes">Notes (optional)</Label>
-              <Textarea
-                id="notes"
-                name="notes"
-                placeholder="Remodels, timing, goals…"
-                disabled={status === "loading"}
-              />
-            </div>
-            {error ? (
-              <div className="sm:col-span-2 space-y-2 text-sm text-destructive">
-                <p>{error}</p>
-                {mailtoHref ? (
-                  <Button asChild variant="outline" size="sm">
-                    <a href={mailtoHref}>Email {siteConfig.contact.email}</a>
-                  </Button>
-                ) : null}
+    <div className="space-y-8">
+      <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <Card>
+          <CardHeader>
+            <CardTitle>Request a valuation</CardTitle>
+            <p className="text-sm text-muted-foreground">
+              Run AI analysis instantly, or submit for a personal CMA follow-up at{" "}
+              {siteConfig.contact.email}.
+            </p>
+          </CardHeader>
+          <CardContent>
+            <form className="grid gap-4 sm:grid-cols-2" onSubmit={onSubmit}>
+              <div className="space-y-2">
+                <Label htmlFor="first">First name</Label>
+                <Input
+                  id="first"
+                  name="first"
+                  required
+                  autoComplete="given-name"
+                  disabled={status === "loading"}
+                />
               </div>
-            ) : null}
-            <div className="sm:col-span-2">
-              <Button
-                type="submit"
-                variant="accent"
-                size="lg"
-                disabled={status === "loading"}
-              >
-                {status === "loading" ? "Sending…" : "Submit valuation request"}
-              </Button>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
+              <div className="space-y-2">
+                <Label htmlFor="last">Last name</Label>
+                <Input
+                  id="last"
+                  name="last"
+                  required
+                  autoComplete="family-name"
+                  disabled={status === "loading"}
+                />
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  disabled={status === "loading"}
+                />
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="phone">Phone</Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  disabled={status === "loading"}
+                />
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="address">Property address</Label>
+                <Input
+                  id="address"
+                  name="address"
+                  required
+                  autoComplete="street-address"
+                  disabled={status === "loading"}
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="beds">Beds</Label>
+                <Input
+                  id="beds"
+                  type="number"
+                  min={0}
+                  value={beds}
+                  onChange={(e) => setBeds(Number(e.target.value) || 0)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="baths">Baths</Label>
+                <Input
+                  id="baths"
+                  type="number"
+                  min={0}
+                  step={0.5}
+                  value={baths}
+                  onChange={(e) => setBaths(Number(e.target.value) || 0)}
+                />
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="sqft">Sq ft</Label>
+                <Input
+                  id="sqft"
+                  type="number"
+                  min={0}
+                  value={sqft}
+                  onChange={(e) => setSqft(Number(e.target.value) || 0)}
+                />
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="notes">Notes (optional)</Label>
+                <Textarea
+                  id="notes"
+                  name="notes"
+                  placeholder="Remodels, timing, goals…"
+                  disabled={status === "loading"}
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                />
+              </div>
+              {error ? (
+                <div className="space-y-2 sm:col-span-2 text-sm text-destructive">
+                  <p>{error}</p>
+                  {mailtoHref ? (
+                    <Button asChild variant="outline" size="sm">
+                      <a href={mailtoHref}>Email {siteConfig.contact.email}</a>
+                    </Button>
+                  ) : null}
+                </div>
+              ) : null}
+              <div className="sm:col-span-2">
+                <Button
+                  type="submit"
+                  variant="outline"
+                  size="lg"
+                  disabled={status === "loading"}
+                >
+                  {status === "loading" ? "Sending…" : "Submit for personal CMA follow-up"}
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
 
-      <Card className="border-dashed bg-slate-soft/40 dark:bg-secondary/20">
-        <CardHeader>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-            What happens next
-          </p>
-          <CardTitle className="text-xl">Data-backed CMA</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3 text-sm text-muted-foreground">
-          <p>
-            Requests go to {siteConfig.contact.email}. Expect comps, pricing strategy,
-            and next steps.
-          </p>
-        </CardContent>
-      </Card>
+        <Card className="border-dashed bg-slate-soft/40 dark:bg-secondary/20">
+          <CardHeader>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+              What happens next
+            </p>
+            <CardTitle className="text-xl">Data-backed CMA</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 text-sm text-muted-foreground">
+            <p>
+              AI gives an instant preview. Submit the form for comps, pricing strategy,
+              and next steps from Jason.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <AiAnalyzeSection
+        tool="home-valuation"
+        inputs={{ address, beds, baths, sqft, market: "Silicon Valley" }}
+        context={notes}
+        disabled={!address.trim()}
+        label="Get Jason's AI valuation analysis"
+      />
     </div>
   );
 }

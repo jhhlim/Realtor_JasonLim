@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { AiAnalyzeSection } from "@/features/tools/use-ai-analysis";
 
 export function OfferCompetitivenessForm() {
   const [address, setAddress] = React.useState("");
@@ -19,14 +20,39 @@ export function OfferCompetitivenessForm() {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [context, setContext] = React.useState("");
-  const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">(
-    "idle",
-  );
+  const [leadStatus, setLeadStatus] = React.useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
-  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setStatus("loading");
+  const offerOverListPct =
+    listPrice > 0 ? ((offerPrice - listPrice) / listPrice) * 100 : 0;
+
+  const computedMetrics = React.useMemo(
+    () => ({
+      listPrice,
+      offerPrice,
+      offerOverListPercent: Number(offerOverListPct.toFixed(2)),
+      offerVsList: offerPrice >= listPrice ? "at or above list" : "below list",
+    }),
+    [listPrice, offerPrice, offerOverListPct],
+  );
+
+  const inputs = React.useMemo(
+    () => ({
+      address,
+      listPrice,
+      offerPrice,
+    }),
+    [address, listPrice, offerPrice],
+  );
+
+  async function submitLead() {
+    if (!name.trim() || !email.trim()) {
+      setErrorMessage("Add your name and email to request a follow-up review.");
+      return;
+    }
+    setLeadStatus("loading");
     setErrorMessage(null);
 
     try {
@@ -59,44 +85,31 @@ export function OfferCompetitivenessForm() {
         throw new Error(data.error ?? "Unable to submit your request.");
       }
 
-      setStatus("success");
+      setLeadStatus("success");
     } catch (error) {
-      setStatus("error");
+      setLeadStatus("error");
       setErrorMessage(
         error instanceof Error ? error.message : "Something went wrong.",
       );
     }
   }
 
-  if (status === "success") {
-    return (
-      <Card className="max-w-2xl">
-        <CardHeader>
-          <CardTitle>Review queued</CardTitle>
-          <CardDescription>
-            <BrandName /> will assess escalation room, appraisal risk, and term
-            structure — AI-assisted scoring is coming soon.
-          </CardDescription>
-        </CardHeader>
-      </Card>
-    );
-  }
-
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
-      <Card>
-        <CardHeader>
-          <div className="flex flex-wrap items-center gap-2">
-            <CardTitle>Offer competitiveness check</CardTitle>
-            <Badge variant="accent">AI preview</Badge>
-          </div>
-          <CardDescription>
-            Share your target property and offer terms. Automated win-probability scoring
-            is in development — you&apos;ll get a human strategy review today.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={onSubmit} className="space-y-4">
+    <div className="space-y-8">
+      <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
+        <Card>
+          <CardHeader>
+            <div className="flex flex-wrap items-center gap-2">
+              <CardTitle>Offer competitiveness check</CardTitle>
+              <Badge variant="accent">AI powered</Badge>
+            </div>
+            <CardDescription>
+              Enter your target property and offer terms. Jason&apos;s AI analysis
+              covers affordability, risks, negotiation, and appreciation — plus a
+              personal recommendation.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="offer-address">Property address</Label>
               <Input
@@ -104,6 +117,7 @@ export function OfferCompetitivenessForm() {
                 required
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
+                placeholder="1868 Anne Marie Ct, San Jose"
               />
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -128,27 +142,6 @@ export function OfferCompetitivenessForm() {
                 />
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
-                <Label htmlFor="offer-name">Name</Label>
-                <Input
-                  id="offer-name"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="offer-email">Email</Label>
-                <Input
-                  id="offer-email"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-            </div>
             <div className="space-y-2">
               <Label htmlFor="offer-context">Competing offers, appraisal, or terms</Label>
               <Textarea
@@ -159,27 +152,67 @@ export function OfferCompetitivenessForm() {
                 onChange={(e) => setContext(e.target.value)}
               />
             </div>
+            <div className="grid gap-4 border-t border-border/70 pt-4 sm:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="offer-name">Name (optional follow-up)</Label>
+                <Input
+                  id="offer-name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="offer-email">Email (optional follow-up)</Label>
+                <Input
+                  id="offer-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+            </div>
             {errorMessage ? (
               <p className="text-sm text-destructive">{errorMessage}</p>
             ) : null}
-            <Button type="submit" variant="accent" disabled={status === "loading"}>
-              {status === "loading" ? "Submitting…" : "Request offer review"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+            {leadStatus === "success" ? (
+              <p className="text-sm text-accent">
+                Follow-up request sent — <BrandName /> will review your offer strategy.
+              </p>
+            ) : (
+              <Button
+                type="button"
+                variant="outline"
+                disabled={leadStatus === "loading"}
+                onClick={submitLead}
+              >
+                {leadStatus === "loading" ? "Sending…" : "Request human follow-up"}
+              </Button>
+            )}
+          </CardContent>
+        </Card>
 
-      <Card className="h-fit bg-gradient-to-br from-slate-soft to-background dark:from-card">
-        <CardHeader>
-          <ClipboardCheck className="h-5 w-5 text-accent" />
-          <CardTitle className="text-lg">Checklist preview</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2 text-sm text-muted-foreground">
-          <p>Price vs. recent comps and list-to-sale ratios</p>
-          <p>Escalation, appraisal gap, and contingency posture</p>
-          <p>Close timeline vs. seller motivation signals</p>
-        </CardContent>
-      </Card>
+        <Card className="h-fit bg-gradient-to-br from-slate-soft to-background dark:from-card">
+          <CardHeader>
+            <ClipboardCheck className="h-5 w-5 text-accent" />
+            <CardTitle className="text-lg">What AI analyzes</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2 text-sm text-muted-foreground">
+            <p>Price vs. recent comps and list-to-sale ratios</p>
+            <p>Escalation, appraisal gap, and contingency posture</p>
+            <p>Close timeline vs. seller motivation signals</p>
+            <p>Jason&apos;s overall: Strong Buy → Pass</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <AiAnalyzeSection
+        tool="offer-competitiveness"
+        inputs={inputs}
+        computedMetrics={computedMetrics}
+        context={context}
+        disabled={!address.trim()}
+        label="Analyze this offer with Jason's AI"
+      />
     </div>
   );
 }

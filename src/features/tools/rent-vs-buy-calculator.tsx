@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { calculateMortgagePayment } from "@/lib/mortgage";
 import { formatCurrency } from "@/lib/utils";
+import { AiAnalyzeSection } from "@/features/tools/use-ai-analysis";
 
 export function RentVsBuyCalculator() {
   const [rent, setRent] = React.useState(3800);
@@ -83,7 +84,8 @@ export function RentVsBuyCalculator() {
   ]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
+    <div className="space-y-8">
+      <div className="grid gap-6 lg:grid-cols-2">
       <Card>
         <CardHeader>
           <CardTitle>Assumptions</CardTitle>
@@ -166,6 +168,28 @@ export function RentVsBuyCalculator() {
           </p>
         </CardContent>
       </Card>
+      </div>
+
+      <AiAnalyzeSection
+        tool="rent-vs-buy"
+        inputs={{
+          monthlyRent: rent,
+          homePrice,
+          downPaymentPercent: downPercent,
+          mortgageRate: rate,
+          horizonYears: horizon,
+          market: "Silicon Valley",
+        }}
+        computedMetrics={{
+          monthlyOwnershipCost: analysis.monthlyOwn,
+          totalRentCost: analysis.rentCost,
+          buyNetCost: analysis.buyNet,
+          netAdvantage: analysis.advantage,
+          estimatedEquity: analysis.estimatedEquity,
+          breakEvenSummary: analysis.breakEvenYears,
+        }}
+        label="Get Jason's rent vs buy analysis"
+      />
     </div>
   );
 }

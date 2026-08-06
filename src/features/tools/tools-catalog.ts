@@ -2,9 +2,9 @@ export const toolsCatalog = [
   {
     slug: "home-valuation",
     title: "AI Home Valuation",
-    description: "Lead-capture valuation request — AI estimate coming soon.",
+    description: "Instant AI analysis plus personal CMA follow-up from Jason.",
     href: "/tools/home-valuation",
-    status: "ai-stub" as const,
+    status: "live" as const,
     category: "AI",
   },
   {
@@ -74,17 +74,17 @@ export const toolsCatalog = [
   {
     slug: "offer-competitiveness",
     title: "Offer Competitiveness",
-    description: "AI-assisted offer checklist — analysis coming soon.",
+    description: "AI offer analysis with Jason's personal recommendation.",
     href: "/tools/offer-competitiveness",
-    status: "ai-stub" as const,
+    status: "live" as const,
     category: "AI",
   },
   {
     slug: "market-prediction",
     title: "Market Prediction",
-    description: "Forward-looking AI outlook stub with disclaimer.",
+    description: "Neighborhood outlook with affordability, risks, and appreciation.",
     href: "/tools/market-prediction",
-    status: "ai-stub" as const,
+    status: "live" as const,
     category: "AI",
   },
   {
