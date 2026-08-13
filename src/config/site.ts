@@ -42,6 +42,7 @@ export const siteConfig = {
     legalName: "Compass",
     url: "https://www.compass.com",
     findAgentUrl: "https://www.compass.com/agents/",
+    agentProfileUrl: "https://www.compass.com/agents/jason-lim/",
     tagline: "Official Compass agent serving San Jose & Silicon Valley.",
   },
 
@@ -192,7 +193,7 @@ export const siteConfig = {
           { label: "Insights", href: "/blog" },
           { label: "FAQ", href: "/faq" },
           { label: "Contact", href: "/contact" },
-          { label: "Compass", href: "https://www.compass.com" },
+          { label: "Compass", href: "https://www.compass.com/agents/jason-lim/" },
         ],
       },
       {

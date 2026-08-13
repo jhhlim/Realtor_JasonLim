@@ -34,7 +34,7 @@ export function buildRealEstateAgentSchema(): JsonLd {
     sameAs: [
       social.linkedin,
       social.x,
-      siteConfig.brokerage.url,
+      siteConfig.brokerage.agentProfileUrl,
     ].filter(Boolean),
     worksFor: {
       "@type": "Organization",

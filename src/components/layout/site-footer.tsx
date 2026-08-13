@@ -5,14 +5,6 @@ import { siteConfig } from "@/config/site";
 import { Separator } from "@/components/ui/separator";
 import { BrandName } from "@/components/layout/brand-name";
 
-function LinkedInIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
-      <path d="M6.94 8.5H3.75V20h3.19V8.5ZM5.35 3.5a1.86 1.86 0 1 0 0 3.72 1.86 1.86 0 0 0 0-3.72ZM20.25 20h-3.18v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94V20H9.9V8.5h3.05v1.57h.04c.42-.8 1.46-1.65 3-1.65 3.21 0 3.8 2.11 3.8 4.86V20Z" />
-    </svg>
-  );
-}
-
 function CompassMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
@@ -26,8 +18,11 @@ function CompassMark({ className }: { className?: string }) {
 }
 
 const socialIcons = [
-  { href: siteConfig.social.linkedin, label: "LinkedIn", Icon: LinkedInIcon },
-  { href: siteConfig.brokerage.url, label: "Compass", Icon: CompassMark },
+  {
+    href: siteConfig.brokerage.agentProfileUrl,
+    label: "Compass",
+    Icon: CompassMark,
+  },
 ] as const;
 
 export function SiteFooter() {
@@ -52,12 +47,12 @@ export function SiteFooter() {
             <p className="text-sm text-muted-foreground">
               {siteConfig.brokerage.tagline}{" "}
               <a
-                href={siteConfig.brokerage.url}
+                href={siteConfig.brokerage.agentProfileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-accent hover:underline"
               >
-                Visit Compass →
+                Visit Compass profile →
               </a>
             </p>
             <div className="space-y-2 text-sm text-muted-foreground">

@@ -26,8 +26,7 @@ export const metadata = buildMetadata({
 });
 
 const socialLinks = [
-  { label: "LinkedIn", href: siteConfig.social.linkedin },
-  { label: "Compass", href: siteConfig.brokerage.url },
+  { label: "Compass", href: siteConfig.brokerage.agentProfileUrl },
 ];
 
 export default function ContactPage() {
@@ -103,7 +102,7 @@ export default function ContactPage() {
               <Card className="border-border/70">
                 <CardContent className="space-y-4 p-6">
                   <h3 className="font-display text-xl font-semibold">
-                    Compass & social
+                    Compass profile
                   </h3>
                   <p className="text-sm text-muted-foreground">
                     {siteConfig.brokerage.tagline}
