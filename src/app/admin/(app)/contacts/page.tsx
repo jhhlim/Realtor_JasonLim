@@ -1,13 +1,17 @@
-import { CrmComingSoon } from "@/components/crm/coming-soon";
+import { redirect } from "next/navigation";
+
+import { listContacts } from "@/features/crm/actions/contacts";
+import { ContactsTable } from "@/features/crm/contacts-table";
 
 export const metadata = { title: "Contacts" };
 
-export default function AdminContactsPage() {
-  return (
-    <CrmComingSoon
-      title="Contacts"
-      description="Searchable contact database with status, source, tags, and follow-ups."
-      phase="Phase 2"
-    />
-  );
+export default async function AdminContactsPage() {
+  let contacts;
+  try {
+    contacts = await listContacts({ crmOnly: true });
+  } catch {
+    redirect("/admin/login?error=supabase_not_configured");
+  }
+
+  return <ContactsTable contacts={contacts} />;
 }

@@ -1,4 +1,5 @@
 import { AdminSidebar } from "@/components/crm/admin-sidebar";
+import { GlobalQuickAdd } from "@/components/crm/global-quick-add";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function AdminAppLayout({
@@ -25,6 +26,7 @@ export default async function AdminAppLayout({
           {children}
         </main>
       </div>
+      <GlobalQuickAdd />
     </div>
   );
 }
