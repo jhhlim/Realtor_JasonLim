@@ -2,24 +2,37 @@
 
 Private CRM at `/admin` — not indexed, auth-protected.
 
-## Setup
+## Setup (project `zzkmedhrpvndvnnrgaus`)
 
-1. Create a [Supabase](https://supabase.com) project.
-2. In SQL Editor, run **in order**:
+1. **Run SQL** in [SQL Editor](https://supabase.com/dashboard/project/zzkmedhrpvndvnnrgaus/sql/new) — paste and run **in order**:
    - `supabase/migrations/20260824000000_crm_phase1.sql`
    - `supabase/migrations/20260824010000_crm_phase2_contacts_import.sql`
-3. Auth → Users → **Add user** (email + password) for your CRM login.
-4. Copy project URL + anon key + service role key into `.env.local` / Vercel:
+
+2. **Create login user** in [Auth → Users](https://supabase.com/dashboard/project/zzkmedhrpvndvnnrgaus/auth/users):
+   - **Add user** → **Create new user**
+   - Email + password
+   - Enable **Auto Confirm User** (so email verification isn’t required)
+
+3. **API keys** from [Project Settings → API](https://supabase.com/dashboard/project/zzkmedhrpvndvnnrgaus/settings/api) → add to `.env.local` **and** Vercel env:
 
 ```bash
-NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
-SUPABASE_SERVICE_ROLE_KEY=eyJ...   # server only — never expose to client
+NEXT_PUBLIC_SUPABASE_URL=https://zzkmedhrpvndvnnrgaus.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...   # anon public
+SUPABASE_SERVICE_ROLE_KEY=eyJ...       # service_role — server only
 ```
 
-5. Restart `npm run dev` and open http://localhost:3000/admin/login
+4. **Redeploy** Vercel (or restart `npm run dev`) and open `/admin/login`.
+
+Optional CLI (after keys are in `.env.local`):
+
+```bash
+CRM_SETUP_PASSWORD='your-password' node scripts/supabase-setup.mjs create-user you@email.com
+node scripts/supabase-setup.mjs check
+```
 
 Optional: after noting your user UUID from Auth, uncomment and run `supabase/seed_demo_contacts.sql`.
+
+## Setup (generic)
 
 ## Phase 1
 
