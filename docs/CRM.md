@@ -16,6 +16,8 @@ Private CRM at `/admin` — not indexed, auth-protected.
 
    Success looks like: green “Success. No rows returned” (that’s normal).
 
+   If contact import fails for every row, also run `supabase/FIX_PROFILE.sql`.
+
 2. **Create login user** in [Auth → Users](https://supabase.com/dashboard/project/zzkmedhrpvndvnnrgaus/auth/users):
    - **Add user** → **Create new user**
    - Email + password

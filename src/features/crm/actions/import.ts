@@ -49,6 +49,7 @@ export async function commitImport(input: {
   let merged = 0;
   let skipped = 0;
   let failed = 0;
+  const failReasons: string[] = [];
 
   const tagIds: string[] = [];
   if (input.defaults.tags?.length) {
@@ -116,6 +117,7 @@ export async function commitImport(input: {
 
         if (!existing) {
           failed += 1;
+          if (failReasons.length < 3) failReasons.push("Merge match not found.");
           continue;
         }
 
@@ -215,8 +217,10 @@ export async function commitImport(input: {
         .single();
 
       if (error || !createdContact) {
-        console.error(error);
         failed += 1;
+        if (error?.message && failReasons.length < 5) {
+          failReasons.push(error.message);
+        }
         continue;
       }
 
@@ -256,10 +260,16 @@ export async function commitImport(input: {
 
       created += 1;
     } catch (e) {
-      console.error(e);
       failed += 1;
+      if (failReasons.length < 5) {
+        failReasons.push(e instanceof Error ? e.message : "Unknown error");
+      }
     }
   }
+
+  const errorSummary = failReasons.length
+    ? [...new Set(failReasons)].join(" | ")
+    : null;
 
   const { data: job } = await supabase
     .from("import_jobs")
@@ -275,6 +285,7 @@ export async function commitImport(input: {
       skipped_count: skipped,
       failed_count: failed,
       defaults: input.defaults,
+      error_summary: errorSummary,
       completed_at: new Date().toISOString(),
     })
     .select("*")
@@ -287,7 +298,15 @@ export async function commitImport(input: {
   return {
     success: true as const,
     job: job as ImportJob | null,
-    stats: { created, updated, merged, skipped, failed, processed: selected.length },
+    stats: {
+      created,
+      updated,
+      merged,
+      skipped,
+      failed,
+      processed: selected.length,
+      error: errorSummary,
+    },
   };
 }
 

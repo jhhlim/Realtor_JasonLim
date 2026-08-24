@@ -49,6 +49,7 @@ export function ContactImportWizard({ mode }: { mode?: SourceMode }) {
     merged: number;
     skipped: number;
     failed: number;
+    error?: string | null;
   } | null>(null);
 
   const [defaults, setDefaults] = useState<ImportDefaults>({
@@ -187,6 +188,11 @@ export function ContactImportWizard({ mode }: { mode?: SourceMode }) {
           <p>Merged: {stats.merged}</p>
           <p>Skipped: {stats.skipped}</p>
           <p>Failed: {stats.failed}</p>
+          {stats.error ? (
+            <p className="rounded-lg border border-destructive/30 bg-destructive/5 p-3 text-destructive">
+              {stats.error}
+            </p>
+          ) : null}
           <div className="flex gap-2 pt-2">
             <Button asChild variant="accent">
               <Link href="/admin/contacts">View contacts</Link>

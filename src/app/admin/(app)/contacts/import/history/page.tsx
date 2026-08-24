@@ -77,6 +77,9 @@ export default async function ImportHistoryPage() {
                   <strong>{job.failed_count}</strong>
                 </p>
               </CardContent>
+              {job.error_summary ? (
+                <p className="px-6 pb-4 text-xs text-destructive">{job.error_summary}</p>
+              ) : null}
             </Card>
           ))}
         </div>
