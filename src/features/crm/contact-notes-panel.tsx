@@ -8,7 +8,7 @@ import { createNote, deleteNote, updateNote } from "@/features/crm/actions/notes
 import type { CrmActivity, CrmNote } from "@/types/crm";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 

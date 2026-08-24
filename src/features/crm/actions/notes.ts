@@ -89,15 +89,13 @@ export async function deleteNote(id: string, contactId: string) {
 
 export async function listNotes(contactId: string, search?: string) {
   const { supabase, user } = await requireUser();
-  let query = supabase
+  const { data, error } = await supabase
     .from("notes")
     .select("*")
     .eq("owner_id", user.id)
     .eq("contact_id", contactId)
     .order("pinned", { ascending: false })
     .order("created_at", { ascending: false });
-
-  const { data, error } = await query;
   if (error) throw new Error(error.message);
   let notes = (data || []) as CrmNote[];
   if (search?.trim()) {
