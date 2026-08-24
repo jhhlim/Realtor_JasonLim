@@ -25,10 +25,10 @@ export const metadata = buildMetadata({
   path: "/contact",
 });
 
-const socialLinks = [
-  { label: "LinkedIn", href: siteConfig.social.linkedin },
-  { label: "X", href: siteConfig.social.x },
-];
+const profileLink = {
+  label: "Compass profile",
+  href: siteConfig.brokerage.agentProfileUrl,
+};
 
 export default function ContactPage() {
   return (
@@ -102,24 +102,21 @@ export default function ContactPage() {
 
               <Card className="border-border/70">
                 <CardContent className="space-y-4 p-6">
-                  <h3 className="font-display text-xl font-semibold">Connect</h3>
+                  <h3 className="font-display text-xl font-semibold">
+                    Compass profile
+                  </h3>
                   <p className="text-sm text-muted-foreground">
-                    Follow for market insights and Bay Area real estate updates.
+                    {siteConfig.brokerage.tagline}
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    {socialLinks.map((item) => (
-                      <Button key={item.label} asChild variant="outline" size="sm">
-                        <a
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={item.label}
-                        >
-                          {item.label}
-                        </a>
-                      </Button>
-                    ))}
-                  </div>
+                  <Button asChild variant="outline" size="sm">
+                    <a
+                      href={profileLink.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View {profileLink.label}
+                    </a>
+                  </Button>
                 </CardContent>
               </Card>
             </div>

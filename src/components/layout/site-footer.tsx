@@ -5,11 +5,6 @@ import { siteConfig } from "@/config/site";
 import { Separator } from "@/components/ui/separator";
 import { BrandName } from "@/components/layout/brand-name";
 
-const socialLinks = [
-  { href: siteConfig.social.linkedin, label: "LinkedIn" },
-  { href: siteConfig.social.x, label: "X" },
-] as const;
-
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
@@ -28,6 +23,16 @@ export function SiteFooter() {
             </div>
             <p className="text-sm leading-relaxed text-muted-foreground text-pretty">
               {siteConfig.tagline} {siteConfig.differentiator}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              <a
+                href={siteConfig.brokerage.agentProfileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-accent hover:underline"
+              >
+                Compass profile →
+              </a>
             </p>
             <div className="space-y-2 text-sm text-muted-foreground">
               <a
@@ -49,19 +54,6 @@ export function SiteFooter() {
                 {siteConfig.contact.address.city}, {siteConfig.contact.address.state}{" "}
                 {siteConfig.contact.address.zip}
               </p>
-            </div>
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              {socialLinks.map(({ href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-accent"
-                >
-                  {label}
-                </a>
-              ))}
             </div>
           </div>
 
