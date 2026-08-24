@@ -1,0 +1,47 @@
+-- Optional demo seed (run AFTER creating your Auth user and noting their UUID).
+-- Replace YOUR_USER_UUID with auth.users.id for jason.lim@compass.com (or your CRM login).
+-- Uses fictional emails/phones only.
+
+-- insert into public.contacts (
+--   owner_id, first_name, last_name, email, phone,
+--   is_buyer, lead_source, source_detail, lead_status, temperature,
+--   budget_min, budget_max, neighborhoods, preapproval_status, key_background,
+--   next_follow_up_at
+-- ) values
+-- (
+--   'YOUR_USER_UUID',
+--   'Peter', 'Smith',
+--   'peter.smith.demo@example.com',
+--   '(555) 010-1001',
+--   true, 'Open House', '1868 Anne Marie Ct — Aug 22',
+--   'active_buyer', 'warm',
+--   1200000, 1250000, array['Berryessa'],
+--   'Needs preapproval',
+--   'First-time buyer. Interested in Berryessa. Wants parents to live with him.',
+--   now() + interval '2 days'
+-- ),
+-- (
+--   'YOUR_USER_UUID',
+--   'Eric', 'Huon',
+--   'eric.huon.demo@example.com',
+--   '(555) 010-1002',
+--   true, 'Open House', '1868 Anne Marie Ct — Aug 22',
+--   'new', 'warm',
+--   1100000, 1300000, array['Berryessa'],
+--   'Needs preapproval',
+--   'First-time buyer. Needs spouse buy-in and preapproval.',
+--   now() + interval '1 day'
+-- ),
+-- (
+--   'YOUR_USER_UUID',
+--   'Mario', 'Chen',
+--   'mario.chen.demo@example.com',
+--   '(555) 010-1003',
+--   true, 'Website', 'Affordability calculator',
+--   'nurture', 'cold',
+--   800000, 1100000,
+--   array['San Jose','Milpitas','Tracy','Livermore','Union City','Hayward'],
+--   null,
+--   'Long-term nurture. Flexible on city; comparing East Bay vs South Bay.',
+--   now() + interval '14 days'
+-- );

@@ -7,6 +7,8 @@ Premium Silicon Valley REALTOR® website built with Next.js 15.
 
 Live-ready architecture for MLS IDX, maps, CRM, newsletters, analytics, and AI tools — with honest positioning around a technology-first agent background (software engineering, AI, UC Berkeley Economics, Oregon State CS, California REALTOR®).
 
+**Private CRM:** See [docs/CRM.md](docs/CRM.md) — `/admin` (Supabase Auth).
+
 ## Stack
 
 - **Next.js 15** (App Router) · React 19 · TypeScript
