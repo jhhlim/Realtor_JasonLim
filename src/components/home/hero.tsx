@@ -26,7 +26,7 @@ export function Hero() {
           >
             <div className="flex flex-wrap items-center gap-2">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
-                Compass · Silicon Valley REALTOR®
+                {siteConfig.brand} · Silicon Valley REALTOR®
               </p>
               <span className="rounded-full border border-border/80 bg-background/80 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
                 {siteConfig.license.dre}
@@ -42,17 +42,9 @@ export function Hero() {
               {siteConfig.differentiator}
             </p>
             <p className="text-sm text-muted-foreground">
-              Official{" "}
-              <a
-                href={siteConfig.brokerage.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-accent underline-offset-2 hover:underline"
-              >
-                {siteConfig.brokerage.name}
-              </a>{" "}
-              agent · {siteConfig.contact.address.city},{" "}
-              {siteConfig.contact.address.state} {siteConfig.contact.address.zip}
+              Serving {siteConfig.contact.address.city},{" "}
+              {siteConfig.contact.address.state} {siteConfig.contact.address.zip} &amp;{" "}
+              {siteConfig.contact.address.region}
             </p>
           </motion.div>
 
@@ -101,7 +93,7 @@ export function Hero() {
                 <BrandName />
               </p>
               <p className="text-sm text-white/80">
-                {siteConfig.brokerage.name} · {siteConfig.license.status}
+                {siteConfig.brand} · {siteConfig.license.status}
               </p>
               <p className="mt-1 text-xs font-medium tracking-wide text-white/70">
                 {siteConfig.license.dre}

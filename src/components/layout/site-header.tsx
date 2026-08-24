@@ -23,7 +23,7 @@ export function SiteHeader({ className }: { className?: string }) {
               <BrandName />
             </span>
             <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground sm:block">
-              Silicon Valley Real Estate
+              {siteConfig.brand}
             </span>
           </Link>
 

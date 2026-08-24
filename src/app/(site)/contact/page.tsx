@@ -21,12 +21,13 @@ import { NewsletterForm } from "@/features/newsletter/newsletter-form";
 export const metadata = buildMetadata({
   title: "Contact",
   description:
-    "Schedule a consultation, send a message, or subscribe to Bay Area market updates from Jason Lim at Compass.",
+    "Schedule a consultation, send a message, or subscribe to Bay Area market updates from Jason Lim Realty.",
   path: "/contact",
 });
 
 const socialLinks = [
-  { label: "Compass", href: siteConfig.brokerage.agentProfileUrl },
+  { label: "LinkedIn", href: siteConfig.social.linkedin },
+  { label: "X", href: siteConfig.social.x },
 ];
 
 export default function ContactPage() {
@@ -92,7 +93,7 @@ export default function ContactPage() {
                         <br />
                         {siteConfig.contact.address.region}
                         <br />
-                        {siteConfig.license.dre} · {siteConfig.brokerage.name}
+                        {siteConfig.license.dre} · {siteConfig.brokerage.tagline}
                       </span>
                     </p>
                   </div>
@@ -101,11 +102,9 @@ export default function ContactPage() {
 
               <Card className="border-border/70">
                 <CardContent className="space-y-4 p-6">
-                  <h3 className="font-display text-xl font-semibold">
-                    Compass profile
-                  </h3>
+                  <h3 className="font-display text-xl font-semibold">Connect</h3>
                   <p className="text-sm text-muted-foreground">
-                    {siteConfig.brokerage.tagline}
+                    Follow for market insights and Bay Area real estate updates.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {socialLinks.map((item) => (

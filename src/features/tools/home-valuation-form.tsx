@@ -98,7 +98,7 @@ export function HomeValuationForm() {
         const msg = String(formSubmitData?.message ?? "").toLowerCase();
         setInfo(
           msg.includes("activate")
-            ? "Check jason.lim@compass.com for a FormSubmit activation email and click Activate once."
+            ? `Check ${siteConfig.contact.email} for a FormSubmit activation email and click Activate once.`
             : null,
         );
         setStatus("success");

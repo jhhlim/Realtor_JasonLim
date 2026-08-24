@@ -333,7 +333,7 @@ async function deliverLead(input: {
     return {
       ok: true,
       info: msg.includes("activate")
-        ? "If this is your first submission, check jason.lim@compass.com for a FormSubmit activation email and click Activate once."
+        ? `If this is your first submission, check ${siteConfig.contact.email} for a FormSubmit activation email and click Activate once.`
         : undefined,
     };
   }
