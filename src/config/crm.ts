@@ -1,7 +1,6 @@
 import {
   CheckSquare,
   Contact,
-  Home,
   LayoutDashboard,
   Mail,
   Megaphone,
@@ -9,11 +8,15 @@ import {
   Kanban,
   FileText,
   CalendarDays,
+  Upload,
+  History,
 } from "lucide-react";
 
 export const adminNav = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Contacts", href: "/admin/contacts", icon: Contact },
+  { label: "Import", href: "/admin/contacts/import", icon: Upload },
+  { label: "Import History", href: "/admin/contacts/import/history", icon: History },
   { label: "Pipeline", href: "/admin/pipeline", icon: Kanban },
   { label: "Tasks", href: "/admin/tasks", icon: CheckSquare },
   { label: "Email", href: "/admin/email", icon: Mail },
