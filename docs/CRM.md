@@ -4,9 +4,17 @@ Private CRM at `/admin` — not indexed, auth-protected.
 
 ## Setup (project `zzkmedhrpvndvnnrgaus`)
 
-1. **Run SQL** in [SQL Editor](https://supabase.com/dashboard/project/zzkmedhrpvndvnnrgaus/sql/new) — paste and run **in order**:
+1. **Run SQL** in [SQL Editor](https://supabase.com/dashboard/project/zzkmedhrpvndvnnrgaus/sql/new):
+
+   **Do not paste the file path** — paste the actual SQL code.
+
+   **Easiest:** open `supabase/SETUP_ALL.sql` in this repo → **Select All** (⌘A) → **Copy** (⌘C) → paste into Supabase SQL Editor → **Run**.
+
+   Or run separately (Phase 1 first, then Phase 2):
    - `supabase/migrations/20260824000000_crm_phase1.sql`
    - `supabase/migrations/20260824010000_crm_phase2_contacts_import.sql`
+
+   Success looks like: green “Success. No rows returned” (that’s normal).
 
 2. **Create login user** in [Auth → Users](https://supabase.com/dashboard/project/zzkmedhrpvndvnnrgaus/auth/users):
    - **Add user** → **Create new user**
