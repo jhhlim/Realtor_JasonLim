@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Agent display name that swaps with language:
- * EN → Jason Lim | 简体 → 林辉鸿 | 繁體 → 林輝鴻
+ * EN / 日本語 → Jason Lim | 简体 → 林辉鸿 | 繁體 → 林輝鴻
  *
  * Always marked notranslate so Google Translate never phonetically
  * transliterates the English name. Visibility is driven by

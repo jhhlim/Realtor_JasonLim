@@ -5,7 +5,7 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export type SiteLanguage = "en" | "zh-CN" | "zh-TW";
+export type SiteLanguage = "en" | "zh-CN" | "zh-TW" | "ja";
 
 const STORAGE_KEY = "site-lang";
 
@@ -53,8 +53,8 @@ function readCookieLang(): SiteLanguage {
   const match = document.cookie.match(/(?:^|; )googtrans=([^;]*)/);
   const value = match?.[1] ? decodeURIComponent(match[1]) : "";
   if (value.includes("zh-TW") || value.includes("/zh-TW")) return "zh-TW";
-  if (value.includes("zh-CN") || value.includes("/zh-CN") || value.includes("zh"))
-    return "zh-CN";
+  if (value.includes("zh-CN") || value.includes("/zh-CN")) return "zh-CN";
+  if (value.includes("/ja") || value.endsWith("ja")) return "ja";
   return "en";
 }
 
@@ -75,7 +75,12 @@ function writeTranslateCookie(lang: SiteLanguage) {
     return;
   }
 
-  const value = lang === "zh-TW" ? "/en/zh-TW" : "/en/zh-CN";
+  const value =
+    lang === "zh-TW"
+      ? "/en/zh-TW"
+      : lang === "ja"
+        ? "/en/ja"
+        : "/en/zh-CN";
   const expires = "expires=Fri, 31 Dec 9999 23:59:59 GMT";
   document.cookie = `googtrans=${value};path=/;${expires}`;
   document.cookie = `googtrans=${value};path=/;domain=${window.location.hostname};${expires}`;
@@ -91,7 +96,7 @@ function ensureTranslateScript() {
     new window.google.translate.TranslateElement(
       {
         pageLanguage: "en",
-        includedLanguages: "en,zh-CN,zh-TW",
+        includedLanguages: "en,zh-CN,zh-TW,ja",
         autoDisplay: false,
         layout: 0,
       },
@@ -111,10 +116,11 @@ const LANG_OPTIONS: { value: SiteLanguage; label: string }[] = [
   { value: "en", label: "EN" },
   { value: "zh-CN", label: "简体" },
   { value: "zh-TW", label: "繁體" },
+  { value: "ja", label: "日本語" },
 ];
 
 /**
- * EN / 简体 / 繁體 toggle using Google Website Translator.
+ * EN / 简体 / 繁體 / 日本語 toggle using Google Website Translator.
  */
 export function LanguageToggle({ className }: { className?: string }) {
   const [lang, setLang] = React.useState<SiteLanguage>("en");
@@ -129,14 +135,14 @@ export function LanguageToggle({ className }: { className?: string }) {
       }
     })();
 
-    const valid: SiteLanguage[] = ["en", "zh-CN", "zh-TW"];
+    const valid: SiteLanguage[] = ["en", "zh-CN", "zh-TW", "ja"];
     const initial = stored && valid.includes(stored) ? stored : readCookieLang();
     setLang(initial);
     document.documentElement.dataset.siteLang = initial;
     ensureTranslateScript();
     setReady(true);
 
-    // Sync cookie to stored preference (Chinese only). Never force-reload into Chinese
+    // Sync cookie to stored preference. Never force-reload into a translation
     // when the user just chose English — that was causing the revert bug.
     if (initial !== "en") {
       const cookie = readCookieLang();
