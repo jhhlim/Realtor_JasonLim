@@ -5,6 +5,7 @@ import { Bath, BedDouble, Maximize2 } from "lucide-react";
 import type { ListingSummary } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { formatListingAttribution } from "@/lib/listing-agent";
 import { cn, formatCurrency, formatNumber } from "@/lib/utils";
 
 const statusLabels: Record<ListingSummary["status"], string> = {
@@ -93,6 +94,9 @@ export function ListingCard({ listing, className, priority }: ListingCardProps) 
               {formatNumber(listing.sqft)} sqft
             </span>
           </div>
+          <p className="text-xs text-muted-foreground">
+            {formatListingAttribution(listing)}
+          </p>
         </CardContent>
       </Link>
     </Card>

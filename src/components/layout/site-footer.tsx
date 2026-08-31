@@ -5,6 +5,18 @@ import { siteConfig } from "@/config/site";
 import { Separator } from "@/components/ui/separator";
 import { BrandName } from "@/components/layout/brand-name";
 
+function CompassMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.75" />
+      <path
+        d="M14.8 9.2 11 13l-1.8 4.8L14.8 9.2Zm-5.6 5.6L13 11l1.8-4.8L9.2 14.8Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
@@ -18,20 +30,21 @@ export function SiteFooter() {
                 <BrandName />
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
-                {siteConfig.brand} · {siteConfig.title}
+                {siteConfig.title}
               </p>
             </div>
             <p className="text-sm leading-relaxed text-muted-foreground text-pretty">
               {siteConfig.tagline} {siteConfig.differentiator}
             </p>
             <p className="text-sm text-muted-foreground">
+              {siteConfig.brokerage.tagline}{" "}
               <a
                 href={siteConfig.brokerage.agentProfileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-accent hover:underline"
               >
-                Compass profile →
+                Visit Compass profile →
               </a>
             </p>
             <div className="space-y-2 text-sm text-muted-foreground">
@@ -54,6 +67,17 @@ export function SiteFooter() {
                 {siteConfig.contact.address.city}, {siteConfig.contact.address.state}{" "}
                 {siteConfig.contact.address.zip}
               </p>
+            </div>
+            <div className="flex items-center gap-2 pt-1">
+              <a
+                href={siteConfig.brokerage.agentProfileUrl}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Compass"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-muted-foreground transition-colors hover:border-accent/40 hover:text-accent"
+              >
+                <CompassMark className="h-4 w-4" />
+              </a>
             </div>
           </div>
 
@@ -97,7 +121,7 @@ export function SiteFooter() {
           </p>
           <p>
             {siteConfig.license.status} · {siteConfig.license.dre} ·{" "}
-            {siteConfig.brokerage.tagline}
+            {siteConfig.brokerage.name}
           </p>
         </div>
       </div>

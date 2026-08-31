@@ -92,6 +92,10 @@ export interface ListingSummary {
   priceReduced?: boolean;
   daysOnMarket?: number;
   featured?: boolean;
+  /** MLS listing agent (not necessarily the site agent). */
+  listingAgentName?: string;
+  /** Listing office / brokerage on the MLS. */
+  listingOffice?: string;
 }
 
 export interface ListingDetails extends ListingSummary {

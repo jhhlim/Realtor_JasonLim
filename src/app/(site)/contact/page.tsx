@@ -21,7 +21,7 @@ import { NewsletterForm } from "@/features/newsletter/newsletter-form";
 export const metadata = buildMetadata({
   title: "Contact",
   description:
-    "Schedule a consultation, send a message, or subscribe to Bay Area market updates from Jason Lim Realty.",
+    "Schedule a consultation, send a message, or subscribe to Bay Area market updates from Jason Lim at Compass.",
   path: "/contact",
 });
 
@@ -93,7 +93,7 @@ export default function ContactPage() {
                         <br />
                         {siteConfig.contact.address.region}
                         <br />
-                        {siteConfig.license.dre} · {siteConfig.brokerage.tagline}
+                        {siteConfig.license.dre} · {siteConfig.brokerage.name}
                       </span>
                     </p>
                   </div>

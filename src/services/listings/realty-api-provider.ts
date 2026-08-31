@@ -56,7 +56,24 @@ type RealtyListItem = {
   flags?: { is_new_construction?: boolean; is_price_reduced?: boolean; is_pending?: boolean };
   list_date?: string;
   open_houses?: { start_date?: string }[];
-  branding?: unknown;
+  branding?:
+    | {
+        type?: string;
+        name?: string;
+        photo?: unknown;
+      }[]
+    | {
+        listing_office?: { name?: string };
+        listing_agent?: { name?: string };
+        agent?: { name?: string };
+        office?: { name?: string };
+      };
+  advertisers?: {
+    type?: string;
+    name?: string;
+    office?: { name?: string };
+    broker?: { name?: string };
+  }[];
 };
 
 type RealtyDetailResponse = {
@@ -112,6 +129,51 @@ function slugify(street: string, city: string, id: string): string {
     .replace(/(^-|-$)/g, "");
 }
 
+function mapListingAgentOffice(item: RealtyListItem): {
+  listingAgentName?: string;
+  listingOffice?: string;
+} {
+  let listingAgentName: string | undefined;
+  let listingOffice: string | undefined;
+
+  const branding = item.branding;
+  if (Array.isArray(branding)) {
+    for (const entry of branding) {
+      const type = (entry.type ?? "").toLowerCase();
+      const name = entry.name?.trim();
+      if (!name) continue;
+      if (!listingAgentName && (type.includes("agent") || type.includes("listing agent"))) {
+        listingAgentName = name;
+      }
+      if (!listingOffice && (type.includes("office") || type.includes("broker"))) {
+        listingOffice = name;
+      }
+    }
+  } else if (branding && typeof branding === "object") {
+    listingAgentName =
+      branding.listing_agent?.name?.trim() ||
+      branding.agent?.name?.trim() ||
+      undefined;
+    listingOffice =
+      branding.listing_office?.name?.trim() ||
+      branding.office?.name?.trim() ||
+      undefined;
+  }
+
+  if ((!listingAgentName || !listingOffice) && item.advertisers?.length) {
+    for (const advertiser of item.advertisers) {
+      const name = advertiser.name?.trim();
+      const office =
+        advertiser.office?.name?.trim() || advertiser.broker?.name?.trim();
+      if (!listingAgentName && name) listingAgentName = name;
+      if (!listingOffice && office) listingOffice = office;
+      if (listingAgentName && listingOffice) break;
+    }
+  }
+
+  return { listingAgentName, listingOffice };
+}
+
 function mapSummary(item: RealtyListItem): ListingSummary {
   const id = String(item.property_id ?? item.listing_id ?? mlsOf(item));
   const addr = item.location?.address ?? {};
@@ -119,6 +181,7 @@ function mapSummary(item: RealtyListItem): ListingSummary {
   const street = addr.line ?? "Address unavailable";
   const city = addr.city ?? "";
   const photo = item.primary_photo?.href ?? item.photos?.[0]?.href ?? "";
+  const { listingAgentName, listingOffice } = mapListingAgentOffice(item);
   return {
     id,
     mlsNumber: mlsOf(item),
@@ -146,6 +209,8 @@ function mapSummary(item: RealtyListItem): ListingSummary {
     newConstruction: item.flags?.is_new_construction,
     priceReduced: item.flags?.is_price_reduced,
     featured: false,
+    listingAgentName,
+    listingOffice,
   };
 }
 

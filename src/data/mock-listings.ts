@@ -57,6 +57,8 @@ export const mockListings: ListingDetails[] = [
     priceReduced: true,
     daysOnMarket: 18,
     featured: true,
+    listingAgentName: "Priya Shah",
+    listingOffice: "Sereno Group",
     description:
       "Charming Willow Glen home with a remodeled kitchen, open living areas, and a sunny backyard perfect for entertaining. Walk to Lincoln Avenue shops and restaurants.",
     photos: photosFor(0, [
@@ -127,6 +129,8 @@ export const mockListings: ListingDetails[] = [
     openHouse: "2026-07-27T14:00:00-07:00",
     daysOnMarket: 9,
     featured: true,
+    listingAgentName: "Michael Chen",
+    listingOffice: "Coldwell Banker Realty",
     description:
       "Modern townhome near Great Mall and BART. Open floor plan, community pool, and easy access to 880/237 for Silicon Valley commute.",
     photos: photosFor(1, [
@@ -182,6 +186,8 @@ export const mockListings: ListingDetails[] = [
     garageSpaces: 2,
     daysOnMarket: 6,
     featured: false,
+    listingAgentName: "Elena Morales",
+    listingOffice: "Intero Real Estate Services",
     description:
       "Spacious Centerville home with dual living areas and a quiet cul-de-sac location. Pending with backup offers welcome.",
     photos: photosFor(2, [
@@ -238,6 +244,8 @@ export const mockListings: ListingDetails[] = [
     garageSpaces: 1,
     daysOnMarket: 22,
     featured: false,
+    listingAgentName: "David Nguyen",
+    listingOffice: "Keller Williams Realty",
     priceReduced: true,
     description:
       "Bright top-floor condo near Levi's Stadium, Caltrain, and tech campuses. Ideal for first-time buyers or Piedmont commute.",
@@ -294,6 +302,8 @@ export const mockListings: ListingDetails[] = [
     newConstruction: true,
     daysOnMarket: 4,
     featured: true,
+    listingAgentName: "Aisha Patel",
+    listingOffice: "Compass",
     description:
       "Brand-new construction with chef's kitchen, ADU-ready layout, and energy-efficient systems in a top Sunnyvale neighborhood.",
     photos: photosFor(4, [
@@ -346,6 +356,8 @@ export const mockListings: ListingDetails[] = [
     openHouse: "2026-07-25T12:00:00-07:00",
     daysOnMarket: 11,
     featured: true,
+    listingAgentName: "Ryan Brooks",
+    listingOffice: "Berkshire Hathaway HomeServices",
     description:
       "Expansive Cupertino family home in Cupertino Union / Fremont Union districts. Pool, three-car garage, and quiet tree-lined street.",
     photos: photosFor(5, [
@@ -401,6 +413,8 @@ export const mockListings: ListingDetails[] = [
     garageSpaces: 2,
     daysOnMarket: 8,
     featured: false,
+    listingAgentName: "Sofia Alvarez",
+    listingOffice: "Alain Pinel Realtors",
     description:
       "Recently sold Los Gatos classic steps from downtown boutiques and hiking trails. Strong demand neighborhood with limited inventory.",
     photos: photosFor(6, [
@@ -457,6 +471,8 @@ export const mockListings: ListingDetails[] = [
     openHouse: "2026-07-26T11:00:00-07:00",
     daysOnMarket: 15,
     featured: false,
+    listingAgentName: "James Okonkwo",
+    listingOffice: "Redfin",
     description:
       "Light-filled Campbell townhome near the Pruneyard and Light Rail. Perfect for buyers wanting walkable dining and weekend farmers markets.",
     photos: photosFor(7, [
@@ -509,6 +525,8 @@ export const mockListings: ListingDetails[] = [
     garageSpaces: 1,
     daysOnMarket: 0,
     featured: true,
+    listingAgentName: "Lauren Kim",
+    listingOffice: "The Agency",
     description:
       "Coming soon on Castro Street — modern condo with Caltrain access, Google shuttle routes, and downtown Mountain View lifestyle.",
     photos: photosFor(8, [
@@ -561,6 +579,8 @@ export const mockListings: ListingDetails[] = [
     pool: true,
     daysOnMarket: 27,
     featured: true,
+    listingAgentName: "Tom Hughes",
+    listingOffice: "Christie's International Real Estate",
     priceReduced: true,
     description:
       "Professorville estate with high ceilings, chef's kitchen, and a private pool. Walk to University Avenue dining and Stanford vicinity.",
@@ -619,6 +639,8 @@ export const mockListings: ListingDetails[] = [
     garageSpaces: 2,
     daysOnMarket: 13,
     featured: false,
+    listingAgentName: "Nina Volkov",
+    listingOffice: "eXp Realty",
     description:
       "Value play in Morgan Hill with room to grow — larger lot, newer roof, and Caltrain access for Silicon Valley workers seeking more space.",
     photos: photosFor(10, [
@@ -672,6 +694,8 @@ export const mockListings: ListingDetails[] = [
     garageSpaces: 1,
     daysOnMarket: 5,
     featured: false,
+    listingAgentName: "Olivia Tran",
+    listingOffice: "Golden Gate Sotheby's International Realty",
     description:
       "High-floor downtown San Jose condo with skyline views, concierge, and walkability to SAP Center and Diridon Station.",
     photos: photosFor(11, [
@@ -726,6 +750,8 @@ export const mockListings: ListingDetails[] = [
     garageSpaces: 2,
     daysOnMarket: 7,
     featured: false,
+    listingAgentName: "Marcus Reed",
+    listingOffice: "Better Homes and Gardens Real Estate",
     description:
       "Recently sold mid-century Sunnyvale ranch on a flat lot — strong investor and rebuild interest in the Homestead corridor.",
     photos: photosFor(0, [
@@ -785,6 +811,8 @@ export const mockListings: ListingDetails[] = [
     priceReduced: false,
     daysOnMarket: 9,
     featured: true,
+    listingAgentName: "Hannah Lee",
+    listingOffice: "Pacific Union International",
     description:
       "Updated Berryessa home in 95132 with a remodeled kitchen, spacious backyard, and quick access to Highway 680 and North San Jose employers.",
     photos: photosFor(3, [
@@ -841,6 +869,8 @@ export const mockListings: ListingDetails[] = [
     garageSpaces: 2,
     daysOnMarket: 14,
     featured: false,
+    listingAgentName: "Carlos Rivera",
+    listingOffice: "Vanguard Properties",
     description:
       "Light-filled townhome in San Jose 95132 near Berryessa BART — ideal for first-time and move-up buyers seeking North Valley convenience.",
     photos: photosFor(6, [

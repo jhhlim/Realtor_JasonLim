@@ -32,6 +32,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getListingBySlug } from "@/lib/get-listing-by-slug";
+import { formatListingAttribution } from "@/lib/listing-agent";
 import { listingJsonLd } from "@/lib/listing-json-ld";
 import { formatCurrency, formatNumber } from "@/lib/utils";
 import type { ListingDetails } from "@/types";
@@ -253,6 +254,9 @@ export default async function ListingDetailPage({
                   {listing.hoaMonthly
                     ? ` · HOA ${formatCurrency(listing.hoaMonthly)}/mo`
                     : ""}
+                </p>
+                <p className="text-sm font-medium text-foreground/80">
+                  {formatListingAttribution(listing)}
                 </p>
               </div>
 

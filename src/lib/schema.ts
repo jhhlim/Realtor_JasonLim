@@ -4,13 +4,13 @@ import { siteConfig } from "@/config/site";
 export type JsonLd = Record<string, unknown>;
 
 export function buildRealEstateAgentSchema(): JsonLd {
-  const { contact, social, media, license, name, brand, description, url } =
+  const { contact, social, media, license, name, legalName, description, url } =
     siteConfig;
 
   return {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
-    name: brand,
+    name: legalName,
     alternateName: name,
     description,
     url,

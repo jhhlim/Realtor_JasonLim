@@ -4,19 +4,17 @@
  */
 export const siteConfig = {
   name: "Jason Lim",
-  /** Public-facing brand (site, marketing). */
-  brand: "Jason Lim Realty",
   /** Simplified Chinese name (林辉鸿). */
   nameZhCN: "林辉鸿",
   /** Traditional Chinese name (林輝鴻). */
   nameZhTW: "林輝鴻",
-  legalName: "Jason Lim Realty",
+  legalName: "Jason Lim | Compass",
   tagline: "Helping Bay Area families make confident real estate decisions.",
   secondaryTagline: "AI-powered real estate insights.",
   differentiator: "Technology + Data + Personal Service.",
-  title: "Silicon Valley REALTOR®",
+  title: "Compass REALTOR® | Bay Area Real Estate",
   description:
-    "Bay Area REALTOR® in San Jose combining software engineering, AI, and market analytics to help first-time buyers, move-up buyers, and investors make confident decisions.",
+    "Compass REALTOR® in San Jose combining software engineering, AI, and market analytics to help first-time buyers, move-up buyers, and investors make confident decisions.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://realtor-jason-lim.vercel.app",
   locale: "en_US",
 
@@ -45,8 +43,7 @@ export const siteConfig = {
     url: "https://www.compass.com",
     findAgentUrl: "https://www.compass.com/agents/",
     agentProfileUrl: "https://www.compass.com/agents/jason-lim/",
-    /** Short disclosure — shown in footer/legal areas only. */
-    tagline: "Licensed with Compass.",
+    tagline: "Official Compass agent serving San Jose & Silicon Valley.",
   },
 
   social: {
@@ -75,7 +72,7 @@ export const siteConfig = {
     "UC Berkeley Economics",
     "Oregon State Computer Science",
     "Licensed California REALTOR®",
-    "Silicon Valley Specialist",
+    "Compass Agent",
   ],
 
   audiences: [
@@ -196,6 +193,7 @@ export const siteConfig = {
           { label: "Insights", href: "/blog" },
           { label: "FAQ", href: "/faq" },
           { label: "Contact", href: "/contact" },
+          { label: "Compass", href: "https://www.compass.com/agents/jason-lim/" },
         ],
       },
       {
