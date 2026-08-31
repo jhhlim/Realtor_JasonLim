@@ -84,7 +84,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.65, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto w-full max-w-md lg:max-w-none"
+          className="relative mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-sm"
         >
           <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-accent/20 via-transparent to-navy/15 blur-sm" />
           <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] border border-border/80 bg-secondary shadow-lift">
@@ -94,7 +94,7 @@ export function Hero() {
               fill
               priority
               className="object-cover"
-              sizes="(max-width: 1024px) 90vw, 420px"
+              sizes="(max-width: 1024px) 70vw, 320px"
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0B1F33]/75 to-transparent p-6 text-white">
               <p className="font-display text-xl font-semibold">
