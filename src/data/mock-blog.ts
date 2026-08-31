@@ -5,6 +5,54 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "condo-townhome-or-sfh-south-bay-first-home",
+    title:
+      "Condo, Townhome, or Single-Family? Choosing Your First South Bay Home",
+    excerpt:
+      "Nearly September — and for first-time buyers in San Jose, Milpitas, Santa Clara, Warm Springs, and Sunnyvale, the biggest decision isn't only where to buy. It's which home type fits your 5–10+ year plan.",
+    content: `Happy Monday! Hope you had a wonderful weekend. It's nearly September!
+
+If you're buying your first home in the South Bay (San Jose, Milpitas, Santa Clara, Warm Springs, Sunnyvale and surrounding areas), one of the biggest decisions isn't just where to buy. It's what type of home fits your 5–10+ year plan.
+
+Across the South Bay, I often see buyers weighing three different strategies:
+
+1. Start smaller: ~$600K–$700K condo
+
+A 1–2 bedroom condo can offer a lower entry point and more financial flexibility. Instead of stretching your budget today, you could potentially live there for several years, build equity, and later move up to a single-family home while keeping the condo as a rental — assuming the numbers, HOA rules, and future lender qualification make sense.
+
+2. The middle: ~$900K–$1.1M townhome
+
+This price range can open up newer 2–3 bedroom townhomes in parts of the South Bay, including the common three-story layouts with a garage downstairs and newer kitchens, bathrooms, and finishes. For a young family, the extra bedrooms, lower maintenance, and access to certain school districts can be very attractive.
+
+But this is also worth thinking about strategically: you're putting substantially more money into the purchase than a smaller condo, while still typically having an HOA and shared walls. Will it still fit your needs in 5–10 years?
+
+3. Stretch for the SFH: ~$1.2M–$1.3M+
+
+Depending on the neighborhood, particularly in parts of San Jose, this may get you an older 1960s–70s single-family home, perhaps around 1,100–1,300 sq. ft. on a 5,000–6,000 sq. ft. lot. It won't necessarily have the modern layout of a newer townhome, and it may require more maintenance.
+
+But if the location, schools, lot, and neighborhood fit your long-term plans, it could be somewhere you stay for 10–15+ years instead of needing to move again.
+
+Pricing varies significantly by city, neighborhood, schools, condition, and property. Sunnyvale, Santa Clara, Milpitas, and different areas of San Jose can look very different at the same budget.
+
+Think beyond the purchase price. Buying and selling real estate has transaction costs. Moving is expensive too. Sometimes starting smaller and preserving flexibility is the better strategy. Sometimes stretching for the SFH you can stay in for 10–15 years makes more sense. And sometimes that newer townhome really is the right balance between the two.
+
+There isn't one answer for everyone. If you're deciding between a condo, townhome, or single-family home in the South Bay, reach out — I can help you compare the properties, monthly costs, and longer-term tradeoffs based on your actual budget.
+
+Have a great work week ahead.`,
+    category: "Buying",
+    coverImage: cover("photo-1600596542815-ffad4c1539a9"),
+    publishedAt: "2026-08-31",
+    readingMinutes: 6,
+    tags: [
+      "first-time buyers",
+      "condo",
+      "townhome",
+      "single-family",
+      "south bay",
+      "san jose",
+    ],
+  },
+  {
     slug: "first-time-buyer-checklist-bay-area-2026",
     title: "First-Time Buyer Checklist for the Bay Area in 2026",
     excerpt:
