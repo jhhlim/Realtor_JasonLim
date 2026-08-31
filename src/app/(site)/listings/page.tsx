@@ -10,6 +10,7 @@ import { PageHero } from "@/components/shared/page-hero";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { parseSearchParams, filtersToSearchParams } from "@/lib/listings-search";
+import { isLiveMlsConfigured, isMockListingsEnabled } from "@/lib/listings-mode";
 import { formatNumber } from "@/lib/utils";
 import { siteConfig } from "@/config/site";
 
@@ -30,6 +31,8 @@ export default async function ListingsPage({
   const filters = parseSearchParams(raw);
   const provider = getListingProvider();
   const result = await provider.search(filters);
+  const showingDemo = isMockListingsEnabled() && result.provider === "mock";
+  const awaitingMls = !isLiveMlsConfigured() && !showingDemo && result.total === 0;
 
   const markers = result.items.map((item) => ({
     id: item.id,
@@ -89,14 +92,18 @@ export default async function ListingsPage({
                   : `${formatNumber(result.total)} home${result.total === 1 ? "" : "s"}`}
               </h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                {hasFilters
-                  ? "Results updated from your filters."
-                  : "Showing Bay Area listings — refine with filters anytime."}
-                <span className="ml-2 inline-flex">
-                  <Badge variant="secondary" className="font-normal">
-                    {result.provider}
-                  </Badge>
-                </span>
+                {awaitingMls
+                  ? "Live MLS inventory is not connected yet — contact Jason for current homes."
+                  : hasFilters
+                    ? "Results updated from your filters."
+                    : "Showing Bay Area listings — refine with filters anytime."}
+                {result.total > 0 || showingDemo ? (
+                  <span className="ml-2 inline-flex">
+                    <Badge variant="secondary" className="font-normal">
+                      {showingDemo ? "demo data" : result.provider}
+                    </Badge>
+                  </span>
+                ) : null}
               </p>
             </div>
           </div>
@@ -107,25 +114,36 @@ export default async function ListingsPage({
             </aside>
 
             <div className="space-y-8">
-              <PropertyMapDynamic
-                markers={markers}
-                center={mapCenter}
-                zoom={markers.length <= 1 ? 13 : 10}
-                height={380}
-              />
+              {result.total > 0 ? (
+                <PropertyMapDynamic
+                  markers={markers}
+                  center={mapCenter}
+                  zoom={markers.length <= 1 ? 13 : 10}
+                  height={380}
+                />
+              ) : null}
 
               {result.total === 0 ? (
                 <div className="rounded-2xl border border-dashed border-border bg-secondary/40 px-6 py-16 text-center">
                   <p className="font-display text-xl font-semibold">
-                    No listings found
+                    {awaitingMls ? "Listings coming soon" : "No listings found"}
                   </p>
                   <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
-                    Try widening your price range, removing bed/bath minimums, or
-                    searching a nearby city.
+                    {awaitingMls
+                      ? "I only publish real MLS homes here. Until the live feed is connected, reach out and I’ll send current matches for your budget and cities."
+                      : "Try widening your price range, removing bed/bath minimums, or searching a nearby city."}
                   </p>
-                  <Button asChild variant="accent" className="mt-6">
-                    <Link href="/listings">Clear all filters</Link>
-                  </Button>
+                  <div className="mt-6 flex flex-wrap justify-center gap-3">
+                    {awaitingMls ? (
+                      <Button asChild variant="accent">
+                        <Link href="/contact">Request a home search</Link>
+                      </Button>
+                    ) : (
+                      <Button asChild variant="accent">
+                        <Link href="/listings">Clear all filters</Link>
+                      </Button>
+                    )}
+                  </div>
                 </div>
               ) : (
                 <>

@@ -5,6 +5,7 @@ import type {
   SearchResult,
 } from "@/types";
 import { mockListings } from "@/data/mock-listings";
+import { isMockListingsEnabled } from "@/lib/listings-mode";
 import type { ListingProvider } from "@/services/listings/types";
 
 function toSummary(listing: ListingDetails): ListingSummary {
@@ -51,7 +52,7 @@ function matchesFilters(listing: ListingDetails, filters: SearchFilters): boolea
   const filterZip = normalizeZip(filters.zip) ?? queryZip;
 
   if (filters.query && !queryZip) {
-    const q = filters.query.toLowerCase().trim();
+    const q = filters.query.trim().toLowerCase();
     const hay = [
       listing.address.street,
       listing.address.city,
@@ -125,10 +126,28 @@ function sortListings(items: ListingDetails[], sort?: SearchFilters["sort"]): Li
   }
 }
 
+function emptyResult(filters: SearchFilters): SearchResult {
+  const page = filters.page && filters.page > 0 ? filters.page : 1;
+  const pageSize = filters.pageSize && filters.pageSize > 0 ? filters.pageSize : 12;
+  return {
+    items: [],
+    total: 0,
+    page,
+    pageSize,
+    provider: "mock",
+  };
+}
+
+/**
+ * Local UI provider. Returns no inventory unless SHOW_MOCK_LISTINGS=true
+ * so fake addresses never appear on the live site.
+ */
 export class MockListingProvider implements ListingProvider {
   readonly name = "mock";
 
   async search(filters: SearchFilters): Promise<SearchResult> {
+    if (!isMockListingsEnabled()) return emptyResult(filters);
+
     const page = filters.page && filters.page > 0 ? filters.page : 1;
     const pageSize = filters.pageSize && filters.pageSize > 0 ? filters.pageSize : 12;
     const filtered = sortListings(
@@ -147,16 +166,19 @@ export class MockListingProvider implements ListingProvider {
   }
 
   async getById(id: string): Promise<ListingDetails | null> {
+    if (!isMockListingsEnabled()) return null;
     return mockListings.find((l) => l.id === id) ?? null;
   }
 
   async getByMlsNumber(mlsNumber: string): Promise<ListingDetails | null> {
+    if (!isMockListingsEnabled()) return null;
     return (
       mockListings.find((l) => l.mlsNumber.toLowerCase() === mlsNumber.toLowerCase()) ?? null
     );
   }
 
   async getFeatured(limit = 6): Promise<ListingSummary[]> {
+    if (!isMockListingsEnabled()) return [];
     return mockListings
       .filter((l) => l.featured && (l.status === "active" || l.status === "coming_soon"))
       .slice(0, limit)
@@ -164,6 +186,7 @@ export class MockListingProvider implements ListingProvider {
   }
 
   async getRecentSales(limit = 6): Promise<ListingSummary[]> {
+    if (!isMockListingsEnabled()) return [];
     return mockListings
       .filter((l) => l.status === "sold")
       .slice(0, limit)

@@ -1,6 +1,7 @@
 import type { ListingDetails } from "@/types";
 import { getListingProvider } from "@/services/listings";
 import { mockListings } from "@/data/mock-listings";
+import { isMockListingsEnabled } from "@/lib/listings-mode";
 
 export async function getListingBySlug(
   slug: string,
@@ -13,6 +14,7 @@ export async function getListingBySlug(
     if (detail) return detail;
   }
 
-  // Fallback for mock / incomplete providers that omit details from search.
+  // Only fall back to demo data when explicitly enabled for local UI work.
+  if (!isMockListingsEnabled()) return null;
   return mockListings.find((listing) => listing.slug === slug) ?? null;
 }

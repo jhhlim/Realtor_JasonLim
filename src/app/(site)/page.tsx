@@ -27,10 +27,10 @@ export default async function HomePage() {
     <>
       <Hero />
       <StatsStrip />
-      <FeaturedListings listings={featured} />
+      {featured.length > 0 ? <FeaturedListings listings={featured} /> : null}
       <MarketInsights report={latestReport} />
       <NeighborhoodsPreview neighborhoods={mockNeighborhoods} />
-      <RecentSales listings={recentSales} />
+      {recentSales.length > 0 ? <RecentSales listings={recentSales} /> : null}
       <TestimonialsCarousel testimonials={mockTestimonials} />
       <MortgageTeaser />
       <BlogPreview posts={mockBlogPosts} />
