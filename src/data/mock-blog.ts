@@ -83,6 +83,45 @@ Reach out with your current rent and approximate home-buying budget, and I'd be 
     tags: ["fall market", "buying", "bay area", "rent vs buy", "negotiation"],
   },
   {
+    slug: "buy-condo-now-or-wait-south-bay",
+    title: "Should I Buy a Condo Now or Wait?",
+    excerpt:
+      "With rates still high, waiting is understandable — but softer condo and townhome pricing in the South Bay can give buyers more room to analyze, negotiate, and decide.",
+    content: `A question I've been hearing from buyers lately is: Should I buy a condo now or wait?
+
+With mortgage rates still high, it's understandable to wait. But there's another side to consider.
+
+Some condos and townhomes in the South Bay have seen softer pricing and less competition compared with the peak market. That can give buyers more time to look at the numbers, review the HOA and disclosures, and potentially negotiate.
+
+A few things I'd pay close attention to:
+
+HOA dues and what they cover
+
+HOA reserves and upcoming assessments
+
+Financing eligibility (lending)
+
+Recent comparable sales
+
+Your total monthly payment vs. rent
+
+If rates eventually come down, refinancing may also be an option, but I wouldn't buy based on that assumption alone.
+
+If you're looking in San Jose, Milpitas, Santa Clara, Sunnyvale, Campbell, Willow Glen, or nearby, I'm happy to help you compare a few properties and see whether buying makes sense for you.`,
+    category: "Buying",
+    coverImage: cover("photo-1545324418-cc1a3fa10c00"),
+    publishedAt: "2026-08-26",
+    readingMinutes: 4,
+    tags: [
+      "condo",
+      "townhome",
+      "hoa",
+      "south bay",
+      "first-time buyers",
+      "mortgage rates",
+    ],
+  },
+  {
     slug: "first-time-buyer-checklist-bay-area-2026",
     title: "First-Time Buyer Checklist for the Bay Area in 2026",
     excerpt:
