@@ -53,6 +53,36 @@ Have a great work week ahead.`,
     ],
   },
   {
+    slug: "fall-bay-area-buying-window-2026",
+    title: "Why Fall Can Be a Smart Time to Buy in the Bay Area",
+    excerpt:
+      "If you've been on the fence about buying, this fall may be worth another look — motivated sellers, more room to negotiate, and a quieter market than spring.",
+    content: `If you've been on the fence about buying a home, this fall could be an interesting time to take another look.
+
+For many younger Bay Area buyers, the financial picture has changed over the past few years — from growth in tech and AI to stock-based compensation becoming an increasingly important part of how some buyers think about their down payment and long-term finances.
+
+At the same time, fall can create opportunities in the housing market. Why?
+
+Homes still on the market may have more motivated sellers.
+
+Buyers may have more room to negotiate on price, credits, or terms.
+
+Some sellers withdraw their homes from the market during the holidays and wait to relist in the spring.
+
+Mortgage rates next year could fall — but they could also stay where they are or even increase. Nobody knows for certain.
+
+That's why I don't recommend trying to perfectly time the market. If you're financially ready and find the right home, the quieter fall market may give you opportunities that aren't as easy to find during the busier spring season.
+
+Still deciding between renting and buying? I have a detailed Rent vs. Buy calculator that can compare your current rent, down payment, mortgage payment, estimated equity, and longer-term costs.
+
+Reach out with your current rent and approximate home-buying budget, and I'd be happy to run the numbers for you.`,
+    category: "Buying",
+    coverImage: cover("photo-1449844908441-88298767ac7a"),
+    publishedAt: "2026-08-28",
+    readingMinutes: 4,
+    tags: ["fall market", "buying", "bay area", "rent vs buy", "negotiation"],
+  },
+  {
     slug: "first-time-buyer-checklist-bay-area-2026",
     title: "First-Time Buyer Checklist for the Bay Area in 2026",
     excerpt:
