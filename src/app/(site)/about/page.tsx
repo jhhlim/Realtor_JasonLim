@@ -46,21 +46,27 @@ export default function AboutPage() {
       />
 
       <Section className="pt-10 sm:pt-12">
-        <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <FadeIn>
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[1.75rem] border border-border/80 bg-secondary shadow-lift lg:max-w-none">
-              <Image
-                src={siteConfig.media.headshot}
-                alt={`${siteConfig.name} — professional headshot`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 90vw, 420px"
-                priority
-              />
-            </div>
-          </FadeIn>
+        <div
+          className={`grid items-start gap-12 lg:gap-16 ${
+            siteConfig.showAgentPhotos ? "lg:grid-cols-[0.9fr_1.1fr]" : "max-w-3xl"
+          }`}
+        >
+          {siteConfig.showAgentPhotos ? (
+            <FadeIn>
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[1.75rem] border border-border/80 bg-secondary shadow-lift lg:max-w-none">
+                <Image
+                  src={siteConfig.media.headshot}
+                  alt={`${siteConfig.name} — professional headshot`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 90vw, 420px"
+                  priority
+                />
+              </div>
+            </FadeIn>
+          ) : null}
 
-          <FadeIn delay={0.08} className="space-y-6">
+          <FadeIn delay={siteConfig.showAgentPhotos ? 0.08 : 0} className="space-y-6">
             <div className="space-y-4">
               <p className="text-lg leading-relaxed text-muted-foreground text-pretty">
                 {siteConfig.description}

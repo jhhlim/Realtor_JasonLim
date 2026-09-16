@@ -59,6 +59,9 @@ export const siteConfig = {
     "https://calendly.com/jason-lim-compass/consultation",
   googleReviewsUrl: "https://g.page/r/jasonlimrealty/review",
 
+  /** Set NEXT_PUBLIC_SHOW_AGENT_PHOTOS=true to show hero + About headshot again. */
+  showAgentPhotos: process.env.NEXT_PUBLIC_SHOW_AGENT_PHOTOS === "true",
+
   media: {
     headshot: "/images/jason-lim-headshot.jpg",
     heroPortrait: "/images/jason-lim-hero.jpg",
