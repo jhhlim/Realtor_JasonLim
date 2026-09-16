@@ -44,7 +44,7 @@ export default function MarketReportsPage() {
       <Section
         eyebrow="Archive"
         title="Latest reports"
-        description="Mock data for development — replace with live analytics when ready."
+        description="Quarterly and monthly snapshots for Silicon Valley and the South Bay."
       >
         <div className="grid gap-6 md:grid-cols-2">
           {reports.map((report, index) => (
