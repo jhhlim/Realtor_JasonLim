@@ -10,6 +10,9 @@ import { Container } from "@/components/shared/container";
 import { BrandName } from "@/components/layout/brand-name";
 
 export function Hero() {
+  const showSideVisual =
+    siteConfig.showAgentPhotos || siteConfig.showHeroPromo;
+
   return (
     <section className="relative overflow-hidden border-b border-border/60">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-soft via-background to-[#e8f2f3] dark:from-card dark:via-background dark:to-[#0c1f28]" />
@@ -18,9 +21,7 @@ export function Hero() {
 
       <Container
         className={`relative grid items-center gap-12 py-16 lg:gap-16 lg:py-24 ${
-          siteConfig.showAgentPhotos
-            ? "lg:grid-cols-[1.15fr_0.85fr]"
-            : "max-w-3xl"
+          showSideVisual ? "lg:grid-cols-[1.05fr_0.95fr]" : "max-w-3xl"
         }`}
       >
         <div className="space-y-8">
@@ -114,6 +115,26 @@ export function Hero() {
                   {siteConfig.license.dre}
                 </p>
               </div>
+            </div>
+          </motion.div>
+        ) : siteConfig.showHeroPromo ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.65, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mx-auto w-full max-w-md lg:max-w-lg"
+          >
+            <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-accent/20 via-transparent to-navy/15 blur-sm" />
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-border/80 bg-secondary shadow-lift">
+              <Image
+                src={siteConfig.media.heroPromo}
+                alt="Real Estate for What's Next — Buy, Sell, and Invest with Jason Lim | Compass"
+                width={1200}
+                height={1200}
+                priority
+                className="h-auto w-full"
+                sizes="(max-width: 1024px) 90vw, 520px"
+              />
             </div>
           </motion.div>
         ) : null}
