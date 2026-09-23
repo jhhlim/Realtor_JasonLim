@@ -202,6 +202,8 @@ export interface BlogPost {
     | "Technology"
     | "AI";
   coverImage: string;
+  /** Use "contain" for tall infographics so the full graphic is visible. */
+  coverFit?: "cover" | "contain";
   publishedAt: string;
   readingMinutes: number;
   tags: string[];

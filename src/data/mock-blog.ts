@@ -5,6 +5,64 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "ai-boom-bay-area-real-estate-september-2026",
+    title: "The AI Boom and Bay Area Real Estate",
+    excerpt:
+      "Market Insights | September 2026 — how AI-driven tech growth is shaping housing demand, plus a Berryessa single-family snapshot and current jumbo/conforming mortgage rates.",
+    content: `Market Insights | September 2026
+
+New opportunities. Lasting value.
+
+AI & tech sector signals
+
+AMD jumped +9.6% and crossed a $1T market value as AI demand fuels growth across tech. OpenAI is hiring aggressively (818+ open roles across San Francisco and the Bay Area). Anthropic continues expanding with 67+ open roles. Bay Area tech employment was up +4.7% year over year (May 2025) — a strong job market that supports housing demand.
+
+Berryessa market snapshot — single-family homes | August 2026
+
+Homes sold: 22 (↑ 8.3% from July; ↑ 21% from August 2025)
+
+Homes for sale: 46 (↑ 2.2% MoM; ↑ 39% YoY)
+
+Homes under contract: 29 (↑ 26% MoM; ↑ 7.4% YoY)
+
+Median days on market: 13 (↑ 46% MoM; ↓ 7.1% YoY)
+
+Median price per sq. ft.: $957 (↑ 2.4% MoM; ↑ 4.5% YoY)
+
+Months of inventory: 2.1 (↑ 12% MoM; ↑ 77% YoY)
+
+Median sold price: $1,750,000 (↓ 1.5% MoM; ↑ 10% YoY)
+
+Current 30-year fixed mortgage rates (as of September 2026)
+
+Jumbo / conforming examples include Chase 6.500% / 6.375%, CitiBank 6.500% / 6.750%, Golden 1 6.500% / 6.750%, Origin Point 6.550% / 6.850%, Wells Fargo 7.000% / 7.125%, US Bank 7.125% / 6.875%, and Bank of America 7.250% / 7.000%. Rates move daily — always confirm with your lender.
+
+Key takeaways
+
+1. AI is driving real economic growth. More high-paying jobs and equity wealth can support long-term housing demand.
+
+2. Berryessa remains strong. Despite higher rates and more inventory, the median sold price is up 10% year over year.
+
+3. Higher rates don't automatically mean lower prices. Limited supply and strong incomes can keep values resilient.
+
+4. Strategy matters more than ever. The right time to buy, sell, or invest depends on your goals, finances, and the specific neighborhood.
+
+If you want a Berryessa (or nearby South Bay) buy/sell plan based on your budget and timeline, reply or contact me — I'll run comps, payment scenarios, and neighborhood tradeoffs with you.`,
+    category: "Bay Area",
+    coverImage: "/images/ai-boom-bay-area-real-estate-sept-2026.jpg",
+    coverFit: "contain",
+    publishedAt: "2026-09-22",
+    readingMinutes: 5,
+    tags: [
+      "market insights",
+      "AI",
+      "Berryessa",
+      "San Jose",
+      "mortgage rates",
+      "south bay",
+    ],
+  },
+  {
     slug: "condo-townhome-or-sfh-south-bay-first-home",
     title:
       "Condo, Townhome, or Single-Family? Choosing Your First South Bay Home",

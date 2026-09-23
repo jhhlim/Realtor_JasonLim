@@ -83,15 +83,30 @@ export default async function BlogArticlePage({
         </div>
 
         <Container className="max-w-3xl py-10 sm:py-14">
-          <div className="relative mb-10 aspect-[16/9] overflow-hidden rounded-3xl bg-secondary">
-            <Image
-              src={post.coverImage}
-              alt={post.title}
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 768px"
-            />
+          <div
+            className={
+              post.coverFit === "contain"
+                ? "relative mb-10 overflow-hidden rounded-3xl border border-border/70 bg-secondary"
+                : "relative mb-10 aspect-[16/9] overflow-hidden rounded-3xl bg-secondary"
+            }
+          >
+            {post.coverFit === "contain" ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={post.coverImage}
+                alt={post.title}
+                className="h-auto w-full"
+              />
+            ) : (
+              <Image
+                src={post.coverImage}
+                alt={post.title}
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 768px"
+              />
+            )}
           </div>
           <div className="space-y-5 text-base leading-relaxed text-foreground/90 sm:text-lg">
             {paragraphs.map((paragraph) => (
