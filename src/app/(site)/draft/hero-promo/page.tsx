@@ -7,9 +7,9 @@ import { Container } from "@/components/shared/container";
 
 /**
  * Draft preview page — not linked from main nav.
- * Review the recommended homepage hero placement before approving.
+ * Review the recommended About-page placement before approving.
  */
-export default function DraftHeroPromoPage() {
+export default function DraftAboutPromoPage() {
   return (
     <main className="min-h-screen bg-background py-12">
       <Container className="max-w-5xl space-y-8">
@@ -18,12 +18,12 @@ export default function DraftHeroPromoPage() {
             Draft preview — not live on main yet
           </p>
           <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-            Recommended placement: Homepage hero
+            Recommended placement: About page
           </h1>
           <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            This graphic replaces the empty space where your photo used to be
-            (right side of the homepage hero). It leads with Buy / Sell / Invest,
-            keeps Compass branding, and balances the text column.
+            This graphic sits beside your About bio (where the headshot used to
+            be). Homepage stays text-focused; About gets the Buy / Sell / Invest
+            story and Compass branding.
           </p>
           <ul className="list-disc space-y-1 pl-5 text-sm text-muted-foreground">
             <li>
@@ -38,17 +38,17 @@ export default function DraftHeroPromoPage() {
           </ul>
           <div className="flex flex-wrap gap-3 pt-2">
             <Button asChild variant="accent">
-              <Link href="/">View on homepage layout (this draft branch)</Link>
+              <Link href="/about">Open About page (this draft branch)</Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href="/about">About page (unchanged)</Link>
+              <Link href="/">Homepage (no promo)</Link>
             </Button>
           </div>
         </div>
 
         <div className="overflow-hidden rounded-[1.75rem] border border-border/80 bg-secondary shadow-lift">
           <Image
-            src={siteConfig.media.heroPromo}
+            src={siteConfig.media.aboutPromo}
             alt="Draft promo graphic — Real Estate for What's Next"
             width={1200}
             height={1200}

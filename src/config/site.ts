@@ -62,15 +62,15 @@ export const siteConfig = {
   /** Set NEXT_PUBLIC_SHOW_AGENT_PHOTOS=true to show hero + About headshot again. */
   showAgentPhotos: process.env.NEXT_PUBLIC_SHOW_AGENT_PHOTOS === "true",
   /**
-   * Homepage hero promotional graphic (Buy / Sell / Invest flyer).
-   * Default on when agent photos are hidden. Set NEXT_PUBLIC_SHOW_HERO_PROMO=false to hide.
+   * About-page promotional graphic (Buy / Sell / Invest flyer).
+   * Shown when agent photos are hidden. Set NEXT_PUBLIC_SHOW_ABOUT_PROMO=false to hide.
    */
-  showHeroPromo: process.env.NEXT_PUBLIC_SHOW_HERO_PROMO !== "false",
+  showAboutPromo: process.env.NEXT_PUBLIC_SHOW_ABOUT_PROMO !== "false",
 
   media: {
     headshot: "/images/jason-lim-headshot.jpg",
     heroPortrait: "/images/jason-lim-hero.jpg",
-    heroPromo: "/images/jason-lim-promo-whats-next.jpg",
+    aboutPromo: "/images/jason-lim-promo-whats-next.jpg",
     ogImage:
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
   },

@@ -48,7 +48,9 @@ export default function AboutPage() {
       <Section className="pt-10 sm:pt-12">
         <div
           className={`grid items-start gap-12 lg:gap-16 ${
-            siteConfig.showAgentPhotos ? "lg:grid-cols-[0.9fr_1.1fr]" : "max-w-3xl"
+            siteConfig.showAgentPhotos || siteConfig.showAboutPromo
+              ? "lg:grid-cols-[0.95fr_1.05fr]"
+              : "max-w-3xl"
           }`}
         >
           {siteConfig.showAgentPhotos ? (
@@ -64,9 +66,28 @@ export default function AboutPage() {
                 />
               </div>
             </FadeIn>
+          ) : siteConfig.showAboutPromo ? (
+            <FadeIn>
+              <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-[1.75rem] border border-border/80 bg-secondary shadow-lift lg:max-w-none">
+                <Image
+                  src={siteConfig.media.aboutPromo}
+                  alt="Real Estate for What's Next — Buy, Sell, and Invest with Jason Lim | Compass"
+                  width={1200}
+                  height={1200}
+                  priority
+                  className="h-auto w-full"
+                  sizes="(max-width: 1024px) 90vw, 480px"
+                />
+              </div>
+            </FadeIn>
           ) : null}
 
-          <FadeIn delay={siteConfig.showAgentPhotos ? 0.08 : 0} className="space-y-6">
+          <FadeIn
+            delay={
+              siteConfig.showAgentPhotos || siteConfig.showAboutPromo ? 0.08 : 0
+            }
+            className="space-y-6"
+          >
             <div className="space-y-4">
               <p className="text-lg leading-relaxed text-muted-foreground text-pretty">
                 {siteConfig.description}
