@@ -27,9 +27,8 @@ export default function DraftAboutPromoPage() {
           </p>
           <ul className="list-disc space-y-1 pl-5 text-sm text-muted-foreground">
             <li>
-              <strong className="text-foreground">Note:</strong> The flyer shows
-              phone <code>408-358-1111</code>, while the site uses{" "}
-              {siteConfig.contact.phone}. Confirm which number should stay.
+              Phone on the graphic matches the site:{" "}
+              <strong className="text-foreground">{siteConfig.contact.phone}</strong>.
             </li>
             <li>
               Production stays unchanged until you approve and we merge this
