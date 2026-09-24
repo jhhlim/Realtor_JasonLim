@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Instagram, Mail, MapPin, Phone } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
 import { Separator } from "@/components/ui/separator";
@@ -73,10 +73,19 @@ export function SiteFooter() {
                 href={siteConfig.brokerage.agentProfileUrl}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Compass"
+                aria-label="Compass agent profile"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-muted-foreground transition-colors hover:border-accent/40 hover:text-accent"
               >
                 <CompassMark className="h-4 w-4" />
+              </a>
+              <a
+                href={siteConfig.social.instagram}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram @jasonlimrealty"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-muted-foreground transition-colors hover:border-accent/40 hover:text-accent"
+              >
+                <Instagram className="h-4 w-4" />
               </a>
             </div>
           </div>
