@@ -95,7 +95,6 @@ export function HomeValuationForm() {
             .includes("activate"));
 
       if (ok) {
-        const msg = String(formSubmitData?.message ?? "").toLowerCase();
         setInfo(null);
         setStatus("success");
         form.reset();

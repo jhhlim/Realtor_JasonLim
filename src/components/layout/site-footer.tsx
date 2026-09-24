@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
 import { Separator } from "@/components/ui/separator";
@@ -13,6 +13,25 @@ function CompassMark({ className }: { className?: string }) {
         d="M14.8 9.2 11 13l-1.8 4.8L14.8 9.2Zm-5.6 5.6L13 11l1.8-4.8L9.2 14.8Z"
         fill="currentColor"
       />
+    </svg>
+  );
+}
+
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+      aria-hidden
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
     </svg>
   );
 }
@@ -85,7 +104,7 @@ export function SiteFooter() {
                 aria-label="Instagram @jasonlimrealty"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-muted-foreground transition-colors hover:border-accent/40 hover:text-accent"
               >
-                <Instagram className="h-4 w-4" />
+                <InstagramIcon className="h-4 w-4" />
               </a>
             </div>
           </div>
