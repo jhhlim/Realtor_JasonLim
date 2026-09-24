@@ -39,17 +39,6 @@ type SendResult =
   | { sent: true; provider: "resend" | "formsubmit"; id?: string }
   | { sent: false; provider?: string; reason: string; status?: number; detail?: string };
 
-function isResendDomainRestriction(detail?: string) {
-  if (!detail) return false;
-  const lower = detail.toLowerCase();
-  return (
-    lower.includes("verify a domain") ||
-    lower.includes("own email address") ||
-    lower.includes("testing emails") ||
-    lower.includes("domain is not verified")
-  );
-}
-
 async function sendWithResend(input: {
   to: string;
   replyTo: string;
