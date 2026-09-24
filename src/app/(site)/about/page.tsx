@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { siteConfig } from "@/config/site";
 import { buildMetadata } from "@/lib/seo";
-import { BrandName } from "@/components/layout/brand-name";
 
 export const metadata = buildMetadata({
   title: "About Jason Lim",
