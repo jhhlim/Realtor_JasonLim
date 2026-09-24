@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { siteConfig } from "@/config/site";
+import { sendViaFormSubmit } from "@/lib/formsubmit";
 import { cn } from "@/lib/utils";
 
 type Interest = "buy" | "sell" | "invest" | "other";
@@ -25,7 +26,7 @@ interface ContactFormProps {
 }
 
 /**
- * Delivers leads via /api/contact → FormSubmit to jason.lim@compass.com.
+ * Delivers leads via browser → FormSubmit (jason.lim@compass.com).
  */
 export function ContactForm({
   className,
@@ -244,8 +245,7 @@ type DeliverResult =
   | { ok: false; error: string };
 
 /**
- * Server-side FormSubmit (→ jason.lim@compass.com), with Resend backup.
- * Browser→FormSubmit was flaky; routing via /api/contact is more reliable.
+ * Browser → FormSubmit first (reliable). /api/contact is backup only.
  */
 async function deliverLead(input: {
   name: string;
@@ -258,6 +258,30 @@ async function deliverLead(input: {
 }): Promise<DeliverResult> {
   const to = siteConfig.contact.email;
 
+  const formSubmit = await sendViaFormSubmit({
+    to,
+    name: input.name,
+    email: input.email,
+    subject: input.subject,
+    message: input.message,
+    fields: {
+      form: "contact",
+      phone: input.phone || "",
+      interest: input.interest,
+      source: input.source,
+    },
+  });
+
+  if (formSubmit.ok) {
+    return {
+      ok: true,
+      info: formSubmit.needsActivation
+        ? `First-time setup: check ${to} (and spam) for a FormSubmit “Activate” email and click it once — then submit again.`
+        : `Message emailed to ${to}. Check inbox + spam if you don’t see it within a minute.`,
+    };
+  }
+
+  // Backup: server API (FormSubmit/Resend)
   const apiRes = await fetch("/api/contact", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -283,15 +307,15 @@ async function deliverLead(input: {
     return {
       ok: true,
       info:
-        apiData.provider === "formsubmit"
-          ? `If you don't see it, check spam — and if this is the first FormSubmit delivery, open the Activate email once.`
-          : apiData.message,
+        apiData.message ||
+        `Message emailed to ${to}. Check inbox + spam if you don’t see it within a minute.`,
     };
   }
 
   return {
     ok: false,
     error:
+      formSubmit.error ||
       apiData?.error ||
       `Unable to deliver email right now. Please email ${to} directly.`,
   };

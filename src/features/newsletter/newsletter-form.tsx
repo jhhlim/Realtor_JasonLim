@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { siteConfig } from "@/config/site";
+import { sendViaFormSubmit } from "@/lib/formsubmit";
 import { cn } from "@/lib/utils";
 
 interface NewsletterFormProps {
@@ -25,35 +26,51 @@ export function NewsletterForm({
     "idle",
   );
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+  const [infoMessage, setInfoMessage] = React.useState<string | null>(null);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
     setErrorMessage(null);
+    setInfoMessage(null);
+
+    const to = siteConfig.contact.email;
+    const name = firstName.trim() || "Newsletter subscriber";
+    const tagList = tags.join(", ");
+    const cities = cityInterest?.join(", ") ?? "";
 
     try {
-      const response = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          firstName: firstName || undefined,
-          tags,
-          cityInterest,
-        }),
+      const result = await sendViaFormSubmit({
+        to,
+        name,
+        email: email.trim(),
+        subject: `Newsletter signup from ${name}`,
+        message: [
+          "New market-updates newsletter signup from jasonlimrealty.com",
+          `Name: ${name}`,
+          `Email: ${email.trim()}`,
+          `Tags: ${tagList}`,
+          cities ? `Cities: ${cities}` : null,
+        ]
+          .filter(Boolean)
+          .join("\n"),
+        fields: {
+          form: "newsletter",
+          tags: tagList,
+          ...(cities ? { cityInterest: cities } : {}),
+        },
       });
 
-      const data = (await response.json()) as {
-        success?: boolean;
-        message?: string;
-        error?: string;
-      };
-
-      if (!response.ok || !data.success) {
-        throw new Error(data.error ?? "Unable to subscribe.");
+      if (!result.ok) {
+        throw new Error(result.error);
       }
 
       setStatus("success");
+      setInfoMessage(
+        result.needsActivation
+          ? `First-time setup: check ${to} (and spam) for a FormSubmit “Activate” email and click it once — then try again.`
+          : `Signup emailed to ${to}. Check inbox + spam if you don’t see it within a minute.`,
+      );
       setEmail("");
       setFirstName("");
     } catch (error) {
@@ -109,13 +126,13 @@ export function NewsletterForm({
       </div>
 
       {status === "success" ? (
-        <p
+        <div
           role="status"
-          className="rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
+          className="space-y-1 rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
         >
-          You&apos;re on the list — look for market updates in your inbox.
-          Jason will get your email at {siteConfig.contact.email}.
-        </p>
+          <p>You&apos;re on the list — thanks for subscribing.</p>
+          {infoMessage ? <p className="text-success/90">{infoMessage}</p> : null}
+        </div>
       ) : null}
 
       {status === "error" && errorMessage ? (
