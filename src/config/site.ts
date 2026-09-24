@@ -14,7 +14,7 @@ export const siteConfig = {
   differentiator: "Technology + Data + Personal Service.",
   title: "Compass REALTOR® | Bay Area Real Estate",
   description:
-    "Compass REALTOR® in San Jose helping buyers and sellers across Silicon Valley, San Mateo County, and Alameda County — with offer strategy, escrow, title, closing coordination, and a tech + finance + insurance lens on every decision.",
+    "Bay Area native and South Bay homeowner. Compass REALTOR® helping buyers and sellers across San Jose and Silicon Valley with clear advice, local market knowledge, and responsive service.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://realtor-jason-lim.vercel.app",
   locale: "en_US",
 
@@ -74,12 +74,9 @@ export const siteConfig = {
   },
 
   credentials: [
+    "Bay Area native",
+    "South Bay homeowner",
     "11+ Years Software & Hardware",
-    "Finance · Insurance · Education · Government",
-    "Offer strategy · Escrow · Closing",
-    "School districts & family buyers",
-    "International · F-1 OPT · H-1B",
-    "Investor ROI modeling",
     "UC Berkeley Economics",
     "Oregon State Computer Science",
     "Licensed California REALTOR®",
@@ -88,19 +85,17 @@ export const siteConfig = {
 
   audiences: [
     "First-time home buyers",
-    "Move-up buyers & families",
-    "International & visa-based buyers (F-1 OPT, H-1B)",
-    "Tech professionals",
+    "Move-up buyers",
+    "Sellers",
     "Investors",
+    "Bay Area families",
   ],
 
   strengths: [
-    "Offer strategy & negotiation",
-    "Escrow, title & closing process",
-    "School districts & neighborhood tours",
-    "Tech / AI fluency",
-    "Investor ROI models",
-    "Insurance & wildfire risk awareness",
+    "Local market knowledge",
+    "Data-driven advice",
+    "Buyer & seller strategy",
+    "Responsive service",
   ],
 
   experience: {

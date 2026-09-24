@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { CtaBanner } from "@/components/shared/cta-banner";
 import { FadeIn } from "@/components/shared/fade-in";
@@ -16,30 +16,22 @@ import { BrandName } from "@/components/layout/brand-name";
 export const metadata = buildMetadata({
   title: "About Jason Lim",
   description:
-    "Meet Jason Lim — Compass REALTOR® serving San Jose, Sunnyvale, Santa Clara, San Mateo County, and Alameda County. Offer strategy, escrow, schools, tech buyers, and investor analysis.",
+    "Bay Area native and South Bay homeowner. Compass REALTOR® helping buyers and sellers across San Jose and Silicon Valley with clear advice, local market knowledge, and responsive service.",
   path: "/about",
 });
 
 export default function AboutPage() {
-  const { experience } = siteConfig;
-
   return (
     <>
       <PageHero
-        eyebrow="About"
+        eyebrow="About Jason"
         title={
           <>
-            Tech fluency.
-            <span className="block text-accent">Full-process guidance.</span>
+            Clear advice.
+            <span className="block text-accent">Confident decisions.</span>
           </>
         }
-        description={
-          <>
-            I&apos;m <BrandName /> — a licensed California REALTOR® helping buyers
-            and sellers navigate Silicon Valley with clear strategy from first
-            showing through closing.
-          </>
-        }
+        description="When it comes to buying or selling a home, choosing the right agent matters — someone who listens, knows the local market, and gives you the information you need."
         primaryCta={siteConfig.cta.consultation}
         secondaryCta={{ label: "Send a message", href: "/contact" }}
       />
@@ -65,36 +57,56 @@ export default function AboutPage() {
             </FadeIn>
           ) : null}
 
-          <FadeIn delay={siteConfig.showAgentPhotos ? 0.08 : 0} className="space-y-6">
+          <FadeIn
+            delay={siteConfig.showAgentPhotos ? 0.08 : 0}
+            className="space-y-6"
+          >
             <div className="space-y-4">
               <p className="text-lg leading-relaxed text-muted-foreground text-pretty">
-                {siteConfig.description}
+                When it comes to buying or selling a home, choosing the right agent
+                matters. You want someone who listens to your needs, understands the
+                local market, and gives you the information you need to make a
+                confident decision — without pushing you into something that
+                isn&apos;t right for you.
               </p>
               <p className="leading-relaxed text-muted-foreground text-pretty">
-                Day to day that means offer strategy, coordinating escrow and title,
-                managing the process with contractors when needed, and keeping closing
-                on track — across San Jose, Sunnyvale, Santa Clara, and into San Mateo
-                County and Alameda County.
+                As a Bay Area native and a South Bay homeowner myself, I understand
+                the home-buying experience not only as a REALTOR®, but also from the
+                perspective of someone who has personally navigated this market.
+                Having lived throughout Fremont, Berkeley, Milpitas, and San Jose, I
+                bring firsthand familiarity with the neighborhoods, commutes,
+                schools, and lifestyles that shape real estate decisions across San
+                Jose and Silicon Valley.
               </p>
               <p className="leading-relaxed text-muted-foreground text-pretty">
-                I work with families choosing school districts, international and
-                visa-based buyers (including F-1 OPT and H-1B), and tech professionals
-                who want an agent who can talk AI and engineering in plain English —
-                not just listing flyers.
+                For buyers, my goal is to help you understand not just what a home
+                costs, but whether it makes sense for you. I use comparable sales,
+                market trends, property disclosures, financing considerations, and
+                neighborhood data to help you evaluate each opportunity. When
+                it&apos;s time to make an offer, I&apos;ll help you develop a
+                competitive strategy while protecting your interests and keeping as
+                much money in your pocket as possible.
               </p>
               <p className="leading-relaxed text-muted-foreground text-pretty">
-                Education has always been part of how I serve people: I show homes
-                with schools in mind, talk through district tradeoffs on tour, and
-                previously ran SAT bootcamps helping students and families aim for
-                top universities, including Ivy League paths. That same care for
-                long-term family decisions shows up in how we evaluate neighborhoods.
+                For sellers, I take a strategic approach to pricing, preparation, and
+                marketing to position your property for maximum exposure and the
+                strongest possible result. Through Compass, I also have access to
+                powerful marketing tools and a network of trusted professionals —
+                including inspectors, contractors, handymen, stagers, and
+                photographers — who can help prepare your property for market.
               </p>
               <p className="leading-relaxed text-muted-foreground text-pretty">
-                Finance background helps investors build ROI and cash-flow models
-                before they write an offer. Insurance experience means we talk risk
-                early — including what coverage and premiums can look like before
-                buying in wildfire territory — so surprises don&apos;t land after
-                you&apos;re in contract.
+                Before real estate, I spent more than 10 years working in software
+                engineering, enterprise technology, and AI. I bring that same
+                analytical mindset to real estate — using data and modern technology
+                to help my clients understand their options rather than relying on
+                guesswork.
+              </p>
+              <p className="leading-relaxed text-muted-foreground text-pretty">
+                Whether you&apos;re buying your first home, selling, moving up, or
+                evaluating an investment property, my goal is simple: provide
+                straightforward advice, responsive service, and the information you
+                need to make a decision that is right for you.
               </p>
             </div>
 
@@ -109,14 +121,26 @@ export default function AboutPage() {
             <p className="text-sm font-medium text-foreground/80">
               {siteConfig.license.status} · {siteConfig.license.dre}
             </p>
+
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Button asChild size="lg" variant="accent">
+                <Link href={siteConfig.cta.consultation.href}>
+                  Let&apos;s connect
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link href="/contact">Contact me</Link>
+              </Button>
+            </div>
           </FadeIn>
         </div>
       </Section>
 
       <Section
         eyebrow="Background"
-        title="From engineering to real estate"
-        description={`${experience.techYears} years in software & hardware, plus experience across ${experience.industriesLabel.toLowerCase()} — applied to comps, contracts, negotiation, and closing.`}
+        title="At a glance"
+        description={`${siteConfig.experience.techYears} years in software & hardware · Bay Area native · South Bay homeowner · Compass REALTOR®`}
         className="bg-slate-soft/50 dark:bg-card/30"
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -133,91 +157,11 @@ export default function AboutPage() {
             </FadeIn>
           ))}
         </div>
-
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {experience.differentiators.map((item, index) => (
-            <FadeIn key={item.title} delay={index * 0.04}>
-              <Card className="h-full border-border/70">
-                <CardContent className="space-y-2 p-6">
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-                    <div className="space-y-1">
-                      <p className="font-display text-lg font-semibold">{item.title}</p>
-                      <p className="text-sm leading-relaxed text-muted-foreground text-pretty">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </FadeIn>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="Who I serve"
-        title="Clients & strengths"
-        description="Families, tech professionals, international buyers, and investors — with process depth from offer through closing."
-      >
-        <div className="grid gap-8 md:grid-cols-2">
-          <FadeIn>
-            <Card className="h-full border-border/70">
-              <CardContent className="space-y-4 p-6 sm:p-8">
-                <h3 className="font-display text-xl font-semibold">Audiences</h3>
-                <ul className="space-y-3">
-                  {siteConfig.audiences.map((audience) => (
-                    <li
-                      key={audience}
-                      className="flex items-center gap-2 text-muted-foreground"
-                    >
-                      <CheckCircle2 className="h-4 w-4 text-accent" />
-                      {audience}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </FadeIn>
-
-          <FadeIn delay={0.06}>
-            <Card className="h-full border-border/70">
-              <CardContent className="space-y-4 p-6 sm:p-8">
-                <h3 className="font-display text-xl font-semibold">Core strengths</h3>
-                <ul className="space-y-3">
-                  {siteConfig.strengths.map((strength) => (
-                    <li
-                      key={strength}
-                      className="flex items-center gap-2 text-muted-foreground"
-                    >
-                      <CheckCircle2 className="h-4 w-4 text-accent" />
-                      {strength}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </FadeIn>
-        </div>
-
-        <FadeIn delay={0.1} className="mt-10">
-          <div className="flex flex-wrap gap-3">
-            <Button asChild size="lg" variant="accent">
-              <Link href={siteConfig.cta.consultation.href}>
-                {siteConfig.cta.consultation.label}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link href="/contact">Contact me</Link>
-            </Button>
-          </div>
-        </FadeIn>
       </Section>
 
       <CtaBanner
-        title="Let's talk about your next move"
-        description="Schedule a consultation — I'll bring market data, comps, and a clear plan tailored to your timeline."
+        title="Let's connect"
+        description="Talk about how I can help you achieve your real estate goals — buying, selling, or investing in Silicon Valley."
       />
     </>
   );
