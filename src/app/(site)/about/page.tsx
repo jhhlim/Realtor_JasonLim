@@ -72,12 +72,9 @@ export default function AboutPage() {
                 {siteConfig.description}
               </p>
               <p className="leading-relaxed text-muted-foreground text-pretty">
-                Before real estate I built a career in technology (
-                {experience.techYears} years across software &amp; hardware) and
-                worked across industries — {experience.industriesLabel.toLowerCase()}.
-                I&apos;m transparent that I&apos;m newer to real estate — what I bring
-                is disciplined analysis, clear tradeoffs, and responsive communication
-                when offers move fast in competitive Silicon Valley markets.
+                What I bring is disciplined analysis, clear tradeoffs, and responsive
+                communication when offers move fast in competitive Silicon Valley
+                markets.
               </p>
               <p className="leading-relaxed text-muted-foreground text-pretty">
                 My focus is {siteConfig.contact.address.region} — helping{" "}
