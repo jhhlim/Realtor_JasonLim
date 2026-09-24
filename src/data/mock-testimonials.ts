@@ -59,7 +59,6 @@ export const mockTestimonials: Testimonial[] = [
       "Jason coordinated our Los Gatos sale and Mountain View purchase seamlessly. Timeline, vendors, and negotiations all stayed on track.",
     rating: 5,
     location: "Los Gatos, CA",
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     source: "facebook",
   },
 ];
