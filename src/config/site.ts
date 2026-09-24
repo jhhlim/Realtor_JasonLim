@@ -49,6 +49,7 @@ export const siteConfig = {
   social: {
     linkedin: "https://www.linkedin.com/in/jasonnlim",
     x: "https://x.com/jasonlimrealty",
+    instagram: "https://www.instagram.com/jasonlimrealty/",
   },
 
   /** Set true + NEXT_PUBLIC_CALENDLY_URL when ready to show the scheduler again. */
