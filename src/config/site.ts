@@ -66,7 +66,7 @@ export const siteConfig = {
   showAgentPhotos: process.env.NEXT_PUBLIC_SHOW_AGENT_PHOTOS !== "false",
 
   media: {
-    headshot: "/images/jason-lim-headshot.jpg",
+    headshot: "/images/jason-lim-headshot.webp",
     heroPortrait: "/images/jason-lim-hero.jpg",
     ogImage:
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",

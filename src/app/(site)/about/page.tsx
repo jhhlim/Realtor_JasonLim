@@ -55,7 +55,7 @@ export default function AboutPage() {
             <FadeIn>
               <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[1.75rem] border border-border/80 bg-secondary shadow-lift lg:max-w-none">
                 <Image
-                  src={siteConfig.media.headshot}
+                  src={siteConfig.media.heroPortrait}
                   alt={`${siteConfig.name} — professional headshot`}
                   fill
                   className="object-cover object-[center_15%]"

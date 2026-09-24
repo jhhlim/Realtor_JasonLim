@@ -16,15 +16,33 @@ export function Hero() {
       <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
       <div className="pointer-events-none absolute -right-16 bottom-0 h-80 w-80 rounded-full bg-navy/10 blur-3xl dark:bg-accent/10" />
 
-      <Container className="relative grid items-center gap-10 py-16 lg:grid-cols-[1fr_auto] lg:gap-14 lg:py-24">
-        <div className="space-y-8">
+      <Container className="relative flex flex-col items-center py-16 text-center lg:py-24">
+        {siteConfig.showAgentPhotos ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mb-8 aspect-square w-44 overflow-hidden rounded-2xl border border-border/80 bg-secondary shadow-lift sm:w-52 lg:w-56"
+          >
+            <Image
+              src={siteConfig.media.headshot}
+              alt={`${siteConfig.name} — Bay Area REALTOR®`}
+              fill
+              priority
+              className="object-cover"
+              sizes="224px"
+            />
+          </motion.div>
+        ) : null}
+
+        <div className="mx-auto max-w-3xl space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.55, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-5"
           >
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center justify-center gap-2">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
                 Compass · Silicon Valley REALTOR®
               </p>
@@ -35,10 +53,10 @@ export function Hero() {
             <h1 className="font-display text-5xl font-semibold tracking-tight text-foreground text-balance sm:text-6xl lg:text-7xl">
               <BrandName />
             </h1>
-            <p className="max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty sm:text-xl">
+            <p className="mx-auto max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty sm:text-xl">
               {siteConfig.tagline}
             </p>
-            <p className="max-w-lg text-sm font-medium text-foreground/80">
+            <p className="mx-auto max-w-lg text-sm font-medium text-foreground/80">
               {siteConfig.differentiator}
             </p>
             <p className="text-sm text-muted-foreground">
@@ -52,15 +70,20 @@ export function Hero() {
                 {siteConfig.brokerage.name}
               </a>{" "}
               agent · {siteConfig.contact.address.city},{" "}
-              {siteConfig.contact.address.state} {siteConfig.contact.address.zip}
+              {siteConfig.contact.address.state}{" "}
+              {siteConfig.contact.address.zip}
             </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-wrap gap-3"
+            transition={{
+              duration: 0.55,
+              delay: 0.14,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="flex flex-wrap items-center justify-center gap-3"
           >
             <Button asChild size="lg" variant="accent">
               <Link href={siteConfig.cta.search.href}>
@@ -79,34 +102,6 @@ export function Hero() {
             </Button>
           </motion.div>
         </div>
-
-        {siteConfig.showAgentPhotos ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.65, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto flex w-full max-w-[11rem] flex-col items-center gap-3 sm:max-w-[12.5rem] lg:mx-0"
-          >
-            <div className="relative aspect-square w-full overflow-hidden rounded-full border border-border/80 bg-secondary shadow-lift ring-4 ring-background">
-              <Image
-                src={siteConfig.media.headshot}
-                alt={`${siteConfig.name} — Bay Area REALTOR®`}
-                fill
-                priority
-                className="object-cover object-[center_18%]"
-                sizes="200px"
-              />
-            </div>
-            <div className="text-center">
-              <p className="font-display text-base font-semibold tracking-tight text-foreground">
-                <BrandName />
-              </p>
-              <p className="text-xs text-muted-foreground">
-                {siteConfig.brokerage.name} · {siteConfig.license.dre}
-              </p>
-            </div>
-          </motion.div>
-        ) : null}
       </Container>
     </section>
   );
