@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,14 +34,13 @@ export function ContactForm({
   defaultInterest = "buy",
   source = "contact-page",
 }: ContactFormProps) {
-  const searchParams = useSearchParams();
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [interest, setInterest] = React.useState<Interest>(defaultInterest);
   const [message, setMessage] = React.useState("");
   const [status, setStatus] = React.useState<"idle" | "loading" | "success">(
-    () => (searchParams.get("sent") === "1" ? "success" : "idle"),
+    "idle",
   );
   const [nextUrl, setNextUrl] = React.useState(
     `${siteConfig.url}/contact?sent=1`,
@@ -50,13 +48,10 @@ export function ContactForm({
 
   React.useEffect(() => {
     setNextUrl(`${window.location.origin}/contact?sent=1`);
-  }, []);
-
-  React.useEffect(() => {
-    if (searchParams.get("sent") === "1") {
+    if (new URLSearchParams(window.location.search).get("sent") === "1") {
       setStatus("success");
     }
-  }, [searchParams]);
+  }, []);
 
   const formAction = `https://formsubmit.co/${encodeURIComponent(siteConfig.contact.email)}`;
   const subject = name.trim()
@@ -70,7 +65,6 @@ export function ContactForm({
       className={cn("space-y-5", className)}
       onSubmit={() => setStatus("loading")}
     >
-      {/* FormSubmit controls */}
       <input type="hidden" name="_subject" value={subject} />
       <input type="hidden" name="_template" value="table" />
       <input type="hidden" name="_captcha" value="false" />
@@ -78,7 +72,6 @@ export function ContactForm({
       <input type="hidden" name="_replyto" value={email} />
       <input type="hidden" name="interest" value={interest} />
       <input type="hidden" name="source" value={source} />
-      {/* Honeypot — leave empty */}
       <input
         type="text"
         name="_honey"
