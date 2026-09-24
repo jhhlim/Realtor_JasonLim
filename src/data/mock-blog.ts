@@ -9,7 +9,7 @@ export const mockBlogPosts: BlogPost[] = [
     title: "Yosemite, Bass Lake, and a Quiet Reset Outdoors",
     excerpt:
       "Camping under the pines, boats on Bass Lake, dinner at the Ahwahnee — and a daydream about a simple cabin next to nature.",
-    content: `Not every post here is about comps, rates, or open houses. Sometimes it's just what I've been up to — and this weekend was a reset in Yosemite and Bass Lake.
+    content: `Not every post here is about comps, rates, or open houses. Sometimes it's just what I've been up to — and Labor Day weekend was a reset in Yosemite and Bass Lake.
 
 We camped under the trees — orange tent, pine needles, that quiet that only shows up when you're far enough from Silicon Valley traffic. There's something about waking up outside that makes the week feel smaller in the best way.
 
@@ -40,9 +40,9 @@ If you've got a favorite cabin town, lake, or park weekend of your own, I'd love
         alt: "A great meal at the Ahwahnee",
       },
     ],
-    publishedAt: "2026-09-23",
+    publishedAt: "2026-09-07",
     readingMinutes: 3,
-    tags: ["travel", "yosemite", "bass lake", "camping", "miscellaneous"],
+    tags: ["travel", "yosemite", "bass lake", "camping", "labor day", "miscellaneous"],
   },
   {
     slug: "ai-boom-bay-area-real-estate-september-2026",
