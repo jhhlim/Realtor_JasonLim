@@ -5,21 +5,21 @@ export const mockTestimonials: Testimonial[] = [
   {
     id: "t-will-k",
     name: "Will K.",
-    role: "Colleague",
+    role: "Managing Director",
     quote:
       "Jason’s intellect, ability to connect with people, and strong work ethic make him a great fit as a Compass real estate professional.",
     rating: 5,
-    location: "Bay Area, CA",
+    location: "Los Gatos, CA",
     source: "direct",
   },
   {
     id: "t-shawn-a",
     name: "Shawn A.",
-    role: "Colleague",
+    role: "Top Almaden REALTOR®",
     quote:
       "I was impressed by Jason’s tenacity, positive attitude, and genuine commitment to pursuing knowledge and excellence.",
     rating: 5,
-    location: "Bay Area, CA",
+    location: "Los Gatos, CA",
     source: "direct",
   },
 ];
