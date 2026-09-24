@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { getNewsletterProvider } from "@/services/newsletter";
+import { siteConfig } from "@/config/site";
 
 const newsletterSchema = z.object({
   email: z.string().email("Valid email is required"),
@@ -11,10 +11,19 @@ const newsletterSchema = z.object({
   cityInterest: z.array(z.string()).optional(),
 });
 
+function resolveToAddress() {
+  return (
+    process.env.CONTACT_TO_EMAIL?.trim() ||
+    siteConfig.contact.email ||
+    "jason.lim@compass.com"
+  );
+}
+
 /**
- * Newsletter subscribe stub.
- * When NEWSLETTER_PROVIDER (+ provider keys) are set, forwards to the adapter.
- * Otherwise logs and returns success so UI flows work in development.
+ * Newsletter subscribe → FormSubmit email to Jason.
+ * First-ever FormSubmit submission to this address may require clicking
+ * Activate in the inbox (same as contact form).
+ * https://formsubmit.co/
  */
 export async function POST(request: Request) {
   try {
@@ -33,30 +42,111 @@ export async function POST(request: Request) {
     }
 
     const subscriber = parsed.data;
+    const to = resolveToAddress();
+    const name =
+      [subscriber.firstName, subscriber.lastName].filter(Boolean).join(" ") ||
+      "Newsletter subscriber";
+    const subject = `Newsletter signup from ${name}`;
+    const tags = subscriber.tags?.join(", ") || "market-updates";
+    const cities = subscriber.cityInterest?.join(", ") || "";
 
-    if (process.env.NEWSLETTER_PROVIDER) {
-      try {
-        const provider = getNewsletterProvider();
-        const result = await provider.subscribe(subscriber);
-        return NextResponse.json(result);
-      } catch (providerError) {
-        console.warn(
-          "[api/newsletter] provider unavailable, falling back to stub",
-          providerError,
-        );
-      }
+    if (process.env.FORMSUBMIT_DISABLED === "1") {
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Unable to deliver signup right now. Please email ${to} directly.`,
+        },
+        { status: 502 },
+      );
     }
 
-    console.info("[api/newsletter] subscribe stub", {
+    let res: Response;
+    try {
+      res = await fetch(
+        `https://formsubmit.co/ajax/${encodeURIComponent(to)}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email: subscriber.email,
+            form: "newsletter",
+            tags,
+            cityInterest: cities,
+            message: [
+              "New market-updates newsletter signup",
+              `Name: ${name}`,
+              `Email: ${subscriber.email}`,
+              `Tags: ${tags}`,
+              cities ? `Cities: ${cities}` : null,
+            ]
+              .filter(Boolean)
+              .join("\n"),
+            _subject: subject,
+            _template: "table",
+            _captcha: "false",
+          }),
+        },
+      );
+    } catch (error) {
+      console.error("[api/newsletter] FormSubmit network error", error);
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Unable to deliver signup right now. Please email ${to} directly.`,
+        },
+        { status: 502 },
+      );
+    }
+
+    const raw = await res.text().catch(() => "");
+    let parsedBody: { success?: string | boolean; message?: string } | null =
+      null;
+    try {
+      parsedBody = raw
+        ? (JSON.parse(raw) as { success?: string | boolean; message?: string })
+        : null;
+    } catch {
+      parsedBody = null;
+    }
+
+    const ok =
+      res.ok &&
+      (parsedBody?.success === true ||
+        parsedBody?.success === "true" ||
+        String(parsedBody?.message ?? "")
+          .toLowerCase()
+          .includes("success") ||
+        String(parsedBody?.message ?? "")
+          .toLowerCase()
+          .includes("sent"));
+
+    // FormSubmit returns success even for first-time activation emails.
+    if (!(ok || res.ok)) {
+      console.error("[api/newsletter] FormSubmit error", res.status, raw);
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Unable to deliver signup right now. Please email ${to} directly.`,
+        },
+        { status: 502 },
+      );
+    }
+
+    console.info("[api/newsletter] signup emailed", {
       email: subscriber.email,
-      cityInterest: subscriber.cityInterest,
-      provider: process.env.NEWSLETTER_PROVIDER ?? "stub",
+      to,
+      provider: "formsubmit",
     });
 
     return NextResponse.json({
       success: true,
-      provider: process.env.NEWSLETTER_PROVIDER ?? "stub",
-      message: "Subscribed successfully.",
+      emailed: true,
+      provider: "formsubmit",
+      message: `Thanks — your signup was sent to ${to}.`,
     });
   } catch (error) {
     console.error("[api/newsletter]", error);

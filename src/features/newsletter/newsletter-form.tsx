@@ -5,6 +5,7 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 interface NewsletterFormProps {
@@ -113,6 +114,7 @@ export function NewsletterForm({
           className="rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
         >
           You&apos;re on the list — look for market updates in your inbox.
+          Jason will get your email at {siteConfig.contact.email}.
         </p>
       ) : null}
 
