@@ -74,10 +74,8 @@ export const siteConfig = {
   },
 
   credentials: [
-    "11 Years Tech",
-    "3+ Years Finance & Insurance",
-    "1+ Years Education",
-    "1+ Years Government",
+    "11+ Years Software & Hardware",
+    "Finance · Insurance · Education · Government",
     "Software Engineer",
     "AI Developer",
     "UC Berkeley Economics",
@@ -95,18 +93,20 @@ export const siteConfig = {
 
   strengths: [
     "Technology",
-    "Finance & insurance background",
+    "Cross-industry experience",
     "Market analytics",
     "Negotiation",
     "Customer service",
   ],
 
   experience: {
-    techYears: "11",
+    techYears: "11+",
     financeInsuranceYears: "3+",
     educationYears: "1+",
     governmentYears: "1+",
+    industriesLabel: "Finance, insurance, education & government",
     focus: [
+      "Software & hardware",
       "Enterprise software",
       "AI",
       "Automation",
@@ -150,10 +150,10 @@ export const siteConfig = {
   },
 
   stats: [
-    { label: "Years in Tech", value: "11" },
-    { label: "Finance & Insurance", value: "3+" },
-    { label: "Education", value: "1+" },
-    { label: "Government", value: "1+" },
+    { label: "Software & Hardware", value: "11+" },
+    { label: "Across Industries", value: "3+" },
+    { label: "Bay Area Focus", value: "SV" },
+    { label: "Response Time", value: "<2h" },
   ],
 
   communities: [
