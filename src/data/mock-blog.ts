@@ -45,6 +45,50 @@ If you've got a favorite cabin town, lake, or park weekend of your own, I'd love
     tags: ["travel", "yosemite", "bass lake", "camping", "labor day", "miscellaneous"],
   },
   {
+    slug: "san-francisco-marathon-half-2026",
+    title: "San Francisco Marathon Half: First One in the Books",
+    excerpt:
+      "July 26, 2026 — City Half in 2:04:49. Early shuttle from the pier, huge crowd, Golden Gate views, and a better finish than I expected after only a few weeks of training.",
+    content: `Another Miscellaneous note — this one from race day in San Francisco.
+
+I ran the San Francisco Marathon City Half (2nd Half) on July 26, 2026. Official time: 2:04:49 at a 9:31 min/mile pace. I only trained for about 2–3 weeks, and the night before I honestly wasn’t sure I was ready.
+
+Race morning meant waking up around 5 a.m. to get into the city and catch a shuttle from the pier. Some people smartly stayed in an SF hotel the night before — next time I might do that too. Early light on the Ferry Building, palm trees, and that quiet-before-the-storm feeling before tens of thousands of runners lined up.
+
+The start was packed. I believe the first half draws on the order of ~35,000 people — a sea of bibs, pacers, and energy under the San Francisco Marathon arch. Great views along the way and amazing support from volunteers and spectators.
+
+Somewhere mid-race I pushed through a mile near halfway in about 6 minutes. I did not expect to get close to two hours for the half, so finishing just over 2:04 felt like a win for a short training window.
+
+Would I recommend it? Absolutely. If you’ve been thinking about signing up for a San Francisco race — do it. The course, the crowd, and the city backdrop make it a great experience.
+
+Finisher graphic says it best: Jason Lim · San Francisco Marathon · 2:04:49.`,
+    category: "Miscellaneous",
+    coverImage: "/images/blog/sf-marathon/finisher.jpg",
+    coverFit: "contain",
+    gallery: [
+      {
+        src: "/images/blog/sf-marathon/ferry-building.jpg",
+        alt: "Early morning at the Ferry Building before the race",
+      },
+      {
+        src: "/images/blog/sf-marathon/start-line.jpg",
+        alt: "Start line crowd for the San Francisco Marathon",
+      },
+      {
+        src: "/images/blog/sf-marathon/selfie.jpg",
+        alt: "At the start — ready to go",
+      },
+    ],
+    publishedAt: "2026-07-26",
+    readingMinutes: 3,
+    tags: [
+      "running",
+      "san francisco marathon",
+      "half marathon",
+      "miscellaneous",
+    ],
+  },
+  {
     slug: "ai-boom-bay-area-real-estate-september-2026",
     title: "The AI Boom and Bay Area Real Estate",
     excerpt:
@@ -175,7 +219,7 @@ Still deciding between renting and buying? I have a detailed Rent vs. Buy calcul
 
 Reach out with your current rent and approximate home-buying budget, and I'd be happy to run the numbers for you.`,
     category: "Buying",
-    coverImage: cover("photo-1449844908441-88298767ac7a"),
+    coverImage: cover("photo-1600596542815-ffad4c1539a9"),
     publishedAt: "2026-08-28",
     readingMinutes: 4,
     tags: ["fall market", "buying", "bay area", "rent vs buy", "negotiation"],
