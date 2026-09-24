@@ -200,8 +200,11 @@ export interface BlogPost {
     | "Mortgage"
     | "Bay Area"
     | "Technology"
-    | "AI";
+    | "AI"
+    | "Miscellaneous";
   coverImage: string;
+  /** Optional in-post gallery (shown under the cover). */
+  gallery?: { src: string; alt: string }[];
   /** Use "contain" for tall infographics so the full graphic is visible. */
   coverFit?: "cover" | "contain";
   publishedAt: string;

@@ -5,6 +5,46 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "yosemite-bass-lake-camping-weekend",
+    title: "Yosemite, Bass Lake, and a Quiet Reset Outdoors",
+    excerpt:
+      "Camping under the pines, boats on Bass Lake, dinner at the Ahwahnee — and a daydream about a simple cabin next to nature.",
+    content: `Not every post here is about comps, rates, or open houses. Sometimes it's just what I've been up to — and this weekend was a reset in Yosemite and Bass Lake.
+
+We camped under the trees — orange tent, pine needles, that quiet that only shows up when you're far enough from Silicon Valley traffic. There's something about waking up outside that makes the week feel smaller in the best way.
+
+Bass Lake was beautiful. Clear water, docks full of pontoon boats and kayaks, people out enjoying a slow day on the water. Sitting there, it's hard not to think how relaxing it would be to have a simple cabin-type place nearby — somewhere you could come back to, step outside, and be in nature without packing a whole production every time.
+
+Yosemite itself never gets old. Granite rising over the valley, lodge architecture tucked into the trees, that mix of rugged and peaceful. We also had a great meal at the Ahwahnee Hotel — hearty food in that classic dining room with the log beams and tall windows. It felt like the right ending to a day outdoors.
+
+I still love Bay Area real estate and helping people find the right next chapter. But weekends like this are a reminder: homes aren't only about price per square foot. Sometimes they're about how a place makes you feel when you finally get to slow down.
+
+If you've got a favorite cabin town, lake, or park weekend of your own, I'd love to hear it.`,
+    category: "Miscellaneous",
+    coverImage: "/images/blog/yosemite-bass-lake/bass-lake.jpg",
+    gallery: [
+      {
+        src: "/images/blog/yosemite-bass-lake/camping-tent.jpg",
+        alt: "Camping under the pines",
+      },
+      {
+        src: "/images/blog/yosemite-bass-lake/yosemite-granite.jpg",
+        alt: "Yosemite granite from the lodge grounds",
+      },
+      {
+        src: "/images/blog/yosemite-bass-lake/ahwahnee-dining.jpg",
+        alt: "The Ahwahnee Hotel dining room",
+      },
+      {
+        src: "/images/blog/yosemite-bass-lake/ahwahnee-food.jpg",
+        alt: "A great meal at the Ahwahnee",
+      },
+    ],
+    publishedAt: "2026-09-23",
+    readingMinutes: 3,
+    tags: ["travel", "yosemite", "bass lake", "camping", "miscellaneous"],
+  },
+  {
     slug: "ai-boom-bay-area-real-estate-september-2026",
     title: "The AI Boom and Bay Area Real Estate",
     excerpt:

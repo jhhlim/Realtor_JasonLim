@@ -27,6 +27,7 @@ const categories: Array<BlogPost["category"] | "All"> = [
   "Bay Area",
   "Technology",
   "AI",
+  "Miscellaneous",
 ];
 
 export default async function BlogIndexPage({
@@ -50,8 +51,8 @@ export default async function BlogIndexPage({
     <>
       <PageHero
         eyebrow="Insights"
-        title="Bay Area real estate blog"
-        description="Practical guides on buying, selling, mortgages, and using technology without losing judgment."
+        title="Notes from the Bay Area — and life in between"
+        description="Real estate guides when you need them, plus occasional personal notes on travel, food, and what I'm up to."
       />
       <Section className="pt-10">
         <div className="mb-8 flex flex-wrap gap-2" role="navigation" aria-label="Blog categories">

@@ -113,6 +113,29 @@ export default async function BlogArticlePage({
               <p key={paragraph.slice(0, 40)}>{paragraph}</p>
             ))}
           </div>
+          {post.gallery && post.gallery.length > 0 ? (
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              {post.gallery.map((photo) => (
+                <figure
+                  key={photo.src}
+                  className="overflow-hidden rounded-2xl border border-border/70 bg-secondary"
+                >
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 384px"
+                    />
+                  </div>
+                  <figcaption className="px-3 py-2 text-xs text-muted-foreground">
+                    {photo.alt}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : null}
           {post.tags.length > 0 ? (
             <ul className="mt-10 flex flex-wrap gap-2" aria-label="Tags">
               {post.tags.map((tag) => (
