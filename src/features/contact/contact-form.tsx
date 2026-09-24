@@ -25,8 +25,7 @@ interface ContactFormProps {
 }
 
 /**
- * Delivers leads client-side (browser → FormSubmit/Web3Forms/Resend API).
- * Server-side Resend needs a verified domain; FormSubmit works without one.
+ * Delivers leads via /api/contact → FormSubmit to jason.lim@compass.com.
  */
 export function ContactForm({
   className,
@@ -244,6 +243,10 @@ type DeliverResult =
   | { ok: true; info?: string }
   | { ok: false; error: string };
 
+/**
+ * Server-side FormSubmit (→ jason.lim@compass.com), with Resend backup.
+ * Browser→FormSubmit was flaky; routing via /api/contact is more reliable.
+ */
 async function deliverLead(input: {
   name: string;
   email: string;
@@ -254,91 +257,7 @@ async function deliverLead(input: {
   source: string;
 }): Promise<DeliverResult> {
   const to = siteConfig.contact.email;
-  const web3Key = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim();
 
-  // 1) Preferred: Web3Forms (client-side, no custom domain needed)
-  if (web3Key) {
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        access_key: web3Key,
-        subject: input.subject,
-        from_name: input.name,
-        name: input.name,
-        email: input.email,
-        phone: input.phone,
-        interest: input.interest,
-        source: input.source,
-        message: input.message,
-      }),
-    });
-    const data = (await res.json().catch(() => null)) as {
-      success?: boolean;
-      message?: string;
-    } | null;
-    if (res.ok && data?.success) {
-      return { ok: true };
-    }
-  }
-
-  // 2) FormSubmit (client-side). First use may require clicking Activate in inbox.
-  const formSubmitRes = await fetch(
-    `https://formsubmit.co/ajax/${encodeURIComponent(to)}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        name: input.name,
-        email: input.email,
-        phone: input.phone,
-        interest: input.interest,
-        source: input.source,
-        message: input.message,
-        _subject: input.subject,
-        _template: "table",
-        _captcha: "false",
-        _replyto: input.email,
-      }),
-    },
-  );
-
-  const formSubmitData = (await formSubmitRes.json().catch(() => null)) as {
-    success?: string | boolean;
-    message?: string;
-  } | null;
-
-  const formSubmitOk =
-    formSubmitRes.ok &&
-    (formSubmitData?.success === true ||
-      formSubmitData?.success === "true" ||
-      String(formSubmitData?.message ?? "")
-        .toLowerCase()
-        .includes("success") ||
-      String(formSubmitData?.message ?? "")
-        .toLowerCase()
-        .includes("sent") ||
-      String(formSubmitData?.message ?? "")
-        .toLowerCase()
-        .includes("activate"));
-
-  if (formSubmitOk) {
-    const msg = String(formSubmitData?.message ?? "").toLowerCase();
-    return {
-      ok: true,
-      info: msg.includes("activate")
-        ? `If this is your first submission, check ${siteConfig.contact.email} for a FormSubmit activation email and click Activate once.`
-        : undefined,
-    };
-  }
-
-  // 3) Last resort: our API (Resend) — works after a verified sending domain.
   const apiRes = await fetch("/api/contact", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -355,19 +274,25 @@ async function deliverLead(input: {
   const apiData = (await apiRes.json().catch(() => null)) as {
     success?: boolean;
     emailed?: boolean;
+    provider?: string;
     error?: string;
     message?: string;
   } | null;
 
   if (apiRes.ok && apiData?.success && apiData.emailed !== false) {
-    return { ok: true, info: apiData.message };
+    return {
+      ok: true,
+      info:
+        apiData.provider === "formsubmit"
+          ? `If you don't see it, check spam — and if this is the first FormSubmit delivery, open the Activate email once.`
+          : apiData.message,
+    };
   }
 
   return {
     ok: false,
     error:
       apiData?.error ||
-      formSubmitData?.message ||
       `Unable to deliver email right now. Please email ${to} directly.`,
   };
 }

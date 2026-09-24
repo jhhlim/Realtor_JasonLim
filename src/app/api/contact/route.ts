@@ -237,30 +237,25 @@ export async function POST(request: Request) {
       </div>
     `;
 
-    let emailResult = await sendWithResend({
+    // Prefer FormSubmit (works without a verified domain). Resend is backup.
+    let emailResult = await sendWithFormSubmit({
       to,
       replyTo: payload.email,
       subject,
-      text,
-      html,
+      name: payload.name,
+      phone: payload.phone,
+      interest: payload.interest,
+      source: payload.source,
+      message: text,
     });
 
-    // If Resend can't send (no verified domain / testing restriction), fall back.
-    if (
-      !emailResult.sent &&
-      (emailResult.reason === "missing_resend_key" ||
-        emailResult.reason === "resend_failed" ||
-        isResendDomainRestriction(emailResult.detail))
-    ) {
-      emailResult = await sendWithFormSubmit({
+    if (!emailResult.sent) {
+      emailResult = await sendWithResend({
         to,
         replyTo: payload.email,
         subject,
-        name: payload.name,
-        phone: payload.phone,
-        interest: payload.interest,
-        source: payload.source,
-        message: text,
+        text,
+        html,
       });
     }
 
