@@ -5,6 +5,49 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "san-jose-neighborhood-home-values-september-2026",
+    title: "San Jose Neighborhood Home Values — September 2026",
+    excerpt:
+      "Market update: typical home values across Cambrian Park, Almaden, West San Jose, Willow Glen, Evergreen, Berryessa, Santa Teresa, and East San Jose — plus citywide ZHVI context.",
+    content: `Market Insights | September 2026
+
+San Jose remains a city of neighborhoods — and the gap between them still matters for buyers, sellers, and anyone comparing lifestyle vs. budget.
+
+Using Zillow Typical Home Value (ZHVI) data through Aug. 31, 2026 for single-family and all housing types, here’s a snapshot of where values sit across eight San Jose areas:
+
+• Cambrian Park — $2,333,813 (+6.6%) — Desirable schools and classic ranch-style homes continue to support premium pricing.
+• Almaden Valley — $2,072,973 (+3.3%) — Larger lots, established streets, and hill views keep demand steady.
+• West San Jose — $2,046,521 (+1.3%) — Cupertino/Moreland school proximity and a central Peninsula/South Bay location.
+• Willow Glen — $1,734,843 (+2.0%) — Tree-lined charm and easy access to downtown amenities.
+• Evergreen — $1,600,147 (−1.1%) — Established pockets with newer suburban stock and strong parks.
+• Berryessa — $1,543,459 (−1.5%) — North San Jose mix of established single-family homes.
+• Santa Teresa — $1,286,439 (−0.9%) — Relatively more attainable, with solid schools and open-space access.
+• East San Jose — $1,007,331 (−1.9%) — Still the most attainable entry point in the city with a range of housing styles.
+
+Citywide, San Jose’s typical home value is about $1,363,312 (+0.4% year over year) — modest overall movement, with clearer differentiation by neighborhood.
+
+Key takeaways:
+1. Wide range — roughly $1.01M to $2.33M depending on amenities, schools, and housing type.
+2. Premium pockets still lead — Cambrian Park, Almaden Valley, and West San Jose remain at the top.
+3. Values are holding — many central and south San Jose areas show relatively stable year-over-year change.
+4. Location and strategy matter — the right neighborhood should fit lifestyle, commute, schools, and long-term goals.
+
+If you’re weighing where to buy, sell, or wait — happy to walk through comps for your specific pocket of San Jose.`,
+    category: "Buying",
+    coverImage:
+      "/images/blog/san-jose-neighborhood-home-values-sept-2026.jpg",
+    coverFit: "contain",
+    publishedAt: "2026-09-24",
+    readingMinutes: 4,
+    tags: [
+      "san jose",
+      "market update",
+      "neighborhood values",
+      "zhvi",
+      "september 2026",
+    ],
+  },
+  {
     slug: "yosemite-bass-lake-camping-weekend",
     title: "Yosemite, Bass Lake, and a Quiet Reset Outdoors",
     excerpt:
