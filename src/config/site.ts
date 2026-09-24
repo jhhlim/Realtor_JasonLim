@@ -14,7 +14,7 @@ export const siteConfig = {
   differentiator: "Technology + Data + Personal Service.",
   title: "Compass REALTOR® | Bay Area Real Estate",
   description:
-    "Compass REALTOR® in San Jose combining software engineering, AI, and market analytics to help first-time buyers, move-up buyers, and investors make confident decisions.",
+    "Compass REALTOR® in San Jose with 11 years in tech plus experience across finance & insurance, education, and government — combining software engineering, AI, and market analytics to help first-time buyers, move-up buyers, and investors make confident decisions.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://realtor-jason-lim.vercel.app",
   locale: "en_US",
 
@@ -74,6 +74,10 @@ export const siteConfig = {
   },
 
   credentials: [
+    "11 Years Tech",
+    "3+ Years Finance & Insurance",
+    "1+ Years Education",
+    "1+ Years Government",
     "Software Engineer",
     "AI Developer",
     "UC Berkeley Economics",
@@ -91,18 +95,25 @@ export const siteConfig = {
 
   strengths: [
     "Technology",
+    "Finance & insurance background",
     "Market analytics",
     "Negotiation",
     "Customer service",
   ],
 
   experience: {
-    techYears: "10+",
+    techYears: "11",
+    financeInsuranceYears: "3+",
+    educationYears: "1+",
+    governmentYears: "1+",
     focus: [
       "Enterprise software",
       "AI",
       "Automation",
       "Analytics",
+      "Finance & insurance",
+      "Education",
+      "Government",
     ],
     differentiators: [
       {
@@ -139,10 +150,10 @@ export const siteConfig = {
   },
 
   stats: [
-    { label: "Years in Tech", value: "10+" },
-    { label: "Bay Area Focus", value: "SV" },
-    { label: "Response Time", value: "<2h" },
-    { label: "Client-First", value: "100%" },
+    { label: "Years in Tech", value: "11" },
+    { label: "Finance & Insurance", value: "3+" },
+    { label: "Education", value: "1+" },
+    { label: "Government", value: "1+" },
   ],
 
   communities: [

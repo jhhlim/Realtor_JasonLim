@@ -16,7 +16,7 @@ import { BrandName } from "@/components/layout/brand-name";
 export const metadata = buildMetadata({
   title: "About Jason Lim",
   description:
-    "Meet Jason Lim — Bay Area REALTOR® with 10+ years in software engineering and AI. Honest guidance for first-time buyers, move-up sellers, and investors across Silicon Valley.",
+    "Meet Jason Lim — Bay Area REALTOR® with 11 years in tech, 3+ years in finance & insurance, plus education and government experience. Honest guidance for Silicon Valley buyers and sellers.",
   path: "/about",
 });
 
@@ -35,10 +35,11 @@ export default function AboutPage() {
         }
         description={
           <>
-            I&apos;m <BrandName /> — a licensed California REALTOR® who spent{" "}
-            {experience.techYears} years building enterprise software and AI tools
-            before helping Bay Area families navigate one of life&apos;s biggest
-            decisions.
+            I&apos;m <BrandName /> — a licensed California REALTOR® with{" "}
+            {experience.techYears} years in tech, {experience.financeInsuranceYears}{" "}
+            years in finance &amp; insurance, {experience.educationYears} years in
+            education, and {experience.governmentYears} years in government —
+            bringing that mix of analysis and people skills to Bay Area real estate.
           </>
         }
         primaryCta={siteConfig.cta.consultation}
@@ -72,11 +73,14 @@ export default function AboutPage() {
                 {siteConfig.description}
               </p>
               <p className="leading-relaxed text-muted-foreground text-pretty">
-                I&apos;m newer to real estate than I am to technology — and I&apos;m
-                transparent about that. What I bring is a disciplined, data-first
-                approach honed in engineering: clear analysis, honest tradeoffs, and
-                responsive communication when offers move fast in competitive Silicon
-                Valley markets.
+                Before real estate I built a career across technology (
+                {experience.techYears} years), finance &amp; insurance (
+                {experience.financeInsuranceYears} years), education (
+                {experience.educationYears} years), and government (
+                {experience.governmentYears} years). I&apos;m transparent that I&apos;m
+                newer to real estate — what I bring is disciplined analysis, clear
+                tradeoffs, and responsive communication when offers move fast in
+                competitive Silicon Valley markets.
               </p>
               <p className="leading-relaxed text-muted-foreground text-pretty">
                 My focus is {siteConfig.contact.address.region} — helping{" "}
@@ -102,8 +106,8 @@ export default function AboutPage() {
 
       <Section
         eyebrow="Background"
-        title="From engineering to real estate"
-        description={`${experience.techYears} years across ${experience.focus.join(", ").toLowerCase()} — now applied to comps, contracts, and negotiation.`}
+        title="Cross-industry experience"
+        description={`${experience.techYears} years in tech · ${experience.financeInsuranceYears} finance & insurance · ${experience.educationYears} education · ${experience.governmentYears} government — now applied to comps, contracts, and negotiation.`}
         className="bg-slate-soft/50 dark:bg-card/30"
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
