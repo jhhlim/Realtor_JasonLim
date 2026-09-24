@@ -53,11 +53,13 @@ If you've got a favorite cabin town, lake, or park weekend of your own, I'd love
 
 I ran the San Francisco Marathon City Half (2nd Half) on July 26, 2026. Official time: 2:04:49 at a 9:31 min/mile pace. I only trained for about 2–3 weeks, and the night before I honestly wasn’t sure I was ready.
 
-Race morning meant waking up around 5 a.m. to get into the city and catch a shuttle from the pier. Some people smartly stayed in an SF hotel the night before — next time I might do that too. Early light on the Ferry Building, palm trees, and that quiet-before-the-storm feeling before tens of thousands of runners lined up.
+Race morning meant waking up around 5 a.m. to get into the city and catch a shuttle from the pier. Some people smartly stayed in an SF hotel the night before — next time I might do that too.
 
 The start was packed. I believe the first half draws on the order of ~35,000 people — a sea of bibs, pacers, and energy under the San Francisco Marathon arch. Great views along the way and amazing support from volunteers and spectators.
 
 Somewhere mid-race I pushed through a mile near halfway in about 6 minutes. I did not expect to get close to two hours for the half, so finishing just over 2:04 felt like a win for a short training window.
+
+After the race I walked past the Ferry Building — palm trees, Embarcadero light, and that post-finish calm after tens of thousands of runners had come through.
 
 Would I recommend it? Absolutely. If you’ve been thinking about signing up for a San Francisco race — do it. The course, the crowd, and the city backdrop make it a great experience.
 
@@ -68,7 +70,7 @@ Finisher graphic says it best: Jason Lim · San Francisco Marathon · 2:04:49.`,
     gallery: [
       {
         src: "/images/blog/sf-marathon/ferry-building.jpg",
-        alt: "Early morning at the Ferry Building before the race",
+        alt: "Ferry Building after the race",
       },
       {
         src: "/images/blog/sf-marathon/start-line.jpg",
