@@ -68,7 +68,7 @@ export const siteConfig = {
 
   media: {
     headshot: "/images/jason-lim-headshot.webp",
-    heroPortrait: "/images/jason-lim-hero.jpg",
+    heroPortrait: "/images/jason-lim-hero.webp",
     ogImage:
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
   },
