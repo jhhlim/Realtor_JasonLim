@@ -16,7 +16,7 @@ import { BrandName } from "@/components/layout/brand-name";
 export const metadata = buildMetadata({
   title: "About Jason Lim",
   description:
-    "Meet Jason Lim — Bay Area REALTOR® with 11+ years in software & hardware plus experience across finance, insurance, education, and government. Honest guidance for Silicon Valley buyers and sellers.",
+    "Meet Jason Lim — Compass REALTOR® serving San Jose, Sunnyvale, Santa Clara, San Mateo County, and Alameda County. Offer strategy, escrow, schools, tech buyers, and investor analysis.",
   path: "/about",
 });
 
@@ -29,16 +29,15 @@ export default function AboutPage() {
         eyebrow="About"
         title={
           <>
-            Tech background.
-            <span className="block text-accent">Fresh real estate perspective.</span>
+            Tech fluency.
+            <span className="block text-accent">Full-process guidance.</span>
           </>
         }
         description={
           <>
-            I&apos;m <BrandName /> — a licensed California REALTOR® with{" "}
-            {experience.techYears} years in software &amp; hardware, plus experience
-            across {experience.industriesLabel.toLowerCase()} — bringing that mix of
-            analysis and people skills to Bay Area real estate.
+            I&apos;m <BrandName /> — a licensed California REALTOR® helping buyers
+            and sellers navigate Silicon Valley with clear strategy from first
+            showing through closing.
           </>
         }
         primaryCta={siteConfig.cta.consultation}
@@ -72,14 +71,30 @@ export default function AboutPage() {
                 {siteConfig.description}
               </p>
               <p className="leading-relaxed text-muted-foreground text-pretty">
-                What I bring is disciplined analysis, clear tradeoffs, and responsive
-                communication when offers move fast in competitive Silicon Valley
-                markets.
+                Day to day that means offer strategy, coordinating escrow and title,
+                managing the process with contractors when needed, and keeping closing
+                on track — across San Jose, Sunnyvale, Santa Clara, and into San Mateo
+                County and Alameda County.
               </p>
               <p className="leading-relaxed text-muted-foreground text-pretty">
-                My focus is {siteConfig.contact.address.region} — helping{" "}
-                {siteConfig.audiences.join(", ").toLowerCase()} make confident
-                decisions with modern tools, not outdated playbooks.
+                I work with families choosing school districts, international and
+                visa-based buyers (including F-1 OPT and H-1B), and tech professionals
+                who want an agent who can talk AI and engineering in plain English —
+                not just listing flyers.
+              </p>
+              <p className="leading-relaxed text-muted-foreground text-pretty">
+                Education has always been part of how I serve people: I show homes
+                with schools in mind, talk through district tradeoffs on tour, and
+                previously ran SAT bootcamps helping students and families aim for
+                top universities, including Ivy League paths. That same care for
+                long-term family decisions shows up in how we evaluate neighborhoods.
+              </p>
+              <p className="leading-relaxed text-muted-foreground text-pretty">
+                Finance background helps investors build ROI and cash-flow models
+                before they write an offer. Insurance experience means we talk risk
+                early — including what coverage and premiums can look like before
+                buying in wildfire territory — so surprises don&apos;t land after
+                you&apos;re in contract.
               </p>
             </div>
 
@@ -101,7 +116,7 @@ export default function AboutPage() {
       <Section
         eyebrow="Background"
         title="From engineering to real estate"
-        description={`${experience.techYears} years in software & hardware, plus experience across ${experience.industriesLabel.toLowerCase()} — now applied to comps, contracts, and negotiation.`}
+        description={`${experience.techYears} years in software & hardware, plus experience across ${experience.industriesLabel.toLowerCase()} — applied to comps, contracts, negotiation, and closing.`}
         className="bg-slate-soft/50 dark:bg-card/30"
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -143,7 +158,7 @@ export default function AboutPage() {
       <Section
         eyebrow="Who I serve"
         title="Clients & strengths"
-        description="Every engagement is tailored — whether you're buying your first condo or repositioning an investment portfolio."
+        description="Families, tech professionals, international buyers, and investors — with process depth from offer through closing."
       >
         <div className="grid gap-8 md:grid-cols-2">
           <FadeIn>
