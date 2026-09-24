@@ -2,6 +2,26 @@ import type { ReviewAggregate, Testimonial } from "@/types";
 
 export const mockTestimonials: Testimonial[] = [
   {
+    id: "t-will-k",
+    name: "Will K.",
+    role: "Colleague",
+    quote:
+      "Jason’s intellect, ability to connect with people, and strong work ethic make him a great fit as a Compass real estate professional.",
+    rating: 5,
+    location: "Bay Area, CA",
+    source: "direct",
+  },
+  {
+    id: "t-shawn-a",
+    name: "Shawn A.",
+    role: "Colleague",
+    quote:
+      "I was impressed by Jason’s tenacity, positive attitude, and genuine commitment to pursuing knowledge and excellence.",
+    rating: 5,
+    location: "Bay Area, CA",
+    source: "direct",
+  },
+  {
     id: "t-001",
     name: "Priya & Ankit Mehta",
     role: "Buyers",
