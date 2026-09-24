@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,7 +15,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { siteConfig } from "@/config/site";
-import { sendViaFormSubmit } from "@/lib/formsubmit";
 import { cn } from "@/lib/utils";
 
 type Interest = "buy" | "sell" | "invest" | "other";
@@ -26,101 +26,68 @@ interface ContactFormProps {
 }
 
 /**
- * Delivers leads via browser → FormSubmit (jason.lim@compass.com).
+ * Native FormSubmit POST (not AJAX).
+ * Browser posts to formsubmit.co → email to jason.lim@compass.com → redirect back.
+ * First ever submission: activate via the email FormSubmit sends to Compass.
  */
 export function ContactForm({
   className,
   defaultInterest = "buy",
   source = "contact-page",
 }: ContactFormProps) {
+  const searchParams = useSearchParams();
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [interest, setInterest] = React.useState<Interest>(defaultInterest);
   const [message, setMessage] = React.useState("");
-  const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">(
-    "idle",
+  const [status, setStatus] = React.useState<"idle" | "loading" | "success">(
+    () => (searchParams.get("sent") === "1" ? "success" : "idle"),
   );
-  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
-  const [infoMessage, setInfoMessage] = React.useState<string | null>(null);
-  const [mailtoHref, setMailtoHref] = React.useState<string | null>(null);
+  const [nextUrl, setNextUrl] = React.useState(
+    `${siteConfig.url}/contact?sent=1`,
+  );
 
-  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setStatus("loading");
-    setErrorMessage(null);
-    setInfoMessage(null);
-    setMailtoHref(null);
+  React.useEffect(() => {
+    setNextUrl(`${window.location.origin}/contact?sent=1`);
+  }, []);
 
-    const subject = `Website inquiry from ${name}`;
-    const composedMessage = [
-      `Interest: ${interest}`,
-      `Source: ${source}`,
-      phone ? `Phone: ${phone}` : null,
-      "",
-      message,
-    ]
-      .filter(Boolean)
-      .join("\n");
-
-    try {
-      const result = await deliverLead({
-        name,
-        email,
-        phone,
-        subject,
-        message: composedMessage,
-        interest,
-        source,
-      });
-
-      if (!result.ok) {
-        const fallback = buildMailto({
-          to: siteConfig.contact.email,
-          name,
-          email,
-          phone,
-          interest,
-          message,
-          source,
-        });
-        setMailtoHref(fallback);
-        setStatus("error");
-        setErrorMessage(result.error);
-        return;
-      }
-
+  React.useEffect(() => {
+    if (searchParams.get("sent") === "1") {
       setStatus("success");
-      setInfoMessage(result.info ?? null);
-      setName("");
-      setEmail("");
-      setPhone("");
-      setInterest(defaultInterest);
-      setMessage("");
-    } catch {
-      const fallback = buildMailto({
-        to: siteConfig.contact.email,
-        name,
-        email,
-        phone,
-        interest,
-        message,
-        source,
-      });
-      setMailtoHref(fallback);
-      setStatus("error");
-      setErrorMessage(
-        `Unable to send automatically. Please email ${siteConfig.contact.email} directly.`,
-      );
     }
-  }
+  }, [searchParams]);
+
+  const formAction = `https://formsubmit.co/${encodeURIComponent(siteConfig.contact.email)}`;
+  const subject = name.trim()
+    ? `Website inquiry from ${name.trim()}`
+    : "Website inquiry";
 
   return (
     <form
-      onSubmit={onSubmit}
+      action={formAction}
+      method="POST"
       className={cn("space-y-5", className)}
-      noValidate
+      onSubmit={() => setStatus("loading")}
     >
+      {/* FormSubmit controls */}
+      <input type="hidden" name="_subject" value={subject} />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value={nextUrl} />
+      <input type="hidden" name="_replyto" value={email} />
+      <input type="hidden" name="interest" value={interest} />
+      <input type="hidden" name="source" value={source} />
+      {/* Honeypot — leave empty */}
+      <input
+        type="text"
+        name="_honey"
+        className="hidden"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="contact-name">Full name</Label>
@@ -204,26 +171,14 @@ export function ContactForm({
           className="space-y-2 rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
         >
           <p>
-            Thanks — your message was sent to {siteConfig.contact.email}. I&apos;ll
-            follow up shortly.
+            Thanks — your message was submitted to FormSubmit for{" "}
+            {siteConfig.contact.email}.
           </p>
-          {infoMessage ? (
-            <p className="text-success/90">{infoMessage}</p>
-          ) : null}
-        </div>
-      ) : null}
-
-      {status === "error" && errorMessage ? (
-        <div
-          role="alert"
-          className="space-y-3 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive"
-        >
-          <p>{errorMessage}</p>
-          {mailtoHref ? (
-            <Button asChild variant="outline" size="sm">
-              <a href={mailtoHref}>Email {siteConfig.contact.email}</a>
-            </Button>
-          ) : null}
+          <p className="text-success/90">
+            Check that inbox (and spam). If this is the first submission ever,
+            open FormSubmit&apos;s <strong>Activate</strong> email once, then
+            send another test.
+          </p>
         </div>
       ) : null}
 
@@ -238,111 +193,4 @@ export function ContactForm({
       </Button>
     </form>
   );
-}
-
-type DeliverResult =
-  | { ok: true; info?: string }
-  | { ok: false; error: string };
-
-/**
- * Browser → FormSubmit first (reliable). /api/contact is backup only.
- */
-async function deliverLead(input: {
-  name: string;
-  email: string;
-  phone: string;
-  subject: string;
-  message: string;
-  interest: string;
-  source: string;
-}): Promise<DeliverResult> {
-  const to = siteConfig.contact.email;
-
-  const formSubmit = await sendViaFormSubmit({
-    to,
-    name: input.name,
-    email: input.email,
-    subject: input.subject,
-    message: input.message,
-    fields: {
-      form: "contact",
-      phone: input.phone || "",
-      interest: input.interest,
-      source: input.source,
-    },
-  });
-
-  if (formSubmit.ok) {
-    return {
-      ok: true,
-      info: formSubmit.needsActivation
-        ? `First-time setup: check ${to} (and spam) for a FormSubmit “Activate” email and click it once — then submit again.`
-        : `Message emailed to ${to}. Check inbox + spam if you don’t see it within a minute.`,
-    };
-  }
-
-  // Backup: server API (FormSubmit/Resend)
-  const apiRes = await fetch("/api/contact", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name: input.name,
-      email: input.email,
-      phone: input.phone,
-      interest: input.interest,
-      message: input.message,
-      source: input.source,
-      notifyEmail: to,
-    }),
-  });
-  const apiData = (await apiRes.json().catch(() => null)) as {
-    success?: boolean;
-    emailed?: boolean;
-    provider?: string;
-    error?: string;
-    message?: string;
-  } | null;
-
-  if (apiRes.ok && apiData?.success && apiData.emailed !== false) {
-    return {
-      ok: true,
-      info:
-        apiData.message ||
-        `Message emailed to ${to}. Check inbox + spam if you don’t see it within a minute.`,
-    };
-  }
-
-  return {
-    ok: false,
-    error:
-      formSubmit.error ||
-      apiData?.error ||
-      `Unable to deliver email right now. Please email ${to} directly.`,
-  };
-}
-
-function buildMailto(input: {
-  to: string;
-  name: string;
-  email: string;
-  phone: string;
-  interest: string;
-  message: string;
-  source: string;
-}) {
-  const subject = encodeURIComponent(`Website inquiry from ${input.name}`);
-  const body = encodeURIComponent(
-    [
-      `Name: ${input.name}`,
-      `Email: ${input.email}`,
-      input.phone ? `Phone: ${input.phone}` : null,
-      `Interest: ${input.interest}`,
-      `Source: ${input.source}`,
-      "",
-      input.message,
-    ]
-      .filter(Boolean)
-      .join("\n"),
-  );
-  return `mailto:${input.to}?subject=${subject}&body=${body}`;
 }
