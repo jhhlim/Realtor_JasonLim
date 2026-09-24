@@ -129,13 +129,9 @@ export function NewsletterForm({
       {status === "success" ? (
         <div
           role="status"
-          className="space-y-1 rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
+          className="rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
         >
           <p>You&apos;re on the list — thanks for subscribing.</p>
-          <p className="text-success/90">
-            Signup was sent via FormSubmit to {siteConfig.contact.email}. Check
-            inbox + spam; activate FormSubmit once if prompted.
-          </p>
         </div>
       ) : null}
 

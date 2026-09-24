@@ -161,16 +161,10 @@ export function ContactForm({
       {status === "success" ? (
         <div
           role="status"
-          className="space-y-2 rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
+          className="rounded-xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
         >
           <p>
-            Thanks — your message was submitted to FormSubmit for{" "}
-            {siteConfig.contact.email}.
-          </p>
-          <p className="text-success/90">
-            Check that inbox (and spam). If this is the first submission ever,
-            open FormSubmit&apos;s <strong>Activate</strong> email once, then
-            send another test.
+            Thanks — your message was sent. I&apos;ll follow up shortly.
           </p>
         </div>
       ) : null}

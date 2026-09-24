@@ -96,11 +96,7 @@ export function HomeValuationForm() {
 
       if (ok) {
         const msg = String(formSubmitData?.message ?? "").toLowerCase();
-        setInfo(
-          msg.includes("activate")
-            ? `Check ${siteConfig.contact.email} for a FormSubmit activation email and click Activate once.`
-            : null,
-        );
+        setInfo(null);
         setStatus("success");
         form.reset();
         return;
