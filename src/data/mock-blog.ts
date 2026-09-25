@@ -5,6 +5,41 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "open-house-1868-anne-marie-court-berryessa",
+    title: "Open House This Weekend | 1868 Anne Marie Court, Berryessa",
+    excerpt:
+      "Sat & Sun, Sept 26–27 · 2–4 PM — 3 bed / 2 bath, 1,320 SF on ~6,000 SF lot. Recently reduced $200K. Quiet court in Berryessa, San Jose.",
+    content: `🏡 Open House This Weekend | Berryessa, San Jose
+
+📍 1868 Anne Marie Court, San Jose
+📅 Saturday, Sept. 26 | 2–4 PM
+📅 Sunday, Sept. 27 | 2–4 PM
+
+3 Beds | 2 Baths | 1,320 SF | ~6,000 SF Lot
+💰 Recently reduced by $200K
+
+Come tour this inviting single-story home featuring a bright, functional layout, refreshed interiors, spacious living areas, a large backyard deck, and a quiet court location.
+
+Listing Agent: Patrice Carper
+Open House Hosted by Jason Lim
+REALTOR® | Compass
+DRE #02444964
+
+Come by this weekend and check it out!`,
+    category: "Buying",
+    coverImage: "/images/blog/open-house/1868-anne-marie-court.jpg",
+    coverFit: "contain",
+    publishedAt: "2026-09-25",
+    readingMinutes: 2,
+    tags: [
+      "open house",
+      "berryessa",
+      "san jose",
+      "anne marie court",
+      "compass",
+    ],
+  },
+  {
     slug: "san-jose-neighborhood-home-values-september-2026",
     title: "San Jose Neighborhood Home Values — September 2026",
     excerpt:
