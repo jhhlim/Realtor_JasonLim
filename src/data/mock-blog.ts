@@ -5,6 +5,40 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "super-bowl-lx-suites-experience-2026",
+    title: "Super Bowl LX from the Suites: What a Game",
+    excerpt:
+      "February 8, 2026 — Seahawks 29, Patriots 13. Suite seats, a packed Levi’s Stadium, and a great Bad Bunny halftime. Lifestyle note from an unforgettable Bay Area Super Bowl.",
+    content: `Another lifestyle note — this one from Super Bowl Sunday in our own backyard.
+
+I got to experience Super Bowl LX from the suites on February 8, 2026. Amazing game, amazing energy. Final score: Seattle Seahawks 29, New England Patriots 13.
+
+Being in a suite for a Super Bowl is a different level — the view over the field, the crowd, the smoke and lights when the stadium erupts. Levi’s Stadium felt electric all day, from Gate F walk-up through kickoff and beyond.
+
+Halftime delivery from Bad Bunny was a great performance — the kind of show that matches the scale of the night.
+
+Grateful for the chance to be there. Big game, home turf, unforgettable experience.`,
+    category: "Miscellaneous",
+    coverImage: "/images/blog/super-bowl-lx/suite-view.png",
+    gallery: [
+      {
+        src: "/images/blog/super-bowl-lx/selfie-gate-f.png",
+        alt: "Outside Levi’s Stadium at Gate F for Super Bowl LX",
+      },
+    ],
+    publishedAt: "2026-09-26",
+    readingMinutes: 2,
+    tags: [
+      "super bowl",
+      "lifestyle",
+      "seahawks",
+      "patriots",
+      "bad bunny",
+      "levi stadium",
+      "miscellaneous",
+    ],
+  },
+  {
     slug: "open-house-1868-anne-marie-court-berryessa",
     title: "Open House This Weekend | 1868 Anne Marie Court, Berryessa",
     excerpt:
