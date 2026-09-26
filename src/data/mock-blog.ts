@@ -26,7 +26,7 @@ Grateful for the chance to be there. Big game, home turf, unforgettable experien
         alt: "Outside Levi’s Stadium at Gate F for Super Bowl LX",
       },
     ],
-    publishedAt: "2026-09-26",
+    publishedAt: "2026-02-08",
     readingMinutes: 2,
     tags: [
       "super bowl",
