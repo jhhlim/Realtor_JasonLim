@@ -40,6 +40,65 @@ Come by this weekend and check it out!`,
     ],
   },
   {
+    slug: "global-forces-shaping-silicon-valley-real-estate-sept-2026",
+    title: "Global Forces Shaping Silicon Valley Real Estate",
+    excerpt:
+      "Beyond mortgage rates and inventory: India’s talent & wealth engine, Chinese demand for U.S. assets, and a more selective high-skilled immigration pipeline — what it could mean for Bay Area housing.",
+    content: `As we head into the weekend, I wanted to share a bigger-picture perspective on something I’ve been watching closely: the global forces shaping Silicon Valley real estate.
+
+Mortgage rates and inventory dominate most real estate headlines. But here in the Bay Area, some of the most important long-term housing trends actually originate thousands of miles away.
+
+Three structural forces are worth watching: India’s growing economic weight, Chinese demand for U.S. assets, and changes to America’s high-skilled immigration pipeline.
+
+1. India: A Growing Talent & Wealth Engine
+
+India has one of the world’s largest working-age populations and continues to play an increasingly important role in technology, engineering and entrepreneurship. That matters in Silicon Valley.
+
+Over time, growth in high-skilled employment and household wealth can translate into housing demand in employment centers such as San Jose, Santa Clara and the broader South Bay.
+
+India is already one of the largest sources of international buyers of U.S. residential real estate, accounting for roughly 9% of foreign purchases in the latest NAR data. The question I’m watching is how India’s continued economic development translates into talent, entrepreneurship and capital formation in Silicon Valley over the next decade.
+
+2. China: Capital, Diversification & California
+
+China presents a different macro story. After decades of extraordinary property development, China’s housing market has entered a period of slower growth and adjustment. For some households with international mobility and capital, geographic diversification can therefore become increasingly attractive.
+
+California remains particularly relevant. Chinese buyers represented about 11% of international U.S. home purchases in the latest NAR data, but they accounted for approximately $7.6 billion in purchases — the largest dollar volume of any country. Their average U.S. purchase was roughly $1 million, and California remains one of their leading destinations.
+
+That doesn’t mean Chinese capital automatically pushes Bay Area prices higher. But it does mean international capital remains another source of demand that differentiates California from many U.S. housing markets.
+
+3. Silicon Valley’s Talent Pipeline Is Becoming More Selective
+
+There is another side to the equation: immigration policy.
+
+Universities continue to bring international students into the United States through the F-1 pathway, with STEM graduates potentially remaining through OPT before transitioning into longer-term employment. But that transition is becoming more complicated and expensive.
+
+Recent H-1B policy changes include a $100,000 payment requirement for certain new petitions involving workers entering from outside the United States, subject to exceptions. This could change how companies recruit internationally and may increasingly favor highly compensated or strategically important workers.
+
+For Silicon Valley housing, the important question isn’t simply whether immigration rises or falls. It’s who is coming, what industries employ them, what they earn, and whether they remain here long enough to become homeowners.
+
+What Does This Mean for Bay Area Real Estate?
+
+None of these trends guarantees higher home prices. Interest rates, employment, new construction, stock-market wealth, affordability and local inventory can overwhelm international trends in any particular year.
+
+But Silicon Valley isn’t an average American housing market. It sits at the intersection of technology, immigration, global capital and some of the highest household incomes in the country.
+
+That’s why I believe understanding San Jose real estate requires looking beyond this week’s mortgage rate.
+
+I’ll continue breaking down the macroeconomic forces behind our local housing market — and translating them into what they could mean for buyers, sellers and homeowners in Silicon Valley.`,
+    category: "Bay Area",
+    coverImage: cover("photo-1486406146926-c627a92ad1ab"),
+    publishedAt: "2026-09-25",
+    readingMinutes: 5,
+    tags: [
+      "silicon valley",
+      "bay area",
+      "international buyers",
+      "immigration",
+      "market insights",
+      "september 2026",
+    ],
+  },
+  {
     slug: "san-jose-neighborhood-home-values-september-2026",
     title: "San Jose Neighborhood Home Values — September 2026",
     excerpt:
