@@ -10,6 +10,7 @@ import { Section } from "@/components/shared/section";
 import { siteConfig } from "@/config/site";
 import { mockBlogPosts } from "@/data/mock-blog";
 import type { BlogPost } from "@/types";
+import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -42,10 +43,15 @@ export default async function BlogIndexPage({
       ? (categoryParam as BlogPost["category"])
       : "All";
 
-  const posts =
+  const filtered =
     active === "All"
       ? mockBlogPosts
       : mockBlogPosts.filter((p) => p.category === active);
+
+  const posts = [...filtered].sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+  );
 
   return (
     <>
@@ -98,11 +104,7 @@ export default async function BlogIndexPage({
                       <span>{post.readingMinutes} min read</span>
                       <span aria-hidden>·</span>
                       <time dateTime={post.publishedAt}>
-                        {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                        })}
+                        {formatDate(post.publishedAt)}
                       </time>
                     </div>
                     <h2 className="font-display text-xl font-semibold tracking-tight group-hover:text-accent">

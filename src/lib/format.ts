@@ -43,7 +43,16 @@ export function formatDate(
     year: "numeric",
   },
 ): string {
-  const date = value instanceof Date ? value : new Date(value);
+  let date: Date;
+  if (value instanceof Date) {
+    date = value;
+  } else if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    // Treat YYYY-MM-DD as a local calendar date (avoid UTC day-shift).
+    const [y, m, d] = value.split("-").map(Number);
+    date = new Date(y, m - 1, d);
+  } else {
+    date = new Date(value);
+  }
   if (Number.isNaN(date.getTime())) return "";
   return new Intl.DateTimeFormat("en-US", opts).format(date);
 }

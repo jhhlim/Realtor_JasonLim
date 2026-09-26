@@ -9,6 +9,7 @@ import { Container } from "@/components/shared/container";
 import { siteConfig } from "@/config/site";
 import { mockBlogPosts } from "@/data/mock-blog";
 import { BrandName } from "@/components/layout/brand-name";
+import { formatDate } from "@/lib/format";
 
 export function generateStaticParams() {
   return mockBlogPosts.map((post) => ({ slug: post.slug }));
@@ -66,7 +67,7 @@ export default async function BlogArticlePage({
             </h1>
             <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
               <time dateTime={post.publishedAt}>
-                {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                {formatDate(post.publishedAt, {
                   month: "long",
                   day: "numeric",
                   year: "numeric",

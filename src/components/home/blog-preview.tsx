@@ -13,6 +13,13 @@ interface BlogPreviewProps {
 }
 
 export function BlogPreview({ posts = [] }: BlogPreviewProps) {
+  const latest = [...posts]
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+    )
+    .slice(0, 3);
+
   return (
     <Section
       eyebrow="Insights"
@@ -27,9 +34,9 @@ export function BlogPreview({ posts = [] }: BlogPreviewProps) {
         </Button>
       }
     >
-      {posts.length ? (
+      {latest.length ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {posts.slice(0, 3).map((post, index) => (
+          {latest.map((post, index) => (
             <FadeIn key={post.slug} delay={index * 0.05}>
               <Link
                 href={`/blog/${post.slug}`}
