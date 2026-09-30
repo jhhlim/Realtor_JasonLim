@@ -5,6 +5,44 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "uc-employee-shared-appreciation-down-payment-assistance",
+    title: "UC Employees: Shared Appreciation & 20% Down Payment Assistance",
+    excerpt:
+      "If you work for the University of California, you may qualify for shared appreciation education and down payment assistance — key criteria and how to get started.",
+    content: `Are you a University of California employee or staff member thinking about buying a home in the Bay Area?
+
+There is a UC shared appreciation path that can include 20% down payment assistance for buyers who meet the program criteria. I partner with lending specialist Marc Yu so we can walk you through eligibility and next steps.
+
+Program criteria (high level):
+• First-time homebuyer — generally no homeownership in the last 3 years. Exception: in Santa Cruz, San Mateo, San Benito, Santa Clara, and Monterey counties, the lookback is 12 months.
+• Worked in the UC system for at least 5 years
+• Completed the UC Shared Appreciation Education Course
+
+If that sounds like you — or you’re not sure and want to check — send me a note or download the one-page flyer below. Happy to talk through neighborhoods, commute, and how this fits your timeline.
+
+Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim@compass.com
+Marc Yu · NMLS #349732 · (415) 769-1294 · marc.yu@originpoint.com`,
+    category: "Buying",
+    coverImage: "/images/blog/uc-employee-shared-appreciation/flyer.jpg",
+    coverFit: "contain",
+    attachments: [
+      {
+        label: "Download UC employee flyer (PDF)",
+        href: "/docs/uc-employee-shared-appreciation-flyer.pdf",
+      },
+    ],
+    publishedAt: "2026-09-30",
+    readingMinutes: 3,
+    tags: [
+      "uc",
+      "university of california",
+      "first-time buyer",
+      "down payment assistance",
+      "shared appreciation",
+      "bay area",
+    ],
+  },
+  {
     slug: "super-bowl-lx-suites-experience-2026",
     title: "Super Bowl LX from the Suites: What a Game",
     excerpt:

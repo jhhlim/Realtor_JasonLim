@@ -4,12 +4,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { CtaBanner } from "@/components/shared/cta-banner";
 import { Container } from "@/components/shared/container";
 import { siteConfig } from "@/config/site";
 import { mockBlogPosts } from "@/data/mock-blog";
 import { BrandName } from "@/components/layout/brand-name";
 import { formatDate } from "@/lib/format";
+import { Download } from "lucide-react";
 
 export function generateStaticParams() {
   return mockBlogPosts.map((post) => ({ slug: post.slug }));
@@ -114,6 +116,18 @@ export default async function BlogArticlePage({
               <p key={paragraph.slice(0, 40)}>{paragraph}</p>
             ))}
           </div>
+          {post.attachments && post.attachments.length > 0 ? (
+            <div className="mt-8 flex flex-wrap gap-3">
+              {post.attachments.map((file) => (
+                <Button key={file.href} asChild variant="accent" size="lg">
+                  <a href={file.href} download target="_blank" rel="noopener noreferrer">
+                    <Download className="mr-2 h-4 w-4" />
+                    {file.label}
+                  </a>
+                </Button>
+              ))}
+            </div>
+          ) : null}
           {post.gallery && post.gallery.length > 0 ? (
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {post.gallery.map((photo) => (

@@ -207,6 +207,8 @@ export interface BlogPost {
   gallery?: { src: string; alt: string }[];
   /** Use "contain" for tall infographics so the full graphic is visible. */
   coverFit?: "cover" | "contain";
+  /** Optional downloadable files (PDF flyers, etc.). */
+  attachments?: { label: string; href: string }[];
   publishedAt: string;
   readingMinutes: number;
   tags: string[];
