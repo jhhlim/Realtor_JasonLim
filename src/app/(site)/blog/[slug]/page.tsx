@@ -11,6 +11,7 @@ import { siteConfig } from "@/config/site";
 import { mockBlogPosts } from "@/data/mock-blog";
 import { BrandName } from "@/components/layout/brand-name";
 import { formatDate } from "@/lib/format";
+import { BlogContent } from "@/features/blog/blog-content";
 import { Download } from "lucide-react";
 
 export function generateStaticParams() {
@@ -47,11 +48,6 @@ export default async function BlogArticlePage({
   const { slug } = await params;
   const post = mockBlogPosts.find((p) => p.slug === slug);
   if (!post) notFound();
-
-  const paragraphs = post.content
-    .split(/\n\n+/)
-    .map((p) => p.trim())
-    .filter(Boolean);
 
   return (
     <>
@@ -111,11 +107,7 @@ export default async function BlogArticlePage({
               />
             )}
           </div>
-          <div className="space-y-5 text-base leading-relaxed text-foreground/90 sm:text-lg">
-            {paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-            ))}
-          </div>
+          <BlogContent content={post.content} />
           {post.attachments && post.attachments.length > 0 ? (
             <div className="mt-8 flex flex-wrap gap-3">
               {post.attachments.map((file) => (
