@@ -55,7 +55,7 @@ const hubs = [
       { label: "Buyer process", href: "/buy" },
       { label: "Seller process", href: "/sell" },
       { label: "First-time buyer notes", href: "/buy#first-time" },
-      { label: "Request buyer guide PDF", href: `mailto:${siteConfig.contact.email}?subject=Buyer%20Guide` },
+      { label: "Download buyer guide PDF", href: "/docs/buyerguide.pdf" },
     ],
   },
   {
@@ -131,17 +131,30 @@ export default function ResourcesPage() {
                     </div>
                   </div>
                   <ul className="space-y-2">
-                    {hub.links.map((link) => (
-                      <li key={link.href + link.label}>
-                        <Link
-                          href={link.href}
-                          className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-accent"
-                        >
-                          {link.label}
-                          <ArrowUpRight className="h-3.5 w-3.5" />
-                        </Link>
-                      </li>
-                    ))}
+                    {hub.links.map((link) => {
+                      const isPdf = link.href.endsWith(".pdf");
+                      const className =
+                        "inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-accent";
+                      return (
+                        <li key={link.href + link.label}>
+                          {isPdf ? (
+                            <a
+                              href={link.href}
+                              download="Jason-Lim-First-Time-Buyer-Guide.pdf"
+                              className={className}
+                            >
+                              {link.label}
+                              <ArrowUpRight className="h-3.5 w-3.5" />
+                            </a>
+                          ) : (
+                            <Link href={link.href} className={className}>
+                              {link.label}
+                              <ArrowUpRight className="h-3.5 w-3.5" />
+                            </Link>
+                          )}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </CardContent>
               </Card>

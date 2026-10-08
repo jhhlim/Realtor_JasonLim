@@ -116,13 +116,9 @@ const faqs = [
   },
 ];
 
-export default function BuyPage() {
-  const guideMailto = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(
-    "First-Time Buyer Guide PDF",
-  )}&body=${encodeURIComponent(
-    "Hi Jason — please send me the first-time buyer guide when available.",
-  )}`;
+const BUYER_GUIDE_HREF = "/docs/buyerguide.pdf";
 
+export default function BuyPage() {
   return (
     <>
       <PageHero
@@ -193,14 +189,14 @@ export default function BuyPage() {
                   Download the first-time buyer guide
                 </h3>
                 <p className="max-w-xl text-sm text-muted-foreground">
-                  PDF checklist covering pre-approval, offer strategy, and closing — email for
-                  the latest version (placeholder until hosted file is live).
+                  PDF checklist covering pre-approval, offer strategy, and closing — download
+                  instantly and reach out if you want help applying it to your search.
                 </p>
               </div>
               <Button asChild size="lg" variant="accent">
-                <a href={guideMailto}>
+                <a href={BUYER_GUIDE_HREF} download="Jason-Lim-First-Time-Buyer-Guide.pdf">
                   <Download className="h-4 w-4" />
-                  Request guide
+                  Download guide
                 </a>
               </Button>
             </CardContent>
