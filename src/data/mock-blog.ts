@@ -5,24 +5,24 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
-    slug: "global-economy-remains-resilient-hitachi-hri-outlook-oct-2026",
+    slug: "global-economy-remains-resilient-outlook-oct-2026",
     title:
-      "Global Economy Remains Resilient: What Hitachi’s Outlook Means for Silicon Valley Housing",
+      "Global Economy Remains Resilient: Short-Term Outlook Notes for Silicon Valley Housing",
     excerpt:
-      "Hitachi Research Institute still sees ~3% global growth despite Middle East risk, higher rates, and China’s slowdown — plus AI-led U.S. resilience and mid-6% India growth. Here’s the short-term map and why it matters locally.",
+      "A Japanese conglomerate research outlook still sees ~3% global growth despite Middle East risk, higher rates, and China’s slowdown — plus AI-led U.S. resilience and mid-6% India growth. Here’s the map and why it matters locally.",
     content: `Global Macro | Short-term Economic Outlook
 
 A useful lens for Silicon Valley buyers and sellers isn’t only this week’s mortgage quote — it’s whether the global backdrop stays resilient enough to support tech investment, jobs, and household wealth.
 
-Hitachi Research Institute’s latest short-term outlook (Sep. 29, 2026) frames the world as still growing near 3%, with important regional differences. Here’s a concise summary, then what I watch for Bay Area real estate.
+A recent short-term outlook from a major Japanese industrial conglomerate’s research arm frames the world as still growing near 3%, with important regional differences. Here’s a concise summary, then what I watch for Bay Area real estate.
 
 1. Global — ~3% growth despite risks
 
-Middle East uncertainty is expected to continue, but a prolonged extreme oil spike is not the base case. AI-related investment and semiconductor demand are key supports. The flip side: rising long-term rates (fiscal expansion, bond supply, inflation worries) and the risk of stagflation if AI/semiconductor trading corrects, food prices jump with extreme weather, or energy shocks force tighter policy. Hitachi projects global real GDP at about 3.1% in 2026 and 3.2% in 2027.
+Middle East uncertainty is expected to continue, but a prolonged extreme oil spike is not the base case. AI-related investment and semiconductor demand are key supports. The flip side: rising long-term rates (fiscal expansion, bond supply, inflation worries) and the risk of stagflation if AI/semiconductor trading corrects, food prices jump with extreme weather, or energy shocks force tighter policy. The report projects global real GDP at about 3.1% in 2026 and 3.2% in 2027.
 
 2. U.S. — resilient ~2% growth, AI investment vs. higher rates
 
-U.S. growth stays supported by business investment tied to AI demand (data centers, servers, related equipment). Costs are rising with AI-related goods prices. Hitachi notes the Fed’s September 2026 hike and expects further tightening by year-end — higher rates and Treasury yields can restrain investment and consumption. Local pushback on data-center construction is also flagged as a risk. U.S. real GDP is projected around 2.1% in both 2026 and 2027.
+U.S. growth stays supported by business investment tied to AI demand (data centers, servers, related equipment). Costs are rising with AI-related goods prices. The outlook notes the Fed’s September 2026 hike and expects further tightening by year-end — higher rates and Treasury yields can restrain investment and consumption. Local pushback on data-center construction is also flagged as a risk. U.S. real GDP is projected around 2.1% in both 2026 and 2027.
 
 3. Europe — defense helps; heatwaves and inflation slow the pace
 
@@ -30,11 +30,11 @@ Euro-area recovery is gradual, helped by defense and infrastructure spending, bu
 
 4. China — exports in pockets, domestic demand still soft
 
-IT, semiconductors, and auto-related exports (including to ASEAN) are bright spots, but traditional manufacturing margins and overall investment remain weak. Local-government stress and a protracted real-estate inventory adjustment continue to weigh on confidence and consumption. Hitachi projects about 4.2% growth in 2026 and 4.0% in 2027 — still expansion, but a slower China story.
+IT, semiconductors, and auto-related exports (including to ASEAN) are bright spots, but traditional manufacturing margins and overall investment remain weak. Local-government stress and a protracted real-estate inventory adjustment continue to weigh on confidence and consumption. Growth is projected around 4.2% in 2026 and 4.0% in 2027 — still expansion, but a slower China story.
 
 5. Japan — recovery continues; watch a “Japan sell-off” risk
 
-Japan’s recovery holds, with AI-related demand supporting corporate earnings even as inflation temporarily near ~3% pressures domestic demand. The Bank of Japan is expected to hike more frequently. A key risk: further rate rises tied to fiscal/funding concerns could unsettle markets — the “Japan sell-off” scenario Hitachi highlights. Growth is projected under 1% for 2026–2027.
+Japan’s recovery holds, with AI-related demand supporting corporate earnings even as inflation temporarily near ~3% pressures domestic demand. The Bank of Japan is expected to hike more frequently. A key risk highlighted in the report: further rate rises tied to fiscal/funding concerns could unsettle markets — a “Japan sell-off” scenario. Growth is projected under 1% for 2026–2027.
 
 6. India & APAC — India mid-6%; ASEAN-5 high-4%
 
@@ -49,8 +49,6 @@ Why this matters for Silicon Valley real estate
 
 None of this replaces neighborhood comps, inventory, or your personal timeline. It does help explain why Silicon Valley housing often behaves differently from the average U.S. metro.
 
-Source: Hitachi Research Institute, “The global economy remains resilient — hopes for sustained 3% growth despite risks” (Sep. 29, 2026). https://www.hitachi-hri.com/english/outlook/s2609.html
-
 Questions about how macro conditions map to your buy, sell, or hold decision in the South Bay? Happy to talk it through.
 
 Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim@compass.com`,
@@ -60,7 +58,7 @@ Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim
     readingMinutes: 5,
     tags: [
       "global macro",
-      "hitachi research institute",
+      "economic outlook",
       "ai investment",
       "interest rates",
       "india",
