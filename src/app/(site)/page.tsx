@@ -21,7 +21,11 @@ export default async function HomePage() {
     provider.getRecentSales(6),
   ]);
 
-  const latestReport = mockMarketReports[0] ?? null;
+  const latestReport =
+    [...mockMarketReports].sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+    )[0] ?? null;
 
   return (
     <>

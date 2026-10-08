@@ -2,6 +2,21 @@ import type { MarketReport } from "@/types";
 
 export const mockMarketReports: MarketReport[] = [
   {
+    id: "mr-2026-10-04-scc-detached",
+    title: "Santa Clara County Detached Homes — October 4, 2026",
+    slug: "scc-detached-homes-october-4-2026",
+    summary:
+      "SCC detached inventory edged down 2% week over week while new sales rose 3%. Listings 1,356 vs 1,378 last week; 253 new listings and 150 new sales in the past 7 days.",
+    publishedAt: "2026-10-04",
+    region: "Santa Clara County",
+    stats: [
+      { label: "Current Listings", value: "1,356", change: "−2% WoW" },
+      { label: "New Listings (7d)", value: "253", change: "−2% WoW" },
+      { label: "New Sales (7d)", value: "150", change: "+3% WoW" },
+      { label: "Prior Week Listings", value: "1,378", change: "Sept 27" },
+    ],
+  },
+  {
     id: "mr-2026-q2-sv",
     title: "Silicon Valley Q2 2026 Market Report",
     slug: "silicon-valley-q2-2026",

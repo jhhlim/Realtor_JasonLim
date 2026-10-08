@@ -103,16 +103,38 @@ export default async function MarketReportDetailPage({
       >
         <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-muted-foreground text-pretty">
           <p>{report.summary}</p>
-          <p>
-            For buyers, focus on neighborhoods where inventory and days on market create room to
-            negotiate — while still competing hard in school-driven pockets. For sellers, launch
-            pricing and presentation remain the highest-leverage decisions in the first two weeks
-            on market.
-          </p>
-          <p>
-            This report is illustrative mock data for the website build. Replace with live MLS
-            and analytics pipelines before publishing externally.
-          </p>
+          {report.slug === "scc-detached-homes-october-4-2026" ? (
+            <>
+              <p>
+                Compared with Sept. 27, Santa Clara County detached inventory cooled
+                slightly while sales activity improved. That mix can keep select
+                pockets competitive even as overall listings remain higher than the
+                ultra-tight years earlier in the cycle.
+              </p>
+              <p>
+                City-level listings and pendings on Oct. 4 show meaningful differences:
+                Palo Alto and Santa Clara had relatively strong pending activity,
+                Central San Jose carried the largest listing count with lighter
+                pendings, and thinner Peninsula/foothill inventory (Los Altos, Los
+                Altos Hills, Mountain View) can still move quickly when priced to
+                market.
+              </p>
+              <p>
+                For buyers, focus on condition and price relative to nearby pendings.
+                For sellers, launch pricing and presentation remain the highest-leverage
+                decisions in the first two weeks on market.
+              </p>
+            </>
+          ) : (
+            <>
+              <p>
+                For buyers, focus on neighborhoods where inventory and days on market
+                create room to negotiate — while still competing hard in school-driven
+                pockets. For sellers, launch pricing and presentation remain the
+                highest-leverage decisions in the first two weeks on market.
+              </p>
+            </>
+          )}
           <Button asChild variant="outline">
             <Link href="/market-reports">
               <ArrowLeft className="h-4 w-4" />
