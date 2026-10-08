@@ -5,6 +5,68 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "stanford-faculty-staff-housing-homebuying-support",
+    title: "Stanford Faculty Staff Housing: Homebuying Support for Eligible Employees",
+    excerpt:
+      "Eligible Stanford faculty, executive staff, and clinician educators may access specialized loan programs, housing allowances, and certain Stanford housing purchase opportunities through FSH.",
+    content: `Did you know Stanford offers homebuying support for certain eligible employees?
+
+Through Stanford Faculty Staff Housing (FSH), eligible faculty, executive staff, and clinician educators may have access to specialized loan programs, housing allowances, and certain Stanford housing purchase opportunities.
+
+Eligibility depends on your appointment and the specific program, so checking with FSH is a helpful first step before planning your purchase.
+
+Explore the programs at https://fsh.stanford.edu/buy
+
+Considering a home near Stanford or elsewhere in Silicon Valley? Let’s talk about your home search.
+
+Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim@compass.com`,
+    category: "Buying",
+    coverImage: cover("photo-1562774053-701939374585"),
+    publishedAt: "2026-10-08",
+    readingMinutes: 2,
+    tags: [
+      "stanford",
+      "faculty staff housing",
+      "fsh",
+      "silicon valley",
+      "employee benefits",
+      "first-time buyer",
+    ],
+  },
+  {
+    slug: "prop-37-prop-3-schools-berryessa-elementary-closures",
+    title: "Prop 37, Prop 3, and Why School Funding Still Matters in San Jose",
+    excerpt:
+      "As demographics shift and elementary schools close — including three in Berryessa — Prop 37 and Prop 3 are part of the school-funding conversation for Bay Area families and homeowners.",
+    content: `School quality and school funding aren’t just education topics in Silicon Valley — they shape neighborhood demand, long-term home values, and where families choose to buy.
+
+As demographics change across San Jose, some elementary schools are facing enrollment pressure and closures. In Berryessa, three elementary school closures have put a spotlight on what happens when local enrollment shifts faster than campus capacity plans.
+
+That’s why statewide school funding measures matter locally. Propositions like Prop 37 and Prop 3 are part of the broader conversation about how California funds schools — and what resources districts have when they need to stabilize programs, modernize facilities, or adapt to changing student populations.
+
+For buyers and homeowners, a few practical takeaways:
+• Look beyond a single school rating — ask about enrollment trends, boundary changes, and district facility plans.
+• In areas seeing closures or consolidations, understand what that means for nearby campuses and commute patterns for families.
+• Funding outcomes can influence class sizes, programs, and campus investment over time — factors many buyers weigh heavily in San Jose and the South Bay.
+
+If you’re shopping in Berryessa or elsewhere in San Jose and want to talk through schools, neighborhoods, and what the current market looks like for your budget, I’m happy to help.
+
+Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim@compass.com`,
+    category: "Bay Area",
+    coverImage: cover("photo-1580582932707-520aed937b7b"),
+    publishedAt: "2026-10-08",
+    readingMinutes: 3,
+    tags: [
+      "prop 37",
+      "prop 3",
+      "schools",
+      "berryessa",
+      "san jose",
+      "elementary schools",
+      "demographics",
+    ],
+  },
+  {
     slug: "uc-employee-shared-appreciation-down-payment-assistance",
     title: "UC Employees: Shared Appreciation & 20% Down Payment Assistance",
     excerpt:
