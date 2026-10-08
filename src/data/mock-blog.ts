@@ -5,6 +5,58 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "california-homeownership-prop-13-prop-19-title-october-2026",
+    title: "October Homeownership Notes: Prop 13, Prop 19, Title & Keeping Property in the Family",
+    excerpt:
+      "Why similar homes have different tax bills, what Prop 19 means for 55+ moves and inherited homes, how title can affect taxes, and what to weigh before your next San Jose buy or sell.",
+    content: `Happy October. A few California homeownership points that often matter as much as purchase price — especially for long-term planning.
+
+Property taxes: why similar homes have different bills
+
+Under Prop 13, assessed value generally can’t rise more than about 2% a year until a change in ownership or new construction triggers reassessment. That’s why a longtime owner may pay far less than a new buyer next door.
+
+Prop 19 also expanded qualifying property-tax base transfers statewide. Eligible homeowners age 55+, people with severe disabilities, and certain disaster victims may transfer their tax base to another California home — subject to specific rules. Worth checking before a move-up or downsize.
+
+Inheriting a home: ownership can transfer; tax benefits may not
+
+Parents can still leave multiple properties to children, but inherited homes may be reassessed to current market value. Prop 19’s parent-child exclusion is limited: typically a qualifying primary residence, value caps, and timely filings.
+
+Example: a $2M home fully reassessed at inheritance can mean roughly $20,000/year in base property tax before local charges — plus insurance and maintenance. That math often decides whether keeping a property as a rental still works.
+
+How you hold title matters
+
+• Community property with right of survivorship — spousal ownership with automatic transfer to the surviving spouse
+• Joint tenancy — equal interests with survivorship
+• Tenancy in common — unequal shares allowed (e.g. 70/30), no automatic survivorship
+
+Title can also affect income-tax basis. A home bought decades ago for $100K and worth $2M when a spouse passes may get a different basis adjustment depending on how it’s held — separate from California property-tax reassessment rules.
+
+Keeping a home for your lifetime — and your children’s
+
+A funded living trust can help avoid probate, but a trust alone does not bypass Prop 19. Coordinating title, property taxes, income taxes, and estate planning is what helps families keep real estate across generations.
+
+San Jose housing & your next move
+
+San Jose continues to push new housing toward state goals, which over time can expand buyer options. Selling? I can help with prep, pricing, timing, Compass Market Ready Concierge, and a three-phase marketing plan. Buying? Let’s look past sticker price — HOA finances, insurance, property taxes, and assessments all shape true ownership cost.
+
+Questions about Prop 13/19, title, or your next move in Silicon Valley? Happy to talk.
+
+Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim@compass.com`,
+    category: "Bay Area",
+    coverImage: cover("photo-1560518883-ce09059eeffa"),
+    publishedAt: "2026-10-08",
+    readingMinutes: 4,
+    tags: [
+      "prop 13",
+      "prop 19",
+      "property taxes",
+      "title",
+      "estate planning",
+      "san jose",
+      "october 2026",
+    ],
+  },
+  {
     slug: "stanford-faculty-staff-housing-homebuying-support",
     title: "Stanford Faculty Staff Housing: Homebuying Support for Eligible Employees",
     excerpt:
