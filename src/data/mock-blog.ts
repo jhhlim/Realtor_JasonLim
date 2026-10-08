@@ -5,6 +5,63 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "scc-detached-homes-market-update-october-4-2026",
+    title: "Santa Clara County Detached Homes: Market Update — October 4, 2026",
+    excerpt:
+      "SCC detached inventory edged down 2% week over week while new sales picked up 3%. A snapshot of listings, pendings, and what it may mean for Silicon Valley buyers and sellers.",
+    content: `Market Update / Stats — October 4, 2026
+Santa Clara County · Detached homes
+
+Week-over-week snapshot (vs. Sept. 27):
+
+• Current listings: 1,356 (was 1,378) — down ~2%
+• New listings (past 7 days): 253 (was 257) — down ~2%
+• New sales (past 7 days): 150 (was 145) — up ~3%
+
+Takeaway: inventory cooled slightly while sales activity ticked up. That mix can keep select pockets competitive even as overall listings stay elevated versus the ultra-tight years earlier in the cycle.
+
+City / neighborhood listings & pendings (detached) — Oct. 4, 2026
+Listings (L) and pendings from the prior 7 days (P):
+
+• Almaden — L 36 / P 8
+• Cambrian — L 88 / P 8
+• Campbell — L 68 / P 10
+• Central San Jose — L 94 / P 4
+• Cupertino — L 57 / P 10
+• Los Altos — L 25 / P 8
+• Los Altos Hills — L 22 / P 2
+• Los Gatos / Monte Sereno — L 61 / P 9
+• Mountain View — L 30 / P 2
+• Palo Alto — L 44 / P 13
+• Santa Clara — L 69 / P 12
+• Saratoga — L 45 / P 6
+• Sunnyvale — L 47 / P 6
+• Willow Glen — L 79 / P 10
+
+What stands out this week:
+• Palo Alto and Santa Clara show relatively strong pending activity versus inventory — buyers are still engaging where product fits.
+• Central San Jose carries the largest listing count on this sheet, with lighter pendings — more room for negotiation depending on condition and price.
+• Premium Peninsula / foothill cities remain thinner on inventory (Los Altos, Los Altos Hills, Mountain View), so well-presented homes can still move when priced to market.
+
+Context from earlier in 2026: several of these cities started the year with far fewer listings. The broader story remains a market with more choice than 2021–2022, but not a uniform slowdown — micro-markets still diverge.
+
+If you’re buying or selling a detached home in Santa Clara County and want to translate these numbers into a pricing or offer strategy for your neighborhood, I’m happy to walk through it.
+
+Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim@compass.com`,
+    category: "Bay Area",
+    coverImage: cover("photo-1560518883-ce09059eeffa"),
+    publishedAt: "2026-10-04",
+    readingMinutes: 3,
+    tags: [
+      "market update",
+      "santa clara county",
+      "detached homes",
+      "silicon valley",
+      "october 2026",
+      "inventory",
+    ],
+  },
+  {
     slug: "california-homeownership-prop-13-prop-19-title-october-2026",
     title: "October Homeownership Notes: Prop 13, Prop 19, Title & Keeping Property in the Family",
     excerpt:
