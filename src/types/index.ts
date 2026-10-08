@@ -199,6 +199,7 @@ export interface BlogPost {
     | "Investment"
     | "Mortgage"
     | "Bay Area"
+    | "Global Macro"
     | "Technology"
     | "AI"
     | "Miscellaneous";

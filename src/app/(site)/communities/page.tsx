@@ -27,7 +27,7 @@ export default async function CommunitiesPage() {
       <PageHero
         eyebrow="Communities"
         title="Bay Area neighborhoods"
-        description="Compare median prices, year-over-year trends, and local character across Silicon Valley — from San Jose to Palo Alto."
+        description="Compare median prices, year-over-year trends, and local character across Silicon Valley — from San Jose to Palo Alto. Median prices shown include single-family homes, townhomes, and condos."
         primaryCta={{ label: "Search homes", href: "/listings" }}
         secondaryCta={{
           label: "Market reports",
@@ -41,6 +41,12 @@ export default async function CommunitiesPage() {
             Community guides are being prepared. Check back soon.
           </div>
         ) : (
+          <>
+          <p className="mb-6 text-sm text-muted-foreground">
+            Median prices include single-family homes, townhomes, and condos —
+            cities with more attached housing (like Milpitas and Santa Clara) often
+            show lower medians than SFH-only figures.
+          </p>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {neighborhoods.map((hood, index) => (
               <FadeIn key={hood.slug} delay={index * 0.04}>
@@ -69,7 +75,7 @@ export default async function CommunitiesPage() {
                   <div className="flex flex-1 items-center justify-between gap-3 p-4">
                     <div>
                       <p className="text-xs text-muted-foreground">
-                        Median price
+                        Median (SFH + townhomes + condos)
                       </p>
                       <p className="font-medium">
                         {formatCurrency(hood.medianPrice)}
@@ -88,6 +94,7 @@ export default async function CommunitiesPage() {
               </FadeIn>
             ))}
           </div>
+          </>
         )}
       </Section>
     </>

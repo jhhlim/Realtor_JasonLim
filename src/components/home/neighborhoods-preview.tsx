@@ -19,7 +19,7 @@ export function NeighborhoodsPreview({
     <Section
       eyebrow="Communities"
       title="Neighborhoods worth knowing"
-      description="From San Jose to Palo Alto — lifestyle, schools, and pricing context in one place."
+      description="From San Jose to Palo Alto — lifestyle, schools, and pricing context in one place. Medians include SFH, townhomes, and condos."
     >
       {neighborhoods.length ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -47,7 +47,9 @@ export function NeighborhoodsPreview({
                 </div>
                 <div className="flex items-center justify-between gap-3 p-4">
                   <div>
-                    <p className="text-xs text-muted-foreground">Median price</p>
+                    <p className="text-xs text-muted-foreground">
+                      Median (all home types)
+                    </p>
                     <p className="font-medium">{formatCurrency(hood.medianPrice)}</p>
                   </div>
                   <Badge

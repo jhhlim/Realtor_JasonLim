@@ -26,6 +26,7 @@ const categories: Array<BlogPost["category"] | "All"> = [
   "Investment",
   "Mortgage",
   "Bay Area",
+  "Global Macro",
   "Technology",
   "AI",
   "Miscellaneous",

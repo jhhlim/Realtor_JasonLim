@@ -138,7 +138,7 @@ export default async function CommunityPage({ params }: PageProps) {
         <div className="mt-10 grid gap-4 sm:grid-cols-3">
           {[
             {
-              label: "Median price",
+              label: "Median (SFH + townhomes + condos)",
               value: formatCurrency(neighborhood.medianPrice),
             },
             {
@@ -160,6 +160,11 @@ export default async function CommunityPage({ params }: PageProps) {
             </FadeIn>
           ))}
         </div>
+        <p className="mt-3 text-xs text-muted-foreground">
+          Median includes single-family homes, townhomes, and condos. Cities with
+          more attached housing (e.g. Milpitas, Santa Clara) often read lower than
+          SFH-only medians.
+        </p>
 
         <FadeIn delay={0.1} className="mt-8">
           <PropertyMapDynamic

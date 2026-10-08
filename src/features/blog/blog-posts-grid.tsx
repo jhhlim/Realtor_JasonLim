@@ -19,8 +19,10 @@ export const BLOG_CATEGORIES = [
   "Investment",
   "Mortgage",
   "Bay Area",
+  "Global Macro",
   "Technology",
   "AI",
+  "Miscellaneous",
 ] as const;
 
 type Category = (typeof BLOG_CATEGORIES)[number];

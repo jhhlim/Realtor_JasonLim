@@ -5,6 +5,71 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "global-economy-remains-resilient-hitachi-hri-outlook-oct-2026",
+    title:
+      "Global Economy Remains Resilient: What Hitachi’s Outlook Means for Silicon Valley Housing",
+    excerpt:
+      "Hitachi Research Institute still sees ~3% global growth despite Middle East risk, higher rates, and China’s slowdown — plus AI-led U.S. resilience and mid-6% India growth. Here’s the short-term map and why it matters locally.",
+    content: `Global Macro | Short-term Economic Outlook
+
+A useful lens for Silicon Valley buyers and sellers isn’t only this week’s mortgage quote — it’s whether the global backdrop stays resilient enough to support tech investment, jobs, and household wealth.
+
+Hitachi Research Institute’s latest short-term outlook (Sep. 29, 2026) frames the world as still growing near 3%, with important regional differences. Here’s a concise summary, then what I watch for Bay Area real estate.
+
+1. Global — ~3% growth despite risks
+
+Middle East uncertainty is expected to continue, but a prolonged extreme oil spike is not the base case. AI-related investment and semiconductor demand are key supports. The flip side: rising long-term rates (fiscal expansion, bond supply, inflation worries) and the risk of stagflation if AI/semiconductor trading corrects, food prices jump with extreme weather, or energy shocks force tighter policy. Hitachi projects global real GDP at about 3.1% in 2026 and 3.2% in 2027.
+
+2. U.S. — resilient ~2% growth, AI investment vs. higher rates
+
+U.S. growth stays supported by business investment tied to AI demand (data centers, servers, related equipment). Costs are rising with AI-related goods prices. Hitachi notes the Fed’s September 2026 hike and expects further tightening by year-end — higher rates and Treasury yields can restrain investment and consumption. Local pushback on data-center construction is also flagged as a risk. U.S. real GDP is projected around 2.1% in both 2026 and 2027.
+
+3. Europe — defense helps; heatwaves and inflation slow the pace
+
+Euro-area recovery is gradual, helped by defense and infrastructure spending, but H2 2026 looks softer amid high energy prices and heatwave-driven electricity costs. More ECB (and BOE) tightening is expected. Growth stays modest — roughly ~1% range for the euro area and UK across 2026–2027.
+
+4. China — exports in pockets, domestic demand still soft
+
+IT, semiconductors, and auto-related exports (including to ASEAN) are bright spots, but traditional manufacturing margins and overall investment remain weak. Local-government stress and a protracted real-estate inventory adjustment continue to weigh on confidence and consumption. Hitachi projects about 4.2% growth in 2026 and 4.0% in 2027 — still expansion, but a slower China story.
+
+5. Japan — recovery continues; watch a “Japan sell-off” risk
+
+Japan’s recovery holds, with AI-related demand supporting corporate earnings even as inflation temporarily near ~3% pressures domestic demand. The Bank of Japan is expected to hike more frequently. A key risk: further rate rises tied to fiscal/funding concerns could unsettle markets — the “Japan sell-off” scenario Hitachi highlights. Growth is projected under 1% for 2026–2027.
+
+6. India & APAC — India mid-6%; ASEAN-5 high-4%
+
+India remains domestic-demand led (investment and consumption), with external demand also helped by stronger U.S. export access after a de facto tariff reduction. Food-price / weather-driven inflation is a watch item. Growth is projected around 6.4% (FY2026) and 6.5% (FY2027). In APAC, Taiwan’s semiconductor export strength stands out; ASEAN-5 as a whole is projected in the high-4% range (~4.7–4.8%).
+
+Why this matters for Silicon Valley real estate
+
+• AI investment is not just a stock-market story — it underpins local employment, equity wealth, and housing demand in San Jose, Santa Clara, Sunnyvale, and nearby corridors.
+• Higher U.S. rates remain the main near-term headwind for affordability and transaction volume, even if incomes and limited supply keep values relatively resilient.
+• India’s mid-6% growth path reinforces the longer-term talent and international-buyer channel I’ve written about before.
+• China’s slower domestic/property cycle is a reminder that “global capital” is uneven — diversification demand can coexist with softer outbound flows in some years.
+
+None of this replaces neighborhood comps, inventory, or your personal timeline. It does help explain why Silicon Valley housing often behaves differently from the average U.S. metro.
+
+Source: Hitachi Research Institute, “The global economy remains resilient — hopes for sustained 3% growth despite risks” (Sep. 29, 2026). https://www.hitachi-hri.com/english/outlook/s2609.html
+
+Questions about how macro conditions map to your buy, sell, or hold decision in the South Bay? Happy to talk it through.
+
+Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim@compass.com`,
+    category: "Global Macro",
+    coverImage: cover("photo-1611974789855-9c2a0a7236a3"),
+    publishedAt: "2026-10-08",
+    readingMinutes: 5,
+    tags: [
+      "global macro",
+      "hitachi research institute",
+      "ai investment",
+      "interest rates",
+      "india",
+      "china",
+      "silicon valley",
+      "october 2026",
+    ],
+  },
+  {
     slug: "california-homeownership-prop-13-prop-19-title-october-2026",
     title: "October Homeownership Notes: Prop 13, Prop 19, Title & Keeping Property in the Family",
     excerpt:
@@ -271,11 +336,12 @@ But Silicon Valley isn’t an average American housing market. It sits at the in
 That’s why I believe understanding San Jose real estate requires looking beyond this week’s mortgage rate.
 
 I’ll continue breaking down the macroeconomic forces behind our local housing market — and translating them into what they could mean for buyers, sellers and homeowners in Silicon Valley.`,
-    category: "Bay Area",
+    category: "Global Macro",
     coverImage: cover("photo-1486406146926-c627a92ad1ab"),
     publishedAt: "2026-09-25",
     readingMinutes: 5,
     tags: [
+      "global macro",
       "silicon valley",
       "bay area",
       "international buyers",
