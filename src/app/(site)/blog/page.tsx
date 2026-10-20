@@ -111,7 +111,7 @@ export default async function BlogIndexPage({
                     <h2 className="font-display text-xl font-semibold tracking-tight group-hover:text-accent">
                       {post.title}
                     </h2>
-                    <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                    <p className="text-sm leading-relaxed text-muted-foreground">
                       {post.excerpt}
                     </p>
                   </CardContent>

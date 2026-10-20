@@ -25,25 +25,23 @@ export function FeaturedMarketArticle({ post }: FeaturedMarketArticleProps) {
       className="bg-gradient-to-b from-slate-soft/70 to-background dark:from-card/25"
     >
       <FadeIn>
-        <Card className="overflow-hidden border-border/80 shadow-lift">
-          <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="relative aspect-[16/10] bg-secondary lg:aspect-auto lg:min-h-[360px]">
+        <Card className="border-border/80 shadow-lift">
+          <Link href={`/blog/${post.slug}`} className="group block">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-t-xl bg-secondary sm:aspect-[2/1]">
               <Image
                 src={post.coverImage}
                 alt={post.title}
                 fill
                 priority
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 58vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                sizes="(max-width: 1024px) 100vw, 1100px"
               />
             </div>
-            <CardContent className="flex flex-col justify-center gap-5 p-6 sm:p-8 lg:p-10">
-              <div className="flex flex-wrap items-center gap-2">
+            <CardContent className="space-y-4 p-6 sm:p-8 lg:p-10">
+              <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                 <Badge variant="secondary">Market Insights</Badge>
-                <time
-                  dateTime={post.publishedAt}
-                  className="text-sm text-muted-foreground"
-                >
+                <span aria-hidden>·</span>
+                <time dateTime={post.publishedAt}>
                   {formatDate(post.publishedAt, {
                     month: "long",
                     day: "numeric",
@@ -51,35 +49,28 @@ export function FeaturedMarketArticle({ post }: FeaturedMarketArticleProps) {
                   })}
                 </time>
               </div>
-              <div className="space-y-3">
-                <h3 className="font-display text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="transition-colors hover:text-accent"
-                  >
-                    {post.title}
-                  </Link>
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground text-pretty sm:text-base">
-                  {post.excerpt}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  By <BrandName /> | REALTOR® · {siteConfig.brokerage.name} ·{" "}
-                  {siteConfig.license.dre}
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3 pt-1">
-                <Button asChild variant="accent" size="lg">
-                  <Link href={`/blog/${post.slug}`}>
-                    Read the full update
-                    <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/blog">Explore market insights</Link>
-                </Button>
-              </div>
+              <h3 className="font-display text-2xl font-semibold tracking-tight text-balance transition-colors group-hover:text-accent sm:text-3xl lg:text-4xl">
+                {post.title}
+              </h3>
+              <p className="max-w-3xl text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
+                {post.excerpt}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                By <BrandName /> | REALTOR® · {siteConfig.brokerage.name} ·{" "}
+                {siteConfig.license.dre}
+              </p>
             </CardContent>
+          </Link>
+          <div className="flex flex-wrap gap-3 border-t border-border/70 px-6 pb-6 pt-0 sm:px-8 sm:pb-8 lg:px-10 lg:pb-10">
+            <Button asChild variant="accent" size="lg">
+              <Link href={`/blog/${post.slug}`}>
+                Read the full update
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/blog">Explore market insights</Link>
+            </Button>
           </div>
         </Card>
       </FadeIn>

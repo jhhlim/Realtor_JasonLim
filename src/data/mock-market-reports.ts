@@ -3,7 +3,8 @@ import type { MarketReport } from "@/types";
 export const mockMarketReports: MarketReport[] = [
   {
     id: "mr-2026-10-20-two-markets",
-    title: "An $82M Sale & a Tale of Two Housing Markets — October 20, 2026",
+    title:
+      "An $82 Million Home Sale: Why Today's Housing Market Tells Two Different Stories",
     slug: "two-housing-markets-october-20-2026",
     summary:
       "A Laguna Beach estate closed at $82.57M while Bay Area buyers still face affordability pressure. Luxury demand and rate-sensitive households are telling different stories — full analysis on the Insights page.",

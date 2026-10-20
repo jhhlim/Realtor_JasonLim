@@ -7,7 +7,7 @@ export const mockBlogPosts: BlogPost[] = [
   {
     slug: "82-million-home-sale-two-housing-markets-october-2026",
     title:
-      "An $82 Million Home Sale — What Does It Tell Us About Today's Housing Market?",
+      "An $82 Million Home Sale: Why Today's Housing Market Tells Two Different Stories",
     excerpt:
       "Luxury real estate is making headlines, while many Bay Area families face affordability challenges. Explore how mortgage rates, household incomes, and changing life circumstances shape today's market.",
     content: `Bay Area Real Estate Update | October 20, 2026
