@@ -64,6 +64,8 @@ export default async function BlogArticlePage({
               {post.title}
             </h1>
             <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+              <span>Market Insights</span>
+              <span aria-hidden>·</span>
               <time dateTime={post.publishedAt}>
                 {formatDate(post.publishedAt, {
                   month: "long",
@@ -75,7 +77,8 @@ export default async function BlogArticlePage({
               <span>{post.readingMinutes} min read</span>
               <span aria-hidden>·</span>
               <span>
-                <BrandName />
+                By <BrandName /> | REALTOR® · {siteConfig.brokerage.name} ·{" "}
+                {siteConfig.license.dre}
               </span>
             </div>
           </Container>
@@ -107,6 +110,39 @@ export default async function BlogArticlePage({
               />
             )}
           </div>
+          {post.gallery && post.gallery.length > 0 ? (
+            <div className="mb-10 grid gap-4 sm:grid-cols-2">
+              {post.gallery.map((photo) => (
+                <figure
+                  key={photo.src}
+                  className={
+                    post.gallery!.length === 1
+                      ? "overflow-hidden rounded-2xl border border-border/70 bg-secondary sm:col-span-2"
+                      : "overflow-hidden rounded-2xl border border-border/70 bg-secondary"
+                  }
+                >
+                  <div
+                    className={
+                      post.gallery!.length === 1
+                        ? "relative aspect-[16/10]"
+                        : "relative aspect-[4/3]"
+                    }
+                  >
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 768px"
+                    />
+                  </div>
+                  <figcaption className="px-3 py-2 text-xs text-muted-foreground">
+                    {photo.alt}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : null}
           <BlogContent content={post.content} />
           {post.attachments && post.attachments.length > 0 ? (
             <div className="mt-8 flex flex-wrap gap-3">
@@ -117,29 +153,6 @@ export default async function BlogArticlePage({
                     {file.label}
                   </a>
                 </Button>
-              ))}
-            </div>
-          ) : null}
-          {post.gallery && post.gallery.length > 0 ? (
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {post.gallery.map((photo) => (
-                <figure
-                  key={photo.src}
-                  className="overflow-hidden rounded-2xl border border-border/70 bg-secondary"
-                >
-                  <div className="relative aspect-[4/3]">
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 384px"
-                    />
-                  </div>
-                  <figcaption className="px-3 py-2 text-xs text-muted-foreground">
-                    {photo.alt}
-                  </figcaption>
-                </figure>
               ))}
             </div>
           ) : null}
@@ -159,7 +172,14 @@ export default async function BlogArticlePage({
           </p>
         </Container>
       </article>
-      <CtaBanner />
+      <CtaBanner
+        title="Request a Personalized Home Valuation"
+        description="Curious what your home could be worth in today's two-speed market? I'll share comps, neighborhood context, and a clear next-step plan."
+        primaryLabel="Request a Personalized Home Valuation"
+        primaryHref={siteConfig.cta.valuation.href}
+        secondaryLabel="Let's Connect"
+        secondaryHref={siteConfig.cta.consultation.href}
+      />
     </>
   );
 }

@@ -229,7 +229,7 @@ export const siteConfig = {
       href: "/contact",
     },
     valuation: {
-      label: "Request Home Valuation",
+      label: "Request a Personalized Home Valuation",
       href: "/tools/home-valuation",
     },
     search: {

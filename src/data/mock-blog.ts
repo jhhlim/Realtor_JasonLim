@@ -5,6 +5,74 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "82-million-home-sale-two-housing-markets-october-2026",
+    title:
+      "An $82 Million Home Sale — What Does It Tell Us About Today's Housing Market?",
+    excerpt:
+      "Luxury real estate is making headlines, while many Bay Area families face affordability challenges. Explore how mortgage rates, household incomes, and changing life circumstances shape today's market.",
+    content: `Bay Area Real Estate Update | October 20, 2026
+
+Hello everyone,
+
+A spectacular oceanfront estate in Laguna Beach recently sold for $82.57 million, setting a record for a home listed on the Orange County MLS. The eight-bedroom property features oceanfront terraces, a private tennis court, and even a rotating bed beneath a retractable ceiling for stargazing.
+
+Interestingly, the property was originally listed for $112 million before selling approximately 26% below asking — a reminder that even headline luxury deals still negotiate. Coverage of the sale has been widely reported, including on Realtor.com.
+
+A Tale of Two Housing Markets
+
+While luxury properties continue attracting wealthy buyers, many first-time and middle-income buyers face a different reality. Here in the Bay Area, the contrast is particularly noticeable.
+
+According to recently reported Compass data, San Francisco recorded 190 home sales above $5 million during the first nine months of 2026, up 109% year over year. Meanwhile, many buyers shopping for more modest homes are facing affordability challenges.
+
+Why the difference? Luxury buyers often have substantial equity, investment assets, or cash reserves. Buyers relying on employment income and mortgage financing are much more sensitive to monthly payments and qualification requirements.
+
+Is It Really Just About Mortgage Rates?
+
+Mortgage rates matter, but they're only part of the affordability equation. Consider a $1.5 million home with a 20% down payment and a conventional 30-year fixed mortgage:
+
+• 6.0% interest — about $7,195/month principal & interest
+• 7.0% interest — about $7,984/month principal & interest
+• Difference — about +$789/month
+
+These figures exclude property taxes, insurance, and maintenance. A one-percentage-point change in rates can make a meaningful difference. But even at lower rates, saving a $300,000 down payment while managing everyday expenses is challenging.
+
+For many families, the bigger issue is the gap between home prices, savings, and household income.
+
+Life Doesn't Wait for the Perfect Market
+
+People don't buy or sell homes simply because interest rates change. They move because life changes.
+
+Perhaps you're getting married, welcoming a child, relocating for work, moving closer to family, or considering downsizing after retirement. These transitions often matter more than trying to predict the perfect moment in the housing market.
+
+For sellers, realistic pricing and a thoughtful marketing strategy are especially important. An overpriced property can sit on the market, lose momentum, and eventually require reductions.
+
+For buyers, understanding neighborhood trends, financing options, and long-term affordability can help identify opportunities even in a challenging market.
+
+The best real estate decision isn't always about timing the market. It's about making a decision that supports your life and financial goals.
+
+Whether you're thinking about buying your first home, moving up, downsizing, or simply curious about your property's value, I'd be happy to share what I'm seeing in your neighborhood.
+
+Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim@compass.com`,
+    category: "Bay Area",
+    coverImage: "/images/blog/oct-2026/bay-area-neighborhood-aerial.jpg",
+    gallery: [
+      {
+        src: "/images/blog/oct-2026/laguna-beach-82m-estate.jpg",
+        alt: "Laguna Beach oceanfront estate — interiors, pool terrace, and panoramic Pacific views",
+      },
+    ],
+    publishedAt: "2026-10-20",
+    readingMinutes: 5,
+    tags: [
+      "market insights",
+      "bay area",
+      "affordability",
+      "luxury",
+      "mortgage rates",
+      "october 2026",
+    ],
+  },
+  {
     slug: "global-economy-remains-resilient-outlook-oct-2026",
     title:
       "Global Economy Remains Resilient: Short-Term Outlook Notes for Silicon Valley Housing",

@@ -96,7 +96,15 @@ export function MarketInsights({ report }: MarketInsightsProps) {
                 )}
               </div>
               <Button asChild variant="outline" className="w-fit">
-                <Link href={siteConfig.cta.marketReport.href}>
+                <Link
+                  href={
+                    report?.slug === "two-housing-markets-october-20-2026"
+                      ? "/blog/82-million-home-sale-two-housing-markets-october-2026"
+                      : report
+                        ? `/market-reports/${report.slug}`
+                        : siteConfig.cta.marketReport.href
+                  }
+                >
                   Read full report
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>

@@ -103,7 +103,33 @@ export default async function MarketReportDetailPage({
       >
         <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-muted-foreground text-pretty">
           <p>{report.summary}</p>
-          {report.slug === "scc-detached-homes-october-4-2026" ? (
+          {report.slug === "two-housing-markets-october-20-2026" ? (
+            <>
+              <p>
+                Luxury demand and rate-sensitive households are moving on different
+                timelines. Headline sales can coexist with tough affordability for
+                first-time and middle-income buyers — especially across San Jose and
+                the greater Silicon Valley.
+              </p>
+              <p>
+                Life events still drive most moves. Realistic pricing for sellers and
+                neighborhood-level strategy for buyers matter more than waiting for a
+                perfect rate print.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <Button asChild variant="accent">
+                  <Link href="/blog/82-million-home-sale-two-housing-markets-october-2026">
+                    Read the full Market Insights article
+                  </Link>
+                </Button>
+                <Button asChild variant="outline">
+                  <Link href={siteConfig.cta.valuation.href}>
+                    Request a Personalized Home Valuation
+                  </Link>
+                </Button>
+              </div>
+            </>
+          ) : report.slug === "scc-detached-homes-october-4-2026" ? (
             <>
               <p>
                 Compared with Sept. 27, Santa Clara County detached inventory cooled
@@ -170,8 +196,12 @@ export default async function MarketReportDetailPage({
       ) : null}
 
       <CtaBanner
-        title="Want a custom neighborhood brief?"
-        description="Schedule a consultation and we'll pull comps and trends for the cities you care about."
+        title="Request a Personalized Home Valuation"
+        description="I'll share comps, neighborhood context, and a clear next-step plan for your address."
+        primaryLabel="Request a Personalized Home Valuation"
+        primaryHref={siteConfig.cta.valuation.href}
+        secondaryLabel="Let's Connect"
+        secondaryHref={siteConfig.cta.consultation.href}
       />
     </>
   );

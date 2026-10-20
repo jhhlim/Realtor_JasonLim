@@ -2,6 +2,21 @@ import type { MarketReport } from "@/types";
 
 export const mockMarketReports: MarketReport[] = [
   {
+    id: "mr-2026-10-20-two-markets",
+    title: "An $82M Sale & a Tale of Two Housing Markets — October 20, 2026",
+    slug: "two-housing-markets-october-20-2026",
+    summary:
+      "A Laguna Beach estate closed at $82.57M while Bay Area buyers still face affordability pressure. Luxury demand and rate-sensitive households are telling different stories — full analysis on the Insights page.",
+    publishedAt: "2026-10-20",
+    region: "Bay Area",
+    stats: [
+      { label: "Laguna Beach Sale", value: "$82.57M", change: "−26% vs ask" },
+      { label: "SF $5M+ Sales YTD", value: "190", change: "+109% YoY" },
+      { label: "$1.5M @ 6%", value: "$7,195", change: "P&I / mo" },
+      { label: "$1.5M @ 7%", value: "$7,984", change: "+$789 / mo" },
+    ],
+  },
+  {
     id: "mr-2026-10-04-scc-detached",
     title: "Santa Clara County Detached Homes — October 4, 2026",
     slug: "scc-detached-homes-october-4-2026",
