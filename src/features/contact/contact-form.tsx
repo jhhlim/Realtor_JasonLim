@@ -28,6 +28,8 @@ interface ContactFormProps {
  * Native FormSubmit POST (not AJAX).
  * Browser posts to formsubmit.co → email to jason.lim@compass.com → redirect back.
  * First ever submission: activate via the email FormSubmit sends to Compass.
+ *
+ * Do not disable named inputs on submit — disabled fields are omitted from POST.
  */
 export function ContactForm({
   className,
@@ -64,14 +66,19 @@ export function ContactForm({
       method="POST"
       className={cn("space-y-5", className)}
       onSubmit={() => setStatus("loading")}
+      aria-busy={status === "loading"}
     >
       <input type="hidden" name="_subject" value={subject} />
       <input type="hidden" name="_template" value="table" />
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value={nextUrl} />
       <input type="hidden" name="_replyto" value={email} />
-      <input type="hidden" name="interest" value={interest} />
       <input type="hidden" name="source" value={source} />
+      <input type="hidden" name="full_name" value={name} />
+      <input type="hidden" name="email_address" value={email} />
+      <input type="hidden" name="phone_number" value={phone || "Not provided"} />
+      <input type="hidden" name="interest" value={interest} />
+      <input type="hidden" name="notes" value={message} />
       <input
         type="text"
         name="_honey"
@@ -92,7 +99,7 @@ export function ContactForm({
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Alex Rivera"
-            disabled={status === "loading"}
+            readOnly={status === "loading"}
           />
         </div>
         <div className="space-y-2">
@@ -106,7 +113,7 @@ export function ContactForm({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@company.com"
-            disabled={status === "loading"}
+            readOnly={status === "loading"}
           />
         </div>
       </div>
@@ -122,7 +129,7 @@ export function ContactForm({
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             placeholder="(510) 480-7191"
-            disabled={status === "loading"}
+            readOnly={status === "loading"}
           />
         </div>
         <div className="space-y-2">
@@ -130,7 +137,6 @@ export function ContactForm({
           <Select
             value={interest}
             onValueChange={(value) => setInterest(value as Interest)}
-            disabled={status === "loading"}
           >
             <SelectTrigger id="contact-interest" aria-label="Interest">
               <SelectValue placeholder="Select interest" />
@@ -154,7 +160,7 @@ export function ContactForm({
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Share your timeline, neighborhoods, and goals…"
-          disabled={status === "loading"}
+          readOnly={status === "loading"}
         />
       </div>
 

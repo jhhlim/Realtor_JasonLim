@@ -23,6 +23,9 @@ interface GoalsInquiryFormProps {
 /**
  * Native FormSubmit POST for homepage goals CTA.
  * Browser → formsubmit.co → jason.lim@compass.com → redirect with ?goals=1
+ *
+ * Important: do not disable named inputs on submit — disabled fields are
+ * omitted from the POST body (which previously dropped name/email/phone).
  */
 export function GoalsInquiryForm({
   className,
@@ -37,7 +40,7 @@ export function GoalsInquiryForm({
   const [status, setStatus] = React.useState<"idle" | "loading" | "success">(
     "idle",
   );
-  const [nextUrl, setNextUrl] = React.useState(`${siteConfig.url}/#goals?goals=1`);
+  const [nextUrl, setNextUrl] = React.useState(`${siteConfig.url}/?goals=1#goals`);
 
   React.useEffect(() => {
     setNextUrl(`${window.location.origin}/?goals=1#goals`);
@@ -56,6 +59,7 @@ export function GoalsInquiryForm({
   const subject = name.trim()
     ? `Real estate goals inquiry from ${name.trim()}`
     : "Real estate goals inquiry";
+  const interestValue = interests.join(", ") || "Not specified";
 
   return (
     <form
@@ -64,15 +68,21 @@ export function GoalsInquiryForm({
       method="POST"
       className={cn("space-y-5", className)}
       onSubmit={() => setStatus("loading")}
+      aria-busy={status === "loading"}
     >
       <input type="hidden" name="_subject" value={subject} />
       <input type="hidden" name="_template" value="table" />
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value={nextUrl} />
       <input type="hidden" name="_replyto" value={email} />
-      <input type="hidden" name="interest" value={interests.join(", ") || "Not specified"} />
-      <input type="hidden" name="preferred_area" value={city} />
       <input type="hidden" name="source" value={source} />
+      {/* Mirrors for FormSubmit table — stay enabled so they always POST */}
+      <input type="hidden" name="full_name" value={name} />
+      <input type="hidden" name="email_address" value={email} />
+      <input type="hidden" name="phone_number" value={phone || "Not provided"} />
+      <input type="hidden" name="interest" value={interestValue} />
+      <input type="hidden" name="preferred_area" value={city || "Not provided"} />
+      <input type="hidden" name="notes" value={message || "None"} />
       <input
         type="text"
         name="_honey"
@@ -102,7 +112,6 @@ export function GoalsInquiryForm({
                   className="sr-only"
                   checked={checked}
                   onChange={() => toggleInterest(option.value)}
-                  disabled={status === "loading"}
                 />
                 <span
                   className={cn(
@@ -130,7 +139,7 @@ export function GoalsInquiryForm({
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder="e.g. Los Gatos, Willow Glen, Cupertino"
-          disabled={status === "loading"}
+          readOnly={status === "loading"}
         />
       </div>
 
@@ -145,7 +154,7 @@ export function GoalsInquiryForm({
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Alex Rivera"
-            disabled={status === "loading"}
+            readOnly={status === "loading"}
           />
         </div>
         <div className="space-y-2">
@@ -159,7 +168,7 @@ export function GoalsInquiryForm({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@company.com"
-            disabled={status === "loading"}
+            readOnly={status === "loading"}
           />
         </div>
       </div>
@@ -174,7 +183,7 @@ export function GoalsInquiryForm({
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           placeholder={siteConfig.contact.phone}
-          disabled={status === "loading"}
+          readOnly={status === "loading"}
         />
       </div>
 
@@ -186,7 +195,7 @@ export function GoalsInquiryForm({
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Timeline, budget range, or questions…"
-          disabled={status === "loading"}
+          readOnly={status === "loading"}
         />
       </div>
 
