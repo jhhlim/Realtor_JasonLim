@@ -54,7 +54,7 @@ Whether you're thinking about buying your first home, moving up, downsizing, or 
 
 Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim@compass.com`,
     category: "Bay Area",
-    coverImage: "/images/blog/oct-2026/bay-area-neighborhood-aerial.jpg",
+    coverImage: "/images/blog/oct-2026/laguna-beach-82m-estate.png",
     publishedAt: "2026-10-20",
     readingMinutes: 5,
     tags: [
