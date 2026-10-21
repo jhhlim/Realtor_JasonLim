@@ -52,9 +52,6 @@ export function FeaturedMarketArticle({ post }: FeaturedMarketArticleProps) {
               <h3 className="font-display text-2xl font-semibold tracking-tight text-balance transition-colors group-hover:text-accent sm:text-3xl lg:text-4xl">
                 {post.title}
               </h3>
-              <p className="max-w-3xl text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
-                {post.excerpt}
-              </p>
               <p className="text-sm text-muted-foreground">
                 By <BrandName /> | REALTOR® · {siteConfig.brokerage.name} ·{" "}
                 {siteConfig.license.dre}
