@@ -238,7 +238,7 @@ export const siteConfig = {
     },
     marketReport: {
       label: "See Market Report",
-      href: "/market-reports",
+      href: "/market-reports/scc-detached-homes-october-25-2026",
     },
     subscribe: {
       label: "Subscribe to Market Updates",

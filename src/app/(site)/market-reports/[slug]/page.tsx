@@ -95,6 +95,70 @@ export default async function MarketReportDetailPage({
         </div>
       </Section>
 
+      {report.areas && report.areas.length > 0 ? (
+        <Section
+          eyebrow="By area"
+          title="Listings & pendings"
+          description="Active listings on the effective date vs. pendings in the prior 7 days."
+        >
+          <div className="overflow-x-auto rounded-2xl border border-border/70">
+            <table className="w-full min-w-[720px] text-left text-sm">
+              <thead className="bg-secondary/60 text-xs uppercase tracking-[0.12em] text-muted-foreground">
+                <tr>
+                  <th className="px-4 py-3 font-semibold">Area</th>
+                  <th className="px-4 py-3 font-semibold">Listings</th>
+                  <th className="px-4 py-3 font-semibold">WoW</th>
+                  <th className="px-4 py-3 font-semibold">Pendings</th>
+                  <th className="px-4 py-3 font-semibold">WoW</th>
+                  <th className="px-4 py-3 font-semibold">Median (Oct 1)</th>
+                  <th className="px-4 py-3 font-semibold">MOI</th>
+                </tr>
+              </thead>
+              <tbody>
+                {report.areas.map((area) => {
+                  const listingDelta =
+                    area.priorListings != null
+                      ? area.listings - area.priorListings
+                      : null;
+                  const pendingDelta =
+                    area.priorPendings != null
+                      ? area.pendings - area.priorPendings
+                      : null;
+                  const fmtDelta = (n: number | null) => {
+                    if (n == null) return "—";
+                    if (n === 0) return "flat";
+                    return n > 0 ? `+${n}` : `${n}`;
+                  };
+                  return (
+                    <tr
+                      key={area.name}
+                      className="border-t border-border/60 odd:bg-card even:bg-slate-soft/40 dark:even:bg-secondary/20"
+                    >
+                      <td className="px-4 py-3 font-medium">{area.name}</td>
+                      <td className="px-4 py-3 tabular-nums">{area.listings}</td>
+                      <td className="px-4 py-3 tabular-nums text-muted-foreground">
+                        {fmtDelta(listingDelta)}
+                      </td>
+                      <td className="px-4 py-3 tabular-nums">{area.pendings}</td>
+                      <td className="px-4 py-3 tabular-nums text-muted-foreground">
+                        {fmtDelta(pendingDelta)}
+                      </td>
+                      <td className="px-4 py-3 tabular-nums">
+                        {area.medianPrice ?? "—"}
+                      </td>
+                      <td className="px-4 py-3 tabular-nums">{area.moi ?? "—"}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          {report.areasNote ? (
+            <p className="mt-3 text-xs text-muted-foreground">{report.areasNote}</p>
+          ) : null}
+        </Section>
+      ) : null}
+
       <Section
         eyebrow="Analysis"
         title="What this means for buyers & sellers"
@@ -103,7 +167,35 @@ export default async function MarketReportDetailPage({
       >
         <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-muted-foreground text-pretty">
           <p>{report.summary}</p>
-          {report.slug === "two-housing-markets-october-20-2026" ? (
+          {report.slug === "scc-detached-homes-october-25-2026" ? (
+            <>
+              <p>
+                Inventory held steady at the county composite level, but the story is
+                still local. Willow Glen (+7 listings), Cupertino (+4), Los Altos (+5),
+                and Sunnyvale (+3) added supply, while Los Gatos / Monte Sereno (−8),
+                Los Altos Hills (−4), and Central San Jose (−3) tightened a bit.
+              </p>
+              <p>
+                Pending activity cooled meaningfully (−17 week over week). Cambrian,
+                Cupertino, Palo Alto, and Santa Clara saw the sharpest pending pullbacks
+                — a signal that buyers are more selective even where listings remain
+                available.
+              </p>
+              <p>
+                On the Oct. 1 snapshot, months of inventory stayed tightest in
+                Sunnyvale (0.7), Mountain View (0.8), and Los Altos (0.9). Higher-MOI
+                pockets like Cambrian, Central San Jose, and Saratoga (around 2.3–2.4)
+                tend to leave more room for negotiation when homes are priced to
+                current comps.
+              </p>
+              <p>
+                For sellers: launch pricing and presentation still matter most in the
+                first two weeks. For buyers: watch pending velocity in your target
+                neighborhood — flat listings with softer pendings can open inspection
+                and credit conversations that weren’t available in hotter weeks.
+              </p>
+            </>
+          ) : report.slug === "two-housing-markets-october-20-2026" ? (
             <>
               <p>
                 Luxury demand and rate-sensitive households are moving on different

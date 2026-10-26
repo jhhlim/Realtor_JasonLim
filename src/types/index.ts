@@ -178,6 +178,20 @@ export interface NeighborhoodSummary {
   geo: GeoPoint;
 }
 
+export interface MarketReportAreaStat {
+  name: string;
+  listings: number;
+  pendings: number;
+  /** Prior-week listings for WoW delta (optional). */
+  priorListings?: number;
+  /** Prior-week pendings for WoW delta (optional). */
+  priorPendings?: number;
+  /** Median price label as of a reference date, e.g. "$2.03M". */
+  medianPrice?: string;
+  /** Months of inventory as of a reference date. */
+  moi?: string;
+}
+
 export interface MarketReport {
   id: string;
   title: string;
@@ -186,6 +200,10 @@ export interface MarketReport {
   publishedAt: string;
   region: string;
   stats: { label: string; value: string; change?: string }[];
+  /** Optional city / neighborhood listings & pendings breakdown. */
+  areas?: MarketReportAreaStat[];
+  /** Footnote for area table (e.g. median/MOI as-of date). */
+  areasNote?: string;
 }
 
 export interface BlogPost {
