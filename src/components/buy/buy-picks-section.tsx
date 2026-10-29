@@ -48,7 +48,12 @@ function PickCard({ pick, index }: { pick: BuyPick; index: number }) {
               ) : null}
               {pick.status === "sold" ? (
                 <Badge className="border-transparent bg-black/75 text-white shadow-sm backdrop-blur-sm">
-                  Sold / Closed
+                  Since sold
+                </Badge>
+              ) : null}
+              {pick.status === "off_market" ? (
+                <Badge className="border-transparent bg-black/75 text-white shadow-sm backdrop-blur-sm">
+                  Off market
                 </Badge>
               ) : null}
               {pick.badge ? (
@@ -154,7 +159,7 @@ export function BuyPicksSection() {
       <Section
         eyebrow="Recent open houses"
         title="Open houses I’ve hosted"
-        description="Homes where I hosted open houses for fellow Compass agents — including active picks and listings that have since sold."
+        description="Homes where I hosted open houses for fellow Compass agents — including active picks, listings that have since sold, and one that went off market."
         className="bg-gradient-to-b from-slate-soft/70 to-background dark:from-card/25"
       >
         <div className="grid gap-6 md:grid-cols-2">

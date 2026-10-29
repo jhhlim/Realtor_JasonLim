@@ -1,4 +1,4 @@
-export type BuyPickStatus = "open_house" | "active" | "sold";
+export type BuyPickStatus = "open_house" | "active" | "sold" | "off_market";
 
 export interface BuyPick {
   id: string;
@@ -129,9 +129,9 @@ export const buyPastOpenHouses: BuyPick[] = [
     state: "CA",
     zip: "95119",
     status: "sold",
-    badge: "Open house held · Sold",
+    badge: "Open house held · Since sold",
     blurb:
-      "Jason hosted the open house for this South San Jose listing with Negar Fatemi — the home has since sold.",
+      "Jason hosted the open house for this South San Jose listing with Negar Fatemi — since sold.",
     listingAgent: "Negar Fatemi",
     roleNote: "Open house hosted by Jason Lim",
     href: "https://www.compass.com/app/listing/6887-Rockton-Ave-San-Jose-CA-95119/2136556258138323961",
@@ -144,9 +144,9 @@ export const buyPastOpenHouses: BuyPick[] = [
     state: "CA",
     zip: "95112",
     status: "sold",
-    badge: "Open house held · Sold",
+    badge: "Open house held · Since sold",
     blurb:
-      "Jason hosted the open house for this San Jose listing with Negar Fatemi — the home has since sold.",
+      "Jason hosted the open house for this San Jose listing with Negar Fatemi — since sold.",
     listingAgent: "Negar Fatemi",
     roleNote: "Open house hosted by Jason Lim",
     href: "https://www.compass.com/homedetails/19-E-Younger-Ave-San-Jose-CA-95112/1PUNIM_pid/",
@@ -159,9 +159,9 @@ export const buyPastOpenHouses: BuyPick[] = [
     state: "CA",
     zip: "95136",
     status: "sold",
-    badge: "Open house held · Sold",
+    badge: "Open house held · Since sold",
     blurb:
-      "Jason hosted the open house for Hillary Aung Yin’s listing — the home has since sold.",
+      "Jason hosted the open house for Hillary Aung Yin’s listing — since sold.",
     listingAgent: "Hillary Aung Yin",
     roleNote: "Open house hosted by Jason Lim",
     href: "https://www.compass.com/app/listing/425-Casselino-Dr-San-Jose-CA-95136/2100335772068890313",
@@ -173,10 +173,10 @@ export const buyPastOpenHouses: BuyPick[] = [
     city: "Milpitas",
     state: "CA",
     zip: "95035",
-    status: "open_house",
-    badge: "Open house held",
+    status: "off_market",
+    badge: "Open house held · Off market",
     blurb:
-      "Jason hosted the open house for this Milpitas listing with Kenneth Nguyen.",
+      "Jason hosted the open house for this Milpitas listing with Kenneth Nguyen — the listing later went off market.",
     listingAgent: "Kenneth Nguyen",
     roleNote: "Open house hosted by Jason Lim",
     href: "https://www.compass.com/homedetails/44-Moon-Dance-Milpitas-CA-95035/1QBR9R_pid/",
