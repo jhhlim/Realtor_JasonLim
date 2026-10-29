@@ -9,7 +9,7 @@ export const mockBlogPosts: BlogPost[] = [
     title:
       "Happy Halloween — Plus Two Spooky-Good Open Houses This Weekend",
     excerpt:
-      "Costume contest vibes at Compass, then come tour with me: Saturday at a renovated 6-bed in San Jose ($1.688M) and Sunday at a Mountain View condo near Google & Castro Street ($650K).",
+      "Costume contest vibes at Compass, then come tour with me: Saturday 2–4:30 PM at a renovated 6-bed in San Jose ($1.688M) and Sunday 1:30–4 PM at a Mountain View condo near Google & Castro Street ($650K).",
     content: `Happy Halloween from the Compass crew!
 
 We had a blast at the office costume contest — skeletons, astronauts, Mario & Luigi, and plenty of creative homemade looks. Real estate is serious work… but weekends like this are a good reminder that community and fun still matter.
@@ -33,7 +33,7 @@ If you've been waiting for square footage, functionality, and finish quality in 
 Sunday — Spooky Open House #2
 
 📍 255 S Rengstorff Avenue, Unit 42, Mountain View
-📅 Sunday, Nov. 1
+📅 Sunday, Nov. 1 | 1:30–4:00 PM
 💰 List price: $650,000
 
 A neighbor shared they bought in this community last year around $700K in a different market — so at $650K, this one feels fairly priced for what you get.
