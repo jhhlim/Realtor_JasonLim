@@ -1,7 +1,6 @@
 import { BlogPreview } from "@/components/home/blog-preview";
 import { ContactCta } from "@/components/home/contact-cta";
 import { FeaturedListings } from "@/components/home/featured-listings";
-import { FeaturedMarketArticle } from "@/components/home/featured-market-article";
 import { GoalsCta } from "@/components/home/goals-cta";
 import { Hero } from "@/components/home/hero";
 import { MarketInsights } from "@/components/home/market-insights";
@@ -23,32 +22,23 @@ export default async function HomePage() {
     provider.getRecentSales(6),
   ]);
 
-  const featuredArticle =
-    mockBlogPosts.find(
-      (p) => p.slug === "82-million-home-sale-two-housing-markets-october-2026",
+  const featuredReport =
+    mockMarketReports.find(
+      (r) => r.slug === "scc-detached-homes-october-25-2026",
     ) ??
-    [...mockBlogPosts].sort(
+    [...mockMarketReports].sort(
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
     )[0] ??
     null;
 
-  const latestReport =
-    [...mockMarketReports].sort(
-      (a, b) =>
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
-    )[0] ?? null;
-
   return (
     <>
       <Hero />
       <StatsStrip />
-      {featuredArticle ? (
-        <FeaturedMarketArticle post={featuredArticle} />
-      ) : null}
+      <MarketInsights report={featuredReport} />
       <GoalsCta />
       {featured.length > 0 ? <FeaturedListings listings={featured} /> : null}
-      <MarketInsights report={latestReport} />
       <NeighborhoodsPreview neighborhoods={mockNeighborhoods} />
       {recentSales.length > 0 ? <RecentSales listings={recentSales} /> : null}
       <TestimonialsCarousel testimonials={mockTestimonials} />
