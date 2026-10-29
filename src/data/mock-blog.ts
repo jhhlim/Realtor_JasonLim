@@ -55,6 +55,24 @@ Whether you're shopping for a larger renovated home or a well-located Mountain V
 Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim@compass.com`,
     category: "Buying",
     coverImage: "/images/blog/halloween-2026/compass-costume-contest.jpg",
+    gallery: [
+      {
+        src: "/images/blog/halloween-2026/postwood/postwood-spooky-open-house-ig.jpg",
+        alt: "Spooky Open House — 2974 Postwood Dr, San Jose · Sat Oct 31, 2–4:30 PM · $1,688,000",
+      },
+      {
+        src: "/images/blog/halloween-2026/postwood/photo-00.jpg",
+        alt: "2974 Postwood Drive exterior at twilight",
+      },
+      {
+        src: "/images/blog/halloween-2026/postwood/photo-04.jpg",
+        alt: "Renovated living room and kitchen",
+      },
+      {
+        src: "/images/blog/halloween-2026/postwood/photo-05.jpg",
+        alt: "Primary bedroom",
+      },
+    ],
     publishedAt: "2026-10-29",
     readingMinutes: 3,
     tags: [
