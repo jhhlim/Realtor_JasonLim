@@ -5,6 +5,70 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "happy-halloween-spooky-open-houses-october-2026",
+    title:
+      "Happy Halloween — Plus Two Spooky-Good Open Houses This Weekend",
+    excerpt:
+      "Costume contest vibes at Compass, then come tour with me: Saturday at a renovated 6-bed in San Jose ($1.688M) and Sunday at a Mountain View condo near Google & Castro Street ($650K).",
+    content: `Happy Halloween from the Compass crew!
+
+We had a blast at the office costume contest — skeletons, astronauts, Mario & Luigi, and plenty of creative homemade looks. Real estate is serious work… but weekends like this are a good reminder that community and fun still matter.
+
+And if you're house-hunting (or just love a good tour), I've got two open houses this weekend that are worth a look — no tricks, just solid opportunities.
+
+Saturday — Spooky Open House #1
+
+📍 2974 Postwood Drive, San Jose
+📅 Saturday, Oct. 31 | 2:00–4:30 PM
+💰 List price: $1,688,000 · ~28 days on market
+
+This is a gorgeous, highly renovated 6-bed / 4-full-bath home with a flexible layout that works for multi-gen living, guests, or work-from-home space:
+
+• Upstairs: 4 bedrooms + 2 bathrooms
+• Downstairs: 2 kitchens, 2 bedrooms + 2 bathrooms
+• Backyard: 2 sheds for storage, hobbies, or workshop use
+
+If you've been waiting for square footage, functionality, and finish quality in one package — this is an amazing opportunity. Come walk it with me Saturday afternoon.
+
+Sunday — Spooky Open House #2
+
+📍 255 S Rengstorff Avenue, Unit 42, Mountain View
+📅 Sunday, Nov. 1
+💰 List price: $650,000
+
+A neighbor shared they bought in this community last year around $700K in a different market — so at $650K, this one feels fairly priced for what you get.
+
+Location & lifestyle highlights:
+• Downtown Mountain View / Castro Street nearby
+• Mountain View Farmers Market
+• About a 5-minute drive to Google
+• Rengstorff Park close by
+
+Community amenities:
+• 2 basketball courts
+• Pickleball
+• Billiards
+• A great overall environment for anyone who wants amenities + convenience
+
+Whether you're shopping for a larger renovated home or a well-located Mountain View condo, I'd love to see you this weekend. Message me if you want listing details, disclosure notes, or help comparing payment scenarios before you tour.
+
+Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim@compass.com`,
+    category: "Buying",
+    coverImage: "/images/blog/halloween-2026/compass-costume-contest.jpg",
+    publishedAt: "2026-10-29",
+    readingMinutes: 3,
+    tags: [
+      "halloween",
+      "open house",
+      "san jose",
+      "mountain view",
+      "postwood",
+      "rengstorff",
+      "compass",
+      "october 2026",
+    ],
+  },
+  {
     slug: "82-million-home-sale-two-housing-markets-october-2026",
     title:
       "An $82 Million Home Sale: Why Today's Housing Market Tells Two Different Stories",
