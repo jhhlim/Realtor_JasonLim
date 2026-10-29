@@ -42,6 +42,10 @@ Sunday — Spooky Open House #2
 
 A neighbor shared they bought in this community last year around $700K in a different market — so at $650K, this one feels fairly priced for what you get.
 
+Listing Agent: Marcie Soderquist | Compass | DRE #01193911 | M: 408-921-7900
+https://www.compass.com/agents/marcie-soderquist/
+Open House Hosted by Jason Lim | Compass | DRE #02444964
+
 Location & lifestyle highlights:
 • Downtown Mountain View / Castro Street nearby
 • Mountain View Farmers Market
