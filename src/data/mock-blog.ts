@@ -65,16 +65,16 @@ Jason Lim · REALTOR® | Compass · DRE #02444964 · (510) 480-7191 · jason.lim
         alt: "Spooky Open House — 2974 Postwood Dr, San Jose · Sat Oct 31, 2–4:30 PM · $1,688,000",
       },
       {
-        src: "/images/blog/halloween-2026/postwood/photo-00.jpg",
-        alt: "2974 Postwood Drive exterior at twilight",
+        src: "/images/blog/halloween-2026/rengstorff/rengstorff-autumn-open-house-ig.jpg",
+        alt: "Autumn Open House — 255 S Rengstorff Ave #42, Mountain View · Sun Nov 1, 1:30–4 PM · $650,000",
       },
       {
-        src: "/images/blog/halloween-2026/postwood/photo-04.jpg",
-        alt: "Renovated living room and kitchen",
+        src: "/images/blog/halloween-2026/rengstorff/photo-05.jpg",
+        alt: "Community pool and greenery at Rengstorff",
       },
       {
-        src: "/images/blog/halloween-2026/postwood/photo-05.jpg",
-        alt: "Primary bedroom",
+        src: "/images/blog/halloween-2026/rengstorff/photo-02.jpg",
+        alt: "Private patio with outdoor greenery",
       },
     ],
     publishedAt: "2026-10-29",
