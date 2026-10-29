@@ -33,31 +33,30 @@ function PickCard({ pick, index }: { pick: BuyPick; index: number }) {
               className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F33]/65 via-transparent to-black/45" />
-            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/75 via-black/40 to-transparent" />
-            <div className="absolute left-3 top-3 z-10 flex max-w-[90%] flex-wrap gap-2">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F33]/55 via-transparent to-transparent" />
+            <div className="absolute left-3 top-3 z-10 flex max-w-[92%] flex-wrap gap-2">
               {pick.status === "open_house" ? (
-                <Badge className="border-transparent bg-black/75 text-white shadow-sm backdrop-blur-sm">
+                <Badge className="rounded-md border-0 bg-white px-2.5 py-1 font-semibold text-black shadow-md">
                   Open House
                 </Badge>
               ) : null}
               {pick.status === "active" ? (
-                <Badge className="border-transparent bg-black/75 text-white shadow-sm backdrop-blur-sm">
+                <Badge className="rounded-md border-0 bg-white px-2.5 py-1 font-semibold text-black shadow-md">
                   Active
                 </Badge>
               ) : null}
               {pick.status === "sold" ? (
-                <Badge className="border-transparent bg-black/75 text-white shadow-sm backdrop-blur-sm">
+                <Badge className="rounded-md border-0 bg-black px-2.5 py-1 font-semibold text-white shadow-md">
                   Since sold
                 </Badge>
               ) : null}
               {pick.status === "off_market" ? (
-                <Badge className="border-transparent bg-black/75 text-white shadow-sm backdrop-blur-sm">
+                <Badge className="rounded-md border-0 bg-black px-2.5 py-1 font-semibold text-white shadow-md">
                   Off market
                 </Badge>
               ) : null}
               {pick.badge ? (
-                <Badge className="border-white/25 bg-black/75 text-white shadow-sm backdrop-blur-sm">
+                <Badge className="rounded-md border-0 bg-white px-2.5 py-1 font-semibold text-black shadow-md">
                   {pick.badge}
                 </Badge>
               ) : null}
