@@ -33,21 +33,32 @@ function PickCard({ pick, index }: { pick: BuyPick; index: number }) {
               className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F33]/55 via-transparent to-transparent" />
-            <div className="absolute left-3 top-3 flex flex-wrap gap-2">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F33]/65 via-transparent to-black/45" />
+            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/75 via-black/40 to-transparent" />
+            <div className="absolute left-3 top-3 z-10 flex max-w-[90%] flex-wrap gap-2">
               {pick.status === "open_house" ? (
-                <Badge variant="success">Open House</Badge>
+                <Badge className="border-transparent bg-black/75 text-white shadow-sm backdrop-blur-sm">
+                  Open House
+                </Badge>
               ) : null}
               {pick.status === "active" ? (
-                <Badge variant="accent">Active</Badge>
+                <Badge className="border-transparent bg-black/75 text-white shadow-sm backdrop-blur-sm">
+                  Active
+                </Badge>
               ) : null}
               {pick.status === "sold" ? (
-                <Badge variant="secondary">Sold / Closed</Badge>
+                <Badge className="border-transparent bg-black/75 text-white shadow-sm backdrop-blur-sm">
+                  Sold / Closed
+                </Badge>
               ) : null}
-              {pick.badge ? <Badge variant="outline">{pick.badge}</Badge> : null}
+              {pick.badge ? (
+                <Badge className="border-white/25 bg-black/75 text-white shadow-sm backdrop-blur-sm">
+                  {pick.badge}
+                </Badge>
+              ) : null}
             </div>
-            <div className="absolute bottom-3 left-3 right-3">
-              <p className="font-display text-2xl font-semibold text-white drop-shadow">
+            <div className="absolute bottom-3 left-3 right-3 z-10">
+              <p className="font-display text-2xl font-semibold text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.85)]">
                 {pick.price
                   ? formatCurrency(pick.price)
                   : pick.priceLabel ?? "See Compass"}
@@ -142,8 +153,8 @@ export function BuyPicksSection() {
 
       <Section
         eyebrow="Recent open houses"
-        title="Open houses I’ve hosted — now sold"
-        description="Homes where I hosted open houses for fellow Compass agents. These listings have since sold."
+        title="Open houses I’ve hosted"
+        description="Homes where I hosted open houses for fellow Compass agents — including active picks and listings that have since sold."
         className="bg-gradient-to-b from-slate-soft/70 to-background dark:from-card/25"
       >
         <div className="grid gap-6 md:grid-cols-2">

@@ -98,14 +98,30 @@ export const buyActivePicks: BuyPick[] = [
     blurb:
       "Featured Santa Clara remodel with curb appeal — price reduced $100K on Oct 28. Strong location for buyers who want Silicon Valley access with a practical commute footprint.",
     listingAgent: "Hillary Aung Yin",
-    roleNote: "Recommended active listing",
+    roleNote: "Open house hosted by Jason Lim",
     href: "https://www.compass.com/homedetails/2831-Monroe-St-Santa-Clara-CA-95051/1QTRAZ_pid/",
     photo: "/images/buy-picks/2831-monroe.jpg",
   },
 ];
 
-/** Past open houses Jason hosted — homes that have since sold. */
+/** Past open houses Jason hosted (some still active; others since sold). */
 export const buyPastOpenHouses: BuyPick[] = [
+  {
+    id: "monroe-oh",
+    address: "2831 Monroe St",
+    city: "Santa Clara",
+    state: "CA",
+    zip: "95051",
+    status: "open_house",
+    badge: "Open house held · Featured Santa Clara",
+    priceLabel: "Recently reduced $100K · Oct 28",
+    blurb:
+      "Jason hosted the open house for this Santa Clara listing with Hillary Aung Yin — recently reduced $100K on Oct 28.",
+    listingAgent: "Hillary Aung Yin",
+    roleNote: "Open house hosted by Jason Lim",
+    href: "https://www.compass.com/homedetails/2831-Monroe-St-Santa-Clara-CA-95051/1QTRAZ_pid/",
+    photo: "/images/buy-picks/2831-monroe.jpg",
+  },
   {
     id: "rockton",
     address: "6887 Rockton Ave",
