@@ -93,9 +93,10 @@ export const buyActivePicks: BuyPick[] = [
     state: "CA",
     zip: "95051",
     status: "active",
-    badge: "Jason recommends",
+    badge: "Featured Santa Clara",
+    priceLabel: "Recently reduced $100K · Oct 28",
     blurb:
-      "Santa Clara opportunity worth a close look — strong location for buyers who want Silicon Valley access with a practical commute footprint.",
+      "Featured Santa Clara remodel with curb appeal — price reduced $100K on Oct 28. Strong location for buyers who want Silicon Valley access with a practical commute footprint.",
     listingAgent: "Hillary Aung Yin",
     roleNote: "Recommended active listing",
     href: "https://www.compass.com/homedetails/2831-Monroe-St-Santa-Clara-CA-95051/1QTRAZ_pid/",
