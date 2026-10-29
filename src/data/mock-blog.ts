@@ -30,6 +30,10 @@ This is a gorgeous, highly renovated 6-bed / 4-full-bath home with a flexible la
 
 If you've been waiting for square footage, functionality, and finish quality in one package — this is an amazing opportunity. Come walk it with me Saturday afternoon.
 
+Listing Agent: Fan Yeh | Compass | DRE #01948545
+https://www.compass.com/agents/fan-yeh/
+Open House Hosted by Jason Lim | Compass | DRE #02444964
+
 Sunday — Spooky Open House #2
 
 📍 255 S Rengstorff Avenue, Unit 42, Mountain View
