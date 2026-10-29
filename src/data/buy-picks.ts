@@ -151,4 +151,19 @@ export const buyPastOpenHouses: BuyPick[] = [
     href: "https://www.compass.com/app/listing/425-Casselino-Dr-San-Jose-CA-95136/2100335772068890313",
     photo: "/images/buy-picks/425-casselino.jpg",
   },
+  {
+    id: "moon-dance",
+    address: "44 Moon Dance",
+    city: "Milpitas",
+    state: "CA",
+    zip: "95035",
+    status: "open_house",
+    badge: "Open house held",
+    blurb:
+      "Jason hosted the open house for this Milpitas listing with Kenneth Nguyen.",
+    listingAgent: "Kenneth Nguyen",
+    roleNote: "Open house hosted by Jason Lim",
+    href: "https://www.compass.com/homedetails/44-Moon-Dance-Milpitas-CA-95035/1QBR9R_pid/",
+    photo: "/images/buy-picks/44-moon-dance.jpg",
+  },
 ];
