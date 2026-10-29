@@ -103,7 +103,7 @@ export const buyActivePicks: BuyPick[] = [
   },
 ];
 
-/** Past open houses Jason held / helped — sold or closed success stories. */
+/** Past open houses Jason hosted — homes that have since sold. */
 export const buyPastOpenHouses: BuyPick[] = [
   {
     id: "rockton",
@@ -112,11 +112,11 @@ export const buyPastOpenHouses: BuyPick[] = [
     state: "CA",
     zip: "95119",
     status: "sold",
-    badge: "Helped sell",
+    badge: "Open house held · Sold",
     blurb:
-      "Supported the listing team with open-house hosting and buyer traffic — a South San Jose success with listing agent Negar Fatemi.",
+      "Jason hosted the open house for this South San Jose listing with Negar Fatemi — the home has since sold.",
     listingAgent: "Negar Fatemi",
-    roleNote: "Open house / listing support by Jason Lim",
+    roleNote: "Open house hosted by Jason Lim",
     href: "https://www.compass.com/app/listing/6887-Rockton-Ave-San-Jose-CA-95119/2136556258138323961",
     photo: "/images/buy-picks/6887-rockton.jpg",
   },
@@ -127,28 +127,13 @@ export const buyPastOpenHouses: BuyPick[] = [
     state: "CA",
     zip: "95112",
     status: "sold",
-    badge: "Helped sell",
+    badge: "Open house held · Sold",
     blurb:
-      "Worked alongside listing agent Negar Fatemi — another example of collaborative Compass open-house and transaction support.",
+      "Jason hosted the open house for this San Jose listing with Negar Fatemi — the home has since sold.",
     listingAgent: "Negar Fatemi",
-    roleNote: "Open house / listing support by Jason Lim",
+    roleNote: "Open house hosted by Jason Lim",
     href: "https://www.compass.com/homedetails/19-E-Younger-Ave-San-Jose-CA-95112/1PUNIM_pid/",
     photo: "/images/buy-picks/19-younger.jpg",
-  },
-  {
-    id: "moon-dance",
-    address: "44 Moon Dance",
-    city: "Milpitas",
-    state: "CA",
-    zip: "95035",
-    status: "sold",
-    badge: "Helped sell",
-    blurb:
-      "Assisted listing agent Kenneth Nguyen with open-house coverage in Milpitas — strong buyer interest in a competitive pocket.",
-    listingAgent: "Kenneth Nguyen",
-    roleNote: "Open house support by Jason Lim",
-    href: "https://www.compass.com/homedetails/44-Moon-Dance-Milpitas-CA-95035/1QBR9R_pid/",
-    photo: "/images/buy-picks/44-moon-dance-00.jpg",
   },
   {
     id: "casselino",
@@ -157,9 +142,9 @@ export const buyPastOpenHouses: BuyPick[] = [
     state: "CA",
     zip: "95136",
     status: "sold",
-    badge: "Helped sell",
+    badge: "Open house held · Sold",
     blurb:
-      "Supported Hillary Aung Yin’s listing with open-house hosting — helping buyers experience the home in person.",
+      "Jason hosted the open house for Hillary Aung Yin’s listing — the home has since sold.",
     listingAgent: "Hillary Aung Yin",
     roleNote: "Open house hosted by Jason Lim",
     href: "https://www.compass.com/app/listing/425-Casselino-Dr-San-Jose-CA-95136/2100335772068890313",

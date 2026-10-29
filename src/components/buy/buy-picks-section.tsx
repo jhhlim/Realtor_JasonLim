@@ -141,9 +141,9 @@ export function BuyPicksSection() {
       </Section>
 
       <Section
-        eyebrow="Track record"
-        title="Past open houses I held & helped sell"
-        description="Recent collaborations with Compass listing agents — hosting open houses and helping drive the path to sold."
+        eyebrow="Recent open houses"
+        title="Open houses I’ve hosted — now sold"
+        description="Homes where I hosted open houses for fellow Compass agents. These listings have since sold."
         className="bg-gradient-to-b from-slate-soft/70 to-background dark:from-card/25"
       >
         <div className="grid gap-6 md:grid-cols-2">
