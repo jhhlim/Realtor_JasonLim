@@ -25,6 +25,7 @@ import { PageHero } from "@/components/shared/page-hero";
 import { Section } from "@/components/shared/section";
 import { FadeIn } from "@/components/shared/fade-in";
 import { CtaBanner } from "@/components/shared/cta-banner";
+import { BuyPicksSection } from "@/components/buy/buy-picks-section";
 
 export const metadata = buildMetadata({
   title: "Buy a Home in the Bay Area",
@@ -126,8 +127,10 @@ export default function BuyPage() {
         title="Buy with clarity in a competitive market"
         description="A structured Silicon Valley buying process — consultation through closing — with market data and calm negotiation at every step."
         primaryCta={siteConfig.cta.consultation}
-        secondaryCta={{ label: "Search homes", href: "/listings" }}
+        secondaryCta={{ label: "Featured homes", href: "/buy#featured-homes" }}
       />
+
+      <BuyPicksSection />
 
       <Section
         eyebrow="The process"
