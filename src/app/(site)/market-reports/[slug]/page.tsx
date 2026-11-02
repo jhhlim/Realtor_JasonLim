@@ -167,7 +167,35 @@ export default async function MarketReportDetailPage({
       >
         <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-muted-foreground text-pretty">
           <p>{report.summary}</p>
-          {report.slug === "scc-detached-homes-october-25-2026" ? (
+          {report.slug === "scc-detached-homes-november-1-2026" ? (
+            <>
+              <p>
+                Inventory tightened into November: active listings fell 36 week over
+                week to 729, while pendings ticked up slightly to 77. That mix — fewer
+                actives with a modest pending rebound — can keep well-priced homes
+                competitive even as the fall market typically cools.
+              </p>
+              <p>
+                The biggest listing declines were in Central San Jose (−9), Cambrian
+                (−8), Cupertino (−8), and Campbell (−7). Los Altos Hills added a few
+                listings but recorded zero pendings this week. Sunnyvale stood out on
+                the demand side with pendings up to 11 (+3).
+              </p>
+              <p>
+                On the Oct. 1 snapshot, months of inventory remained tightest in
+                Sunnyvale (0.7), Mountain View (0.8), and Los Altos (0.9). Higher-MOI
+                pockets like Cambrian, Central San Jose, and Saratoga still tend to
+                leave more room for negotiation when pricing matches current comps.
+              </p>
+              <p>
+                For sellers: lean into presentation and realistic launch pricing —
+                thinner November inventory can help, but only if the home is market-
+                ready. For buyers: use the city-level pending table to spot where
+                competition is heating up again (Sunnyvale, Cupertino, Cambrian) versus
+                where choice is still wider.
+              </p>
+            </>
+          ) : report.slug === "scc-detached-homes-october-25-2026" ? (
             <>
               <p>
                 Inventory held steady at the county composite level, but the story is
