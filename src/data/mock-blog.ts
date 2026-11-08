@@ -5,6 +5,69 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "stocks-gold-real-estate-where-should-your-money-go-november-2026",
+    title:
+      "WOW — Wild 48 Hours on Wall Street: Stocks vs. Gold vs. Real Estate",
+    excerpt:
+      "Stocks rallied then plunged after the elections; the 10-year yield dipped to 4.89%. Here’s a clear look at stocks vs. gold vs. rental real estate — and why year-end can still favor Bay Area buyers.",
+    content: `WOW! What a wild 48 hours on Wall Street! 📈📉
+
+Following Tuesday’s elections, stocks rallied Wednesday before plunging Thursday amid concerns over AI regulation, government policies, and future economic growth.
+
+Meanwhile, the 10-year Treasury yield fell to 4.89% Wednesday — potentially easing pressure on mortgage rates.
+
+💰 Stocks vs. Gold vs. Real Estate — Where Should Your Money Go?
+
+📈 Stocks
+Key advantage: Liquidity and growth potential
+Main drawback: Market volatility and capital gains taxes
+
+🥇 Gold & Silver
+Key advantage: Tangible stores of value and potential inflation hedges
+Main drawback: No rental income or dividends; potential collectibles taxes
+
+🏡 Real Estate
+Key advantage: Rental income, appreciation, equity growth, and tax benefits
+Main drawback: Maintenance, vacancies, and lower liquidity
+
+Here’s what makes rental real estate different:
+
+✅ Tenants can help pay down your mortgage.
+✅ Depreciation and eligible expenses may reduce taxable rental income.
+✅ Property values and rents may grow over time.
+✅ Qualifying 1031 exchanges may defer capital gains taxes.
+
+Gold can protect wealth. Stocks can grow wealth. Real estate can build wealth while generating cash flow.
+
+🏡 And why consider buying before spring?
+
+Year-end sellers may be more motivated, competition can be lighter, and buyers may have greater negotiating power before the traditionally busier spring market.
+
+📲 Whether you’re buying your first home or exploring investment properties, let’s discuss opportunities in the Bay Area!
+
+Jason Lim | REALTOR®
+Compass | DRE #02444964
+📞 (510) 480-7191
+🌐 jasonlimrealty.com
+
+This is educational market commentary, not tax, legal, or investment advice. Talk with your CPA and advisors about your situation.`,
+    category: "Investment",
+    coverImage: cover("photo-1611974789855-9c2a0a7236a3"),
+    publishedAt: "2026-11-05",
+    readingMinutes: 3,
+    tags: [
+      "stocks",
+      "gold",
+      "real estate",
+      "investment",
+      "mortgage rates",
+      "treasury yield",
+      "1031",
+      "bay area",
+      "november 2026",
+    ],
+  },
+  {
     slug: "happy-diwali-year-end-buyer-advantage-november-2026",
     title:
       "Happy Diwali — Why the Quieter Year-End Market Can Favor Buyers",
