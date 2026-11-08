@@ -18,6 +18,8 @@ import { formatMarketChange, formatMarketPrice } from "@/lib/markets-format";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sparkline } from "@/components/markets/sparkline";
+import { TradingViewSymbolOverview } from "@/components/markets/tradingview-symbol-overview";
+import { TradingViewTickers } from "@/components/markets/tradingview-tickers";
 
 function QuoteCard({ quote }: { quote: MarketQuote }) {
   const { changeLabel, pctLabel, direction } = formatMarketChange(
@@ -80,7 +82,8 @@ function QuoteCard({ quote }: { quote: MarketQuote }) {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-accent"
         >
-          Track on {quote.sourceUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+          Track on{" "}
+          {quote.sourceUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}
           <ExternalLink className="h-3 w-3" />
         </Link>
       </CardContent>
@@ -154,46 +157,6 @@ function HistoryChart({ quote }: { quote: MarketQuote }) {
 }
 
 export function MarketsTracker({ snapshot }: { snapshot: MarketsSnapshot }) {
-  if (!snapshot.quotes.length) {
-    return (
-      <Card className="border-dashed border-border/80">
-        <CardContent className="space-y-3 p-6 text-sm text-muted-foreground">
-          <p>Live quotes are temporarily unavailable.</p>
-          <p>
-            Check{" "}
-            <Link
-              href="https://oilprice.com/"
-              className="text-accent underline-offset-2 hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              OilPrice.com
-            </Link>
-            ,{" "}
-            <Link
-              href="https://goldprice.org/"
-              className="text-accent underline-offset-2 hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GoldPrice.org
-            </Link>
-            , and{" "}
-            <Link
-              href="https://www.cnbc.com/"
-              className="text-accent underline-offset-2 hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              CNBC
-            </Link>{" "}
-            for the latest prints — then refresh this page.
-          </p>
-        </CardContent>
-      </Card>
-    );
-  }
-
   const asOfLabel = new Date(snapshot.asOf).toLocaleString("en-US", {
     month: "short",
     day: "numeric",
@@ -205,27 +168,40 @@ export function MarketsTracker({ snapshot }: { snapshot: MarketsSnapshot }) {
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
-        <p>
-          Updated {asOfLabel} · Source: {snapshot.provider}
+      <div className="space-y-3">
+        <p className="text-sm text-muted-foreground">
+          Live ticker tape (Oil · Gold · S&P 500 · Dow · Nasdaq)
         </p>
-        <p className="text-xs">Auto-refreshes about hourly (daily track).</p>
+        <TradingViewTickers />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {snapshot.quotes.map((quote) => (
-          <QuoteCard key={quote.id} quote={quote} />
-        ))}
-      </div>
+      <TradingViewSymbolOverview />
 
-      <div className="grid gap-4 lg:grid-cols-2">
-        {snapshot.quotes.map((quote) => (
-          <HistoryChart key={`${quote.id}-chart`} quote={quote} />
-        ))}
-      </div>
+      {snapshot.quotes.length > 0 ? (
+        <>
+          <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
+            <p>
+              Snapshot {asOfLabel} · Source: {snapshot.provider}
+            </p>
+            <p className="text-xs">Server snapshot refreshes about hourly.</p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {snapshot.quotes.map((quote) => (
+              <QuoteCard key={quote.id} quote={quote} />
+            ))}
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-2">
+            {snapshot.quotes.map((quote) => (
+              <HistoryChart key={`${quote.id}-chart`} quote={quote} />
+            ))}
+          </div>
+        </>
+      ) : null}
 
       <p className="text-xs leading-relaxed text-muted-foreground text-pretty">
-        {snapshot.disclaimer} Reference sites:{" "}
+        {snapshot.disclaimer} Charts powered by TradingView. Reference sites:{" "}
         <Link
           href="https://oilprice.com/"
           className="underline-offset-2 hover:underline"

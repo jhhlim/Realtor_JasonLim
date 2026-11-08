@@ -12,9 +12,15 @@ export async function fetchStooqQuote(symbol: string): Promise<{
   const quoteUrl = `https://stooq.com/q/l/?s=${encodeURIComponent(symbol)}&f=sd2t2ohlcv&h&e=csv`;
   const histUrl = `https://stooq.com/q/d/l/?s=${encodeURIComponent(symbol)}&i=d`;
 
+  const headers = {
+    "User-Agent":
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    Accept: "text/csv,text/plain,*/*",
+  };
+
   const [quoteRes, histRes] = await Promise.all([
-    fetch(quoteUrl, { next: { revalidate: 3600 } }),
-    fetch(histUrl, { next: { revalidate: 3600 } }),
+    fetch(quoteUrl, { headers, cache: "no-store" }),
+    fetch(histUrl, { headers, cache: "no-store" }),
   ]);
 
   if (!quoteRes.ok) return null;

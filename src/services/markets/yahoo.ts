@@ -3,6 +3,11 @@ import type { MarketHistoryPoint } from "./types";
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 
+const HOSTS = [
+  "https://query2.finance.yahoo.com",
+  "https://query1.finance.yahoo.com",
+] as const;
+
 interface YahooChartResult {
   meta?: {
     symbol?: string;
@@ -24,29 +29,9 @@ function toDate(ts: number) {
   return new Date(ts * 1000).toISOString().slice(0, 10);
 }
 
-export async function fetchYahooChart(symbol: string): Promise<{
-  price: number;
-  previousClose: number;
-  currency: string;
-  marketState?: string;
-  history: MarketHistoryPoint[];
-} | null> {
-  const encoded = encodeURIComponent(symbol);
-  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encoded}?range=1mo&interval=1d`;
-
-  const res = await fetch(url, {
-    headers: {
-      "User-Agent": UA,
-      Accept: "application/json",
-    },
-    next: { revalidate: 3600 },
-  });
-
-  if (!res.ok) return null;
-
-  const json = (await res.json()) as {
-    chart?: { result?: YahooChartResult[]; error?: unknown };
-  };
+function parseChart(json: {
+  chart?: { result?: YahooChartResult[]; error?: unknown };
+}) {
   const result = json.chart?.result?.[0];
   if (!result?.meta?.regularMarketPrice) return null;
 
@@ -76,4 +61,39 @@ export async function fetchYahooChart(symbol: string): Promise<{
     marketState: result.meta.marketState,
     history,
   };
+}
+
+export async function fetchYahooChart(symbol: string): Promise<{
+  price: number;
+  previousClose: number;
+  currency: string;
+  marketState?: string;
+  history: MarketHistoryPoint[];
+} | null> {
+  const encoded = encodeURIComponent(symbol);
+
+  for (const host of HOSTS) {
+    try {
+      const url = `${host}/v8/finance/chart/${encoded}?range=1mo&interval=1d`;
+      const res = await fetch(url, {
+        headers: {
+          "User-Agent": UA,
+          Accept: "application/json,text/plain,*/*",
+          "Accept-Language": "en-US,en;q=0.9",
+        },
+        // Avoid Next fetch cache bundling failed empty responses for an hour
+        cache: "no-store",
+      });
+      if (!res.ok) continue;
+      const json = (await res.json()) as {
+        chart?: { result?: YahooChartResult[]; error?: unknown };
+      };
+      const parsed = parseChart(json);
+      if (parsed) return parsed;
+    } catch {
+      // try next host
+    }
+  }
+
+  return null;
 }

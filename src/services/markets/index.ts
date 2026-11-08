@@ -89,11 +89,11 @@ async function loadMarketsSnapshot(): Promise<MarketsSnapshot> {
   };
 }
 
-/** Cached ~1 hour so homepage / tools share one daily-track refresh. */
+/** Cached ~15 min — TradingView widgets cover live UI if providers are blocked. */
 export const getMarketsSnapshot = unstable_cache(
   loadMarketsSnapshot,
-  ["markets-snapshot-v1"],
-  { revalidate: 3600 },
+  ["markets-snapshot-v2"],
+  { revalidate: 900 },
 );
 
 export type { MarketAssetId, MarketQuote, MarketsSnapshot } from "./types";
