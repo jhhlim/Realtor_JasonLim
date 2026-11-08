@@ -26,7 +26,7 @@ Jason Lim · REALTOR® | Compass · DRE #02444964
 📱 (510) 480-7191
 🌐 jasonlimrealty.com`,
     category: "Bay Area",
-    coverImage: cover("photo-1507003211169-0a1dd7228f2d"),
+    coverImage: cover("photo-1476820865390-c52aeebb9891"),
     publishedAt: "2026-11-01",
     readingMinutes: 1,
     tags: [
