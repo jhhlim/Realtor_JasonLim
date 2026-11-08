@@ -30,12 +30,12 @@ You can’t control next spring’s market. You can get prepared now.
 
 Text “HOME” to 510-480-7191. Let’s identify your best opportunities before the new year.
 
-Jason Lim · REALTOR® | Compass · DRE #02444964
+Jason Lim | Compass · DRE #02444964
 📱 (510) 480-7191
 🌐 jasonlimrealty.com`,
     category: "Buying",
     coverImage: cover("photo-1545558014-8692077e9b5c"),
-    publishedAt: "2026-11-03",
+    publishedAt: "2026-11-05",
     readingMinutes: 2,
     tags: [
       "diwali",
