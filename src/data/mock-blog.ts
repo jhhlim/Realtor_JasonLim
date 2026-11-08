@@ -5,6 +5,50 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "happy-diwali-year-end-buyer-advantage-november-2026",
+    title:
+      "Happy Diwali — Why the Quieter Year-End Market Can Favor Buyers",
+    excerpt:
+      "Wishing you happiness, prosperity, and new beginnings. If you’re planning to buy next year, don’t wait until spring — less competition, motivated sellers, and more room to negotiate can matter more than winter curb appeal.",
+    content: `🪔 Happy Diwali!
+
+Wishing you and your family happiness, prosperity, and new beginnings.
+
+If you’re planning to buy next year, don’t wait until everyone else starts looking. Spring brings sunshine, fresh landscaping… and more buyers.
+
+The quieter year-end market can give you an advantage:
+
+• Less competition from other buyers
+• Motivated sellers with reasons to move
+• More room to negotiate price, closing costs, or a rate buydown
+
+Look past winter curb appeal. The home buyers overlook today could be the one they compete for this spring. A strong, respectful offer now may accomplish more than a higher offer in a crowded market.
+
+At my Berryessa open house Sunday, I met a young couple who work in AI development from San Francisco seeking more space and BART access. I’m also watching Anthropic’s proposed IPO for potential shifts in Bay Area demand.
+
+You can’t control next spring’s market. You can get prepared now.
+
+Text “HOME” to 510-480-7191. Let’s identify your best opportunities before the new year.
+
+Jason Lim · REALTOR® | Compass · DRE #02444964
+📱 (510) 480-7191
+🌐 jasonlimrealty.com`,
+    category: "Buying",
+    coverImage: cover("photo-1545558014-8692077e9b5c"),
+    publishedAt: "2026-11-03",
+    readingMinutes: 2,
+    tags: [
+      "diwali",
+      "buying",
+      "year-end market",
+      "negotiation",
+      "bay area",
+      "berryessa",
+      "anthropic",
+      "november 2026",
+    ],
+  },
+  {
     slug: "happy-november-daylight-saving-market-tip-november-2026",
     title:
       "Happy November — Clocks Fall Back, and a Quick Bay Area Market Tip",
