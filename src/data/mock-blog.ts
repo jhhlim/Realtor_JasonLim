@@ -5,6 +5,42 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "happy-november-daylight-saving-market-tip-november-2026",
+    title:
+      "Happy November — Clocks Fall Back, and a Quick Bay Area Market Tip",
+    excerpt:
+      "Daylight Saving Time ends today — turn those clocks back one hour. With mortgage rates trending lower and the holidays ahead, it can be a smart window to explore homes with potentially less competition.",
+    content: `Happy November! 🍂
+
+⏰ Daylight Saving Time ends today, Sunday, November 1 — don't forget to turn your clocks back one hour.
+
+🏡 Real Estate Tip
+
+With mortgage rates trending lower and the holiday season approaching, this can be a good time to explore homes with potentially less competition. Buyers who stay active while others pause for the holidays often find more room to tour, compare, and negotiate. Sellers who are prepared can still catch serious shoppers who aren't waiting until January.
+
+Whether you're buying, selling, or just curious about the Bay Area market, I'm always happy to help.
+
+Enjoy your extra hour today! 😊
+
+Jason Lim · REALTOR® | Compass · DRE #02444964
+📱 (510) 480-7191
+🌐 jasonlimrealty.com`,
+    category: "Bay Area",
+    coverImage: cover("photo-1507003211169-0a1dd7228f2d"),
+    publishedAt: "2026-11-01",
+    readingMinutes: 1,
+    tags: [
+      "november",
+      "daylight saving",
+      "mortgage rates",
+      "holiday market",
+      "bay area",
+      "buying",
+      "selling",
+      "november 2026",
+    ],
+  },
+  {
     slug: "happy-halloween-spooky-open-houses-october-2026",
     title:
       "Happy Halloween — Plus Two Spooky-Good Open Houses This Weekend",
