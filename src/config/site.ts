@@ -196,6 +196,7 @@ export const siteConfig = {
         title: "Tools",
         links: [
           { label: "Mortgage Calculator", href: "/mortgage-calculator" },
+          { label: "Oil / Gold / Indexes", href: "/tools/markets" },
           { label: "Home Valuation", href: "/tools/home-valuation" },
           { label: "Affordability", href: "/tools/affordability" },
           { label: "Rent vs Buy", href: "/tools/rent-vs-buy" },

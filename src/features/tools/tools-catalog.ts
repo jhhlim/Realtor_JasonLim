@@ -56,6 +56,15 @@ export const toolsCatalog = [
     category: "Mortgage",
   },
   {
+    slug: "markets",
+    title: "Oil, Gold & Indexes",
+    description:
+      "Daily track of WTI oil, gold, S&P 500, Dow, and Nasdaq with ~1 month charts.",
+    href: "/tools/markets",
+    status: "live" as const,
+    category: "Market",
+  },
+  {
     slug: "neighborhood-comparison",
     title: "Neighborhood Comparison",
     description: "Compare two Bay Area communities from market data.",
@@ -100,9 +109,13 @@ export const toolsCatalog = [
 export type ToolCatalogItem = (typeof toolsCatalog)[number];
 export type ToolStatus = ToolCatalogItem["status"];
 
+/** Dedicated App Router pages that should not be handled by `/tools/[slug]`. */
+const dedicatedToolSlugs = new Set(["markets"]);
+
 /** Tools routed under `/tools/[slug]` (excludes standalone pages like mortgage calculator). */
-export const toolsUnderToolsRoute = toolsCatalog.filter((tool) =>
-  tool.href.startsWith("/tools/"),
+export const toolsUnderToolsRoute = toolsCatalog.filter(
+  (tool) =>
+    tool.href.startsWith("/tools/") && !dedicatedToolSlugs.has(tool.slug),
 );
 
 export function getToolBySlug(slug: string): ToolCatalogItem | undefined {

@@ -4,6 +4,7 @@ import { FeaturedListings } from "@/components/home/featured-listings";
 import { GoalsCta } from "@/components/home/goals-cta";
 import { Hero } from "@/components/home/hero";
 import { MarketInsights } from "@/components/home/market-insights";
+import { MarketsStrip } from "@/components/home/markets-strip";
 import { MortgageTeaser } from "@/components/home/mortgage-teaser";
 import { NeighborhoodsPreview } from "@/components/home/neighborhoods-preview";
 import { RecentSales } from "@/components/home/recent-sales";
@@ -36,6 +37,7 @@ export default async function HomePage() {
     <>
       <Hero />
       <StatsStrip />
+      <MarketsStrip />
       <MarketInsights report={featuredReport} />
       <GoalsCta />
       {featured.length > 0 ? <FeaturedListings listings={featured} /> : null}

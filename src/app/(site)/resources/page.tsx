@@ -32,6 +32,7 @@ const hubs = [
     icon: Calculator,
     links: [
       { label: "Mortgage calculator", href: "/mortgage-calculator" },
+      { label: "Oil / gold / indexes tracker", href: "/tools/markets" },
       { label: "Home valuation", href: "/tools/home-valuation" },
       { label: "Affordability", href: "/tools/affordability" },
       { label: "Rent vs buy", href: "/tools/rent-vs-buy" },
