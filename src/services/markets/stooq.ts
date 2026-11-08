@@ -12,15 +12,15 @@ export async function fetchStooqQuote(symbol: string): Promise<{
   const quoteUrl = `https://stooq.com/q/l/?s=${encodeURIComponent(symbol)}&f=sd2t2ohlcv&h&e=csv`;
   const histUrl = `https://stooq.com/q/d/l/?s=${encodeURIComponent(symbol)}&i=d`;
 
-  const headers = {
+  const requestHeaders = {
     "User-Agent":
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     Accept: "text/csv,text/plain,*/*",
   };
 
   const [quoteRes, histRes] = await Promise.all([
-    fetch(quoteUrl, { headers, cache: "no-store" }),
-    fetch(histUrl, { headers, cache: "no-store" }),
+    fetch(quoteUrl, { headers: requestHeaders, cache: "no-store" }),
+    fetch(histUrl, { headers: requestHeaders, cache: "no-store" }),
   ]);
 
   if (!quoteRes.ok) return null;
@@ -29,10 +29,10 @@ export async function fetchStooqQuote(symbol: string): Promise<{
   const quoteLines = quoteText.trim().split(/\r?\n/);
   if (quoteLines.length < 2) return null;
 
-  const headers = parseCsvLine(quoteLines[0]!).map((h) => h.toLowerCase());
+  const columns = parseCsvLine(quoteLines[0]!).map((h) => h.toLowerCase());
   const values = parseCsvLine(quoteLines[1]!);
   const get = (key: string) => {
-    const idx = headers.indexOf(key);
+    const idx = columns.indexOf(key);
     return idx >= 0 ? values[idx] : undefined;
   };
 
