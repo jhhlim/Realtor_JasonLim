@@ -95,6 +95,32 @@ export default async function MarketReportDetailPage({
         </div>
       </Section>
 
+      {report.highlights && report.highlights.length > 0 ? (
+        <Section
+          eyebrow="Highlights"
+          title={report.highlightsTitle ?? "Key takeaways"}
+          description="Curated snapshots — not every sale, the ones that tell the story."
+        >
+          <div className="grid gap-4 sm:grid-cols-2">
+            {report.highlights.map((item) => (
+              <Card
+                key={item.title}
+                className="border-border/70 bg-card/80 shadow-sm"
+              >
+                <CardContent className="space-y-2 p-5">
+                  <p className="font-display text-base font-semibold tracking-tight text-foreground">
+                    {item.title}
+                  </p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {item.detail}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </Section>
+      ) : null}
+
       {report.areas && report.areas.length > 0 ? (
         <Section
           eyebrow="By area"
@@ -167,7 +193,58 @@ export default async function MarketReportDetailPage({
       >
         <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-muted-foreground text-pretty">
           <p>{report.summary}</p>
-          {report.slug === "scc-detached-homes-november-1-2026" ? (
+          {report.slug === "silicon-valley-overbids-october-2026" ? (
+            <>
+              <p>
+                Rates above 7% were supposed to cool things down. In the South Bay
+                and on the Peninsula, October still delivered multi-offer piles and
+                six-figure overasks — especially in Sunnyvale, Cupertino, Saratoga,
+                and Atherton. That isn’t “the whole market is on fire.” It’s a
+                reminder that the right house, priced to draw traffic, can still
+                start a bidding war while nearby inventory sits.
+              </p>
+              <p>
+                Sunnyvale led the volume story: 21 offers on Plymouth, 13 on
+                Endicott, 10 on Henderson, and standouts like Bryan Avenue nearly
+                $1M over ask. Cupertino mirrored that intensity — Tonita (14
+                offers), Brent and Lonna (10 each), Bellevue +$762K. Saratoga
+                posted half-million-plus overbids on Beauchamps, Devon, and
+                Braemar. Atherton and San Francisco showed the luxury / tech-wealth
+                side: four Atherton closes roughly $1.3M–$3M over list, and Cherry
+                Street in SF at +$10M — the largest dollar overbid in SF
+                residential history.
+              </p>
+              <p>
+                What I tell buyers: if you’re waiting for rates alone to create
+                easy deals in A+ school / commute pockets, October said otherwise.
+                Win with prep — lender letters tight, inspection strategy clear,
+                escalation and appraisal-gap math done before you write. What I
+                tell sellers: launch pricing that invites competition still
+                outperforms “testing the high.” Presentation and timing in the
+                first two weeks decide whether you get one offer or twenty-one.
+              </p>
+              <p>
+                AI wealth and a possible Anthropic IPO wave are the longer
+                backdrop — but your next move is local and personal. Thinking about
+                buying into a multi-offer street, or pricing a Sunnyvale /
+                Cupertino / Saratoga listing this season? Let’s talk through the
+                comps and a plan that fits your timeline.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <Button asChild variant="accent">
+                  <Link href="/contact">Talk with Jason</Link>
+                </Button>
+                <Button asChild variant="outline">
+                  <Link href={siteConfig.cta.valuation.href}>
+                    Request a Personalized Home Valuation
+                  </Link>
+                </Button>
+                <Button asChild variant="outline">
+                  <Link href="/buy">See buyer resources</Link>
+                </Button>
+              </div>
+            </>
+          ) : report.slug === "scc-detached-homes-november-1-2026" ? (
             <>
               <p>
                 Inventory tightened into November: active listings fell 36 week over

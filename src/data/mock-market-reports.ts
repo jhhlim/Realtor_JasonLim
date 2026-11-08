@@ -2,6 +2,69 @@ import type { MarketReport } from "@/types";
 
 export const mockMarketReports: MarketReport[] = [
   {
+    id: "mr-2026-11-02-overbids-rates",
+    title:
+      "Rates Above 7% — and Silicon Valley Still Bidding Over Asking",
+    slug: "silicon-valley-overbids-october-2026",
+    summary:
+      "Even with 30-year mortgage rates above 7% — the highest in nearly three years — Silicon Valley kept producing six-figure (and seven-figure) overbids in October. At least 36 homes sold $200K+ over ask; half of those cleared $400K+ over list. Here’s what that means if you’re buying or selling right now.",
+    publishedAt: "2026-11-02",
+    region: "Silicon Valley",
+    stats: [
+      { label: "Homes $200K+ over ask", value: "36+", change: "October" },
+      { label: "Of those, $400K+ over", value: "~50%", change: "of the 36+" },
+      { label: "Biggest SF overbid", value: "+$10M", change: "20 Cherry St" },
+      { label: "Top Sunnyvale overbid", value: "+$982K", change: "457 Bryan Ave" },
+    ],
+    highlightsTitle: "Bidding-war & overbid snapshots",
+    highlights: [
+      {
+        title: "21 offers — 1126 Plymouth Drive, Sunnyvale",
+        detail: "Listed $1,899,999 · Sold $2,780,000 (+$880,001)",
+      },
+      {
+        title: "14 offers — 10356 Tonita Way, Cupertino",
+        detail: "Listed $3,588,000 · Sold $4,020,000 (+$432,000)",
+      },
+      {
+        title: "13 offers — 588 Endicott Drive, Sunnyvale",
+        detail: "Listed $2,988,000 · Sold $3,625,000 (+$637,000)",
+      },
+      {
+        title: "10 offers — 718 Henderson Avenue, Sunnyvale",
+        detail: "Listed $2,688,800 · Sold $3,340,000 (+$651,200)",
+      },
+      {
+        title: "10 offers — Cupertino (Brent Dr & Lonna Ln)",
+        detail: "883 Brent +$563K · 10528 Lonna +$588K — both 10-offer contests",
+      },
+      {
+        title: "San Francisco record overbid — 20 Cherry Street",
+        detail: "Listed $18.5M · Sold $28.5M (+$10M) — largest $ overbid in SF residential history",
+      },
+      {
+        title: "Atherton luxury overbids",
+        detail:
+          "Four sales closed roughly $1.3M–$3.0M over ask (Oak Grove, Hawthorne, Catalpa, Holbrook)",
+      },
+      {
+        title: "Sunnyvale standouts beyond the offer leaders",
+        detail:
+          "457 Bryan +$982K · 1059 Lily +$685K · 988 Cambridge +$640K · 1653 Kitchener +$529K",
+      },
+      {
+        title: "Cupertino / West San Jose",
+        detail:
+          "22268 Bellevue +$762K · 10538 McClellan +$600K · 1510 Greene (WSJ) +$362K",
+      },
+      {
+        title: "Saratoga",
+        detail:
+          "12078 Beauchamps +$602K · 18802 Devon +$504K · 19551 Braemar +$475K",
+      },
+    ],
+  },
+  {
     id: "mr-2026-11-01-scc-detached",
     title: "Santa Clara County Detached Homes — November 1, 2026",
     slug: "scc-detached-homes-november-1-2026",

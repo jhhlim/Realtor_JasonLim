@@ -192,6 +192,11 @@ export interface MarketReportAreaStat {
   moi?: string;
 }
 
+export interface MarketReportHighlight {
+  title: string;
+  detail: string;
+}
+
 export interface MarketReport {
   id: string;
   title: string;
@@ -204,6 +209,9 @@ export interface MarketReport {
   areas?: MarketReportAreaStat[];
   /** Footnote for area table (e.g. median/MOI as-of date). */
   areasNote?: string;
+  /** Optional curated highlights (overbids, offer counts, etc.). */
+  highlights?: MarketReportHighlight[];
+  highlightsTitle?: string;
 }
 
 export interface BlogPost {
