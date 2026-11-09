@@ -11,8 +11,8 @@ export function MarketsStrip() {
   return (
     <Section
       eyebrow="Markets desk"
-      title="Oil, gold, indexes & futures — daily track"
-      description="Cash indexes plus ES / NQ / YM / CL / GC futures for morning opens — macro prints that shape rates, risk appetite, and Bay Area buyer psychology."
+      title="Oil, gold, indexes & overnight tape — daily track"
+      description="Cash indexes plus nearly-24h US500 / US100 / US30 for morning opens — macro prints that shape rates, risk appetite, and Bay Area buyer psychology."
       className="bg-gradient-to-b from-background to-slate-soft/60 dark:to-card/20"
     >
       <FadeIn>

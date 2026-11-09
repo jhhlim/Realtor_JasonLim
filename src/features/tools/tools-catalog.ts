@@ -57,9 +57,9 @@ export const toolsCatalog = [
   },
   {
     slug: "markets",
-    title: "Oil, Gold, Indexes & Futures",
+    title: "Oil, Gold, Indexes & Overnight Tape",
     description:
-      "Cash indexes plus ES/NQ/YM/CL/GC futures for morning opens, with charts.",
+      "Cash indexes plus nearly-24h US500/US100/US30 for morning opens, with charts.",
     href: "/tools/markets",
     status: "live" as const,
     category: "Market",

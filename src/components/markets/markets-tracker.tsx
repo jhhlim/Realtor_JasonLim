@@ -15,6 +15,7 @@ import { ExternalLink, TrendingDown, TrendingUp } from "lucide-react";
 
 import type { MarketQuote, MarketsSnapshot } from "@/services/markets/types";
 import { formatMarketChange, formatMarketPrice } from "@/lib/markets-format";
+import { FUTURES_TV_LINKS } from "@/components/markets/market-symbols";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sparkline } from "@/components/markets/sparkline";
@@ -170,13 +171,30 @@ export function MarketsTracker({ snapshot }: { snapshot: MarketsSnapshot }) {
     <div className="space-y-8">
       <div className="space-y-3">
         <p className="text-sm text-muted-foreground">
-          Live ticker tape — cash (Oil · Gold · S&P · Dow · Nasdaq) + futures
-          (ES · NQ · YM · CL · GC) for morning opens
+          Live ticker tape — cash indexes plus nearly-24h US500 / US100 / US30
+          (morning-open proxies). CME futures can’t be embedded on free
+          widgets; use the TradingView links below for ES / NQ / YM / CL / GC.
         </p>
         <TradingViewTickers />
       </div>
 
       <TradingViewSymbolOverview />
+
+      <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+        <span className="font-medium text-foreground">Official futures on TradingView:</span>
+        {FUTURES_TV_LINKS.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-card px-2.5 py-1 transition-colors hover:border-accent/40 hover:text-accent"
+          >
+            {item.label}
+            <ExternalLink className="h-3 w-3" />
+          </Link>
+        ))}
+      </div>
 
       {snapshot.quotes.length > 0 ? (
         <>

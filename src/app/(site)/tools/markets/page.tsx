@@ -6,9 +6,9 @@ import { getMarketsSnapshot } from "@/services/markets";
 export const revalidate = 3600;
 
 export const metadata = buildMetadata({
-  title: "Oil, Gold, Indexes & Futures Daily Tracker",
+  title: "Oil, Gold, Indexes & Overnight Tape",
   description:
-    "Daily track of WTI oil, gold, S&P 500, Dow, Nasdaq, plus ES/NQ/YM/CL/GC futures for morning opens — macro context for Bay Area real estate.",
+    "Daily track of WTI oil, gold, S&P 500, Dow, Nasdaq, plus nearly-24h US500/US100/US30 for morning opens — macro context for Bay Area real estate.",
   path: "/tools/markets",
 });
 
@@ -17,8 +17,8 @@ export default async function MarketsToolPage() {
 
   return (
     <ToolPageShell
-      title="Oil, gold, indexes & futures"
-      description="Cash indexes plus equity and commodity futures (ES, NQ, YM, CL, GC) so you can watch the tape before the cash open — useful backdrop for rates, risk assets, and Silicon Valley housing psychology."
+      title="Oil, gold, indexes & overnight tape"
+      description="Cash indexes plus nearly-24h US500 / US100 / US30 so you can watch the tape before the cash open. Official CME futures (ES, NQ, YM, CL, GC) link out to TradingView — they aren’t licensed for free website embeds."
     >
       <MarketsTracker snapshot={snapshot} />
     </ToolPageShell>
