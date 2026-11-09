@@ -122,13 +122,17 @@ export default async function ListingsPage({
           {simplyRetsDemo && result.total > 0 ? (
             <div className="mb-6 rounded-2xl border border-accent/25 bg-accent/5 px-4 py-3 text-sm text-muted-foreground">
               <p>
-                <span className="font-medium text-foreground">Free MLS demo feed</span>{" "}
-                via SimplyRETS (sample market data). Listing agent names come from
-                the MLS so homes are clearly not Jason&apos;s listings. For live
-                Silicon Valley inventory, connect MLSListings / Compass IDX
-                credentials in Vercel env (
+                <span className="font-medium text-foreground">
+                  Demo MLS feed only — not Silicon Valley live inventory.
+                </span>{" "}
+                Listing agent names still come from the feed so homes are clearly
+                not Jason&apos;s listings. Live San Jose / South Bay homes require
+                MLSListings IDX approval through Compass (broker authorization +
+                approved vendor). See{" "}
+                <code className="text-xs">docs/MLS-SILICON-VALLEY-SETUP.md</code>{" "}
+                in the project, then set production{" "}
                 <code className="text-xs">SIMPLYRETS_USERNAME</code> /{" "}
-                <code className="text-xs">SIMPLYRETS_PASSWORD</code>).
+                <code className="text-xs">SIMPLYRETS_PASSWORD</code> in Vercel.
               </p>
             </div>
           ) : null}
