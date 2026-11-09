@@ -88,12 +88,14 @@ export default async function ListingsPage({
             <div>
               <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
                 {result.total === 0
-                  ? "No homes match"
+                  ? awaitingMls
+                    ? "Silicon Valley listings"
+                    : "No homes match"
                   : `${formatNumber(result.total)} home${result.total === 1 ? "" : "s"}`}
               </h2>
               <p className="mt-1 text-sm text-muted-foreground">
                 {awaitingMls
-                  ? "Live MLS inventory is not connected yet — contact Jason for current homes."
+                  ? "Currently being worked on to pull MLS listings for Silicon Valley."
                   : hasFilters
                     ? "Results updated from your filters. Listing agents shown from MLS."
                     : "Showing MLS listings with listing-agent attribution — refine with filters anytime."}
@@ -126,11 +128,11 @@ export default async function ListingsPage({
               {result.total === 0 ? (
                 <div className="rounded-2xl border border-dashed border-border bg-secondary/40 px-6 py-16 text-center">
                   <p className="font-display text-xl font-semibold">
-                    {awaitingMls ? "Listings coming soon" : "No listings found"}
+                    {awaitingMls ? "MLS search in progress" : "No listings found"}
                   </p>
-                  <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
+                  <p className="mx-auto mt-2 max-w-lg text-sm text-muted-foreground">
                     {awaitingMls
-                      ? "I only publish real MLS homes here. Until the live feed is connected, reach out and I’ll send current matches for your budget and cities."
+                      ? "Disclaimer: we’re currently working on connecting live MLS listings for Silicon Valley. In the meantime, contact Jason for current homes that match your budget and cities."
                       : "Try widening your price range, removing bed/bath minimums, or searching a nearby city."}
                   </p>
                   <div className="mt-6 flex flex-wrap justify-center gap-3">
