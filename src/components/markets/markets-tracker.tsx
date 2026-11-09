@@ -170,7 +170,8 @@ export function MarketsTracker({ snapshot }: { snapshot: MarketsSnapshot }) {
     <div className="space-y-8">
       <div className="space-y-3">
         <p className="text-sm text-muted-foreground">
-          Live ticker tape (Oil · Gold · S&P 500 · Dow · Nasdaq)
+          Live ticker tape — cash (Oil · Gold · S&P · Dow · Nasdaq) + futures
+          (ES · NQ · YM · CL · GC) for morning opens
         </p>
         <TradingViewTickers />
       </div>

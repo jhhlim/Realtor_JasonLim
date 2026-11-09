@@ -57,9 +57,9 @@ export const toolsCatalog = [
   },
   {
     slug: "markets",
-    title: "Oil, Gold & Indexes",
+    title: "Oil, Gold, Indexes & Futures",
     description:
-      "Daily track of WTI oil, gold, S&P 500, Dow, and Nasdaq with ~1 month charts.",
+      "Cash indexes plus ES/NQ/YM/CL/GC futures for morning opens, with charts.",
     href: "/tools/markets",
     status: "live" as const,
     category: "Market",

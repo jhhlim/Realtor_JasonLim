@@ -2,18 +2,12 @@
 
 import { useEffect, useId, useRef } from "react";
 
+import { OVERVIEW_SYMBOLS } from "@/components/markets/market-symbols";
+
 /**
  * Symbol Overview expects [displayName, "EXCHANGE:SYMBOL|range"].
  * (Name first — reversing this causes "Invalid symbol".)
  */
-const SYMBOLS: [string, string][] = [
-  ["Oil (WTI)", "TVC:USOIL|1D"],
-  ["Gold", "TVC:GOLD|1D"],
-  ["S&P 500", "FOREXCOM:SPXUSD|1D"],
-  ["Dow", "FOREXCOM:DJI|1D"],
-  ["Nasdaq 100", "FOREXCOM:NSXUSD|1D"],
-];
-
 export function TradingViewSymbolOverview({
   theme = "light",
 }: {
@@ -37,7 +31,7 @@ export function TradingViewSymbolOverview({
     script.type = "text/javascript";
     script.async = true;
     script.innerHTML = JSON.stringify({
-      symbols: SYMBOLS,
+      symbols: OVERVIEW_SYMBOLS,
       chartOnly: false,
       width: "100%",
       height: 420,

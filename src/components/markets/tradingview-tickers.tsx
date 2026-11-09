@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
+import { TICKER_SYMBOLS } from "@/components/markets/market-symbols";
+
 /**
  * Browser-side TradingView ticker strip — loads in the visitor’s browser so
  * datacenter IP blocks on Yahoo/Stooq don’t blank the homepage.
@@ -28,13 +30,10 @@ export function TradingViewTickers({
     script.type = "text/javascript";
     script.async = true;
     script.innerHTML = JSON.stringify({
-      symbols: [
-        { description: "Oil (WTI)", proName: "TVC:USOIL" },
-        { description: "Gold", proName: "TVC:GOLD" },
-        { description: "S&P 500", proName: "FOREXCOM:SPXUSD" },
-        { description: "Dow", proName: "FOREXCOM:DJI" },
-        { description: "Nasdaq 100", proName: "FOREXCOM:NSXUSD" },
-      ],
+      symbols: TICKER_SYMBOLS.map((s) => ({
+        description: s.description,
+        proName: s.proName,
+      })),
       showSymbolLogo: true,
       isTransparent: true,
       displayMode: "adaptive",
