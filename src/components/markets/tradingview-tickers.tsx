@@ -31,9 +31,9 @@ export function TradingViewTickers({
       symbols: [
         { description: "Oil (WTI)", proName: "TVC:USOIL" },
         { description: "Gold", proName: "TVC:GOLD" },
-        { description: "S&P 500", proName: "FOREXCOM:SPXUSD" },
-        { description: "Dow", proName: "FOREXCOM:DJI" },
-        { description: "Nasdaq 100", proName: "FOREXCOM:NSXUSD" },
+        { description: "S&P 500", proName: "FRED:SP500" },
+        { description: "Dow", proName: "BLACKBULL:US30" },
+        { description: "Nasdaq 100", proName: "FRED:NDQ100" },
       ],
       showSymbolLogo: true,
       isTransparent: true,

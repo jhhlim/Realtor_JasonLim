@@ -2,12 +2,16 @@
 
 import { useEffect, useId, useRef } from "react";
 
+/**
+ * Symbol Overview expects [displayName, "EXCHANGE:SYMBOL|range"].
+ * (Name first — reversing this causes "Invalid symbol".)
+ */
 const SYMBOLS: [string, string][] = [
-  ["TVC:USOIL|1M", "Oil (WTI)"],
-  ["TVC:GOLD|1M", "Gold"],
-  ["FOREXCOM:SPXUSD|1M", "S&P 500"],
-  ["FOREXCOM:DJI|1M", "Dow"],
-  ["FOREXCOM:NSXUSD|1M", "Nasdaq 100"],
+  ["Oil (WTI)", "TVC:USOIL|1D"],
+  ["Gold", "TVC:GOLD|1D"],
+  ["S&P 500", "FRED:SP500|1D"],
+  ["Dow", "BLACKBULL:US30|1D"],
+  ["Nasdaq 100", "FRED:NDQ100|1D"],
 ];
 
 export function TradingViewSymbolOverview({
@@ -56,7 +60,7 @@ export function TradingViewSymbolOverview({
       chartType: "area",
       lineWidth: 2,
       lineType: 0,
-      dateRanges: ["1d|1", "1m|30", "3m|60", "12m|1D", "60m|1W", "all|1M"],
+      dateRanges: ["1d|1", "1m|1D", "3m|60", "12m|1D", "60m|1W", "all|1M"],
     });
     container.appendChild(script);
 
