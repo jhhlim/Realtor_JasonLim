@@ -9,9 +9,9 @@ import { useEffect, useId, useRef } from "react";
 const SYMBOLS: [string, string][] = [
   ["Oil (WTI)", "TVC:USOIL|1D"],
   ["Gold", "TVC:GOLD|1D"],
-  ["S&P 500", "FRED:SP500|1D"],
-  ["Dow", "BLACKBULL:US30|1D"],
-  ["Nasdaq 100", "FRED:NDQ100|1D"],
+  ["S&P 500", "FOREXCOM:SPXUSD|1D"],
+  ["Dow", "FOREXCOM:DJI|1D"],
+  ["Nasdaq 100", "FOREXCOM:NSXUSD|1D"],
 ];
 
 export function TradingViewSymbolOverview({
