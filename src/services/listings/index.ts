@@ -6,6 +6,7 @@ import type {
 } from "@/types";
 import { mockNeighborhoods } from "@/data/mock-neighborhoods";
 import { siteConfig } from "@/config/site";
+import { isSimplyRetsDemo } from "@/lib/listings-mode";
 import { BridgeListingProvider } from "@/services/listings/bridge-provider";
 import { EstatedListingProvider } from "@/services/listings/estated-provider";
 import { IdxListingProvider } from "@/services/listings/idx-provider";
@@ -39,11 +40,15 @@ let cachedProvider: ListingProvider | null = null;
 export function getListingProvider(providerId?: MlsProviderId): ListingProvider {
   if (cachedProvider && !providerId) return cachedProvider;
 
-  // Prefer SimplyRETS (free demo or MLS credentials) over empty mock on live site.
-  const id = (providerId ??
+  // Never serve SimplyRETS Houston demo on the live site — wait for real IDX creds.
+  let id = (providerId ??
     (process.env.MLS_PROVIDER as MlsProviderId | undefined) ??
     (siteConfig.integrations.mls.provider as MlsProviderId) ??
-    "simplyrets") as MlsProviderId;
+    "mock") as MlsProviderId;
+
+  if (id === "simplyrets" && isSimplyRetsDemo()) {
+    id = "mock";
+  }
 
   let provider: ListingProvider;
   switch (id) {

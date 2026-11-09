@@ -10,23 +10,40 @@ function hasEnv(name: string) {
   return Boolean(process.env[name]?.trim());
 }
 
+/** SimplyRETS public demo keys (Houston sample data — not Bay Area). */
+export function isSimplyRetsDemo(): boolean {
+  const provider = (process.env.MLS_PROVIDER ?? "mock").toLowerCase();
+  if (provider !== "simplyrets") return false;
+  const user = process.env.SIMPLYRETS_USERNAME?.trim() || "simplyrets";
+  const pass = process.env.SIMPLYRETS_PASSWORD?.trim() || "simplyrets";
+  return user === "simplyrets" && pass === "simplyrets";
+}
+
 /**
- * True when a live or demo MLS API path is configured.
- * SimplyRETS demo credentials (simplyrets/simplyrets) count as connected
- * so the UI can show real MLS-shaped listings with listing-agent attribution.
+ * True only when a real (non-demo) MLS path is configured.
+ * SimplyRETS demo credentials do NOT count — they show Texas sample data.
  */
 export function isLiveMlsConfigured(): boolean {
-  const provider = (process.env.MLS_PROVIDER ?? "simplyrets").toLowerCase();
-  if (provider === "mock") return false;
+  const provider = (process.env.MLS_PROVIDER ?? "mock").toLowerCase();
+  if (provider === "mock" || !provider) return false;
 
   if (provider === "realtyapi") {
     return hasEnv("REALTY_API_KEY");
   }
   if (provider === "simplyrets") {
-    // Demo credentials work without env; production uses SIMPLYRETS_* from MLS.
-    return true;
+    if (isSimplyRetsDemo()) return false;
+    return (
+      hasEnv("SIMPLYRETS_USERNAME") &&
+      hasEnv("SIMPLYRETS_PASSWORD") &&
+      !isSimplyRetsDemo()
+    );
   }
-  if (provider === "bridge") return hasEnv("BRIDGE_API_KEY");
+  if (provider === "bridge") {
+    return (
+      hasEnv("BRIDGE_API_KEY") ||
+      (hasEnv("BRIDGE_SERVER_TOKEN") && hasEnv("BRIDGE_CLIENT_ID"))
+    );
+  }
   if (provider === "idx") return hasEnv("IDX_API_KEY");
   if (provider === "mls-grid") return hasEnv("MLS_GRID_TOKEN");
   if (provider === "trestle") {
@@ -34,14 +51,5 @@ export function isLiveMlsConfigured(): boolean {
   }
   if (provider === "estated") return hasEnv("ESTATED_API_KEY");
 
-  return provider !== "mock";
-}
-
-/** SimplyRETS public demo keys (not Bay Area live MLS). */
-export function isSimplyRetsDemo(): boolean {
-  const provider = (process.env.MLS_PROVIDER ?? "simplyrets").toLowerCase();
-  if (provider !== "simplyrets") return false;
-  const user = process.env.SIMPLYRETS_USERNAME?.trim() || "simplyrets";
-  const pass = process.env.SIMPLYRETS_PASSWORD?.trim() || "simplyrets";
-  return user === "simplyrets" && pass === "simplyrets";
+  return false;
 }
