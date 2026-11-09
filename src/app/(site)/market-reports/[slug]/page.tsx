@@ -136,7 +136,9 @@ export default async function MarketReportDetailPage({
                   <th className="px-4 py-3 font-semibold">WoW</th>
                   <th className="px-4 py-3 font-semibold">Pendings</th>
                   <th className="px-4 py-3 font-semibold">WoW</th>
-                  <th className="px-4 py-3 font-semibold">Median (Oct 1)</th>
+                  <th className="px-4 py-3 font-semibold">
+                    {report.areasMedianLabel ?? "Median"}
+                  </th>
                   <th className="px-4 py-3 font-semibold">MOI</th>
                 </tr>
               </thead>
@@ -193,7 +195,37 @@ export default async function MarketReportDetailPage({
       >
         <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-muted-foreground text-pretty">
           <p>{report.summary}</p>
-          {report.slug === "silicon-valley-overbids-october-2026" ? (
+          {report.slug === "scc-detached-homes-november-8-2026" ? (
+            <>
+              <p>
+                Inventory kept tightening into mid-November: active detached
+                listings fell another 21 week over week to 708, and pendings
+                cooled slightly to 71 (−6). That’s two straight weeks of thinner
+                actives — which can keep well-presented homes competitive even as
+                the holiday calendar approaches.
+              </p>
+              <p>
+                The biggest listing declines were in Santa Clara (−8), Los Altos
+                (−6), Campbell (−5), and Sunnyvale (−5). Los Gatos / Monte Sereno
+                was the clear supply add (+7 listings) while pendings there
+                dropped to 2. Central San Jose and Willow Glen held listing
+                counts flat; Los Altos Hills still recorded zero pendings.
+              </p>
+              <p>
+                On the Nov. 1 snapshot, months of inventory stayed tightest in
+                Los Altos (0.5), Palo Alto (0.6), and Mountain View (0.7). Higher
+                MOI pockets like Central San Jose (3.0) and Saratoga (2.1) still
+                tend to leave more room to negotiate when pricing matches current
+                comps. Sunnyvale again led demand with 12 pendings.
+              </p>
+              <p>
+                For sellers: November inventory is working in your favor if the
+                home is market-ready — don’t over-test price. For buyers: watch
+                pending velocity in Sunnyvale, Willow Glen, and Cupertino versus
+                softer pending pockets like Central San Jose and LG/MS this week.
+              </p>
+            </>
+          ) : report.slug === "silicon-valley-overbids-october-2026" ? (
             <>
               <p>
                 Rates above 7% were supposed to cool things down. In the South Bay

@@ -209,6 +209,8 @@ export interface MarketReport {
   areas?: MarketReportAreaStat[];
   /** Footnote for area table (e.g. median/MOI as-of date). */
   areasNote?: string;
+  /** Column header for median in the areas table (default Median). */
+  areasMedianLabel?: string;
   /** Optional curated highlights (overbids, offer counts, etc.). */
   highlights?: MarketReportHighlight[];
   highlightsTitle?: string;
