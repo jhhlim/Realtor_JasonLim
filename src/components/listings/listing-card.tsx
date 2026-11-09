@@ -94,9 +94,18 @@ export function ListingCard({ listing, className, priority }: ListingCardProps) 
               {formatNumber(listing.sqft)} sqft
             </span>
           </div>
-          <p className="text-xs text-muted-foreground">
-            {formatListingAttribution(listing)}
-          </p>
+          <div className="rounded-xl border border-border/70 bg-secondary/40 px-3 py-2">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+              Listing agent (MLS)
+            </p>
+            <p className="mt-0.5 text-xs font-medium text-foreground">
+              {formatListingAttribution(listing)}
+            </p>
+            <p className="mt-0.5 text-[10px] text-muted-foreground">
+              Courtesy MLS listing — not Jason&apos;s listing. Reach out to tour
+              or write an offer.
+            </p>
+          </div>
         </CardContent>
       </Link>
     </Card>

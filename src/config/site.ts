@@ -264,7 +264,7 @@ export const siteConfig = {
       mapboxToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
     },
     mls: {
-      provider: process.env.MLS_PROVIDER ?? "mock",
+      provider: process.env.MLS_PROVIDER ?? "simplyrets",
       realtyApiKey: process.env.REALTY_API_KEY,
       realtyApiHost: process.env.REALTY_API_HOST,
     },

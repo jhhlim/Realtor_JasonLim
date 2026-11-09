@@ -39,10 +39,11 @@ let cachedProvider: ListingProvider | null = null;
 export function getListingProvider(providerId?: MlsProviderId): ListingProvider {
   if (cachedProvider && !providerId) return cachedProvider;
 
+  // Prefer SimplyRETS (free demo or MLS credentials) over empty mock on live site.
   const id = (providerId ??
     (process.env.MLS_PROVIDER as MlsProviderId | undefined) ??
     (siteConfig.integrations.mls.provider as MlsProviderId) ??
-    "mock") as MlsProviderId;
+    "simplyrets") as MlsProviderId;
 
   let provider: ListingProvider;
   switch (id) {

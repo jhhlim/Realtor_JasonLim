@@ -10,7 +10,11 @@ import { PageHero } from "@/components/shared/page-hero";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { parseSearchParams, filtersToSearchParams } from "@/lib/listings-search";
-import { isLiveMlsConfigured, isMockListingsEnabled } from "@/lib/listings-mode";
+import {
+  isLiveMlsConfigured,
+  isMockListingsEnabled,
+  isSimplyRetsDemo,
+} from "@/lib/listings-mode";
 import { formatNumber } from "@/lib/utils";
 import { siteConfig } from "@/config/site";
 
@@ -32,6 +36,7 @@ export default async function ListingsPage({
   const provider = getListingProvider();
   const result = await provider.search(filters);
   const showingDemo = isMockListingsEnabled() && result.provider === "mock";
+  const simplyRetsDemo = isSimplyRetsDemo() && result.provider === "simplyrets";
   const awaitingMls = !isLiveMlsConfigured() && !showingDemo && result.total === 0;
 
   const markers = result.items.map((item) => ({
@@ -94,19 +99,39 @@ export default async function ListingsPage({
               <p className="mt-1 text-sm text-muted-foreground">
                 {awaitingMls
                   ? "Live MLS inventory is not connected yet — contact Jason for current homes."
-                  : hasFilters
-                    ? "Results updated from your filters."
-                    : "Showing Bay Area listings — refine with filters anytime."}
-                {result.total > 0 || showingDemo ? (
+                  : simplyRetsDemo
+                    ? "MLS demo feed connected — each card shows the listing agent/office (not Jason’s listings)."
+                    : hasFilters
+                      ? "Results updated from your filters. Listing agents shown from MLS."
+                      : "Showing MLS listings with listing-agent attribution — refine with filters anytime."}
+                {result.total > 0 || showingDemo || simplyRetsDemo ? (
                   <span className="ml-2 inline-flex">
                     <Badge variant="secondary" className="font-normal">
-                      {showingDemo ? "demo data" : result.provider}
+                      {showingDemo
+                        ? "demo data"
+                        : simplyRetsDemo
+                          ? "SimplyRETS demo MLS"
+                          : result.provider}
                     </Badge>
                   </span>
                 ) : null}
               </p>
             </div>
           </div>
+
+          {simplyRetsDemo && result.total > 0 ? (
+            <div className="mb-6 rounded-2xl border border-accent/25 bg-accent/5 px-4 py-3 text-sm text-muted-foreground">
+              <p>
+                <span className="font-medium text-foreground">Free MLS demo feed</span>{" "}
+                via SimplyRETS (sample market data). Listing agent names come from
+                the MLS so homes are clearly not Jason&apos;s listings. For live
+                Silicon Valley inventory, connect MLSListings / Compass IDX
+                credentials in Vercel env (
+                <code className="text-xs">SIMPLYRETS_USERNAME</code> /{" "}
+                <code className="text-xs">SIMPLYRETS_PASSWORD</code>).
+              </p>
+            </div>
+          ) : null}
 
           <div className="grid gap-8 lg:grid-cols-[280px_1fr] xl:grid-cols-[300px_1fr]">
             <aside className="lg:sticky lg:top-24 lg:self-start">

@@ -255,9 +255,19 @@ export default async function ListingDetailPage({
                     ? ` · HOA ${formatCurrency(listing.hoaMonthly)}/mo`
                     : ""}
                 </p>
-                <p className="text-sm font-medium text-foreground/80">
-                  {formatListingAttribution(listing)}
-                </p>
+                <div className="rounded-2xl border border-border/80 bg-secondary/50 px-4 py-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                    Listing agent (MLS)
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-foreground">
+                    {formatListingAttribution(listing)}
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Courtesy MLS listing — not listed by Jason Lim. Jason can still
+                    help you tour, write offers, and negotiate as your buyer&apos;s
+                    agent.
+                  </p>
+                </div>
               </div>
 
               <div className="flex flex-wrap gap-3">
