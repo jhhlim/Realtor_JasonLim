@@ -2,6 +2,70 @@ import type { MarketReport } from "@/types";
 
 export const mockMarketReports: MarketReport[] = [
   {
+    id: "mr-2026-11-10-norcal-compass-monthly",
+    title:
+      "November 2026 Compass Flipbooks — NorCal Split Markets + Santa Clara & San Jose Detail",
+    slug: "compass-norcal-scc-san-jose-november-2026",
+    summary:
+      "October left Northern California evenly split: seven counties saw single-family inventory fall year over year, seven saw it rise — and pricing followed. San Francisco, Marin, and San Mateo paired tighter supply with median gains; Alameda and Contra Costa tightened without much price lift. Download the Compass neighborhood flipbooks for Santa Clara County and San Jose district detail.",
+    publishedAt: "2026-11-10",
+    region: "Northern California · Santa Clara County",
+    stats: [
+      { label: "Counties inventory ↓ YoY", value: "7 of 14", change: "SFH actives" },
+      { label: "Counties inventory ↑ YoY", value: "7 of 14", change: "SFH actives" },
+      { label: "SF condo median", value: "$1.34M", change: "+12% YoY" },
+      { label: "Alameda condo median", value: "$610K", change: "+13% YoY" },
+    ],
+    highlightsTitle: "NorCal October takeaways",
+    highlights: [
+      {
+        title: "Two markets, one region",
+        detail:
+          "Where single-family supply shrank, buyers competed harder. Where supply grew, sellers cut prices more often — inventory direction set the tone more than a single regional headline.",
+      },
+      {
+        title: "Tighter + higher: SF, Marin, San Mateo",
+        detail:
+          "Those counties paired fewer actives with median price gains. Alameda and Contra Costa also saw inventory decline, yet medians stayed nearly flat — fewer homes doesn’t always mean higher prices.",
+      },
+      {
+        title: "Condo bright spots",
+        detail:
+          "San Francisco active condo listings −24% YoY; share selling above ask jumped 43% → 68%; median +12% to $1.34M. Alameda condo closings +19% and median +13% to $610K.",
+      },
+      {
+        title: "Soft pockets still matter locally",
+        detail:
+          "Condo closings fell YoY in 10 of 14 counties. Santa Clara’s condo median slipped ~2% as active listings grew. Sacramento condo median dropped 19% to $260K.",
+      },
+      {
+        title: "November outlook",
+        detail:
+          "The fall listing wave is fading — new SFH listings fell from September in all 14 counties (SF −11%, San Mateo −6%). Holiday months will test whether tight markets hold pricing; in softer areas, watch price cuts.",
+      },
+      {
+        title: "What I’m watching for South Bay clients",
+        detail:
+          "Neighborhood-level flipbooks below break out Santa Clara County houses/condos and San Jose realtor districts — use those for street-level strategy, not just county headlines.",
+      },
+    ],
+    attachmentsTitle: "Compass monthly flipbook reports",
+    attachments: [
+      {
+        label: "Santa Clara County — Houses & Condos (Nov 2026)",
+        href: "/docs/market-reports/2026-11/scc-house-condo-november-2026.pdf",
+        description:
+          "Compass flipbook: Santa Clara County house and condo markets by realtor district & neighborhood.",
+      },
+      {
+        label: "San Jose — Districts & Neighborhoods (Nov 2026)",
+        href: "/docs/market-reports/2026-11/san-jose-districts-november-2026.pdf",
+        description:
+          "Compass flipbook: San Jose markets by realtor district & neighborhood.",
+      },
+    ],
+  },
+  {
     id: "mr-2026-11-08-scc-detached",
     title: "Santa Clara County Detached Homes — November 8, 2026",
     slug: "scc-detached-homes-november-8-2026",

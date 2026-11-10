@@ -5,6 +5,61 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "norcal-split-markets-compass-flipbooks-november-2026",
+    title:
+      "NorCal’s Split Markets + November Compass Flipbooks for Santa Clara & San Jose",
+    excerpt:
+      "October left Northern California evenly split on inventory. SF/Marin/San Mateo tightened with price gains; Alameda/Contra Costa tightened without much lift. Download the Compass SCC and San Jose neighborhood flipbooks.",
+    content: `Hello — quick November market note.
+
+October left the region’s housing markets evenly split between counties with rising and declining active inventory. Single-family inventory fell from a year ago in seven of the 14 counties and rose in the other seven — and the two halves moved in opposite directions.
+
+Where supply shrank, buyers competed harder. Where it grew, sellers cut prices more often.
+
+San Francisco, Marin, and San Mateo paired tighter supply with median price gains. But fewer homes for sale didn’t guarantee higher prices: Alameda and Contra Costa also saw inventory decline, yet their medians remained nearly flat.
+
+Condo highlights
+• San Francisco: active condo listings −24% YoY; share selling above ask 43% → 68%; median +12% to $1.34M
+• Alameda: condo closings +19%; median +13% to $610K
+• Condo closings fell YoY in 10 of 14 counties
+• Santa Clara condo median slipped ~2% as active listings grew
+• Sacramento condo median −19% to $260K
+
+November outlook
+The fall listing wave is fading. New single-family listings fell from September in all 14 counties, including −11% in San Francisco and −6% in San Mateo. With fewer new homes coming to market, the holiday months will show whether tight markets can hold their pricing. In softer markets, price cuts remain the signal to watch.
+
+I posted the Compass monthly flipbooks for Santa Clara County (houses & condos by district/neighborhood) and San Jose (realtor districts & neighborhoods) on the market report page — open or download below.
+
+Questions about your city or street? Happy to walk through the comps.
+
+Jason Lim · REALTOR® | Compass · DRE #02444964
+📱 (510) 480-7191
+🌐 jasonlimrealty.com`,
+    category: "Bay Area",
+    coverImage: cover("photo-1486406146926-c627a92ad1ab"),
+    publishedAt: "2026-11-10",
+    readingMinutes: 3,
+    tags: [
+      "norcal",
+      "santa clara county",
+      "san jose",
+      "compass",
+      "inventory",
+      "condos",
+      "november 2026",
+    ],
+    attachments: [
+      {
+        label: "SCC Houses & Condos Flipbook (PDF)",
+        href: "/docs/market-reports/2026-11/scc-house-condo-november-2026.pdf",
+      },
+      {
+        label: "San Jose Districts Flipbook (PDF)",
+        href: "/docs/market-reports/2026-11/san-jose-districts-november-2026.pdf",
+      },
+    ],
+  },
+  {
     slug: "stocks-gold-real-estate-where-should-your-money-go-november-2026",
     title:
       "WOW — Wild 48 Hours on Wall Street: Stocks vs. Gold vs. Real Estate",

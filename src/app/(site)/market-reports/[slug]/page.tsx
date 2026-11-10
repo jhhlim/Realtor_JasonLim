@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, BookOpen, Download, ExternalLink } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
 import { buildMetadata } from "@/lib/seo";
@@ -121,6 +121,53 @@ export default async function MarketReportDetailPage({
         </Section>
       ) : null}
 
+      {report.attachments && report.attachments.length > 0 ? (
+        <Section
+          eyebrow="Flipbooks"
+          title={report.attachmentsTitle ?? "Downloadable reports"}
+          description="Open the Compass monthly flipbooks in your browser or download the PDFs."
+        >
+          <div className="grid gap-4 sm:grid-cols-2">
+            {report.attachments.map((file) => (
+              <Card
+                key={file.href}
+                className="border-border/80 bg-gradient-to-br from-card via-card to-slate-soft/60 shadow-soft dark:to-secondary/30"
+              >
+                <CardContent className="flex h-full flex-col gap-4 p-6">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent/12 text-accent">
+                    <BookOpen className="h-5 w-5" />
+                  </div>
+                  <div className="space-y-2">
+                    <p className="font-display text-lg font-semibold tracking-tight">
+                      {file.label}
+                    </p>
+                    {file.description ? (
+                      <p className="text-sm leading-relaxed text-muted-foreground">
+                        {file.description}
+                      </p>
+                    ) : null}
+                  </div>
+                  <div className="mt-auto flex flex-wrap gap-3 pt-2">
+                    <Button asChild variant="accent">
+                      <a href={file.href} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-4 w-4" />
+                        Open flipbook
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline">
+                      <a href={file.href} download>
+                        <Download className="h-4 w-4" />
+                        Download PDF
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </Section>
+      ) : null}
+
       {report.areas && report.areas.length > 0 ? (
         <Section
           eyebrow="By area"
@@ -195,7 +242,46 @@ export default async function MarketReportDetailPage({
       >
         <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-muted-foreground text-pretty">
           <p>{report.summary}</p>
-          {report.slug === "scc-detached-homes-november-8-2026" ? (
+          {report.slug === "compass-norcal-scc-san-jose-november-2026" ? (
+            <>
+              <p>
+                Northern California isn’t one market right now — it’s a split
+                screen. October’s single-family inventory rose in half the
+                counties and fell in the other half, and buyer/seller leverage
+                moved with that supply. San Francisco, Marin, and San Mateo are
+                the clearest “tighter supply + higher medians” stories; Alameda
+                and Contra Costa prove that thinner inventory alone doesn’t
+                automatically push prices up.
+              </p>
+              <p>
+                Condos tell a similar mixed story: San Francisco and Alameda
+                posted strong median gains with healthier competition or
+                closings, while most counties saw condo closings soft year over
+                year. Locally, Santa Clara’s condo median edged down as listings
+                grew — a reminder to price and negotiate at the neighborhood
+                level, not the regional headline.
+              </p>
+              <p>
+                Looking into the holidays: new single-family listings cooled
+                from September across all 14 counties. That usually means less
+                fresh competition for buyers who stay active — and more pressure
+                on sellers in softer pockets to use price cuts thoughtfully.
+                Download the Compass flipbooks above for Santa Clara County and
+                San Jose district/neighborhood detail, then let’s map it to your
+                street and timeline.
+              </p>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <Button asChild variant="accent">
+                  <Link href="/contact">Talk through your neighborhood</Link>
+                </Button>
+                <Button asChild variant="outline">
+                  <Link href={siteConfig.cta.valuation.href}>
+                    Request a Personalized Home Valuation
+                  </Link>
+                </Button>
+              </div>
+            </>
+          ) : report.slug === "scc-detached-homes-november-8-2026" ? (
             <>
               <p>
                 Inventory kept tightening into mid-November: active detached

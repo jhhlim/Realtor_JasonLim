@@ -214,6 +214,9 @@ export interface MarketReport {
   /** Optional curated highlights (overbids, offer counts, etc.). */
   highlights?: MarketReportHighlight[];
   highlightsTitle?: string;
+  /** Optional downloadable Compass flipbooks / PDFs. */
+  attachments?: { label: string; href: string; description?: string }[];
+  attachmentsTitle?: string;
 }
 
 export interface BlogPost {

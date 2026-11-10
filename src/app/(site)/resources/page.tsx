@@ -45,7 +45,18 @@ const hubs = [
     icon: FileBarChart,
     links: [
       { label: "All market reports", href: "/market-reports" },
-      { label: "Latest Q2 2026 report", href: "/market-reports/silicon-valley-q2-2026" },
+      {
+        label: "Nov 2026 Compass NorCal + SCC flipbooks",
+        href: "/market-reports/compass-norcal-scc-san-jose-november-2026",
+      },
+      {
+        label: "SCC houses & condos PDF",
+        href: "/docs/market-reports/2026-11/scc-house-condo-november-2026.pdf",
+      },
+      {
+        label: "San Jose districts PDF",
+        href: "/docs/market-reports/2026-11/san-jose-districts-november-2026.pdf",
+      },
     ],
   },
   {
