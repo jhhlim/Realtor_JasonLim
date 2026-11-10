@@ -43,13 +43,13 @@ export default function AboutPage() {
         >
           {siteConfig.showAgentPhotos ? (
             <FadeIn>
-              <div className="relative mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-[1.75rem] border border-border/80 bg-secondary shadow-lift lg:max-w-sm">
+              <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-[1.75rem] border border-border/80 bg-secondary shadow-lift lg:max-w-md">
                 <Image
                   src={siteConfig.media.headshot}
                   alt={`${siteConfig.name} — professional headshot`}
                   fill
                   className="object-cover object-top"
-                  sizes="(max-width: 1024px) 90vw, 320px"
+                  sizes="(max-width: 1024px) 90vw, 400px"
                   priority
                 />
               </div>

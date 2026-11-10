@@ -22,7 +22,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mb-8 aspect-square w-36 overflow-hidden rounded-2xl border border-border/80 bg-secondary shadow-lift sm:w-40 lg:w-44"
+            className="relative mb-8 aspect-square w-44 overflow-hidden rounded-2xl border border-border/80 bg-secondary shadow-lift sm:w-52 lg:w-56"
           >
             <Image
               src={siteConfig.media.headshot}
@@ -30,7 +30,7 @@ export function Hero() {
               fill
               priority
               className="object-cover object-top"
-              sizes="176px"
+              sizes="224px"
             />
           </motion.div>
         ) : null}
