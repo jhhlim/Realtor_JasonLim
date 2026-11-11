@@ -73,13 +73,14 @@ export const siteConfig = {
   },
 
   credentials: [
-    "Bay Area native",
-    "South Bay homeowner",
-    "11+ Years Software & Hardware",
-    "UC Berkeley Economics",
-    "Oregon State Computer Science",
-    "Licensed California REALTOR®",
-    "Compass Agent",
+    "San Jose homeowner",
+    "Lived in 4+ Bay Area cities",
+    "Local high school & college graduate",
+    "5+ years across industries",
+    "Hands-on / handyman experience",
+    "Project-manager approach for buying & listing",
+    "High-quality, detail-driven service",
+    "Licensed California REALTOR® · Compass",
   ],
 
   audiences: [
@@ -91,10 +92,10 @@ export const siteConfig = {
   ],
 
   strengths: [
-    "Local market knowledge",
-    "Data-driven advice",
-    "Buyer & seller strategy",
-    "Responsive service",
+    "True local knowledge — homeowner & Bay Area native",
+    "Project-manager execution for buy & list",
+    "Hands-on problem solving",
+    "High-quality, responsive service",
   ],
 
   experience: {
@@ -148,10 +149,10 @@ export const siteConfig = {
   },
 
   stats: [
-    { label: "Software & Hardware", value: "11+" },
-    { label: "Across Industries", value: "3+" },
-    { label: "Bay Area Focus", value: "SV" },
-    { label: "Response Time", value: "<2h" },
+    { label: "San Jose Homeowner", value: "Local" },
+    { label: "Bay Area Cities Lived", value: "4+" },
+    { label: "Local HS & College Grad", value: "Bay" },
+    { label: "Industries · Hands-On PM", value: "5+" },
   ],
 
   communities: [
