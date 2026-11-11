@@ -46,19 +46,7 @@ Jason.Lim@Compass.com
 
 National averages are informational and are not a loan offer or personalized rate quote. Financing programs are subject to availability, lender guidelines, and credit approval. Seller credits are negotiable and subject to loan limits and eligible costs. Financing through third-party lenders. Eligibility, entitlement, appraisal and lender approval apply. Not affiliated with VA.`,
     category: "Mortgage",
-    coverImage:
-      "/images/blog/veterans-day-2026/happy-veterans-day-plan-your-move.jpg",
-    coverFit: "contain",
-    gallery: [
-      {
-        src: "/images/blog/veterans-day-2026/happy-veterans-day-plan-your-move.jpg",
-        alt: "Happy Veterans Day — Plan Your Next Home Move with Jason Lim | Compass",
-      },
-      {
-        src: "/images/blog/veterans-day-2026/va-home-loans.jpg",
-        alt: "VA Home Loans — a benefit earned through service · Jason Lim | Compass",
-      },
-    ],
+    coverImage: cover("photo-1470246973918-29a932ac3c6d"),
     publishedAt: "2026-11-11",
     readingMinutes: 3,
     tags: [
