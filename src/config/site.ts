@@ -153,8 +153,10 @@ export const siteConfig = {
   stats: [
     { label: "Years in the Bay Area", value: "33+" },
     { label: "Bay Area Cities Lived", value: "5+" },
+    { label: "San Jose Homeowner", value: "Local" },
     { label: "Software & Hardware", value: "11+" },
     { label: "Finance · Insurance · RE", value: "5+" },
+    { label: "Buy & List Project Lead", value: "PM" },
   ],
 
   communities: [

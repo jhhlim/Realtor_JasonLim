@@ -7,9 +7,9 @@ export function StatsStrip({ className }: { className?: string }) {
   return (
     <section className={cn("border-b border-border/70 bg-card/50 py-10", className)}>
       <Container>
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
+        <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6 lg:gap-5">
           {siteConfig.stats.map((stat, index) => (
-            <FadeIn key={stat.label} delay={index * 0.05}>
+            <FadeIn key={stat.label} delay={index * 0.04}>
               <div className="text-center md:text-left">
                 <p className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
                   {stat.value}
