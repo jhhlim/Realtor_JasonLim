@@ -74,7 +74,8 @@ export const siteConfig = {
 
   credentials: [
     "San Jose homeowner",
-    "Lived in 4+ Bay Area cities",
+    "33+ years lived in the Bay Area",
+    "Lived in 5+ Bay Area cities",
     "Local high school & college graduate",
     "5+ years across industries",
     "Hands-on / handyman experience",
@@ -149,9 +150,9 @@ export const siteConfig = {
   },
 
   stats: [
+    { label: "Years in the Bay Area", value: "33+" },
+    { label: "Bay Area Cities Lived", value: "5+" },
     { label: "San Jose Homeowner", value: "Local" },
-    { label: "Bay Area Cities Lived", value: "4+" },
-    { label: "Local HS & College Grad", value: "Bay" },
     { label: "Industries · Hands-On PM", value: "5+" },
   ],
 
