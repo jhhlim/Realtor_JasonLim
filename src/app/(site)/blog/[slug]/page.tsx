@@ -111,31 +111,47 @@ export default async function BlogArticlePage({
             )}
           </div>
           {post.gallery && post.gallery.length > 0 ? (
-            <div className="mb-10 grid gap-4 sm:grid-cols-2">
+            <div
+              className={
+                post.coverFit === "contain"
+                  ? "mb-10 grid gap-4"
+                  : "mb-10 grid gap-4 sm:grid-cols-2"
+              }
+            >
               {post.gallery.map((photo) => (
                 <figure
                   key={photo.src}
                   className={
-                    post.gallery!.length === 1
+                    post.coverFit === "contain" || post.gallery!.length === 1
                       ? "overflow-hidden rounded-2xl border border-border/70 bg-secondary sm:col-span-2"
                       : "overflow-hidden rounded-2xl border border-border/70 bg-secondary"
                   }
                 >
-                  <div
-                    className={
-                      post.gallery!.length === 1
-                        ? "relative aspect-[16/10]"
-                        : "relative aspect-[4/3]"
-                    }
-                  >
-                    <Image
+                  {post.coverFit === "contain" ? (
+                    // Full graphic — no crop (flyers / tall creatives)
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
                       src={photo.src}
                       alt={photo.alt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 768px"
+                      className="h-auto w-full"
                     />
-                  </div>
+                  ) : (
+                    <div
+                      className={
+                        post.gallery!.length === 1
+                          ? "relative aspect-[16/10]"
+                          : "relative aspect-[4/3]"
+                      }
+                    >
+                      <Image
+                        src={photo.src}
+                        alt={photo.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 768px"
+                      />
+                    </div>
+                  )}
                   <figcaption className="px-3 py-2 text-xs text-muted-foreground">
                     {photo.alt}
                   </figcaption>
