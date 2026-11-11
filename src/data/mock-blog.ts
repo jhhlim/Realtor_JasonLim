@@ -5,6 +5,73 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "veterans-day-mortgage-update-financing-strategies-november-2026",
+    title:
+      "Happy Veterans Day — Mortgage Update + Ways to Plan Your Next Home Move",
+    excerpt:
+      "Thank you to veterans and military families. Freddie Mac’s Nov. 5 survey put the 30-year fixed at 7.18%. Plus bridge financing, 1-0 buydowns, seller credits, and VA loan basics if you’re considering a move.",
+    content: `This Veterans Day, thank you to our veterans and military families for your service, sacrifice, and dedication to our country.
+
+As we head further into November, here’s a quick market update and a few financing strategies worth exploring if you’re considering a move.
+
+Mortgage Market Update
+
+Mortgage rates have eased recently. Freddie Mac’s November 5 survey reported an average 30-year fixed rate of 7.18%, down from 7.24% the previous week. Inflation and employment news continue to influence rates, so getting a personalized quote is more useful than relying on national headlines alone.
+
+More Ways to Plan Your Next Purchase
+
+I have excellent lender resources who can help with pre-approval and compare financing options based on your goals, including:
+
+• Buy before you sell: Explore bridge financing and other programs that may help you purchase your next home before selling your current one. Costs, equity requirements, and qualification vary by program.
+
+• 1-0 temporary buydown: On an eligible loan, a funded subsidy lowers your first-year principal-and-interest payment to the equivalent of a rate one percentage point below your note rate. The full payment begins in year two, and you generally qualify at the full note rate.
+
+• Seller credits toward closing costs: As part of an offer, we can discuss negotiating a seller contribution toward eligible closing expenses, helping reduce the cash you bring to closing.
+
+• Using credits strategically: Depending on loan guidelines, credits may help cover eligible lender and title fees, prepaid expenses, discount points, or an approved temporary buydown. Your lender can compare the options and confirm contribution limits.
+
+The purchase price is only one part of the conversation. We can evaluate the monthly payment, upfront cash needed, and financing costs together to help you make an informed offer.
+
+VA Home Loans
+
+For eligible veterans and service members, VA-backed loans can offer low or no down payment and no monthly mortgage insurance. Start with eligibility (Certificate of Eligibility), get pre-approved with a VA-experienced lender, then find your home. I’ll guide your search and connect you with a lender who knows VA guidelines.
+
+Whether you’re buying your first home, moving up, or coordinating a purchase and sale — reply to schedule a quick call or request a lender introduction for pre-approval.
+
+Warmly,
+Jason Lim
+Compass | DRE #02444964
+Jason.Lim@Compass.com
+🌐 jasonlimrealty.com
+
+National averages are informational and are not a loan offer or personalized rate quote. Financing programs are subject to availability, lender guidelines, and credit approval. Seller credits are negotiable and subject to loan limits and eligible costs. Financing through third-party lenders. Eligibility, entitlement, appraisal and lender approval apply. Not affiliated with VA.`,
+    category: "Mortgage",
+    coverImage:
+      "/images/blog/veterans-day-2026/happy-veterans-day-plan-your-move.jpg",
+    coverFit: "contain",
+    gallery: [
+      {
+        src: "/images/blog/veterans-day-2026/happy-veterans-day-plan-your-move.jpg",
+        alt: "Happy Veterans Day — Plan Your Next Home Move with Jason Lim | Compass",
+      },
+      {
+        src: "/images/blog/veterans-day-2026/va-home-loans.jpg",
+        alt: "VA Home Loans — a benefit earned through service · Jason Lim | Compass",
+      },
+    ],
+    publishedAt: "2026-11-11",
+    readingMinutes: 3,
+    tags: [
+      "veterans day",
+      "mortgage rates",
+      "va loans",
+      "buydown",
+      "seller credits",
+      "bridge financing",
+      "november 2026",
+    ],
+  },
+  {
     slug: "norcal-split-markets-compass-flipbooks-november-2026",
     title:
       "NorCal’s Split Markets + November Compass Flipbooks for Santa Clara & San Jose",
