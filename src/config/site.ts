@@ -77,7 +77,8 @@ export const siteConfig = {
     "33+ years lived in the Bay Area",
     "Lived in 5+ Bay Area cities",
     "Local high school & college graduate",
-    "5+ years across industries",
+    "11+ years software & hardware",
+    "5+ years across finance, insurance, real estate & more",
     "Hands-on / handyman experience",
     "Project-manager approach for buying & listing",
     "High-quality, detail-driven service",
@@ -152,8 +153,8 @@ export const siteConfig = {
   stats: [
     { label: "Years in the Bay Area", value: "33+" },
     { label: "Bay Area Cities Lived", value: "5+" },
-    { label: "San Jose Homeowner", value: "Local" },
-    { label: "Industries · Hands-On PM", value: "5+" },
+    { label: "Software & Hardware", value: "11+" },
+    { label: "Finance · Insurance · RE", value: "5+" },
   ],
 
   communities: [
