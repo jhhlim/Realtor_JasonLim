@@ -46,6 +46,10 @@ const hubs = [
     links: [
       { label: "All market reports", href: "/market-reports" },
       {
+        label: "Nov 15 SCC detached market report",
+        href: "/market-reports/scc-detached-homes-november-15-2026",
+      },
+      {
         label: "Nov 2026 Compass NorCal + SCC flipbooks",
         href: "/market-reports/compass-norcal-scc-san-jose-november-2026",
       },

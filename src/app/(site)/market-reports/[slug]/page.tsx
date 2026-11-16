@@ -242,7 +242,36 @@ export default async function MarketReportDetailPage({
       >
         <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-muted-foreground text-pretty">
           <p>{report.summary}</p>
-          {report.slug === "compass-norcal-scc-san-jose-november-2026" ? (
+          {report.slug === "scc-detached-homes-november-15-2026" ? (
+            <>
+              <p>
+                Mid-November mixed the tape: active detached listings fell again
+                to 695 (−13 WoW), but pendings bounced to 79 (+8). Thinner
+                inventory with a pending rebound usually means well-priced homes
+                can still move — even as holiday traffic softens.
+              </p>
+              <p>
+                Demand heated most in Palo Alto (pendings 4 → 11 as listings
+                dropped 8), Central San Jose (pendings 2 → 9), Campbell (+4
+                pendings), and Los Gatos / Monte Sereno (pendings 2 → 7 while
+                listings fell 7). Willow Glen added the most supply (+8 listings
+                to 93) but pendings there cooled to 2. Sunnyvale pendings eased
+                from 12 to 7; Los Altos Hills remains at zero pendings.
+              </p>
+              <p>
+                On the Nov. 1 snapshot, months of inventory stayed tightest in
+                Los Altos (0.5), Palo Alto (0.6), and Mountain View (0.7). Higher
+                MOI pockets like Central San Jose (3.0) and Saratoga (2.1) still
+                leave more room to negotiate when pricing matches current comps.
+              </p>
+              <p>
+                For sellers: presentation and realistic launch pricing matter
+                more as new listings slow into the holidays. For buyers: watch
+                pending spikes in Palo Alto, Campbell, and Central San Jose —
+                those are the streets where competition can reappear quickly.
+              </p>
+            </>
+          ) : report.slug === "compass-norcal-scc-san-jose-november-2026" ? (
             <>
               <p>
                 Northern California isn’t one market right now — it’s a split

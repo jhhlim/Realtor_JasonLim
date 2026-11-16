@@ -42,7 +42,7 @@ export function MarketInsights({ report }: MarketInsightsProps) {
     <Section
       eyebrow="Market Insights"
       title="Latest from the market"
-      description="NorCal inventory splits, South Bay signals, and Compass neighborhood flipbooks — updated as the market moves."
+      description="Santa Clara County detached inventory, pendings, and neighborhood signals — updated weekly."
       className="bg-gradient-to-b from-slate-soft/70 to-background dark:from-card/25"
     >
       <FadeIn>
