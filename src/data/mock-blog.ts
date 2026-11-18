@@ -36,7 +36,7 @@ Interested in working together?
 
 Reply with “buying” or “selling” and a sentence about what you’re considering. Let’s set up a quick call to talk through your goals and how I can help.
 
-If we decide to work together and sign a buyer representation or listing agreement by Black Friday, November 27, you may be eligible for savings on the brokerage fee. The savings depend on the scope of services, the length of the agreement, and other terms. We’ll go over the options and put any agreed savings in writing before you sign.
+If we decide to work together and sign a buyer representation or listing agreement by Black Friday, November 27, you may be eligible for savings from me and my professional services and network. The savings depend on the scope of services, the length of the agreement, and other terms. We’ll go over the options and put any agreed savings in writing before you sign.
 
 Wishing you and your family a happy Thanksgiving!
 
@@ -47,7 +47,7 @@ Jason.Lim@Compass.com
 📱 (510) 480-7191
 🌐 jasonlimrealty.com
 
-National averages are informational and are not a loan offer or personalized rate quote. Financing is subject to lender guidelines and credit approval. Brokerage fee savings, if any, require a signed agreement and depend on agreed scope and terms. Market statistics are sourced from Santa Clara County Association of REALTORS®, Freddie Mac, U.S. Treasury, NAHB, Reuters, and Anthropic filings as cited.`,
+National averages are informational and are not a loan offer or personalized rate quote. Financing is subject to lender guidelines and credit approval. Any savings from me and my professional services and network require a signed agreement and depend on agreed scope and terms. Market statistics are sourced from Santa Clara County Association of REALTORS®, Freddie Mac, U.S. Treasury, NAHB, Reuters, and Anthropic filings as cited.`,
     category: "Bay Area",
     coverImage: cover("photo-1560518883-ce09059eeffa"),
     publishedAt: "2026-11-18",
