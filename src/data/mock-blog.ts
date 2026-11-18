@@ -5,6 +5,65 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "mid-november-real-estate-update-berryessa-scc-november-18-2026",
+    title: "Mid-November Real Estate Update — Berryessa, San Jose & Santa Clara County",
+    excerpt:
+      "SCC median hit $2.01M in October (+5.2% YoY) as sales fell 11.6%. 30-year fixed eased to 7.11%. Plus Anthropic’s IPO watch, builder price cuts, and a pre–New Year buyer/seller action plan.",
+    content: `Good morning,
+
+With Thanksgiving next week, I wanted to share where our housing market stands, what I’m watching in Bay Area tech, and a few steps you can take if buying or selling is on your mind for 2027.
+
+What’s happening in Santa Clara County
+
+The median single-family sale price reached $2.01 million in October, up 5.2% year over year, while the number of homes sold fell 11.6%. Homes that sold spent an average of 23 days on the market, down from 27 in September. If you’re buying or selling in Berryessa or elsewhere in San Jose, recent sales near the property are a better starting point for pricing than the countywide median. (Santa Clara County Association of REALTORS®)
+
+Mortgage rates heading into the holidays
+
+The national average 30-year fixed mortgage rate was 7.11% on November 12, down from 7.18% the week before. The 10-year Treasury yield was 5.10% on November 17. If you’re actively looking, ask your lender for an updated estimate so you can see what the monthly payment and closing costs look like at your target price. (Freddie Mac · U.S. Treasury)
+
+Did you know? In November, 46% of builders surveyed nationally reported cutting prices. If you’re considering new construction, I can help you compare a price reduction, a closing-cost credit, or a rate buydown on the specific home you’re looking at. (National Association of Home Builders)
+
+Bay Area tech watch | Anthropic’s IPO
+
+Anthropic, the San Francisco company behind Claude, is expected to begin trading on Nasdaq on Thursday, November 19, under the ticker ANT. One thing I’ll be watching over the next few months is whether employees and early investors who are able to sell shares put some of those proceeds toward home purchases, and where in the Bay Area they choose to look. (Reuters · Anthropic prospectus)
+
+Your action plan before the new year
+
+- If you’re buying: Send me your preferred neighborhoods, target monthly payment, and ideal move date. I can put together a shortlist and flag homes where a recent price drop or extra time on the market may give us room to negotiate.
+- If you’re selling: Send me your neighborhood and when you’d ideally like to list. I can pull recent comparable sales and help you decide which projects are worth tackling before photos.
+
+Interested in working together?
+
+Reply with “buying” or “selling” and a sentence about what you’re considering. Let’s set up a quick call to talk through your goals and how I can help.
+
+If we decide to work together and sign a buyer representation or listing agreement by Black Friday, November 27, you may be eligible for savings on the brokerage fee. The savings depend on the scope of services, the length of the agreement, and other terms. We’ll go over the options and put any agreed savings in writing before you sign.
+
+Wishing you and your family a happy Thanksgiving!
+
+Warmly,
+Jason Lim
+Compass | DRE #02444964
+Jason.Lim@Compass.com
+📱 (510) 480-7191
+🌐 jasonlimrealty.com
+
+National averages are informational and are not a loan offer or personalized rate quote. Financing is subject to lender guidelines and credit approval. Brokerage fee savings, if any, require a signed agreement and depend on agreed scope and terms. Market statistics are sourced from Santa Clara County Association of REALTORS®, Freddie Mac, U.S. Treasury, NAHB, Reuters, and Anthropic filings as cited.`,
+    category: "Bay Area",
+    coverImage: cover("photo-1560518883-ce09059eeffa"),
+    publishedAt: "2026-11-18",
+    readingMinutes: 4,
+    tags: [
+      "newsletter",
+      "santa clara county",
+      "berryessa",
+      "san jose",
+      "mortgage rates",
+      "anthropic",
+      "thanksgiving",
+      "november 2026",
+    ],
+  },
+  {
     slug: "veterans-day-mortgage-update-financing-strategies-november-2026",
     title:
       "Happy Veterans Day — Mortgage Update + Ways to Plan Your Next Home Move",

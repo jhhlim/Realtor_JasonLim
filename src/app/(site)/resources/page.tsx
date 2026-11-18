@@ -80,6 +80,10 @@ const hubs = [
     icon: Newspaper,
     links: [
       { label: "Insights", href: "/blog" },
+      {
+        label: "Mid-November update (Nov 18 newsletter)",
+        href: "/blog/mid-november-real-estate-update-berryessa-scc-november-18-2026",
+      },
       { label: "FAQ", href: "/faq" },
       { label: "Communities", href: "/communities" },
     ],
