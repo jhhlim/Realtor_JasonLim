@@ -191,6 +191,7 @@ export const siteConfig = {
         links: [
           { label: "Search Homes", href: "/listings" },
           { label: "Buy", href: "/buy" },
+          { label: "Disclosure Review", href: "/disclosure-review" },
           { label: "Sell", href: "/sell" },
           { label: "Communities", href: "/communities" },
           { label: "Market Reports", href: "/market-reports" },

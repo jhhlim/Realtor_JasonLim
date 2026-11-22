@@ -12,47 +12,51 @@ export const metadata = buildMetadata({
   path: "/privacy",
 });
 
-const lastUpdated = "July 31, 2026";
+const lastUpdated = "November 21, 2026";
 
 const sections = [
   {
     title: "1. Overview",
-    body: `This Privacy Policy describes how ${siteConfig.legalName} ("we", "us") collects, uses, and shares information when you visit ${siteConfig.url}, contact us, subscribe to updates, or use our tools.`,
+    body: `This Privacy Policy describes how ${siteConfig.legalName} ("we", "us") collects, uses, and shares information when you visit ${siteConfig.url}, contact us, subscribe to updates, request a disclosure review, or use our tools.`,
   },
   {
     title: "2. Information we may collect",
-    body: "Contact details (name, email, phone), inquiry content, newsletter preferences, property or search preferences you share, device/browser data, and analytics events from cookies or similar technologies when enabled.",
+    body: "Contact details (name, email, phone), inquiry content, newsletter preferences, property or search preferences you share, disclosure-review requests and related notes, device/browser data, and analytics events from cookies or similar technologies when enabled.",
   },
   {
-    title: "3. How we use information",
-    body: "To respond to inquiries, schedule consultations, provide market updates, improve the website, measure marketing performance, and comply with legal obligations. We do not sell personal information as that term is commonly understood under California law, but advertising/analytics partners may process data as described once configured.",
+    title: "3. Disclosure packages & AI-assisted review",
+    body: "When you request a disclosure review or (once enabled) upload PDFs, we use that information to organize document findings, prepare questions, and follow up with you. Uploaded documents and derived summaries are treated as private transaction materials: access is limited to Jason Lim and service providers needed to store, process, or secure the files. Documents are not attached to marketing emails, not used to subscribe you to newsletters, and are kept out of analytics event payloads and routine application logs to the extent practical. We retain packages only as long as needed to complete your request, support a related transaction, or meet legal obligations. Email us to request deletion. AI-assisted output is a reading aid for Jason’s review — not a substitute for the original documents or advice from qualified professionals.",
   },
   {
-    title: "4. Sharing",
-    body: "Service providers (hosting, email, CRM, analytics, scheduling) may process data on our behalf. We may disclose information if required by law or to protect rights and safety. MLS and transaction partners may receive information necessary to facilitate a real estate transaction.",
+    title: "4. How we use information",
+    body: "To respond to inquiries, schedule consultations, provide market updates, perform requested disclosure reviews, improve the website, measure marketing performance, and comply with legal obligations. We do not sell personal information as that term is commonly understood under California law, but advertising/analytics partners may process data as described once configured. A disclosure-review or walkthrough request does not enroll you in marketing lists.",
   },
   {
-    title: "5. Cookies & analytics",
-    body: "We may use cookies, pixels, and analytics tools (for example Google Analytics, Meta Pixel, or similar) when those integrations are enabled via environment configuration. You can control cookies through your browser settings.",
+    title: "5. Sharing",
+    body: "Service providers (hosting, email, CRM, analytics, scheduling, and — when configured — secure file storage or document-analysis vendors) may process data on our behalf. We may disclose information if required by law or to protect rights and safety. MLS and transaction partners may receive information necessary to facilitate a real estate transaction.",
   },
   {
-    title: "6. Your choices (California & others)",
-    body: "Depending on your location, you may have rights to access, correct, delete, or limit certain processing of personal information. Contact us using the details below to make a request. We will verify and respond as required by applicable law.",
+    title: "6. Cookies & analytics",
+    body: "We may use cookies, pixels, and analytics tools (for example Google Analytics, Meta Pixel, or similar) when those integrations are enabled via environment configuration. You can control cookies through your browser settings. Disclosure document contents are not intended to be sent to analytics tools.",
   },
   {
-    title: "7. Data retention & security",
-    body: "We retain information as needed for business, legal, and transaction purposes. We use reasonable administrative and technical safeguards; no method of transmission is 100% secure.",
+    title: "7. Your choices (California & others)",
+    body: "Depending on your location, you may have rights to access, correct, delete, or limit certain processing of personal information — including disclosure packages you submitted. Contact us using the details below to make a request. We will verify and respond as required by applicable law.",
   },
   {
-    title: "8. Children's privacy",
+    title: "8. Data retention & security",
+    body: "We retain information as needed for business, legal, and transaction purposes. We use reasonable administrative and technical safeguards; no method of transmission is 100% secure. Live disclosure uploads remain disabled until private storage and access controls are configured.",
+  },
+  {
+    title: "9. Children's privacy",
     body: "This site is not directed to children under 16. We do not knowingly collect personal information from children.",
   },
   {
-    title: "9. Changes",
+    title: "10. Changes",
     body: "We may update this policy from time to time. The “Last updated” date will change when material revisions are posted.",
   },
   {
-    title: "10. Contact",
+    title: "11. Contact",
     body: `Questions about privacy: ${siteConfig.contact.email} · ${siteConfig.contact.phone} · ${siteConfig.contact.address.city}, ${siteConfig.contact.address.state} ${siteConfig.contact.address.zip}.`,
   },
 ];

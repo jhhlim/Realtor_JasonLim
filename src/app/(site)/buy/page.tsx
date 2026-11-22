@@ -222,6 +222,12 @@ export default function BuyPage() {
           <Button asChild size="lg" variant="outline">
             <Link href="/tools/affordability">Affordability</Link>
           </Button>
+          <Button asChild size="lg" variant="outline">
+            <Link href="/disclosure-review">
+              <FileSearch className="h-4 w-4" />
+              Disclosure Review
+            </Link>
+          </Button>
           <Button asChild size="lg" variant="accent">
             <Link href={siteConfig.cta.consultation.href}>
               {siteConfig.cta.consultation.label}
