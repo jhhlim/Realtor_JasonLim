@@ -1,5 +1,6 @@
 import { BlogPreview } from "@/components/home/blog-preview";
 import { ContactCta } from "@/components/home/contact-cta";
+import { DisclosureReviewTeaser } from "@/components/home/disclosure-review-teaser";
 import { FeaturedListings } from "@/components/home/featured-listings";
 import { GoalsCta } from "@/components/home/goals-cta";
 import { Hero } from "@/components/home/hero";
@@ -39,6 +40,7 @@ export default async function HomePage() {
       <StatsStrip />
       <MarketsStrip />
       <MarketInsights report={featuredReport} />
+      <DisclosureReviewTeaser />
       <GoalsCta />
       {featured.length > 0 ? <FeaturedListings listings={featured} /> : null}
       <NeighborhoodsPreview neighborhoods={mockNeighborhoods} />

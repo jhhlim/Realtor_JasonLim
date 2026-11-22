@@ -176,6 +176,7 @@ export const siteConfig = {
   navigation: {
     main: [
       { label: "Buy", href: "/buy" },
+      { label: "Disclosures", href: "/disclosure-review" },
       { label: "Sell", href: "/sell" },
       { label: "Listings", href: "/listings" },
       { label: "Communities", href: "/communities" },

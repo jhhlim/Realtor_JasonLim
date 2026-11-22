@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { createClient } from "@supabase/supabase-js";
 import { FileUp, Lock, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -27,10 +28,15 @@ interface DisclosureUploadFormProps {
   className?: string;
 }
 
-/**
- * Full intake UI. File submission stays disabled until private storage +
- * PDF analysis services are configured (DISCLOSURE_UPLOADS_ENABLED=true).
- */
+type SubmitState = "idle" | "uploading" | "analyzing" | "success" | "error";
+
+function getBrowserSupabase() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !anon) return null;
+  return createClient(url, anon);
+}
+
 export function DisclosureUploadForm({
   uploadsEnabled = false,
   className,
@@ -48,8 +54,12 @@ export function DisclosureUploadForm({
   const [consent, setConsent] = React.useState(false);
   const [dragActive, setDragActive] = React.useState(false);
   const [clientError, setClientError] = React.useState<string | null>(null);
+  const [status, setStatus] = React.useState<SubmitState>("idle");
+  const [preferredContactConfirm, setPreferredContactConfirm] =
+    React.useState("email");
 
   const phoneRequired = contactMethod === "phone";
+  const busy = status === "uploading" || status === "analyzing";
 
   function addFiles(list: FileList | null) {
     if (!list?.length) return;
@@ -82,16 +92,168 @@ export function DisclosureUploadForm({
     setFiles((prev) => prev.filter((_, i) => i !== index));
   }
 
-  function onSubmit(event: React.FormEvent) {
+  async function onSubmit(event: React.FormEvent) {
     event.preventDefault();
+    setClientError(null);
+
     if (!uploadsEnabled) {
       setClientError(
-        "Secure document upload is not live yet. Please use Review With Jason below, and we can exchange documents privately after we connect.",
+        "Secure document upload is not live yet. Please use Review With Jason below.",
       );
       return;
     }
-    setClientError(
-      "Upload endpoint is not configured. Contact Jason directly for a private review.",
+    if (!consent) {
+      setClientError("Please confirm consent before submitting.");
+      return;
+    }
+    if (!files.length) {
+      setClientError("Add at least one PDF disclosure package.");
+      return;
+    }
+    if (phoneRequired && !phone.trim()) {
+      setClientError("Phone is required when you choose a phone call.");
+      return;
+    }
+
+    const supabase = getBrowserSupabase();
+    if (!supabase) {
+      setClientError("Upload client is not configured.");
+      return;
+    }
+
+    try {
+      setStatus("uploading");
+
+      const initRes = await fetch("/api/disclosure-review/init", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          propertyAddress: address,
+          fullName: name,
+          email,
+          phone,
+          preferredContact: contactMethod,
+          offerDeadline,
+          workingWithAgent,
+          attentionNotes: attention,
+          consent: true,
+          files: files.map((f) => ({
+            name: f.name,
+            size: f.size,
+            contentType: f.type || "application/pdf",
+          })),
+        }),
+      });
+
+      const initJson = (await initRes.json().catch(() => null)) as {
+        success?: boolean;
+        error?: string;
+        requestId?: string;
+        uploads?: {
+          path: string;
+          token: string;
+          originalName: string;
+        }[];
+      } | null;
+
+      if (!initRes.ok || !initJson?.success || !initJson.requestId || !initJson.uploads) {
+        throw new Error(initJson?.error || "Unable to start upload.");
+      }
+
+      const uploadedPaths: { path: string; originalName: string }[] = [];
+
+      for (const upload of initJson.uploads) {
+        const file = files.find((f) => f.name === upload.originalName);
+        if (!file) {
+          throw new Error(`Missing local file for ${upload.originalName}`);
+        }
+
+        const { error } = await supabase.storage
+          .from("disclosure-packages")
+          .uploadToSignedUrl(upload.path, upload.token, file, {
+            contentType: "application/pdf",
+            upsert: false,
+          });
+
+        if (error) {
+          throw new Error(`Upload failed for ${file.name}: ${error.message}`);
+        }
+
+        uploadedPaths.push({
+          path: upload.path,
+          originalName: upload.originalName,
+        });
+      }
+
+      setStatus("analyzing");
+
+      const completeRes = await fetch("/api/disclosure-review/complete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          requestId: initJson.requestId,
+          uploadedPaths,
+        }),
+      });
+
+      const completeJson = (await completeRes.json().catch(() => null)) as {
+        success?: boolean;
+        error?: string;
+        preferredContact?: string;
+      } | null;
+
+      if (!completeRes.ok || !completeJson?.success) {
+        throw new Error(
+          completeJson?.error ||
+            "Upload finished but processing failed. Use Review With Jason if you need a quick follow-up.",
+        );
+      }
+
+      setPreferredContactConfirm(
+        completeJson.preferredContact || contactMethod,
+      );
+      setStatus("success");
+      setFiles([]);
+      setConsent(false);
+    } catch (error) {
+      setStatus("error");
+      setClientError(
+        error instanceof Error ? error.message : "Something went wrong.",
+      );
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div
+        id="upload"
+        className={cn(
+          "scroll-mt-28 space-y-4 rounded-3xl border border-accent/25 bg-accent/5 p-6 sm:p-8",
+          className,
+        )}
+        role="status"
+      >
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+          Package received
+        </p>
+        <h3 className="font-display text-2xl font-semibold tracking-tight">
+          Thanks — your disclosures are in
+        </h3>
+        <p className="text-sm leading-relaxed text-muted-foreground text-pretty sm:text-base">
+          Your package was received securely. Jason will review the organized draft
+          and follow up using your preferred contact method (
+          {preferredContactConfirm}). Complimentary — no obligation. This did not
+          subscribe you to marketing.
+        </p>
+        <div className="flex flex-wrap gap-3 pt-1">
+          <Button asChild variant="accent">
+            <a href="#review-with-jason">Also request a live walkthrough</a>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/contact">Contact page</Link>
+          </Button>
+        </div>
+      </div>
     );
   }
 
@@ -103,7 +265,7 @@ export function DisclosureUploadForm({
         "scroll-mt-28 space-y-6 rounded-3xl border border-border/80 bg-card p-6 shadow-soft sm:p-8",
         className,
       )}
-      noValidate={!uploadsEnabled}
+      aria-busy={busy}
     >
       <div className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
@@ -126,12 +288,11 @@ export function DisclosureUploadForm({
         >
           <Lock className="mt-0.5 h-4 w-4 shrink-0 text-warning" aria-hidden />
           <p className="leading-relaxed">
-            Live PDF upload is paused until private storage and document analysis are
-            configured. You can still{" "}
+            Live PDF upload needs Supabase storage on this deployment. You can still{" "}
             <a href="#review-with-jason" className="font-medium text-accent hover:underline">
               request a walkthrough
             </a>{" "}
-            now — use the form preview below to see what the intake will collect.
+            now.
           </p>
         </div>
       ) : null}
@@ -142,7 +303,7 @@ export function DisclosureUploadForm({
           id="disclosure-address"
           name="address"
           required
-          disabled={!uploadsEnabled}
+          disabled={!uploadsEnabled || busy}
           placeholder="Street address, city"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
@@ -153,19 +314,19 @@ export function DisclosureUploadForm({
         <Label id="disclosure-files-label">Disclosure PDFs</Label>
         <div
           role="button"
-          tabIndex={uploadsEnabled ? 0 : -1}
-          aria-disabled={!uploadsEnabled}
+          tabIndex={uploadsEnabled && !busy ? 0 : -1}
+          aria-disabled={!uploadsEnabled || busy}
           aria-labelledby="disclosure-files-label"
           className={cn(
             "rounded-2xl border border-dashed px-4 py-8 text-center transition-colors",
-            uploadsEnabled
+            uploadsEnabled && !busy
               ? "cursor-pointer border-border hover:border-accent/50 hover:bg-accent/5"
               : "cursor-not-allowed border-border/60 bg-secondary/40 opacity-80",
             dragActive && uploadsEnabled && "border-accent bg-accent/5",
           )}
-          onClick={() => uploadsEnabled && inputRef.current?.click()}
+          onClick={() => uploadsEnabled && !busy && inputRef.current?.click()}
           onKeyDown={(e) => {
-            if (!uploadsEnabled) return;
+            if (!uploadsEnabled || busy) return;
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
               inputRef.current?.click();
@@ -173,24 +334,24 @@ export function DisclosureUploadForm({
           }}
           onDragEnter={(e) => {
             e.preventDefault();
-            if (uploadsEnabled) setDragActive(true);
+            if (uploadsEnabled && !busy) setDragActive(true);
           }}
           onDragOver={(e) => {
             e.preventDefault();
-            if (uploadsEnabled) setDragActive(true);
+            if (uploadsEnabled && !busy) setDragActive(true);
           }}
           onDragLeave={() => setDragActive(false)}
           onDrop={(e) => {
             e.preventDefault();
             setDragActive(false);
-            if (uploadsEnabled) addFiles(e.dataTransfer.files);
+            if (uploadsEnabled && !busy) addFiles(e.dataTransfer.files);
           }}
         >
           <FileUp className="mx-auto mb-3 h-8 w-8 text-accent" aria-hidden />
           <p className="text-sm font-medium">
             {uploadsEnabled
               ? "Drag and drop PDFs here, or choose files"
-              : "Drag-and-drop upload (coming soon)"}
+              : "Drag-and-drop upload unavailable"}
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
             PDF only · up to {MAX_FILES} files · {MAX_FILE_MB} MB each
@@ -201,7 +362,7 @@ export function DisclosureUploadForm({
             accept={ACCEPTED}
             multiple
             className="sr-only"
-            disabled={!uploadsEnabled}
+            disabled={!uploadsEnabled || busy}
             onChange={(e) => {
               addFiles(e.target.files);
               e.target.value = "";
@@ -225,6 +386,7 @@ export function DisclosureUploadForm({
                   type="button"
                   size="icon"
                   variant="ghost"
+                  disabled={busy}
                   aria-label={`Remove ${file.name}`}
                   onClick={() => removeFile(index)}
                 >
@@ -242,7 +404,7 @@ export function DisclosureUploadForm({
           <Input
             id="disclosure-name"
             required
-            disabled={!uploadsEnabled}
+            disabled={!uploadsEnabled || busy}
             autoComplete="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -254,7 +416,7 @@ export function DisclosureUploadForm({
             id="disclosure-email"
             type="email"
             required
-            disabled={!uploadsEnabled}
+            disabled={!uploadsEnabled || busy}
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -267,7 +429,7 @@ export function DisclosureUploadForm({
           <Input
             id="disclosure-phone"
             type="tel"
-            disabled={!uploadsEnabled}
+            disabled={!uploadsEnabled || busy}
             required={phoneRequired}
             autoComplete="tel"
             value={phone}
@@ -279,7 +441,7 @@ export function DisclosureUploadForm({
           <Select
             value={contactMethod}
             onValueChange={setContactMethod}
-            disabled={!uploadsEnabled}
+            disabled={!uploadsEnabled || busy}
           >
             <SelectTrigger id="disclosure-contact-method">
               <SelectValue />
@@ -296,7 +458,7 @@ export function DisclosureUploadForm({
           <Input
             id="disclosure-deadline"
             type="date"
-            disabled={!uploadsEnabled}
+            disabled={!uploadsEnabled || busy}
             value={offerDeadline}
             onChange={(e) => setOfferDeadline(e.target.value)}
           />
@@ -306,7 +468,7 @@ export function DisclosureUploadForm({
           <Select
             value={workingWithAgent}
             onValueChange={setWorkingWithAgent}
-            disabled={!uploadsEnabled}
+            disabled={!uploadsEnabled || busy}
           >
             <SelectTrigger id="disclosure-agent">
               <SelectValue />
@@ -325,7 +487,7 @@ export function DisclosureUploadForm({
           <Textarea
             id="disclosure-attention"
             rows={3}
-            disabled={!uploadsEnabled}
+            disabled={!uploadsEnabled || busy}
             value={attention}
             onChange={(e) => setAttention(e.target.value)}
             placeholder="Roof, electrical, HOA reserves, permits, pest…"
@@ -337,7 +499,7 @@ export function DisclosureUploadForm({
         <Checkbox
           id="disclosure-consent"
           checked={consent}
-          disabled={!uploadsEnabled}
+          disabled={!uploadsEnabled || busy}
           onCheckedChange={(v) => setConsent(v === true)}
           aria-required
         />
@@ -371,8 +533,17 @@ export function DisclosureUploadForm({
       ) : null}
 
       <div className="flex flex-wrap gap-3">
-        <Button type="submit" size="lg" variant="accent" disabled={!uploadsEnabled || !consent}>
-          {uploadsEnabled ? "Submit disclosure package" : "Upload coming soon"}
+        <Button
+          type="submit"
+          size="lg"
+          variant="accent"
+          disabled={!uploadsEnabled || !consent || busy}
+        >
+          {status === "uploading"
+            ? "Uploading…"
+            : status === "analyzing"
+              ? "Organizing draft…"
+              : "Submit disclosure package"}
         </Button>
         <Button asChild size="lg" variant="outline">
           <a href="#review-with-jason">Review With Jason instead</a>
@@ -380,10 +551,10 @@ export function DisclosureUploadForm({
       </div>
 
       <p className="text-xs leading-relaxed text-muted-foreground">
-        Any summary is a reading aid. Always consult the original documents and
-        qualified professionals (inspectors, contractors, attorneys, lenders) before
-        making decisions. Findings cite source files and PDF pages; they do not invent
-        repair costs or property condition claims.
+        Any summary is a reading aid for Jason to review with you. Always consult the
+        original documents and qualified professionals before making decisions.
+        Findings cite source files and PDF pages; they do not invent repair costs or
+        property condition claims.
       </p>
     </form>
   );

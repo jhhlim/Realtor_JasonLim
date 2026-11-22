@@ -45,7 +45,7 @@ const sections = [
   },
   {
     title: "8. Data retention & security",
-    body: "We retain information as needed for business, legal, and transaction purposes. We use reasonable administrative and technical safeguards; no method of transmission is 100% secure. Live disclosure uploads remain disabled until private storage and access controls are configured.",
+    body: "We retain information as needed for business, legal, and transaction purposes. We use reasonable administrative and technical safeguards; no method of transmission is 100% secure. Disclosure PDFs are stored in a private bucket and are not emailed as attachments.",
   },
   {
     title: "9. Children's privacy",

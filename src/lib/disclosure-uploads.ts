@@ -1,12 +1,25 @@
 /**
- * Live disclosure PDF uploads require private object storage, server-side PDF
- * extraction/OCR, and a private report workflow for Jason to review before sharing.
+ * Live disclosure PDF uploads use private Supabase Storage + a server-side
+ * PDF extract / AI draft workflow for Jason to review before buyer follow-up.
  *
- * Enable only when those services are configured:
+ * Enabled when Supabase service credentials exist, unless explicitly disabled:
+ *   DISCLOSURE_UPLOADS_ENABLED=false
+ * Force-on even during partial setup:
  *   DISCLOSURE_UPLOADS_ENABLED=true
- *   + storage credentials (e.g. Supabase Storage / S3)
- *   + AI provider for draft analysis
  */
 export function areDisclosureUploadsEnabled() {
-  return process.env.DISCLOSURE_UPLOADS_ENABLED === "true";
+  if (process.env.DISCLOSURE_UPLOADS_ENABLED === "false") return false;
+  if (process.env.DISCLOSURE_UPLOADS_ENABLED === "true") return true;
+
+  return Boolean(
+    process.env.NEXT_PUBLIC_SUPABASE_URL?.trim() &&
+      process.env.SUPABASE_SERVICE_ROLE_KEY?.trim(),
+  );
+}
+
+export function isDisclosureAiConfigured() {
+  return (
+    process.env.AI_ENABLED !== "false" &&
+    Boolean(process.env.OPENAI_API_KEY?.trim())
+  );
 }
