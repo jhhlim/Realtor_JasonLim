@@ -242,7 +242,40 @@ export default async function MarketReportDetailPage({
       >
         <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-muted-foreground text-pretty">
           <p>{report.summary}</p>
-          {report.slug === "scc-detached-homes-november-15-2026" ? (
+          {report.slug === "scc-detached-homes-november-22-2026" ? (
+            <>
+              <p>
+                Holiday inventory kept thinning hard: active detached listings
+                dropped to 650 (−45 WoW from 695), and pendings eased slightly to
+                74 (−5). That’s three straight weeks of fewer actives — supply is
+                still working in sellers’ favor where homes are priced to the
+                market.
+              </p>
+              <p>
+                Demand concentrated in a few pockets. Cambrian cut the most
+                listings (−14 to 57) while pendings jumped 7 → 12. Willow Glen
+                flipped from soft to hot (pendings 2 → 10). Mountain View
+                pendings rose 2 → 6, and Almaden doubled to 4. Meanwhile Palo
+                Alto’s prior-week surge reversed (11 → 2), and Central San Jose
+                and Los Gatos / Monte Sereno each cooled by 4 pendings. Santa
+                Clara was the rare listing add (+2); Los Altos Hills remains at
+                zero pendings.
+              </p>
+              <p>
+                On the Nov. 1 snapshot, months of inventory stayed tightest in
+                Los Altos (0.5), Palo Alto (0.6), and Mountain View (0.7). Higher
+                MOI pockets like Central San Jose (3.0) and Saratoga (2.1) still
+                leave more room to negotiate when pricing matches current comps.
+              </p>
+              <p>
+                For sellers: with actives down another 45, market-ready homes can
+                still draw traffic — don’t over-test price into Thanksgiving week.
+                For buyers: watch pending heat in Cambrian, Willow Glen, and
+                Mountain View; Palo Alto and Central San Jose look more negotiable
+                after this week’s pending pullback.
+              </p>
+            </>
+          ) : report.slug === "scc-detached-homes-november-15-2026" ? (
             <>
               <p>
                 Mid-November mixed the tape: active detached listings fell again

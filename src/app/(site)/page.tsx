@@ -26,7 +26,7 @@ export default async function HomePage() {
 
   const featuredReport =
     mockMarketReports.find(
-      (r) => r.slug === "scc-detached-homes-november-15-2026",
+      (r) => r.slug === "scc-detached-homes-november-22-2026",
     ) ??
     [...mockMarketReports].sort(
       (a, b) =>
