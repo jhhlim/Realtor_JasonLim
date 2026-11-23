@@ -117,11 +117,16 @@ export async function POST(request: Request) {
 
     if (error || !row) {
       console.error("[disclosure-init] insert failed", error?.message);
+      const missingTable =
+        /relation .*disclosure_requests.* does not exist|Could not find the table/i.test(
+          error?.message ?? "",
+        );
       return NextResponse.json(
         {
           success: false,
-          error:
-            "Unable to create disclosure request. Confirm the disclosure_requests migration has been applied in Supabase.",
+          error: missingTable
+            ? "Disclosure storage is almost ready — the disclosure_requests table still needs to be created in Supabase. Run supabase/DISCLOSURE_SETUP.sql in the SQL Editor, then try again."
+            : `Unable to create disclosure request${error?.message ? `: ${error.message}` : "."}`,
         },
         { status: 500 },
       );

@@ -102,12 +102,24 @@ export function DisclosureUploadForm({
       );
       return;
     }
-    if (!consent) {
-      setClientError("Please confirm consent before submitting.");
+    if (!address.trim()) {
+      setClientError("Please enter the property address.");
+      return;
+    }
+    if (!name.trim()) {
+      setClientError("Please enter your full name.");
+      return;
+    }
+    if (!email.trim()) {
+      setClientError("Please enter your email.");
       return;
     }
     if (!files.length) {
       setClientError("Add at least one PDF disclosure package.");
+      return;
+    }
+    if (!consent) {
+      setClientError("Please confirm consent before submitting.");
       return;
     }
     if (phoneRequired && !phone.trim()) {
