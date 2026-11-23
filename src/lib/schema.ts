@@ -34,6 +34,8 @@ export function buildRealEstateAgentSchema(): JsonLd {
     sameAs: [
       social.linkedin,
       social.x,
+      social.instagram,
+      social.youtube,
       siteConfig.brokerage.agentProfileUrl,
     ].filter(Boolean),
     worksFor: {

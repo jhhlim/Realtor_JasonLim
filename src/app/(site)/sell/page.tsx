@@ -13,6 +13,7 @@ import {
   Users,
 } from "lucide-react";
 
+import { SellerToolkitSection } from "@/components/sell/seller-toolkit-section";
 import { CtaBanner } from "@/components/shared/cta-banner";
 import { FadeIn } from "@/components/shared/fade-in";
 import { PageHero } from "@/components/shared/page-hero";
@@ -257,6 +258,8 @@ export default function SellPage() {
           </Card>
         </FadeIn>
       </Section>
+
+      <SellerToolkitSection />
 
       <Section
         eyebrow="Process"

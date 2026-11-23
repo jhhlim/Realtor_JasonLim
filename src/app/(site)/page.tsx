@@ -9,6 +9,7 @@ import { MarketsStrip } from "@/components/home/markets-strip";
 import { MortgageTeaser } from "@/components/home/mortgage-teaser";
 import { NeighborhoodsPreview } from "@/components/home/neighborhoods-preview";
 import { RecentSales } from "@/components/home/recent-sales";
+import { SellerToolkitTeaser } from "@/components/home/seller-toolkit-teaser";
 import { StatsStrip } from "@/components/home/stats-strip";
 import { TestimonialsCarousel } from "@/components/home/testimonials-carousel";
 import { mockBlogPosts } from "@/data/mock-blog";
@@ -41,6 +42,7 @@ export default async function HomePage() {
       <MarketsStrip />
       <MarketInsights report={featuredReport} />
       <DisclosureReviewTeaser />
+      <SellerToolkitTeaser />
       <GoalsCta />
       {featured.length > 0 ? <FeaturedListings listings={featured} /> : null}
       <NeighborhoodsPreview neighborhoods={mockNeighborhoods} />

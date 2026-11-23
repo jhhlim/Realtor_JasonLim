@@ -71,6 +71,7 @@ const hubs = [
       { label: "Buyer process", href: "/buy" },
       { label: "Disclosure Review", href: "/disclosure-review" },
       { label: "Seller process", href: "/sell" },
+      { label: "Seller toolkit (video + extras)", href: "/sell#seller-toolkit" },
       { label: "First-time buyer notes", href: "/buy#first-time" },
       { label: "Download buyer guide PDF", href: "/docs/buyerguide.pdf" },
     ],

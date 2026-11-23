@@ -50,6 +50,48 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/in/jasonnlim",
     x: "https://x.com/jasonlimrealty",
     instagram: "https://www.instagram.com/jasonlimrealty/",
+    youtube: "https://www.youtube.com/watch?v=GQ-jtpjEFTc",
+  },
+
+  /**
+   * Seller value-add services featured on /sell#seller-toolkit.
+   * Keep claims grounded — no invented credentials or guarantees.
+   */
+  sellerToolkit: {
+    youtubeVideoId: "GQ-jtpjEFTc",
+    youtubeTitle: "Jason Lim | Compass — seller marketing & local expertise",
+    services: [
+      {
+        id: "marketing-video",
+        title: "Marketing & YouTube video",
+        description:
+          "Listing marketing that goes beyond photos — including video content for YouTube and social so more buyers discover your home before they tour.",
+      },
+      {
+        id: "listing-website",
+        title: "Listing website design",
+        description:
+          "Custom listing sites built with modern AI and MCP workflows — a polished online home for your property that can sit alongside MLS / IDX-style inventory.",
+      },
+      {
+        id: "staging-furniture",
+        title: "Custom furniture & staging rental",
+        description:
+          "Access to unique custom furniture and staging rental options so rooms feel intentional — not generic — when buyers walk through.",
+      },
+      {
+        id: "contractors",
+        title: "Contractor recommendations",
+        description:
+          "Trusted referrals for painters, handypeople, and specialty trades when prep work needs the right crew before you list.",
+      },
+      {
+        id: "landscaping-handyman",
+        title: "Landscaping & handyman help",
+        description:
+          "Background in landscaping plus hands-on experience with minor to moderate handyman fixes — practical guidance (and help where it fits) to tighten curb appeal and punch-list items.",
+      },
+    ],
   },
 
   /** Set true + NEXT_PUBLIC_CALENDLY_URL when ready to show the scheduler again. */
@@ -200,6 +242,7 @@ export const siteConfig = {
           { label: "Buy", href: "/buy" },
           { label: "Disclosure Review", href: "/disclosure-review" },
           { label: "Sell", href: "/sell" },
+          { label: "Seller toolkit", href: "/sell#seller-toolkit" },
           { label: "Communities", href: "/communities" },
           { label: "Market Reports", href: "/market-reports" },
         ],

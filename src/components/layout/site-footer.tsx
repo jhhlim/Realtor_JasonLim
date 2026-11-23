@@ -36,6 +36,24 @@ function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
+function YouTubeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+      aria-hidden
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M22.5 12s0-3.6-.46-5.28a2.85 2.85 0 0 0-2-2C18.52 4.3 12 4.3 12 4.3s-6.52 0-8.04.42a2.85 2.85 0 0 0-2 2C1.5 8.4 1.5 12 1.5 12s0 3.6.46 5.28a2.85 2.85 0 0 0 2 2c1.52.42 8.04.42 8.04.42s6.52 0 8.04-.42a2.85 2.85 0 0 0 2-2c.46-1.68.46-5.28.46-5.28Z" />
+      <path d="m10 15.2 5.2-3.2L10 8.8v6.4Z" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
@@ -105,6 +123,15 @@ export function SiteFooter() {
                 className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-muted-foreground transition-colors hover:border-accent/40 hover:text-accent"
               >
                 <InstagramIcon className="h-4 w-4" />
+              </a>
+              <a
+                href={siteConfig.social.youtube}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="YouTube — Jason Lim seller marketing"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-muted-foreground transition-colors hover:border-accent/40 hover:text-accent"
+              >
+                <YouTubeIcon className="h-4 w-4" />
               </a>
             </div>
           </div>
