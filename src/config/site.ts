@@ -175,12 +175,18 @@ export const siteConfig = {
 
   navigation: {
     main: [
-      { label: "Buy", href: "/buy" },
-      { label: "Disclosures", href: "/disclosure-review" },
+      {
+        label: "Buy",
+        href: "/buy",
+        children: [
+          { label: "Buyer process", href: "/buy" },
+          { label: "Disclosure Review", href: "/disclosure-review" },
+        ],
+      },
       { label: "Sell", href: "/sell" },
       { label: "Listings", href: "/listings" },
       { label: "Communities", href: "/communities" },
-      { label: "Market Reports", href: "/market-reports" },
+      { label: "Reports", href: "/market-reports" },
       { label: "Insights", href: "/blog" },
       { label: "Resources", href: "/resources" },
       { label: "About", href: "/about" },

@@ -32,7 +32,6 @@ export function MobileNav() {
   const [open, setOpen] = React.useState(false);
   const pathname = usePathname();
 
-  // Close menu + restore scroll when the route changes.
   React.useEffect(() => {
     setOpen(false);
     unlockBodyScroll();
@@ -40,7 +39,6 @@ export function MobileNav() {
 
   React.useEffect(() => {
     if (!open) {
-      // After close animation, clear any leftover lock.
       const t = window.setTimeout(unlockBodyScroll, 350);
       return () => window.clearTimeout(t);
     }
@@ -54,7 +52,12 @@ export function MobileNav() {
   return (
     <Sheet open={open} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open menu">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="xl:hidden"
+          aria-label="Open menu"
+        >
           <Menu className="h-5 w-5" />
         </Button>
       </SheetTrigger>
@@ -67,20 +70,42 @@ export function MobileNav() {
             <BrandName />
           </SheetTitle>
           <p className="text-left text-sm text-muted-foreground">
-            {siteConfig.title}
+            Compass · Silicon Valley Real Estate
           </p>
         </SheetHeader>
         <nav className="flex flex-col gap-1 pb-2">
-          {siteConfig.navigation.main.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => handleOpenChange(false)}
-              className="rounded-xl px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-secondary"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {siteConfig.navigation.main.map((item) => {
+            const children =
+              "children" in item && item.children?.length
+                ? item.children
+                : null;
+
+            return (
+              <div key={item.href} className="space-y-1">
+                <Link
+                  href={item.href}
+                  onClick={() => handleOpenChange(false)}
+                  className="block rounded-xl px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-secondary"
+                >
+                  {item.label}
+                </Link>
+                {children ? (
+                  <div className="ml-3 space-y-1 border-l border-border/70 pl-3">
+                    {children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        onClick={() => handleOpenChange(false)}
+                        className="block rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            );
+          })}
         </nav>
         <Separator className="shrink-0" />
         <div className="shrink-0 space-y-3">
