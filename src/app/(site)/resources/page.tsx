@@ -84,6 +84,14 @@ const hubs = [
     links: [
       { label: "Insights", href: "/blog" },
       {
+        label: "Nvidia surge + AI-ready agent (Nov 22 newsletter)",
+        href: "/blog/nvidia-surge-ai-ready-real-estate-agent-november-2026",
+      },
+      {
+        label: "Flood risk after Nov storm (Nov 19 newsletter)",
+        href: "/blog/bay-area-flood-risk-after-november-storm-2026",
+      },
+      {
         label: "Mid-November update (Nov 18 newsletter)",
         href: "/blog/mid-november-real-estate-update-berryessa-scc-november-18-2026",
       },

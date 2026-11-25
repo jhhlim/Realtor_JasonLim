@@ -5,6 +5,133 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "nvidia-surge-ai-ready-real-estate-agent-november-2026",
+    title:
+      "Nvidia Surged. Is Your Real Estate Agent Keeping Up with AI?",
+    excerpt:
+      "Nvidia jumped more than 30% early Monday and Silicon Valley buyers are asking whether it’s time to look before spring. Mortgage rates ticked up — and AI is changing what clients should expect from their agent.",
+    content: `Good morning,
+
+Nvidia jumped more than 30% early Monday after market news around Jensen Huang’s return as CEO, sparking a broader tech rally. In Silicon Valley, buyers are already asking: is it worth looking before spring? This is general market news — always verify headlines and company announcements against primary sources before making financial decisions.
+
+If tech gains and hiring hold, more households may enter 2027 with stronger buyer confidence and down-payment flexibility. With listings still tight in many South Bay pockets, that can mean more competition when the right home appears.
+
+Mortgage rates this week
+
+Freddie Mac’s November 19 survey put the average 30-year fixed rate at 7.28%, up from 7.11% the prior week. National averages are a starting point — ask your lender for a personalized quote tied to your credit, loan size, and timeline. (freddiemac.com)
+
+AI is changing what clients expect from their agent
+
+Relationships, local knowledge, and negotiation still matter. What’s new is the technical skill to use modern tools without losing judgment. I bring a decade-plus of software and enterprise tech experience into my work as a Compass agent — pairing people skills with systems that help us move faster and with clearer information.
+
+For buyers
+
+- Manual disclosure review remains essential; I also use AI-assisted analysis to surface patterns, inconsistencies, and questions worth asking
+- We still ground decisions in comps, in-person tours, and tradeoffs on price, terms, and contingencies
+- If you’d like a structured pass on a disclosure package, see my Disclosure Review process at /disclosure-review
+
+For sellers
+
+- Marketing is shifting too — CapCut and Kling AI help produce listing videos and social content that stands out
+- Explore the seller toolkit extras at /sell#seller-toolkit
+
+Behind the scenes
+
+I use tools like Claude, Cursor, Codex, and MCP workflows to draft analysis, organize research, and speed up follow-up — then verify everything against source documents. Transparency matters: AI assists my review; it doesn’t replace it.
+
+Interview tip
+
+When you interview agents, ask them to show how their process saves time with a real example — a disclosure summary, a comp package, or a listing marketing draft — not just a pitch about “using AI.”
+
+Berryessa, North San Jose, Milpitas
+
+If buying or selling in Berryessa, North San Jose, or Milpitas is on your mind, reply BUY or SELL and a sentence about what you’re considering. I’ll follow up with next steps.
+
+Warmly,
+Jason Lim
+Compass | CA DRE #02444964
+📱 (510) 480-7191
+🌐 jasonlimrealty.com
+
+This is general information, not investment, tax, or legal advice. Mortgage rate figures are informational national averages and are not a loan offer or personalized quote. AI and other tools assist Jason’s review; they do not replace professional judgment, inspection, appraisal, or lender underwriting. Market commentary reflects publicly reported news and should be verified against primary sources.`,
+    category: "Technology",
+    coverImage: cover("photo-1677442136019-21780ecad995"),
+    publishedAt: "2026-11-22",
+    readingMinutes: 4,
+    tags: [
+      "newsletter",
+      "nvidia",
+      "ai",
+      "technology",
+      "mortgage rates",
+      "berryessa",
+      "north san jose",
+      "milpitas",
+      "november 2026",
+    ],
+  },
+  {
+    slug: "bay-area-flood-risk-after-november-storm-2026",
+    title:
+      "After Wednesday’s Storm: Check Your Address for Flood Risk — Bay Area Buyers & Sellers",
+    excerpt:
+      "Nov 18 rains flooded streets across SF (Mission, Marina, Sunset). Most homeowners policies exclude flood. Here’s how to check FEMA and SFPUC maps, screen homes before touring, and what sellers should disclose — plus a holiday-window market note.",
+    content: `I hope you and your family are safe after Wednesday’s storm.
+
+On November 18, heavy rains flooded streets across San Francisco — including parts of the Mission, Marina, and Sunset — as reported by CBS San Francisco. Storms like this are a reminder: flood risk isn’t only a coastal or river issue. It can show up on city blocks when drainage is overwhelmed.
+
+Most homeowners policies exclude flood
+
+Standard homeowners insurance typically does not cover flood damage. Federal flood insurance (often through the National Flood Insurance Program / NFIP) and separate sewer-backup riders are different products with their own limits and waiting periods. Ask your insurance agent what’s on your policy — and what’s missing — before the next atmospheric river.
+
+Check your address (and any home you’re considering)
+
+- FEMA Flood Map Service Center — look up the official flood zone for any U.S. address: emilms.fema.gov (FEMA Flood Map Service Center / FEMA maps)
+- San Francisco also: SFPUC Storm Flood Risk Map (sfpuc.gov) — a property can sit outside a FEMA high-risk zone yet still fall in a city stormwater / street-flooding zone
+
+If you’re buying: screen flood exposure early
+
+- Check FEMA (and SFPUC if SF) before you schedule a tour when the location looks drainage-sensitive
+- Read disclosures carefully — Natural Hazard Disclosure and, in SF, stormwater-related disclosures
+- Red flags on site: garage or driveway that slopes down toward the structure, history of water in the basement or garage, or low spots that collect runoff
+- Ask your inspector and insurance agent the right questions before you waive contingencies
+- You can negotiate a credit, require repairs, or walk away if the risk and cost don’t fit your plan
+
+Holiday window for buyers
+
+Late November into early December can still be a useful window to buy — fewer competing showings for some listings, and motivated sellers who want to close before year-end. Compass reported that 86% of San Francisco single-family homes sold above list price in October. (compass.com)
+
+If you’re selling
+
+- Know your likely pricing range and net proceeds before you list
+- Expect Natural Hazard Disclosure — and in San Francisco, stormwater-related disclosure — to surface for buyers
+- Gather records of any flooding, sewer backups, or related repairs so the file is clear and complete
+
+I’m local over Thanksgiving. If buying or selling is on your mind, reply by Friday, November 27 with BUY or SELL and the address (or neighborhood) you’re focused on. I’ll follow up with next steps.
+
+Warmly,
+Jason Lim
+REALTOR® | Compass | DRE #02444964
+jason.lim@compass.com
+🌐 jasonlimrealty.com
+
+This is general information, not insurance or legal advice. Always verify flood maps, zoning, and coverage with qualified professionals (insurance agent, inspector, and legal counsel as needed). Market statistics are sourced from CBS San Francisco, FEMA, SFPUC, and Compass as cited.`,
+    category: "Bay Area",
+    coverImage: cover("photo-1547683905-f86c4bf2a1ed"),
+    publishedAt: "2026-11-19",
+    readingMinutes: 4,
+    tags: [
+      "newsletter",
+      "flood risk",
+      "fema",
+      "sfpuc",
+      "san francisco",
+      "insurance",
+      "bay area",
+      "november 2026",
+    ],
+  },
+  {
     slug: "mid-november-real-estate-update-berryessa-scc-november-18-2026",
     title: "Mid-November Real Estate Update — Berryessa, San Jose & Santa Clara County",
     excerpt:
