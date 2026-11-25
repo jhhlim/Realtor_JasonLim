@@ -243,6 +243,7 @@ export const siteConfig = {
           { label: "Disclosure Review", href: "/disclosure-review" },
           { label: "Sell", href: "/sell" },
           { label: "Seller toolkit", href: "/sell#seller-toolkit" },
+          { label: "Listing support", href: "/sell#listing-support" },
           { label: "Communities", href: "/communities" },
           { label: "Market Reports", href: "/market-reports" },
         ],

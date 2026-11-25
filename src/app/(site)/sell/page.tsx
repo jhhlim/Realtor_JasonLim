@@ -13,6 +13,7 @@ import {
   Users,
 } from "lucide-react";
 
+import { ListingSupportSection } from "@/components/sell/listing-support-section";
 import { SellerToolkitSection } from "@/components/sell/seller-toolkit-section";
 import { CtaBanner } from "@/components/shared/cta-banner";
 import { FadeIn } from "@/components/shared/fade-in";
@@ -26,7 +27,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Sell Your Home",
   description:
-    "Sell your Bay Area home with Compass Concierge, 3-phased marketing, data-backed pricing, and skilled negotiation — from prep through closing.",
+    "Sell your Bay Area home with Compass Concierge, 3-phased marketing, listing concierge, and skilled negotiation — from prep and occupied homes through closing.",
   path: "/sell",
 });
 
@@ -260,6 +261,8 @@ export default function SellPage() {
       </Section>
 
       <SellerToolkitSection />
+
+      <ListingSupportSection />
 
       <Section
         eyebrow="Process"

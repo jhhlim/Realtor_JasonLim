@@ -11,7 +11,7 @@ export function SellerToolkitTeaser() {
     <Section
       eyebrow="For sellers"
       title="Beyond the listing"
-      description="Video marketing, listing websites, staging pieces, contractor referrals, and practical prep help — built around how you want to sell."
+      description="Video marketing, listing websites, staging pieces, contractor referrals, prep help — plus listing concierge and occupied-home support when you need it."
       className="bg-gradient-to-b from-slate-soft/80 to-background dark:from-card/30"
       actions={
         <Button asChild variant="outline">
@@ -33,9 +33,9 @@ export function SellerToolkitTeaser() {
                 Watch the YouTube pitch, then see the full seller toolkit
               </h3>
               <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground text-pretty sm:text-base">
-                Marketing video, AI-assisted listing sites, custom furniture /
-                staging rental, contractor recommendations, and landscaping /
-                handyman support — all detailed on the Sell page.
+                Marketing video, AI-assisted listing sites, staging, contractor
+                referrals, and handyman support — plus listing concierge, housing
+                logistics, and tenant-aware showings on the Sell page.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 sm:justify-end">
@@ -43,7 +43,7 @@ export function SellerToolkitTeaser() {
                 <Link href="/sell#seller-toolkit">See seller toolkit</Link>
               </Button>
               <Button asChild variant="outline">
-                <Link href="/sell">Sell with Jason</Link>
+                <Link href="/sell#listing-support">Listing support</Link>
               </Button>
             </div>
           </CardContent>
