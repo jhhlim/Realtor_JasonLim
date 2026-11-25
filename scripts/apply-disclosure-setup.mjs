@@ -43,10 +43,6 @@ if (!url || !serviceKey) {
   process.exit(1);
 }
 
-const supabase = createClient(url, serviceKey, {
-  auth: { persistSession: false, autoRefreshToken: false },
-});
-
 const sqlUrl = projectRef
   ? `https://supabase.com/dashboard/project/${projectRef}/sql/new`
   : "https://supabase.com/dashboard";
@@ -54,6 +50,36 @@ const sqlUrl = projectRef
 console.log("Project:", projectRef || url);
 console.log("SQL Editor:", sqlUrl);
 console.log("");
+
+// DNS / reachability check before Supabase client (clearer than "fetch failed")
+try {
+  const probe = await fetch(`${url.replace(/\/$/, "")}/auth/v1/health`, {
+    method: "GET",
+    headers: { apikey: serviceKey },
+  });
+  console.log("Reachability:", probe.status, probe.statusText || "ok");
+} catch (err) {
+  const cause = err?.cause;
+  const code = cause?.code || cause?.errno || "";
+  console.log("❌ Cannot reach Supabase URL (DNS/network)");
+  console.log("   ", err?.message || err);
+  if (code) console.log("   code:", code);
+  console.log("");
+  console.log("This usually means the project was deleted, paused without DNS,");
+  console.log("or NEXT_PUBLIC_SUPABASE_URL points at a dead project ref.");
+  console.log("");
+  console.log("Fix:");
+  console.log("  1. Open https://supabase.com/dashboard and create/restore a project");
+  console.log("  2. Copy Project URL + anon + service_role into .env.local AND Vercel");
+  console.log("  3. Paste supabase/DISCLOSURE_SETUP.sql into the SQL Editor → Run");
+  console.log("  4. Re-run: node scripts/apply-disclosure-setup.mjs");
+  console.log("  5. Optional until ready: DISCLOSURE_UPLOADS_ENABLED=false on Vercel");
+  process.exit(1);
+}
+
+const supabase = createClient(url, serviceKey, {
+  auth: { persistSession: false, autoRefreshToken: false },
+});
 
 const { error: tableError } = await supabase
   .from("disclosure_requests")

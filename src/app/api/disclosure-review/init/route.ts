@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { checkRateLimit } from "@/lib/ai/rate-limit";
 import { areDisclosureUploadsEnabled } from "@/lib/disclosure-uploads";
+import { friendlyDisclosureInitError } from "@/lib/disclosure/errors";
 import {
   disclosureIntakeSchema,
   MAX_DISCLOSURE_FILE_BYTES,
@@ -116,19 +117,13 @@ export async function POST(request: Request) {
       .single();
 
     if (error || !row) {
-      console.error("[disclosure-init] insert failed", error?.message);
-      const missingTable =
-        /relation .*disclosure_requests.* does not exist|Could not find the table/i.test(
-          error?.message ?? "",
-        );
+      console.error("[disclosure-init] insert failed", error?.message ?? error);
       return NextResponse.json(
         {
           success: false,
-          error: missingTable
-            ? "Disclosure storage is almost ready — the disclosure_requests table still needs to be created in Supabase. Run supabase/DISCLOSURE_SETUP.sql in the SQL Editor, then try again."
-            : `Unable to create disclosure request${error?.message ? `: ${error.message}` : "."}`,
+          error: friendlyDisclosureInitError(error ?? "insert returned no row"),
         },
-        { status: 500 },
+        { status: 503 },
       );
     }
 
@@ -149,12 +144,9 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         success: false,
-        error:
-          error instanceof Error
-            ? error.message
-            : "Unable to start disclosure upload.",
+        error: friendlyDisclosureInitError(error),
       },
-      { status: 500 },
+      { status: 503 },
     );
   }
 }

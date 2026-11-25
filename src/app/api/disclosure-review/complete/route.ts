@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { checkRateLimit } from "@/lib/ai/rate-limit";
 import { areDisclosureUploadsEnabled } from "@/lib/disclosure-uploads";
+import { friendlyDisclosureInitError } from "@/lib/disclosure/errors";
 import {
   buildCorpusForModel,
   extractPdfPages,
@@ -88,17 +89,52 @@ export async function POST(request: Request) {
     }
   }
 
-  const supabase = createServiceClient();
-  const { data: row, error: loadError } = await supabase
-    .from("disclosure_requests")
-    .select("*")
-    .eq("id", requestId)
-    .single();
-
-  if (loadError || !row) {
+  let supabase;
+  try {
+    supabase = createServiceClient();
+  } catch (error) {
     return NextResponse.json(
-      { success: false, error: "Disclosure request not found." },
-      { status: 404 },
+      { success: false, error: friendlyDisclosureInitError(error) },
+      { status: 503 },
+    );
+  }
+
+  let row: {
+    property_address: string;
+    attention_notes: string | null;
+    full_name: string;
+    email: string;
+    phone: string | null;
+    preferred_contact: string;
+  };
+
+  try {
+    const loaded = await supabase
+      .from("disclosure_requests")
+      .select("*")
+      .eq("id", requestId)
+      .single();
+
+    if (loaded.error || !loaded.data) {
+      const notFound = /PGRST116|0 rows|Results contain 0 rows|not found/i.test(
+        loaded.error?.message ?? "",
+      );
+      if (!loaded.error || notFound) {
+        return NextResponse.json(
+          { success: false, error: "Disclosure request not found." },
+          { status: 404 },
+        );
+      }
+      return NextResponse.json(
+        { success: false, error: friendlyDisclosureInitError(loaded.error) },
+        { status: 503 },
+      );
+    }
+    row = loaded.data;
+  } catch (error) {
+    return NextResponse.json(
+      { success: false, error: friendlyDisclosureInitError(error) },
+      { status: 503 },
     );
   }
 

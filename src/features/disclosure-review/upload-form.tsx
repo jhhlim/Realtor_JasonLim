@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { isDisclosureInfraFailureMessage } from "@/lib/disclosure/errors";
 import { cn } from "@/lib/utils";
 
 const MAX_FILES = 10;
@@ -539,9 +540,24 @@ export function DisclosureUploadForm({
       </div>
 
       {clientError ? (
-        <p className="text-sm text-destructive" role="alert">
-          {clientError}
-        </p>
+        <div
+          className="space-y-2 rounded-2xl border border-destructive/30 bg-destructive/5 px-4 py-3"
+          role="alert"
+        >
+          <p className="text-sm text-destructive">{clientError}</p>
+          {isDisclosureInfraFailureMessage(clientError) ? (
+            <p className="text-sm text-muted-foreground">
+              Prefer not to wait?{" "}
+              <a
+                href="#review-with-jason"
+                className="font-medium text-accent hover:underline"
+              >
+                Request a walkthrough with Jason
+              </a>{" "}
+              — no PDF upload required.
+            </p>
+          ) : null}
+        </div>
       ) : null}
 
       <div className="flex flex-wrap gap-3">
