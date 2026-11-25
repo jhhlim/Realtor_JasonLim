@@ -24,10 +24,10 @@ export const siteConfig = {
     email: "jason.lim@compass.com",
     sms: "sms:+15104807191",
     address: {
-      line1: "San Jose, California",
-      city: "San Jose",
+      line1: "Los Gatos, California",
+      city: "Los Gatos",
       state: "CA",
-      zip: "95132",
+      zip: "95032",
       region: "Silicon Valley",
     },
   },
