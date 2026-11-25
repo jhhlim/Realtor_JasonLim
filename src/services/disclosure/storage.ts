@@ -7,10 +7,17 @@ export async function ensureDisclosureBucket() {
   if (!bucketReady) {
     bucketReady = (async () => {
       const supabase = createServiceClient();
-      const { data: buckets, error: listError } =
-        await supabase.storage.listBuckets();
-      if (listError) {
-        throw new Error(`Unable to list storage buckets: ${listError.message}`);
+      let buckets;
+      try {
+        const listed = await supabase.storage.listBuckets();
+        if (listed.error) {
+          throw new Error(`Unable to list storage buckets: ${listed.error.message}`);
+        }
+        buckets = listed.data;
+      } catch (error) {
+        const message =
+          error instanceof Error ? error.message : "Unable to list storage buckets";
+        throw new Error(message);
       }
       const exists = buckets?.some((b) => b.name === DISCLOSURE_BUCKET);
       if (!exists) {
