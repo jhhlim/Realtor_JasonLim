@@ -117,7 +117,7 @@ jason.lim@compass.com
 
 This is general information, not insurance or legal advice. Always verify flood maps, zoning, and coverage with qualified professionals (insurance agent, inspector, and legal counsel as needed). Market statistics are sourced from CBS San Francisco, FEMA, SFPUC, and Compass as cited.`,
     category: "Bay Area",
-    coverImage: cover("photo-1547683905-f86c4bf2a1ed"),
+    coverImage: cover("photo-1515694346937-94d85e41e6f0"),
     publishedAt: "2026-11-19",
     readingMinutes: 4,
     tags: [
