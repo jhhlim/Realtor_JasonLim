@@ -65,8 +65,13 @@ function PickCard({ pick, index }: { pick: BuyPick; index: number }) {
               <p className="font-display text-2xl font-semibold text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.85)]">
                 {pick.price
                   ? formatCurrency(pick.price)
-                  : pick.priceLabel ?? "See Compass"}
+                  : pick.priceLabel ?? "See listing"}
               </p>
+              {pick.price && pick.priceLabel ? (
+                <p className="mt-0.5 text-sm font-medium text-white/95 drop-shadow-[0_1px_6px_rgba(0,0,0,0.85)]">
+                  {pick.priceLabel}
+                </p>
+              ) : null}
             </div>
           </div>
           <CardContent className="space-y-3 p-5">
@@ -120,7 +125,9 @@ function PickCard({ pick, index }: { pick: BuyPick; index: number }) {
               {pick.roleNote ? <p>{pick.roleNote}</p> : null}
             </div>
             <p className="inline-flex items-center gap-1 text-sm font-medium text-accent">
-              View on Compass
+              {pick.href.includes("redfin.com")
+                ? "View on Redfin"
+                : "View on Compass"}
               <ArrowUpRight className="h-3.5 w-3.5" />
             </p>
           </CardContent>
@@ -137,7 +144,7 @@ export function BuyPicksSection() {
         id="featured-homes"
         eyebrow="Featured for buyers"
         title="Homes I recommend"
-        description="Featured opportunities I know well from hosting open houses — tour-ready snapshots with Compass links for full details."
+        description="Homes I’m watching closely — including places I’ve hosted open houses — with listing links for full details."
         className="scroll-mt-24"
         actions={
           <Button asChild variant="outline">
