@@ -23,7 +23,7 @@ export interface BuyPick {
   openHouse?: string;
 }
 
-/** Active picks + current open houses Jason recommends / hosts. */
+/** Active picks Jason recommends — homes he knows well from hosting open houses. */
 export const buyActivePicks: BuyPick[] = [
   {
     id: "postwood",
@@ -34,16 +34,16 @@ export const buyActivePicks: BuyPick[] = [
     price: 1688000,
     beds: 6,
     baths: 4,
-    status: "open_house",
-    badge: "Open House Sat 2–4:30 PM",
+    status: "active",
+    badge: "Jason knows this home",
     blurb:
       "Highly renovated 6-bed / 4-bath with dual kitchens downstairs and two backyard sheds — flexible for multi-gen living.",
     listingAgent: "Fan Yeh",
     listingAgentDre: "DRE #01948545",
-    roleNote: "Open house hosted by Jason Lim",
+    roleNote:
+      "Jason hosted open houses here and knows the property well",
     href: "https://www.compass.com/homedetails/2974-Postwood-Dr-San-Jose-CA-95132/1PYYE9_pid/",
     photo: "/images/buy-picks/2974-postwood.jpg",
-    openHouse: "Sat Oct 31 · 2:00–4:30 PM",
   },
   {
     id: "rengstorff",
@@ -56,16 +56,16 @@ export const buyActivePicks: BuyPick[] = [
     beds: 2,
     baths: 1,
     sqft: 935,
-    status: "open_house",
-    badge: "Open House Sun 1:30–4 PM",
+    status: "active",
+    badge: "Jason knows this home",
     blurb:
       "Bright condo with private patio, pool/tennis/pickleball amenities, near Castro Street, Farmers Market, Google, and Rengstorff Park.",
     listingAgent: "Marcie Soderquist",
     listingAgentDre: "DRE #01193911",
-    roleNote: "Open house hosted by Jason Lim",
+    roleNote:
+      "Jason hosted open houses here and knows the property well",
     href: "https://www.compass.com/homedetails/255-S-Rengstorff-Ave-Unit-42-Mountain-View-CA-94040/1Q53K1_pid/",
     photo: "/images/buy-picks/255-rengstorff.jpg",
-    openHouse: "Sun Nov 1 · 1:30–4:00 PM",
   },
   {
     id: "anne-marie",

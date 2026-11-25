@@ -136,8 +136,8 @@ export function BuyPicksSection() {
       <Section
         id="featured-homes"
         eyebrow="Featured for buyers"
-        title="Open houses & homes I recommend"
-        description="Current opportunities I’m hosting or watching closely — tour-ready snapshots with Compass links for full details."
+        title="Homes I recommend"
+        description="Featured opportunities I know well from hosting open houses — tour-ready snapshots with Compass links for full details."
         className="scroll-mt-24"
         actions={
           <Button asChild variant="outline">
