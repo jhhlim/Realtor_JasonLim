@@ -112,6 +112,100 @@ export default function AboutPage() {
       </Section>
 
       <Section
+        id="why"
+        eyebrow="Why?"
+        title="Why I do this work"
+        description="Real assets. Real neighborhoods. Real help — for as many Bay Area families as I can."
+        className="scroll-mt-24"
+      >
+        <div className="mx-auto max-w-3xl space-y-5 text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
+          <FadeIn>
+            <p>
+              Growing up in the Bay Area, I watched the real estate market move —
+              and I watched purchasing power change as the dollar felt less certain
+              over time. That made one idea stick: it is more important than ever to
+              hold and buy{" "}
+              <span className="font-medium text-foreground">real assets</span> —
+              tangible property, not only digits on a screen like stocks or paper
+              money.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.04}>
+            <p>
+              At Berkeley I studied economics, started a personal finance club, and
+              took coursework in real estate investments. I used an HP-12C financial
+              calculator the old-school way — running cap rate and ROI analysis on
+              investment properties in nearby Oakland — and brought investment
+              advisors in to talk with students. That analytical habit never left.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <p>
+              I went into the hardware industry next. Later I realized I could help
+              more people by putting those skills to work in real estate — where
+              decisions are personal, high-stakes, and local. I stay competitive in
+              this space because I know clients on the buy side, how the sell side
+              thinks, the neighborhoods and history of Silicon Valley, and where
+              trends may be headed next.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.12}>
+            <p>
+              I also dig into the details that change what you keep: how Proposition
+              13 works, why relatives who bought in the 1980s might still pay roughly
+              $1–2K a year in property tax on a home worth around $2M while newer
+              homeowners can face $15–20K+, living trusts (revocable and
+              irrevocable), tax planning, and rent-vs-buy analysis. I work with
+              attorneys when buyers or sellers need help with earnest money deposits,
+              the Residential Purchase Agreement, and getting EMD back when the
+              contract allows — and I take time to truly understand each contract so
+              we know when to negotiate, when to push forward, and when to walk away.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.16}>
+            <p>
+              Hands-on help matters too. My dad taught me handyman skills; in 2022 I
+              ran my own landscaping company. I connect clients with strong
+              contractors, custom furniture and staging partners, and I build
+              websites and market with AI tools that can reduce seller-side costs.
+              Day to day I stay current on jobs and tech, the economy, the political
+              environment, and the international landscape — then translate that into
+              practical guidance for buying or selling a Bay Area property. I am a
+              San Jose homeowner myself, so I know what this market feels like from
+              both sides of the table.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="font-medium text-foreground">
+              Ultimately, I want to help as many people as I can make clearer,
+              more confident real estate decisions.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.24}>
+            <p className="text-sm text-muted-foreground">
+              Property tax, estate planning, and contract outcomes depend on your
+              facts and timing. This is general information — not legal, tax, or
+              accounting advice. For Prop 13, trusts, EMD disputes, and tax
+              planning, we involve the right professionals when needed.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.28}>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Button asChild variant="accent">
+                <Link href={siteConfig.cta.consultation.href}>
+                  Talk through your goals
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/sell#seller-toolkit">Seller toolkit</Link>
+              </Button>
+            </div>
+          </FadeIn>
+        </div>
+      </Section>
+
+      <Section
         eyebrow="Background"
         title="At a glance"
         description={`${siteConfig.experience.techYears} years in software & hardware · Bay Area native · South Bay homeowner · Compass REALTOR®`}
