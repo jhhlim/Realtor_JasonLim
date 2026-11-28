@@ -5,6 +5,58 @@ const cover = (id: string) =>
 
 export const mockBlogPosts: BlogPost[] = [
   {
+    slug: "thanksgiving-weekend-bay-area-outings-and-year-end-buying-2026",
+    title:
+      "Happy Thanksgiving — Bay Area Holiday Outings & Could a New Home Be This Year’s Biggest Gift?",
+    excerpt:
+      "Black Friday lines, Christmas trees near Los Gatos, Filoli lights, Union Square skating — plus why homes with price cuts or longer days on market can be worth a closer look before year-end.",
+    content: `I hope you had a great Thanksgiving! Black Friday was wild — people were waiting up to two hours to get into Nike and The North Face.
+
+Bay Area holiday outings
+
+- Pick out a Christmas tree near Los Gatos. If you celebrate Christmas, this is a great weekend to head into the hills and cut your own tree. Frosty’s Tree Farm and Four Winds Christmas Trees are two spots to check out.
+- Rent a living tree in San Jose. Our City Forest’s Holiday Rent-A-Tree program offers potted trees you can decorate at home and return in January. The sliding-scale donation is $50–$100, with pickup from December 3–19 on select days.
+- See Filoli after dark in Woodside. The house and gardens glow with about 350,000 lights, and there’s a 210-foot light tunnel. If you’re aiming for a holiday weekend, check availability early (Filoli Holiday Lights tickets).
+- See the real tree in San Francisco and go ice skating. Union Square has a real 60-foot white fir this year — its first live Christmas tree since 2010. Make an evening of it at the Union Square Ice Rink. In San Jose, you can skate under the palms at Downtown Ice and stroll through Christmas in the Park.
+
+Could a new home be your family’s biggest gift this year?
+
+If you’re ready to buy, now is a great time to look across the Bay Area. I’d start with homes that have been on the market a while, had a price reduction, or recently came back on the market. Some sellers may be open to negotiating before year-end. Others feel strongly about what their home is worth and may wait until January or spring for an offer they’re comfortable accepting.
+
+The recent Bay Area rain and flooding can also reveal things you’d miss on a sunny-day tour. Look for water pooling near the house, see where the downspouts drain, and flag any signs of moisture to follow up on in the disclosures or during an inspection.
+
+Found a home you like? Let’s put together an offer
+
+I can look at recent comparable sales and the home’s condition with you, help you choose an offer price and a walk-away number, and talk through whether a seller credit or flexible closing date could help. We’ll also decide which inspection, financing, and appraisal contingencies make sense for you.
+
+Reply with your budget, must-haves, and commute. Whether you’re looking in the South Bay, on the Peninsula, or in the East Bay, I can help you compare areas and find homes worth seeing. If you already have a listing in mind, send it over and we’ll talk through what I’d offer and why.
+
+Happy holidays,
+
+Jason Lim
+Compass | DRE #02444964
+📱 (510) 480-7191
+jason.lim@compass.com
+🌐 jasonlimrealty.com
+
+Holiday outing details can change — confirm hours, tickets, and program dates with each venue. This is general real estate information, not legal, tax, or lending advice.`,
+    category: "Bay Area",
+    coverImage: cover("photo-1512389142860-9c449e58a543"),
+    publishedAt: "2026-11-27",
+    readingMinutes: 4,
+    tags: [
+      "newsletter",
+      "thanksgiving",
+      "holidays",
+      "bay area",
+      "christmas trees",
+      "filoli",
+      "buying",
+      "year-end",
+      "november 2026",
+    ],
+  },
+  {
     slug: "nvidia-surge-ai-ready-real-estate-agent-november-2026",
     title:
       "Nvidia Surged. Is Your Real Estate Agent Keeping Up with AI?",
@@ -56,7 +108,7 @@ Compass | CA DRE #02444964
 This is general information, not investment, tax, or legal advice. Mortgage rate figures are informational national averages and are not a loan offer or personalized quote. AI and other tools assist Jason’s review; they do not replace professional judgment, inspection, appraisal, or lender underwriting. Market commentary reflects publicly reported news and should be verified against primary sources.`,
     category: "Technology",
     coverImage: cover("photo-1677442136019-21780ecad995"),
-    publishedAt: "2026-11-22",
+    publishedAt: "2026-11-23",
     readingMinutes: 4,
     tags: [
       "newsletter",

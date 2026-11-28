@@ -84,7 +84,11 @@ const hubs = [
     links: [
       { label: "Insights", href: "/blog" },
       {
-        label: "Nvidia surge + AI-ready agent (Nov 22 newsletter)",
+        label: "Thanksgiving weekend outings + year-end buying (Nov 27)",
+        href: "/blog/thanksgiving-weekend-bay-area-outings-and-year-end-buying-2026",
+      },
+      {
+        label: "Nvidia surge + AI-ready agent (Nov 23 newsletter)",
         href: "/blog/nvidia-surge-ai-ready-real-estate-agent-november-2026",
       },
       {
