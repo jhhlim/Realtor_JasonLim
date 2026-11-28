@@ -155,11 +155,13 @@ export default function AboutPage() {
               13 works, why relatives who bought in the 1980s might still pay roughly
               $1–2K a year in property tax on a home worth around $2M while newer
               homeowners can face $15–20K+, living trusts (revocable and
-              irrevocable), tax planning, and rent-vs-buy analysis. I work with
-              attorneys when buyers or sellers need help with earnest money deposits,
-              the Residential Purchase Agreement, and getting EMD back when the
-              contract allows — and I take time to truly understand each contract so
-              we know when to negotiate, when to push forward, and when to walk away.
+              irrevocable), tax planning, and rent-vs-buy analysis. On contracts, I
+              take time to understand the Residential Purchase Agreement and related
+              notices so we know when to negotiate, when to push forward, and when to
+              walk away. When a situation gets complex — recovering earnest money when
+              the contract allows, Notices to Perform, or a seller who is not closing —
+              I coordinate with attorneys and other professionals to protect your
+              position and keep the deal on track.
             </p>
           </FadeIn>
           <FadeIn delay={0.16}>
